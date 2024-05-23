@@ -11,11 +11,12 @@ npm create skeleton-app@latest .
 # => other packages: none
 # => type checking: Yes, using JavaScript with JSDoc comments
 # => additional setup: ESLint, Prettier, Svelte Inspector
-npm install
+npm i
 ```
 
 ### Run
 
 ```sh
 npm run dev
+# reload by typing "r" and enter in the terminal
 ```
