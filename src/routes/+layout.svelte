@@ -1,4 +1,4 @@
-<!-- ToDo: what is this file for? -->
+<!-- https://learn.svelte.dev/tutorial/layouts -->
 
 <script>
     import "../app.postcss";
