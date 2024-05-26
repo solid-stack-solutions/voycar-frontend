@@ -1,8 +1,6 @@
 # voycar-frontend
 
-SkeletonUI + Svelte + JavaScript (+ SvelteKit + Vite + ESLint + Prettier + Svelte Inspector)
-
-### Setup
+### Setup Documentation
 
 ```sh
 npm create skeleton-app@latest .
@@ -14,9 +12,16 @@ npm create skeleton-app@latest .
 npm i
 ```
 
-### Run
+### Usage
 
 ```sh
+### run app
 npm run dev
 # reload by typing "r" and enter in the terminal
+
+### check code style
+npm run lint
+
+### apply automatic code style suggestions
+npm run format
 ```
