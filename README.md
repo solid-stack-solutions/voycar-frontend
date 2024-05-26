@@ -16,7 +16,9 @@ npm i
 
 ```sh
 # run app
-npm run dev # reload by typing "r" and enter in the terminal
+npm run dev
+# reload by typing "r" and enter in the terminal
+# inspect svelte components with ctrl+alt+shift+i in webapp
 
 # check svelte code for warnings and errors
 npm run check-svelte
