@@ -1,7 +1,7 @@
 <!-- ToDo: what is this file for? -->
 
 <script>
-	import '../app.postcss';
+    import "../app.postcss";
 </script>
 
 <slot />
