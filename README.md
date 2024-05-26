@@ -15,13 +15,12 @@ npm i
 ### Usage
 
 ```sh
-### run app
-npm run dev
-# reload by typing "r" and enter in the terminal
+# run app
+npm run dev # reload by typing "r" and enter in the terminal
 
-### check code style
-npm run lint
 
-### apply automatic code style suggestions
+# check formatting / code style
+npm run check-format
+# apply configured formatting rules
 npm run format
 ```

@@ -6,9 +6,9 @@
         "dev": "vite dev",
         "build": "vite build",
         "preview": "vite preview",
-        "check": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json",
-        "check:watch": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json --watch",
-        "lint": "prettier --check . && eslint .",
+        "check-svelte": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json",
+        "check-svelte:watch": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json --watch",
+        "check-format": "prettier --check . && eslint .",
         "format": "prettier --write ."
     },
     "devDependencies": {
