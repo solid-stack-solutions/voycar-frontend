@@ -1,7 +1,16 @@
 # Overview
 //Todo: (semi-)short description of the frontend
 
-Used technologies are [Skeleton](https://www.skeleton.dev/) (including [Svelte](https://svelte.dev/) + [SvelteKit](https://kit.svelte.dev/) + [Tailwind](https://tailwindcss.com/)) with JavaScript + [ESLint](https://eslint.org/) + [Prettier](https://prettier.io/) + [Svelte Inspector](https://github.com/qutran/svelte-inspector).
+Used technologies are...
+- JavaScript
+- [Skeleton](https://www.skeleton.dev/), including...
+    - [Tailwind](https://tailwindcss.com/)
+    - [SvelteKit](https://kit.svelte.dev/), including...
+        - [Svelte](https://svelte.dev/)
+        - [Vite](https://vitejs.dev/)
+- [ESLint](https://eslint.org/)
+- [Prettier](https://prettier.io/)
+- [Svelte Inspector](https://github.com/qutran/svelte-inspector)
 
 # How to use
 //Todo: short description on how to use the frontend pages, maybe screenshot/video showcase
