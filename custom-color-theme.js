@@ -1,6 +1,6 @@
 // generated with https://www.skeleton.dev/docs/generator
 export const customColorTheme = {
-    name: 'custom-color-theme',
+    name: "custom-color-theme",
     properties: {
         // =~= Theme Properties =~=
         "--theme-font-family-base": `system-ui`,
@@ -96,5 +96,5 @@ export const customColorTheme = {
         "--color-surface-700": "51 51 51", // #333333
         "--color-surface-800": "41 41 41", // #292929
         "--color-surface-900": "33 33 33", // #212121
-    }
-}
+    },
+};
