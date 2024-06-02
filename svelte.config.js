@@ -14,7 +14,7 @@ const config = {
     vitePlugin: {
         // inspect svelte components in running app
         inspector: {
-            toggleKeyCombo: "control-alt-shift-i",
+            toggleKeyCombo: "control-alt-i",
             showToggleButton: "never",
         },
     },
