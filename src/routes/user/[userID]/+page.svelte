@@ -1,6 +1,5 @@
 <script>
-	export let data;    //idk warum aber man muss das anscheinend "data" nennen, sonst bekommt man komische Fehler
-                        // wird dann später durch Daten aus der Datenbank realisiert
+	export let data;    //nutzen der data export property
 
 </script>
 <div>
