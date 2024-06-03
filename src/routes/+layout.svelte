@@ -23,11 +23,24 @@
 	
 	import { TabGroup, Tab, TabAnchor } from '@skeletonlabs/skeleton'; //Menüleiste mit auswählbaren Tabs
 	import { page } from '$app/stores'; // hat automatisch alle Pages als Stores
+	import { AppBar } from '@skeletonlabs/skeleton'; // App Bar
 </script>
+
+<AppBar gridColumns="grid-cols-3" slotDefault="place-self-center" slotTrail="place-content-end">
+	<svelte:fragment slot="lead">(icon)</svelte:fragment>
+	Voycar
+	<svelte:fragment slot="trail">
+		<a href="/user">
+			<svg class="h-8 w-8 text-slate-100"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round">  
+				<path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />  
+				<circle cx="12" cy="7" r="4" />
+				</svg>
+		</a>
+	</svelte:fragment>
+</AppBar>
 
 <TabGroup>
 	<TabAnchor href="/" selected={$page.url.pathname === '/'}>Home</TabAnchor>
-	<TabAnchor href="/user" selected={$page.url.pathname === '/user'}>User</TabAnchor>
 	<TabAnchor href="/reservations" selected={$page.url.pathname === '/reservations'}>Reservierungen</TabAnchor>
 </TabGroup>	
 <slot />
