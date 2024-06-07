@@ -17,7 +17,7 @@
 >
     <svelte:fragment slot="lead">
         <svg
-            class="h-8 w-8 text-slate-100"
+            class="h-8 w-8"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
@@ -40,7 +40,7 @@
         <a href="/user">
             <!--UserIcon-->
             <svg
-                class="h-8 w-8 text-slate-100"
+                class="h-8 w-8"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
@@ -55,7 +55,6 @@
         <LightSwitch />
     </svelte:fragment>
 </AppBar>
-
 <TabGroup>
     <TabAnchor href="/" selected={$page.url.pathname === "/"}>Home</TabAnchor>
     <TabAnchor
@@ -69,12 +68,11 @@
 <slot />
 
 <footer style="text-align: center;">
-    <svg
-        class="h-4 w-4 text-slate-100"
+    <svg 
+        class="h-4 w-4"
         fill="none"
         viewBox="0 0 24 24"
-        stroke="currentColor"
-    >
+        stroke="currentColor">
         <path
             stroke-linecap="round"
             stroke-linejoin="round"
