@@ -9,13 +9,12 @@
 
 <script>
     import { Accordion, AccordionItem, Table } from "@skeletonlabs/skeleton";
-    import { onMount } from "svelte";
     export let data; //using the data export property to get userdata
     let userKeys = Object.keys(data.user); //convert JSON object to iterable List
     let userInfo = Object.values(data.user); //convert JSON object to iterable List
     /**
      * Toggle input fields visability
-     * @param id    ElementID of form input field 
+     * @param {string} id ElementID of form input field
      */
     function changeInputDisplayStyle(id){
         var inputField = document.getElementById(id);
@@ -43,11 +42,11 @@
                 >
                 <svelte:fragment slot="content">
                     <div class="table-container border-4 rounded-md border-primary-500">
-                        <table class="table table-hover"> <!--tbh idk why the hover effect doesnt work -->
+                        <table class="table table-fixed w-full"> <!--tbh idk why the hover effect doesnt work -->
 
                             {#each userKeys as key, i}
                                 <!--diplays all the information of the specified user in the url params (doesnt sanitize the data its give; means query data has to be clean )  -->
-                                <tr>
+                                <tr class="hover:bg-tertiary-900 " >
                                     <th>{key.toLowerCase()}</th>
                                     <td>{userInfo[i]}</td>
                                         <td>
@@ -63,11 +62,6 @@
                                 </tr>
                             {/each}
                         </table>
-                    </div>
-                    <div>
-                        <button type="button" class="btn variant-filled-warning">
-                            <svg class="h-4 w-4 "  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <path d="M4 20h4l10.5 -10.5a1.5 1.5 0 0 0 -4 -4l-10.5 10.5v4" />  <line x1="13.5" y1="6.5" x2="17.5" y2="10.5" /></svg>
-                        </button>
                     </div>
                 </svelte:fragment>
             </AccordionItem>
