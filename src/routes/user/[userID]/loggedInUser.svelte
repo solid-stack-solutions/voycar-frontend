@@ -9,9 +9,21 @@
 
 <script>
     import { Accordion, AccordionItem, Table } from "@skeletonlabs/skeleton";
+    import {popup} from "@skeletonlabs/skeleton";
     export let data; //using the data export property to get userdata
     let userKeys = Object.keys(data.user); //convert JSON object to iterable List
     let userInfo = Object.values(data.user); //convert JSON object to iterable List
+    /**
+     * @type import("@skeletonlabs/skeleton").PopupSettings
+     */
+    const popupClick = {
+	event: 'click',
+	target: 'popupClick',
+	placement: 'top'
+    };
+
+
+    let alertVisible = false;
     /**
      * Toggle input fields visability
      * @param {string} id ElementID of form input field
@@ -25,6 +37,10 @@
             inputField.style.display = "none";
         }
     }
+
+    function confirmDeletion() {
+
+    }
 </script>
 
 <svelte:head>
@@ -32,7 +48,7 @@
 </svelte:head>
 <div>
     <div>
-        <p>Hallo {data.user.firstName} {data.user.lastName}</p>
+        <p class="text-xl font-semibold">Hallo {data.user.firstName} {data.user.lastName}</p>
     </div>
     <div>
         <Accordion>
@@ -42,11 +58,11 @@
                 >
                 <svelte:fragment slot="content">
                     <div class="table-container border-4 rounded-md border-primary-500">
-                        <table class="table table-fixed w-full"> <!--tbh idk why the hover effect doesnt work -->
+                        <table class="table table-fixed border-4 rounded-md w-full"> <!--tbh idk why the hover effect doesnt work -->
 
                             {#each userKeys as key, i}
                                 <!--diplays all the information of the specified user in the url params (doesnt sanitize the data its give; means query data has to be clean )  -->
-                                <tr class="hover:bg-tertiary-900 " >
+                                <tr class="hover:bg-tertiary-900" >
                                     <th>{key.toLowerCase()}</th>
                                     <td>{userInfo[i]}</td>
                                         <td>
@@ -79,7 +95,21 @@
             </AccordionItem>
         </Accordion>
     </div>
-    <button type="button" class="btn bg-gradient-to-br variant-filled-error">
-        Kontolöschung beantragen
-    </button>
+    <div >
+        <button type="button" class="btn bg-gradient-to-br variant-filled-error" use:popup={popupClick}>
+            Kontolöschung beantragen
+        </button>
+        <div class="card p-2 bg-secondary-500" data-popup="popupClick">
+            <aside class="alert variant-filled-warning">
+                <div class="alert-message">
+                    <h3 class="h3">Kontolöschung bestätigen</h3>
+                    <p>Wollen Sie ihr Voyccar-Konto wirklich löschen?</p>
+                </div>
+                <div class="alert-actions">
+                    <button type="button" class="btn variant-filled">Confirm</button>
+                </div>
+            </aside>
+            <div class="arrow variant-filled-primary" />
+        </div>
+    </div>
 </div>
