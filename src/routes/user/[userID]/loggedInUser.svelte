@@ -114,16 +114,11 @@
             <AccordionItem class="border-2 rounded-md border-tertiary-500">
                 <svelte:fragment slot="summary">Tarif</svelte:fragment>
                 <svelte:fragment slot="content">
-                    <div dir="rtl" class="static h-8">
+                    <div class="static h-8">
                         Aktueller Tarif:
                         <!-- hier dann noch daten abrufen und tarif einfügen -->
-                        <button type="button" class="btn btn-sm variant-filled-warning static" on:click={() => changeTarif = !changeTarif}>
-                            Edit
-                            <svg class="h-4 w-4"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <path d="M4 20h4l10.5 -10.5a1.5 1.5 0 0 0 -4 -4l-10.5 10.5v4" />  <line x1="13.5" y1="6.5" x2="17.5" y2="10.5" /></svg>
-                        </button>
-                        {#if changeTarif}
-                            <SlideToggle name="tarifSlider" bind:checked={tarifToggle} size="sm" class="static">Tarif</SlideToggle>
-                        {/if}
+                         {data.user.SubPlan}
+                        <span>
                     </div>
                 </svelte:fragment>
             </AccordionItem>
@@ -131,8 +126,8 @@
         </Accordion>
     </div>
     <!-- Account delete button -->
-    <div >
-        <button type="button" class="btn bg-gradient-to-br variant-filled-error" use:popup={popupClick}>
+    <div class="relative">
+        <button type="button" class="btn bg-gradient-to-br variant-filled-error absolute right-0" use:popup={popupClick}>
             Kontolöschung beantragen
         </button>
         <!-- Floating ui popup to confirm account deletion -->
