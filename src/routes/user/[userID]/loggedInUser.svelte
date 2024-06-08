@@ -87,13 +87,13 @@
                             {/each}
                         </table>
                     </div>
-                    <div class="relative h-8 ">
-                        <button type="button" class="btn btn-md variant-filled-warning absolute bottom-0 right-0" on:click={() => formEditEnabled = !formEditEnabled}>
+                    <div dir="rtl">
+                        <button type="button" class="btn btn-md variant-filled-warning " on:click={() => formEditEnabled = !formEditEnabled}>
                             Edit
                             <svg class="h-4 w-4"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <path d="M4 20h4l10.5 -10.5a1.5 1.5 0 0 0 -4 -4l-10.5 10.5v4" />  <line x1="13.5" y1="6.5" x2="17.5" y2="10.5" /></svg>
                         </button>
                         {#if formEditEnabled}
-                        <button type="button" class="btn btn-md variant-filled-success absolute bottom-0 right-16">
+                        <button type="button" class="btn btn-md variant-filled-success ">
                             <!-- TODO Update Button Logik implementieren -->
                             Update
                             <svg class="h-4 w-4"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round">  <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z" />  <polyline points="17 21 17 13 7 13 7 21" />  <polyline points="7 3 7 8 15 8" /></svg>
@@ -110,17 +110,19 @@
                 </svelte:fragment>
             </AccordionItem>
             <!-- Subscription plan information -->
-             {#if data.user.tarifID != null}
+            {#if data.user.tarifID != null}
             <AccordionItem class="border-2 rounded-md border-tertiary-500">
                 <svelte:fragment slot="summary">Tarif</svelte:fragment>
                 <svelte:fragment slot="content">
-                    <div>
+                    <div dir="rtl" class="static h-8">
                         Aktueller Tarif:
-                            <!-- hier dann noch daten abrufen und tarif einfügen -->
+                        <!-- hier dann noch daten abrufen und tarif einfügen -->
+                        <button type="button" class="btn btn-sm variant-filled-warning static" on:click={() => changeTarif = !changeTarif}>
+                            Edit
+                            <svg class="h-4 w-4"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <path d="M4 20h4l10.5 -10.5a1.5 1.5 0 0 0 -4 -4l-10.5 10.5v4" />  <line x1="13.5" y1="6.5" x2="17.5" y2="10.5" /></svg>
+                        </button>
                         {#if changeTarif}
-                        <div>
-                            <SlideToggle name="tarifSlider" bind:checked={tarifToggle} size="sm"/>
-                        </div>
+                            <SlideToggle name="tarifSlider" bind:checked={tarifToggle} size="sm" class="static">Tarif</SlideToggle>
                         {/if}
                     </div>
                 </svelte:fragment>
