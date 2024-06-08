@@ -5,8 +5,10 @@ import { customColorTheme } from "./custom-color-theme";
 
 import { join } from "path";
 
+import forms from "@tailwindcss/forms";
 import { skeleton } from "@skeletonlabs/tw-plugin";
-/** @type {import('tailwindcss').Config} */
+
+/** @type {import("tailwindcss").Config} */
 export default {
     // use skeleton dark mode toggle
     // https://www.skeleton.dev/docs/dark-mode
@@ -22,6 +24,7 @@ export default {
         extend: {},
     },
     plugins: [
+        forms,
         skeleton({
             themes: {
                 custom: [customColorTheme],
