@@ -66,13 +66,10 @@
     >
     <!-- hier noch um die anderen Seiten erweitern -->
 </TabGroup>
-
 <slot />
-
-<footer style="text-items: center;">
-    <div style="display: flex; align-text: center;">
-        Support:
-        <img src="/telephoneIcon.svg" alt="phone icon" style="margin-right: 4px; margin-left: 4px;">
-        +49 123 42018769      
-    </div>
-</footer>
+<!-- bro idk wie man das gecentert bekommt ohne dass die dinger dann untereinander sind was für ein 💩 -->
+<div style="grid grid-cols-3 justify-content: center;">
+    <div>Support:</div>
+    <div><img src="/telephoneIcon.svg" alt="phone icon" style="margin-right: 4px; margin-left: 4px;"></div>
+    <div>+49 123 42018769</div>   
+</div>
