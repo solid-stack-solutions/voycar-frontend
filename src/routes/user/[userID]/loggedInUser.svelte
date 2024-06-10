@@ -17,8 +17,10 @@
     let userKeys = Object.keys(data.user); //convert JSON object to iterable List
     let userInfo = Object.values(data.user); //convert JSON object to iterable List
     
-    let userSubPlan = data.SubPlan;
-
+    let userID = data.user.userID;
+    let userSubPlanID = data.user.subPlanID;
+    let userPaymentInfoID = data.user.paymentInfoID;
+    //gerade nur zum testen dass statt IDs was anderes drin steht, später wird die dann aus fetch parameter genommen
     const popupClick = {
 	event: 'click',
 	target: 'popupClick',
@@ -56,11 +58,11 @@
                 </svelte:fragment>
             </AccordionItem>
             <!-- Payment information tab -->
-            {#if data.user.paymentInfo == null}
+            {#if userPaymentInfoID != null}
             <AccordionItem class="border-2 rounded-md border-secondary-500">
                 <svelte:fragment slot="summary">Zahlungsinformation</svelte:fragment>
                 <svelte:fragment slot="content">
-                    <UserPaymentData userID={data.user.userID}></UserPaymentData>
+                    <UserPaymentData userID={userID}></UserPaymentData>
                 </svelte:fragment>
                 <svelte:fragment slot="lead">
                     <img src="/paymentInfoIcon.svg" alt="payment info icon"  style="margin-right: 4px; margin-left: 4px;"/>
@@ -69,11 +71,11 @@
             </AccordionItem>
             {/if}
             <!-- Subscription plan information -->
-            {#if data.user.SubPlanID != null}
+            {#if userSubPlanID != null}
             <AccordionItem class="border-2 rounded-md border-tertiary-500">
                 <svelte:fragment slot="summary">Tarif</svelte:fragment>
                 <svelte:fragment slot="content">
-                    <UserPlanData userID={data.user.userID}></UserPlanData>
+                    <UserPlanData userID={userID}></UserPlanData>
                 </svelte:fragment>
                 <svelte:fragment slot="lead">
                     <img src="/planIcon.svg" alt="plan icon" style="margin-right: 4px; margin-left: 4px;"/>
