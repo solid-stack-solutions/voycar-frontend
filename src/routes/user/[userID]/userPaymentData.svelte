@@ -1,5 +1,5 @@
 <script>
-    export let userID;
+    //export let userID;
 
     let formEditEnabled = false;
     // geht erst wenn datanbankverbindung vorhanden
@@ -10,11 +10,27 @@
     // }
 </script>
 <div >
-    Zahlungsmittel:
-    <!-- hier dann noch daten abrufen und tarif einfügen -->
+    <div style="flex grid-rows-2">
+        Zahlungsmittel:
+    <!-- hier dann noch daten abrufen und Payment info einfügen einfügen -->
      <!-- {#if userPaymentData != null} -->
-     {userID}
+      <!-- Fehlt noch die Logik -->
+     <div class="space-y-2">
+        <label class="flex items-center space-x-2">
+            <input disabled={!formEditEnabled} class="radio variant-ghost-primary" type="radio" checked name="radio-direct" value="1" />
+            <p>Paypal</p>
+        </label>
+        <label class="flex items-center space-x-2">
+            <input  disabled={!formEditEnabled} class="radio" type="radio" name="radio-direct" value="2" />
+            <p>Kreditkarte</p>
+        </label>
+        <label class="flex items-center space-x-2">
+            <input  disabled={!formEditEnabled} class="radio" type="radio" name="radio-direct" value="3" />
+            <p>Crypto</p>
+        </label>
+    </div>
      <!-- {/if} -->
+    </div>
      <div dir="rtl" class="height-auto">
         <button type="button" class="btn btn-md variant-filled-error">
             <!-- TODO Delete Button Logik implementieren -->
