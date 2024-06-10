@@ -1,13 +1,4 @@
-<!--TODO    Gestaltung:
-            aktuelle Zahlungsinformationen als Feld 
-            Button neben der Zahlungsinformation zum bearbeiten \[FA049] (Bitte mit Bestätigungsabfrage)
-            Button neben der Zahlungsinformation zum löschen \[FA048] (Bitte mit Bestätigungsabfrage)
-            Zahlungsinformationen hinzufügen Menü \[FA047]
-            Maybe Ausklappbar und dann dort Felder
-            Kontolöschung beantragen Button \[FA014] (Bitte mit Bestätigungsabfrage) 
-    -->
-<!-- TODO vieles kann wahrscheinlich noch ausgelagert werden -->
-
+<!-- Account page for loggend in users -->
 <script>    
     // Framework imports
     import { Accordion, AccordionItem, Table } from "@skeletonlabs/skeleton";
@@ -47,7 +38,7 @@
 </svelte:head>
 <div>
     <div>
-        <p class="text-xl font-semibold">Hallo {data.user.firstName} {data.user.lastName}</p>
+        <p class="text-xl font-semibold pl-2">Hallo {data.user.firstName} {data.user.lastName}</p>
     </div>
     <div>
         <!-- Accordion -->
@@ -60,13 +51,20 @@
                 <svelte:fragment slot="content">
                     <UserData {userKeys} {userInfo}></UserData>
                 </svelte:fragment>
+                <svelte:fragment slot="lead">
+                    <img src="/personalDetailsIcon.svg" alt="" style="margin-right: 4px; margin-left: 4px;"/>
+                </svelte:fragment>
             </AccordionItem>
             <!-- Payment information tab -->
-            {#if data.user.paymentInfo != null}
+            {#if data.user.paymentInfo == null}
             <AccordionItem class="border-2 rounded-md border-secondary-500">
                 <svelte:fragment slot="summary">Zahlungsinformation</svelte:fragment>
                 <svelte:fragment slot="content">
                     <UserPaymentData userID={data.user.userID}></UserPaymentData>
+                </svelte:fragment>
+                <svelte:fragment slot="lead">
+                    <img src="/paymentInfoIcon.svg" alt="payment info icon"  style="margin-right: 4px; margin-left: 4px;"/>
+    
                 </svelte:fragment>
             </AccordionItem>
             {/if}
@@ -76,6 +74,9 @@
                 <svelte:fragment slot="summary">Tarif</svelte:fragment>
                 <svelte:fragment slot="content">
                     <UserPlanData userID={data.user.userID}></UserPlanData>
+                </svelte:fragment>
+                <svelte:fragment slot="lead">
+                    <img src="/planIcon.svg" alt="plan icon" style="margin-right: 4px; margin-left: 4px;"/>
                 </svelte:fragment>
             </AccordionItem>
             {/if}
