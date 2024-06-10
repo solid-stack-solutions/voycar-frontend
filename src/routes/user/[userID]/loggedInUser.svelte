@@ -16,6 +16,8 @@
 
     // Component imports
     import  UserData  from "./userData.svelte";
+    import UserPaymentData from "./userPaymentData.svelte";
+    import UserPlanData from "./userPlanData.svelte";
 
     // Import Data
     export let data; //using the data export property to get userdata
@@ -64,7 +66,7 @@
             <AccordionItem class="border-2 rounded-md border-secondary-500">
                 <svelte:fragment slot="summary">Zahlungsinformation</svelte:fragment>
                 <svelte:fragment slot="content">
-
+                    <UserPaymentData userID={data.user.userID}></UserPaymentData>
                 </svelte:fragment>
             </AccordionItem>
             {/if}
@@ -73,12 +75,7 @@
             <AccordionItem class="border-2 rounded-md border-tertiary-500">
                 <svelte:fragment slot="summary">Tarif</svelte:fragment>
                 <svelte:fragment slot="content">
-                    <div class="static h-8">
-                        Aktueller Tarif:
-                        <!-- hier dann noch daten abrufen und tarif einfügen -->
-                         {data.user.SubPlan}
-                        <span>
-                    </div>
+                    <UserPlanData userID={data.user.userID}></UserPlanData>
                 </svelte:fragment>
             </AccordionItem>
             {/if}
