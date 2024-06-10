@@ -3,18 +3,19 @@
     export let userInfo;
     let formEditEnabled = false;
 </script>
-<div class="table-container border-4 rounded-md border-primary-500">
+<div class="table-container border-4 rounded-md border-primary-500 p-2">
     <table class="table table-fixed border-4 rounded-md w-full"> <!--tbh idk why the hover effect doesnt work -->
-
         {#each userKeys as key, i}
             {#if userInfo[i] != null}  <!-- only show rows with information available -->
             <!--diplays all the information of the specified user in the url params (doesnt sanitize the data its give; means query data has to be clean )  -->
-            <tr class="hover:bg-tertiary-900" >
+            <tr class="hover:bg-tertiary-900 bg-transparent" >
                 <th>{key.toLowerCase()}</th>
                 <td>
-                    <label class="label">
-                        <input disabled={!formEditEnabled} class="input form--disabled" type="text" placeholder="{userInfo[i]}" id="input_{key}" />
-                    </label>
+                    <form id="form">
+                        <label class="label">
+                            <input disabled={!formEditEnabled} class="input form--disabled variant-form-material" type="text" name="inputField" placeholder="{userInfo[i]}" id="input_{key}" />
+                        </label>
+                    </form>
                 </td> 
             </tr>
             {/if}
