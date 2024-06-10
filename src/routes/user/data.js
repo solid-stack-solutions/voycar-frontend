@@ -10,7 +10,8 @@ export const users = [
         houseNumber: 123,
         plz: 22334,
         city: "New York",
-        SubPlanID: 1,
+        subPlanID: 1,
+        paymentInfoID: 3,
     },
 
     {
@@ -23,7 +24,8 @@ export const users = [
         houseNumber: 1,
         plz: 846789,
         city: "New York",
-        SubPlanID: 2,
+        subPlanID: 2,
+        paymentInfoID: null,
     },
 
     {
@@ -36,6 +38,7 @@ export const users = [
         houseNumber: 420,
         plz: 12312,
         city: "Gotham",
-        SubPlanID: null,
+        subPlanID: null,
+        paymentInfoID: 2,
     },
 ];
