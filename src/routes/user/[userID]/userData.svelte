@@ -60,7 +60,7 @@
     </button>
     {#if formEditEnabled}
         <button type="button" class="btn btn-md variant-filled-success">
-            <!-- TODO Update Button Logik implementieren -->
+            <!-- ToDo Update Button Logik implementieren -->
             Aktualisieren
             <svg
                 class="h-4 w-4"

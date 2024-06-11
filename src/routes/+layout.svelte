@@ -18,7 +18,7 @@
     import { LightSwitch } from "@skeletonlabs/skeleton";
 </script>
 
-<!-- TODO: Icon Farbe an Light/Dark Mode anpassen -->
+<!-- ToDo: Icon Farbe an Light/Dark Mode anpassen -->
 <AppBar
     gridColumns="grid-cols-3"
     slotDefault="place-self-center"

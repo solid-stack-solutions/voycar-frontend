@@ -53,7 +53,7 @@
     </div>
     <div dir="rtl" class="height-auto">
         <button type="button" class="btn btn-md variant-filled-error">
-            <!-- TODO Delete Button Logik implementieren -->
+            <!-- ToDo Delete Button Logik implementieren -->
             Löschen
         </button>
         <button
@@ -83,7 +83,7 @@
         </button>
         {#if formEditEnabled}
             <button type="button" class="btn btn-md variant-filled-success">
-                <!-- TODO Update Button Logik implementieren -->
+                <!-- ToDo Update Button Logik implementieren -->
                 Aktualisieren
                 <svg
                     class="h-4 w-4"
