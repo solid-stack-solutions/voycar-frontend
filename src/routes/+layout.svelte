@@ -3,8 +3,15 @@
     import { TabGroup, Tab, TabAnchor } from "@skeletonlabs/skeleton"; //Menüleiste mit auswählbaren Tabs
     import { page } from "$app/stores"; // hat automatisch alle Pages als Stores
     import { AppBar } from "@skeletonlabs/skeleton"; // App Bar
-    import { computePosition, autoUpdate, offset, shift, flip, arrow } from '@floating-ui/dom';
-    import { storePopup } from '@skeletonlabs/skeleton';
+    import {
+        computePosition,
+        autoUpdate,
+        offset,
+        shift,
+        flip,
+        arrow,
+    } from "@floating-ui/dom";
+    import { storePopup } from "@skeletonlabs/skeleton";
     storePopup.set({ computePosition, autoUpdate, offset, shift, flip, arrow });
     import Logo from "$lib/assets/logo-full-white.svg";
     // these are skeleton svelte components!
