@@ -10,7 +10,10 @@ const config = {
 
     // plugins and settings for file types
     plugins: ["prettier-plugin-svelte"],
-    overrides: [{ files: "*.svelte", options: { parser: "svelte" } }],
+    overrides: [
+        { files: "*.svelte", options: { parser: "svelte" } },
+        { files: "*.svg", options: { parser: "html" } },
+    ],
 };
 
 export default config;
