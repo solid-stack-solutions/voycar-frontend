@@ -1,5 +1,5 @@
 // helper functions that can easily be imported anywhere go here
-//hier routen Strings
+//routing strings
 const url = {
     memberInfo: "localhost:8080/....",
     // ...
