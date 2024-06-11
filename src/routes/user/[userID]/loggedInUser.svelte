@@ -39,7 +39,7 @@
     <title>Ihr Voycar-Konto</title>
 </svelte:head>
 <div>
-    <div>
+    <div class="pb-4">
         <p class="text-xl font-semibold pl-2">Hallo {data.user.firstName} {data.user.lastName}</p>
     </div>
     <div>
@@ -85,7 +85,7 @@
         </Accordion>
     </div>
     <!-- Account delete button -->
-    <div class="relative">
+    <div class="relative pt-4">
         <button type="button" class="btn bg-gradient-to-br variant-filled-error absolute right-0" use:popup={popupClick}>
             Kontolöschung beantragen
         </button>
