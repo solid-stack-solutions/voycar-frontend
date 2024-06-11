@@ -3,7 +3,7 @@
     export let userInfo;
     let formEditEnabled = false;
 </script>
-<div class="table-container border-4 rounded-md border-primary-500 p-2">
+<div class="table-container rounded-md p-2">
     <table class="table table-fixed border-4 rounded-md w-full"> <!--tbh idk why the hover effect doesnt work -->
         {#each userKeys as key, i}
             {#if userInfo[i] != null}  <!-- only show rows with information available -->
