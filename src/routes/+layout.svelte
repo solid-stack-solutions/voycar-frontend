@@ -1,7 +1,7 @@
 <script>
     import "../app.postcss";
-    import { TabGroup, Tab, TabAnchor } from "@skeletonlabs/skeleton"; //Menüleiste mit auswählbaren Tabs
-    import { page } from "$app/stores"; // hat automatisch alle Pages als Stores
+    import { TabGroup, Tab, TabAnchor } from "@skeletonlabs/skeleton"; //Menu with Tabs
+    import { page } from "$app/stores"; // contains all pages in a store
     import { AppBar } from "@skeletonlabs/skeleton"; // App Bar
     import {
         computePosition,
@@ -18,7 +18,6 @@
     import { LightSwitch } from "@skeletonlabs/skeleton";
 </script>
 
-<!-- ToDo: Icon Farbe an Light/Dark Mode anpassen -->
 <AppBar
     gridColumns="grid-cols-3"
     slotDefault="place-self-center"
@@ -71,14 +70,7 @@
         selected={$page.url.pathname === "/reservations"}
         >Reservierungen</TabAnchor
     >
-    <!-- hier noch um die anderen Seiten erweitern -->
 </TabGroup>
 <div class="p-4">
     <slot />
-    <!-- bro idk wie man das gecentert bekommt ohne dass die dinger dann untereinander sind was für ein 💩
-    <div style="grid grid-cols-3 justify-content: center;">
-        <div>Support:</div>
-        <div><img src="/telephoneIcon.svg" alt="phone icon" style="margin-right: 4px; margin-left: 4px;"></div>
-        <div>+49 123 42018769</div>   
-    </div> -->
 </div>

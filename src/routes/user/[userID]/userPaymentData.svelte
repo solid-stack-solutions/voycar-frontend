@@ -1,21 +1,12 @@
 <script>
-    //export let userID;
-
     let formEditEnabled = false;
-    // geht erst wenn datanbankverbindung vorhanden
-    // let userPaymentData = fetchUserPaymetData(userId);
-
-    // async function fetchUserPaymetData(userId){
-    //     return fetch();
-    // }
+    //ToDo logic for backend fetch 
 </script>
 
 <div>
     <div style="flex grid-rows-2">
         Zahlungsmittel:
-        <!-- hier dann noch daten abrufen und Payment info einfügen einfügen -->
-        <!-- {#if userPaymentData != null} -->
-        <!-- Fehlt noch die Logik -->
+        <!-- ToDo logic for show/hide payment data -->
         <div class="space-y-2">
             <label class="flex items-center space-x-2">
                 <input
@@ -49,11 +40,10 @@
                 <p>Crypto</p>
             </label>
         </div>
-        <!-- {/if} -->
     </div>
     <div dir="rtl" class="height-auto">
         <button type="button" class="btn btn-md variant-filled-error">
-            <!-- ToDo Delete Button Logik implementieren -->
+            <!-- ToDo logic for delete button-->
             Löschen
         </button>
         <button
@@ -83,7 +73,7 @@
         </button>
         {#if formEditEnabled}
             <button type="button" class="btn btn-md variant-filled-success">
-                <!-- ToDo Update Button Logik implementieren -->
+                <!-- ToDo logic for update button -->
                 Aktualisieren
                 <svg
                     class="h-4 w-4"

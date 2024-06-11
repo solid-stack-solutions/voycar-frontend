@@ -20,7 +20,6 @@
     let userID = data.user.userID;
     let userSubPlanID = data.user.subPlanID;
     let userPaymentInfoID = data.user.paymentInfoID;
-    //gerade nur zum testen dass statt IDs was anderes drin steht, später wird die dann aus fetch parameter genommen
     const popupClick = {
         event: "click",
         target: "popupClick",
@@ -29,9 +28,9 @@
 
     //Functions
     function confirmDeletion() {
-        //hier logik damit der acc gelöscht wird
-        // request an das backend
-        goto("/"); //redirect zur Startseite
+        //ToDo account deletion logic
+        // request to backend
+        goto("/"); //redirect to landing page
     }
 </script>
 

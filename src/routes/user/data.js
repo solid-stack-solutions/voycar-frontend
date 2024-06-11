@@ -1,4 +1,4 @@
-//Testdaten die später aus der Datenbank kommen
+//Test data
 export const users = [
     {
         userID: 1,
