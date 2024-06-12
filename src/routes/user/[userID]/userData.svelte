@@ -1,5 +1,5 @@
 <script>
-    // Parent data exports
+     // Parent data exports
     export let userKeys;
     export let userInfo;
 
@@ -15,7 +15,7 @@
                 <!-- Diplays all the information of the specified user in the url params 
                 (doesnt sanitize the data its given; means query data has to be clean) -->
                 <tr>
-                    <th class="text-end">
+                    <th class="text-left">
                         <span class="mr-5">{key.toLowerCase()}</span>
                     </th>
                     <td class="w-full">
