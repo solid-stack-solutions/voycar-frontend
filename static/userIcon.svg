@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg
+    width="40"
+    height="40"
+    viewBox="0 0 50 50"
+    xmlns="http://www.w3.org/2000/svg"
+    xmlns:svg="http://www.w3.org/2000/svg"
+>
+    <g transform="matrix(2.1005393,0,0,2.1005393,-2.5428067,-2.7895159)">
+        <path 
+            stroke="#ffffff"
+            style="fill: 000000; fill-opacity: 0"
+            stroke-width="2"
+            d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+        <circle 
+            stroke="#ffffff"
+            style="fill: 000000; fill-opacity: 0"
+            stroke-width="2"
+            cx="12" cy="7" r="4" />
+    </g>
+</svg>
