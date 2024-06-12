@@ -19,7 +19,7 @@
                     name="radio-direct"
                     value="1"
                 />
-                <p>Paypal</p>
+                <p>PayPal</p>
             </label>
             <label class="flex items-center space-x-2">
                 <input
@@ -39,7 +39,7 @@
                     name="radio-direct"
                     value="3"
                 />
-                <p>Crypto</p>
+                <p>Kryptowährung</p>
             </label>
         </div>
     </div>
