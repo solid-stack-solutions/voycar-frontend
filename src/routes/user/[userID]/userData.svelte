@@ -1,5 +1,5 @@
 <script>
-     // Parent data exports
+    // Parent data exports
     export let userKeys;
     export let userInfo;
 
@@ -48,13 +48,13 @@
         {#if formEditEnabled}
             verlassen
         {/if}
-        <img src="/editIcon.svg" alt="edit icon">
+        <img src="/editIcon.svg" alt="edit icon" />
     </button>
     {#if formEditEnabled}
         <button type="button" class="btn btn-md variant-filled-success">
             <!-- ToDo logic for update button-->
             Aktualisieren
-            <img src="/saveIcon.svg" alt="save icon">
+            <img src="/saveIcon.svg" alt="save icon" />
         </button>
     {/if}
 </div>

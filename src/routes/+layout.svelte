@@ -23,7 +23,7 @@
     slotTrail="place-content-end"
 >
     <svelte:fragment slot="lead">
-        <img src="/menuIcon.svg" alt="menu icon">
+        <img src="/menuIcon.svg" alt="menu icon" />
     </svelte:fragment>
     <svelte:fragment slot="default">
         <a href="/">
@@ -34,7 +34,7 @@
     <svelte:fragment slot="trail">
         <a href="/user">
             <!-- User icon -->
-            <img src="/userIcon.svg" alt="user icon">
+            <img src="/userIcon.svg" alt="user icon" />
         </a>
         <LightSwitch />
     </svelte:fragment>

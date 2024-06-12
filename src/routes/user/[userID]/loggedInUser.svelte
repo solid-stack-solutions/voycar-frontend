@@ -15,7 +15,7 @@
 
     // Definitions
     // Convert JSON object to iterable array
-    const userKeys = Object.keys(data.user); 
+    const userKeys = Object.keys(data.user);
     const userInfo = Object.values(data.user);
     const userID = data.user.userID;
     const userSubPlanID = data.user.subPlanID;
