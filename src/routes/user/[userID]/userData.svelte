@@ -1,9 +1,9 @@
 <script>
-    //Parent data exports
+    // Parent data exports
     export let userKeys;
     export let userInfo;
 
-    //Definitions
+    // Definitions
     let formEditEnabled = false;
 </script>
 

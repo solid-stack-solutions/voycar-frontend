@@ -1,4 +1,4 @@
-<!-- Account page for loggend in users -->
+<!-- Account page for logged in users -->
 <script>
     // Framework imports
     import { Accordion, AccordionItem, Table } from "@skeletonlabs/skeleton";
@@ -14,23 +14,24 @@
     export let data;
 
     // Definitions
-    const userKeys = Object.keys(data.user); //convert JSON object to iterable List
-    const userInfo = Object.values(data.user); //convert JSON object to iterable List
+    // Convert JSON object to iterable array
+    const userKeys = Object.keys(data.user); 
+    const userInfo = Object.values(data.user);
     const userID = data.user.userID;
     const userSubPlanID = data.user.subPlanID;
     const userPaymentInfoID = data.user.paymentInfoID;
     const popupClick = {
-        //Popup settings
+        // Popup settings
         event: "click",
         target: "popupClick",
         placement: "top",
     };
 
-    //Functions
+    // Functions
     function confirmDeletion() {
-        //ToDo account deletion logic
-        // request to backend
-        goto("/"); //redirect to landing page
+        // ToDo account deletion logic
+        // Request to backend
+        goto("/"); // Redirect to landing page
     }
 </script>
 
@@ -119,7 +120,7 @@
                     <h3 class="h3">Kontolöschung bestätigen</h3>
                     <p>Wollen Sie ihr Voyccar-Konto wirklich löschen?</p>
                 </div>
-                <!-- Confirmation Button -->
+                <!-- Confirmation button -->
                 <div class="alert-actions">
                     <button
                         type="button"

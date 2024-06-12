@@ -1,8 +1,8 @@
 <script>
     import "../app.postcss";
-    import { TabGroup, Tab, TabAnchor } from "@skeletonlabs/skeleton"; //Menu with Tabs
-    import { page } from "$app/stores"; // contains all pages in a store
-    import { AppBar } from "@skeletonlabs/skeleton"; // App Bar
+    import { TabGroup, Tab, TabAnchor } from "@skeletonlabs/skeleton"; // Menu with tabs
+    import { page } from "$app/stores"; // Contains all pages in a store
+    import { AppBar } from "@skeletonlabs/skeleton";
     import {
         computePosition,
         autoUpdate,
@@ -14,7 +14,6 @@
     import { storePopup } from "@skeletonlabs/skeleton";
     storePopup.set({ computePosition, autoUpdate, offset, shift, flip, arrow });
     import Logo from "$lib/assets/logo-full-white.svg";
-    // these are skeleton svelte components!
     import { LightSwitch } from "@skeletonlabs/skeleton";
 </script>
 
@@ -40,13 +39,13 @@
     </svelte:fragment>
     <svelte:fragment slot="default">
         <a href="/">
-            <!--Voycar Logo-->
+            <!-- Voycar Logo -->
             <img src={Logo} alt="logo" class="w-500" style="scale: 0.5;" />
         </a>
     </svelte:fragment>
     <svelte:fragment slot="trail">
         <a href="/user">
-            <!--UserIcon-->
+            <!-- User icon -->
             <svg
                 class="h-8 w-8"
                 viewBox="0 0 24 24"

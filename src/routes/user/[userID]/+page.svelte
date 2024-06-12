@@ -1,13 +1,13 @@
 <script>
-    //Component imports
+    // Component imports
     import LoggedInUser from "./loggedInUser.svelte";
 
-    //Export data from parent
+    // Export data from parent
     export let data;
 </script>
 
 <!-- Show user page only when user is logged in -->
 {#if data != null}
-    <!-- Inject loggend in user svelte component -->
+    <!-- Inject logged in user svelte component -->
     <LoggedInUser {data}></LoggedInUser>
 {/if}

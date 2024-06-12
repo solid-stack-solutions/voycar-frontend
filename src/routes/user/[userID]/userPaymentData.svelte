@@ -1,7 +1,7 @@
 <script>
-    //Definitions
+    // Definitions
     let formEditEnabled = false;
-    //ToDo logic for backend fetch
+    // ToDo logic for backend fetch
 </script>
 
 <div>
@@ -46,7 +46,7 @@
     <!-- Buttons -->
     <div dir="rtl" class="height-auto">
         <button type="button" class="btn btn-md variant-filled-error">
-            <!-- ToDo logic for delete button-->
+            <!-- ToDo logic for delete button -->
             Löschen
         </button>
         <button

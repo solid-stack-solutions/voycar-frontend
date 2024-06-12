@@ -1,11 +1,11 @@
 <script>
-    //Framework imports
+    // Framework imports
     import { goto } from "$app/navigation";
     import { onMount } from "svelte";
 
-    //Functions
+    // Functions
     function fetchUserID() {
-        //ToDo fetch user id from backend
+        // ToDo fetch user id from backend
         return 1;
     }
 
