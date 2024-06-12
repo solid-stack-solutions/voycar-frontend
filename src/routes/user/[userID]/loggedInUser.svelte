@@ -10,17 +10,17 @@
     import UserPaymentData from "./userPaymentData.svelte";
     import UserPlanData from "./userPlanData.svelte";
 
-    // Import Data
-    export let data; //using the data export property to get userdata
+    // Export data from parent
+    export let data;
 
     // Definitions
-    let userKeys = Object.keys(data.user); //convert JSON object to iterable List
-    let userInfo = Object.values(data.user); //convert JSON object to iterable List
-
-    let userID = data.user.userID;
-    let userSubPlanID = data.user.subPlanID;
-    let userPaymentInfoID = data.user.paymentInfoID;
+    const userKeys = Object.keys(data.user); //convert JSON object to iterable List
+    const userInfo = Object.values(data.user); //convert JSON object to iterable List
+    const userID = data.user.userID;
+    const userSubPlanID = data.user.subPlanID;
+    const userPaymentInfoID = data.user.paymentInfoID;
     const popupClick = {
+        //Popup settings
         event: "click",
         target: "popupClick",
         placement: "top",
@@ -40,12 +40,13 @@
 <div>
     <div class="pb-4">
         <p class="text-xl font-semibold pl-2">
+            <!-- Greeting -->
             Hallo {data.user.firstName}
             {data.user.lastName}
         </p>
     </div>
     <div>
-        <!-- Accordion -->
+        <!-- Accordion for user data-->
         <Accordion>
             <!-- Personal details tab -->
             <AccordionItem class="border-2 rounded-md border-primary-500">
@@ -53,6 +54,7 @@
                     >Persönliche Informationen</svelte:fragment
                 >
                 <svelte:fragment slot="content">
+                    <!-- Inject user data svelte component -->
                     <UserData {userKeys} {userInfo}></UserData>
                 </svelte:fragment>
                 <svelte:fragment slot="lead">
@@ -70,6 +72,7 @@
                         >Zahlungsinformation</svelte:fragment
                     >
                     <svelte:fragment slot="content">
+                        <!-- Inject user payment data svelte component -->
                         <UserPaymentData {userID}></UserPaymentData>
                     </svelte:fragment>
                     <svelte:fragment slot="lead">
@@ -86,6 +89,7 @@
                 <AccordionItem class="border-2 rounded-md border-tertiary-500">
                     <svelte:fragment slot="summary">Tarif</svelte:fragment>
                     <svelte:fragment slot="content">
+                        <!-- Inject user plan data svelte component -->
                         <UserPlanData {userID}></UserPlanData>
                     </svelte:fragment>
                     <svelte:fragment slot="lead">
@@ -115,6 +119,7 @@
                     <h3 class="h3">Kontolöschung bestätigen</h3>
                     <p>Wollen Sie ihr Voyccar-Konto wirklich löschen?</p>
                 </div>
+                <!-- Confirmation Button -->
                 <div class="alert-actions">
                     <button
                         type="button"

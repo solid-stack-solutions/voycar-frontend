@@ -1,14 +1,17 @@
 <script>
+    //Parent data exports
     export let userKeys;
     export let userInfo;
+
+    //Definitions
     let formEditEnabled = false;
 </script>
 
 <div class="table-container rounded-md p-2">
     <table class="table table-fixed border-4 rounded-md w-full">
         {#each userKeys as key, i}
+            <!-- only show rows with information available -->
             {#if userInfo[i] != null}
-                <!-- only show rows with information available -->
                 <!--diplays all the information of the specified user in the url params 
                 (doesnt sanitize the data its give; means query data has to be clean )  -->
                 <tr class="hover:bg-tertiary-900 bg-transparent">
@@ -32,6 +35,7 @@
         {/each}
     </table>
 </div>
+<!-- Buttons -->
 <div dir="rtl">
     <button
         type="button"
