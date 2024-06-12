@@ -8,7 +8,7 @@
 </script>
 
 <div class="p-2">
-    <table class="">
+    <table>
         {#each userKeys as key, i}
             <!-- Only show rows with information available -->
             {#if userInfo[i] != null}
