@@ -1,9 +1,5 @@
 <script>
-    import Logo from "$lib/assets/logo-full-white.svg";
-    // these are skeleton svelte components!
-    import { LightSwitch } from "@skeletonlabs/skeleton";
     import { ListBox, ListBoxItem } from "@skeletonlabs/skeleton";
-
     let selectedValue = "option1";
 </script>
 
@@ -12,7 +8,6 @@
 </svelte:head>
 
 <div class="flex flex-col justify-center items-center h-screen">
-    <img src={Logo} alt="logo" class="w-500" />
     <h1 class="h1 text-center">Rent a car!</h1>
     <button
         type="button"
@@ -39,5 +34,4 @@
             >
         </ListBox>
     </div>
-    <LightSwitch />
 </div>

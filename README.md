@@ -1,5 +1,5 @@
 # Overview
-//Todo: (semi-)short description of the frontend
+//ToDo: (semi-)short description of the frontend
 
 Used technologies are...
 - JavaScript
@@ -13,7 +13,7 @@ Used technologies are...
 - [Svelte Inspector](https://github.com/qutran/svelte-inspector)
 
 # How to use
-//Todo: short description on how to use the frontend pages, maybe screenshot/video showcase
+//ToDo: short description on how to use the frontend pages, maybe screenshot/video showcase
 
 # Installation
 Prerequisite: The following commands need to be available
@@ -27,7 +27,7 @@ npm i
 ```
 
 # Functionality
-//Todo: what the frontend does, what it's used for
+//ToDo: what the frontend does, what it's used for
 
 # Development
 ```sh
@@ -41,16 +41,16 @@ npm run check-format
 # apply configured formatting rules
 npm run format
 ```
-//Todo: link to documentation of the frontend
+//ToDo: link to documentation of the frontend
 
 ## Styling
-//Todo: list styling conventions
+//ToDo: list styling conventions
 
 ### Page Styling
-//Todo: list of styling conventions for the pages (colorpalette, layouts, common icons, etc.)
+//ToDo: list of styling conventions for the pages (colorpalette, layouts, common icons, etc.)
 
 ### Code Styling
 Please run `npm run format` before creating a PR.
 
 ## Conventions
-//Todo: other helpful information and how-to's for development
+//ToDo: other helpful information and how-to's for development

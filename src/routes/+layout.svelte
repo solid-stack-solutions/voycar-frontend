@@ -1,7 +1,52 @@
-<!-- https://learn.svelte.dev/tutorial/layouts -->
-
 <script>
     import "../app.postcss";
+    import { TabGroup, Tab, TabAnchor } from "@skeletonlabs/skeleton"; // Menu with tabs
+    import { page } from "$app/stores"; // Contains all pages in a store
+    import { AppBar } from "@skeletonlabs/skeleton";
+    import {
+        computePosition,
+        autoUpdate,
+        offset,
+        shift,
+        flip,
+        arrow,
+    } from "@floating-ui/dom";
+    import { storePopup } from "@skeletonlabs/skeleton";
+    storePopup.set({ computePosition, autoUpdate, offset, shift, flip, arrow });
+    import Logo from "$lib/assets/logo-full-white.svg";
+    import { LightSwitch } from "@skeletonlabs/skeleton";
 </script>
 
-<slot />
+<AppBar
+    gridColumns="grid-cols-3"
+    slotDefault="place-self-center"
+    slotTrail="place-content-end"
+>
+    <svelte:fragment slot="lead">
+        <img src="/menuIcon.svg" alt="menu icon" />
+    </svelte:fragment>
+    <svelte:fragment slot="default">
+        <a href="/">
+            <!-- Voycar Logo -->
+            <img src={Logo} alt="logo" class="w-500" style="scale: 0.5;" />
+        </a>
+    </svelte:fragment>
+    <svelte:fragment slot="trail">
+        <a href="/user">
+            <!-- User icon -->
+            <img src="/userIcon.svg" alt="user icon" />
+        </a>
+        <LightSwitch />
+    </svelte:fragment>
+</AppBar>
+<TabGroup>
+    <TabAnchor href="/" selected={$page.url.pathname === "/"}>Home</TabAnchor>
+    <TabAnchor
+        href="/reservations"
+        selected={$page.url.pathname === "/reservations"}
+        >Reservierungen</TabAnchor
+    >
+</TabGroup>
+<div class="p-4">
+    <slot />
+</div>
