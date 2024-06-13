@@ -13,7 +13,7 @@
             <label class="flex items-center space-x-2">
                 <input
                     disabled={!formEditEnabled}
-                    class="radio variant-ghost-primary"
+                    class="radio"
                     type="radio"
                     checked
                     name="radio-direct"
