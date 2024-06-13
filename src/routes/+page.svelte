@@ -1,37 +1,17 @@
+<!-- Landing page -->
 <script>
     import { ListBox, ListBoxItem } from "@skeletonlabs/skeleton";
     let selectedValue = "option1";
+    import Logo from "$lib/assets/logo-full-white.svg";
 </script>
 
 <svelte:head>
     <title>Voycar</title>
 </svelte:head>
 
-<div class="flex flex-col justify-center items-center h-screen">
-    <h1 class="h1 text-center">Rent a car!</h1>
-    <button
-        type="button"
-        class="btn bg-gradient-to-br variant-gradient-primary-secondary"
-    >
-        Pre-styled buttons!
-    </button>
-    <div class="bg-primary-500 rounded p-1">
-        <ListBox>
-            <ListBoxItem
-                bind:group={selectedValue}
-                name="medium"
-                value="option1">Select me!</ListBoxItem
-            >
-            <ListBoxItem
-                bind:group={selectedValue}
-                name="medium"
-                value="option2">Or me...?</ListBoxItem
-            >
-            <ListBoxItem
-                bind:group={selectedValue}
-                name="medium"
-                value="option3">Maybe even me :)</ListBoxItem
-            >
-        </ListBox>
+<div class="flex flex-col justify-center items-center" style="height: 70vh;">
+    <div class="border-md rounded-md bg-surface-700 p-4">
+        <h1 class="h1 text-center">Willkommen bei Voycar</h1>
+        <p class="text-block">Hier können sie sich einen Account alegen und softort losgenen unsere tollen Autos zu reservieren</p>
     </div>
 </div>
