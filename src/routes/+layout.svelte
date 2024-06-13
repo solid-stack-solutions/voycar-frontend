@@ -40,6 +40,7 @@
             <LightSwitch />
         </svelte:fragment>
     </AppBar>
+    <!-- ToDo only show tab group if user is logged in -->
     <TabGroup class="text-lg">
         <TabAnchor href="/" selected={$page.url.pathname === "/"}>
             Home
