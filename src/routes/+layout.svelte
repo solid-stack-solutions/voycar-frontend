@@ -16,7 +16,7 @@
     import Logo from "$lib/assets/logo-full-white.svg";
     import { LightSwitch } from "@skeletonlabs/skeleton";
 </script>
-
+<div>
 <AppBar
     gridColumns="grid-cols-3"
     slotDefault="place-self-center"
@@ -39,7 +39,7 @@
         <LightSwitch />
     </svelte:fragment>
 </AppBar>
-<TabGroup>
+<TabGroup class="text-lg">
     <TabAnchor href="/" selected={$page.url.pathname === "/"}>Home</TabAnchor>
     <TabAnchor
         href="/reservations"
@@ -47,6 +47,7 @@
         >Reservierungen</TabAnchor
     >
 </TabGroup>
-<div class="p-4">
+<div class="p-4 h-fit">
     <slot />
+</div>
 </div>
