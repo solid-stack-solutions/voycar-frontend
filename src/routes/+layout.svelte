@@ -29,7 +29,7 @@
         <svelte:fragment slot="default">
             <a href="/">
                 <!-- Voycar Logo -->
-                <img src={Logo} alt="logo" class="scale-50 w-500"/>
+                <img src={Logo} alt="logo" class="scale-50 w-500" />
             </a>
         </svelte:fragment>
         <svelte:fragment slot="trail">
@@ -48,9 +48,12 @@
         <TabAnchor href="/cars" selected={$page.url.pathname === "/cars"}>
             Autos
         </TabAnchor>
-        <TabAnchor href="/reservations" selected={$page.url.pathname === "/reservations"}>
+        <TabAnchor
+            href="/reservations"
+            selected={$page.url.pathname === "/reservations"}
+        >
             Reservierungen
-            </TabAnchor>
+        </TabAnchor>
     </TabGroup>
     <div class="p-4 h-fit">
         <slot />
