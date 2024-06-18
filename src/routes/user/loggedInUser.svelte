@@ -15,11 +15,11 @@
 
     // Definitions
     // Convert JSON object to iterable array
-    const userKeys = Object.keys(data.user);
-    const userInfo = Object.values(data.user);
-    const userID = data.user.userID;
-    const userSubPlanID = data.user.subPlanID;
-    const userPaymentInfoID = data.user.paymentInfoID;
+    const userKeys = Object.keys(data);
+    const userInfo = Object.values(data);
+    const userID = data.userID;
+    const userSubPlanID = data.subPlanID;
+    const userPaymentInfoID = data.paymentInfoID;
     const popupClick = {
         // Popup settings
         event: "click",
@@ -42,8 +42,8 @@
     <div class="pb-4">
         <p class="text-xl font-semibold pl-2">
             <!-- Greeting -->
-            Hallo {data.user.firstName}
-            {data.user.lastName}
+            Hallo {data.firstName}
+            {data.lastName}
         </p>
     </div>
     <div>
