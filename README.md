@@ -34,7 +34,7 @@ npm i
 # run app
 npm run dev
 # reload by typing "r" and enter in the terminal
-# inspect svelte components with ctrl+alt+shift+i in webapp
+# inspect svelte components with ctrl+alt+i in webapp
 
 # check formatting / code style
 npm run check-format
