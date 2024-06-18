@@ -33,17 +33,23 @@
     } catch (err) {
       error = err.message;
       loading = false;
+      // question: do we want to redirect the user instantly without letting them know what happend or display a message for 1-2 seconds and then redirect?
+      setTimeout(() => {
+        goto("/");
+      }, 1000);
+      
     }
   });
 </script>
 <div>
-{#if loading}
-  <p class="text-center h3">Warten auf Weiterleitung zu Ihrer Kontoseite</p>
-  <!-- Placeholders -->
-   <UserPageLoadingPlaceholders/>
-{:else if error}
-  <p>Fehler: {error}</p>
-{:else}
-  <p>Daten geladen, Sie werden weitergeleitet...</p>
-{/if}
+    {#if loading}
+        <p class="text-center h3">Warten auf Weiterleitung zu Ihrer Kontoseite</p>
+    <!-- Placeholders -->
+    <UserPageLoadingPlaceholders/>
+    {:else if error}
+        <p class="text-center h3">Ihr User konnte nicht gefunden werden. Sie werden auf die Startseite zurückgeleitet!</p>
+        <p class="text-center">Fehler: {error}</p>
+    {:else}
+        <p>Daten geladen, Sie werden weitergeleitet...</p>
+    {/if}
 </div>
