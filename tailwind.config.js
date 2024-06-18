@@ -12,7 +12,6 @@ import { skeleton } from "@skeletonlabs/tw-plugin";
 export default {
     // use skeleton dark mode toggle
     // https://www.skeleton.dev/docs/dark-mode
-    darkMode: "selector",
     content: [
         "./src/**/*.{html,js,svelte,ts}",
         join(
