@@ -5,7 +5,8 @@
     // Util library import for url routes
     import { urls } from "$lib/util.js";
     import UserPageLoadingPlaceholders from "./userPageLoadingPlaceholders.svelte";
-
+    import loggedInUser from "./loggedInUser.svelte"
+     
     // Definitions
     let loading = true;
     let data = null;
@@ -50,6 +51,6 @@
         <p class="text-center h3">Ihr User konnte nicht gefunden werden. Sie werden auf die Startseite zurückgeleitet!</p>
         <p class="text-center">Fehler: {error}</p>
     {:else}
-        <p>Daten geladen, Sie werden weitergeleitet...</p>
+        
     {/if}
 </div>

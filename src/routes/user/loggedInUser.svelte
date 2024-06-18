@@ -6,9 +6,9 @@
     import { goto } from "$app/navigation";
 
     // Component imports
-    import UserData from "./userData.svelte";
-    import UserPaymentData from "./userPaymentData.svelte";
-    import UserPlanData from "./userPlanData.svelte";
+    import UserData from "./userComponents/userData.svelte";
+    import UserPaymentData from "./userComponents/userPaymentData.svelte";
+    import UserPlanData from "./userComponents/userPlanData.svelte";
 
     // Export data from parent
     export let data;
