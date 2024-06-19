@@ -10,7 +10,6 @@ import { skeleton } from "@skeletonlabs/tw-plugin";
 
 /** @type {import("tailwindcss").Config} */
 export default {
-    // https://www.skeleton.dev/docs/dark-mode
     content: [
         "./src/**/*.{html,js,svelte,ts}",
         join(
