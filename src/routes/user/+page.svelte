@@ -3,7 +3,8 @@
     import { getToastStore } from '@skeletonlabs/skeleton';
     import { goto } from "$app/navigation";
     import { onMount } from "svelte";
-    // Using 🐓
+
+    // Import 🐓
     import { ExponentialBackoff, handleAll, retry } from 'cockatiel';
 
     // Util library import for url routes
@@ -16,6 +17,7 @@
     // Definitions
     // Policy for restarting backend fetched up to 5 times if there's no reply
     const retryPolicy = retry(handleAll, {maxAttempts: 5, backoff: new ExponentialBackoff() })
+
     // Get Toaststore
     const toastStore = getToastStore();
 
@@ -26,13 +28,12 @@
     // Toast settings
     const t = {
       message: 'Ihr Nutzerkonto konnte nicht gefunden werden',
-      hideDismiss: true,
-      timeout: 3000,
+      hideDismiss: true,  //hide the dismiss button on toast
+      timeout: 3000,      //auto dismiss toast after 3 seconds
       background: 'variant-filled-secondary'
     };
     
     // Functions
-
     // Runs as soon as this component is mounted
     onMount(async () => {
     try {
@@ -55,13 +56,15 @@
 <!-- Page Content -->
 <div>
     {#if loading}
-    <!-- Placeholders -->
+    <!-- Display placeholders while loading data -->
     <UserPageLoadingPlaceholders/>
     {:else if error}
+    <!-- Display on error -->
         <p class="text-center h3">Ihr Nutzerkonto konnte nicht gefunden werden. Sie werden auf die Startseite zurückgeleitet!</p>
         <p class="text-center h3"> Falls sie nicht automatisch weitergeleitet werden klicken sie <a href="/" class="text-primary-500 underline">hier</a> um zur Startseite zurückzukehren!</p>
         <p class="text-center">Fehler: {error}</p>
     {:else}
+    <!-- Display on success -->
       <LoggedInUser personalData={personalData}></LoggedInUser>  
     {/if}
 </div>
