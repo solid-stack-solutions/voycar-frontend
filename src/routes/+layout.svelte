@@ -15,10 +15,11 @@
     storePopup.set({ computePosition, autoUpdate, offset, shift, flip, arrow });
     import Logo from "$lib/assets/logo-full-white.svg";
     import { LightSwitch } from "@skeletonlabs/skeleton";
-    import { initializeStores, Toast } from '@skeletonlabs/skeleton';
+    import { initializeStores, Toast } from "@skeletonlabs/skeleton";
     initializeStores();
 </script>
-<Toast/>
+
+<Toast />
 <div>
     <AppBar
         gridColumns="grid-cols-3"
