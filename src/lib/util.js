@@ -3,8 +3,7 @@
 const baseURL = "http://localhost:8080/";
 export const urls = {
     get : {
-        userID: baseURL + "user",
-        memberData : baseURL + "member"
+        memberPersonalData : baseURL + "member/personal"
     },
     post : {
 
