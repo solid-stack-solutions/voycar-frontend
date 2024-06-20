@@ -1,4 +1,5 @@
 <script>
+    // Framework imports
     import "../app.postcss";
     import { TabGroup, Tab, TabAnchor } from "@skeletonlabs/skeleton"; // Menu with tabs
     import { page } from "$app/stores"; // Contains all pages in a store
@@ -12,12 +13,18 @@
         arrow,
     } from "@floating-ui/dom";
     import { storePopup } from "@skeletonlabs/skeleton";
-    import { goto } from "$app/navigation";
     storePopup.set({ computePosition, autoUpdate, offset, shift, flip, arrow });
-    import Logo from "$lib/assets/logo-full-white.svg";
+    import { goto } from "$app/navigation";
     import { onMount } from "svelte";
+
+    // Transiant fault handling library import
     import { ConstantBackoff, handleAll, retry } from "cockatiel";
 
+    // logo import
+    import Logo from "$lib/assets/logo-full-white.svg";
+
+
+    // Definitions
     let loggedIn = false;
 
     // Define retry policy
@@ -26,14 +33,17 @@
         backoff: new ConstantBackoff(10), // Wait 10ms after each try
     });
     
+
+    // Functions
     // Redirect to login
     async function directToLogin(){
         goto('/login');
     } 
 
+    // Runs as soon as the component is mounted
     onMount(async () => {
         try {
-            // Fetch backend for personal Data with retry policy
+            // Fetch backend to check if user is signed in
             const response = await retryPolicy.execute(() =>
                 fetch(urls.get.isLoggedIn),
             );
@@ -41,10 +51,9 @@
                 loggedIn = true;
             } else {
                 loggedIn = false;
-                throw new Error("Error while fetching data");
             }
         } catch (err) {
-            error = err.message;
+            console.log(err);
         }
     });
 </script>
