@@ -14,7 +14,6 @@
     import { storePopup } from "@skeletonlabs/skeleton";
     storePopup.set({ computePosition, autoUpdate, offset, shift, flip, arrow });
     import Logo from "$lib/assets/logo-full-white.svg";
-    import { LightSwitch } from "@skeletonlabs/skeleton";
     import { initializeStores, Toast } from "@skeletonlabs/skeleton";
     initializeStores();
 </script>
@@ -40,7 +39,6 @@
                 <!-- User icon -->
                 <img src="/userIcon.svg" alt="user icon" />
             </a>
-            <LightSwitch />
         </svelte:fragment>
     </AppBar>
     <!-- ToDo only show tab group if user is logged in -->
