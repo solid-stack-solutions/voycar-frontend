@@ -3,7 +3,7 @@
     import { getToastStore } from '@skeletonlabs/skeleton';
     import { goto } from "$app/navigation";
     import { onMount } from "svelte";
-    // using 🐓
+    // Using 🐓
     import { ExponentialBackoff, handleAll, retry } from 'cockatiel';
 
     // Util library import for url routes
@@ -62,6 +62,6 @@
         <p class="text-center h3"> Falls sie nicht automatisch weitergeleitet werden klicken sie <a href="/" class="text-primary-500 underline">hier</a> um zur Startseite zurückzukehren!</p>
         <p class="text-center">Fehler: {error}</p>
     {:else}
-      <LoggedInUser data={personalData}></LoggedInUser>  
+      <LoggedInUser personalData={personalData}></LoggedInUser>  
     {/if}
 </div>

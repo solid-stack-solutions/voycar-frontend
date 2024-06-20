@@ -11,15 +11,15 @@
     import UserPlanData from "./userComponents/userPlanData.svelte";
 
     // Export data from parent
-    export let data;
+    export let personalData;
 
     // Definitions
     // Convert JSON object to iterable array
-    const userKeys = Object.keys(data);
-    const userInfo = Object.values(data);
-    const userID = data.userID;
-    const userSubPlanID = data.subPlanID;
-    const userPaymentInfoID = data.paymentInfoID;
+    const userKeys = Object.keys(personalData);
+    const userInfo = Object.values(personalData);
+    const userID = personalData.userID;
+    const userSubPlanID = personalData.subPlanID;
+    const userPaymentInfoID = personalData.paymentInfoID;
     const popupClick = {
         // Popup settings
         event: "click",
@@ -42,8 +42,8 @@
     <div class="pb-4">
         <p class="text-xl font-semibold pl-2">
             <!-- Greeting -->
-            Hallo {data.firstName}
-            {data.lastName}
+            Hallo {personalData.firstName}
+            {personalData.lastName}
         </p>
     </div>
     <div>
