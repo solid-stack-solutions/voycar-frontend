@@ -3,12 +3,18 @@
     import { getToastStore } from '@skeletonlabs/skeleton';
     import { goto } from "$app/navigation";
     import { onMount } from "svelte";
+    // using 🐓
+    import { ExponentialBackoff, handleAll, retry } from 'cockatiel';
+
     // Util library import for url routes
     import { urls } from "$lib/util.js";
     import UserPageLoadingPlaceholders from "./userPageLoadingPlaceholders.svelte";
     import LoggedInUser from "./loggedInUser.svelte";
 
     // Definitions
+    // Policy for restarting backend fetched up to 5 times if there's no reply
+    const retryPolicy = retry(handleAll, {maxAttempts: 5, backoff: new ExponentialBackoff() })
+    // Get Toaststore
     const toastStore = getToastStore();
     let loading = true;
     let error = null;
@@ -28,20 +34,19 @@
     // Runs as soon as this component is mounted
     onMount(async () => {
     try {
-      const response = await fetch(urls.get.memberData);
+      // Fetch backend for personal Data with retry policy 
+      const response = await retryPolicy.execute(() => fetch(urls.get.memberPersonalData))
       if (response.ok) {
-        // data = await response.json();
+        personalData = await response.json();
         loading = false;
-        // Redirect user when data was fetched
       } else {
-        throw new Error('Fehler beim Laden der Daten');
+        throw new Error('Error while fetching data');
       }
     } catch (err) {
       error = err.message;
       loading = false;
-      // question: do we want to redirect the user instantly without letting them know what happend or display a message for 1-2 seconds and then redirect?
       toastStore.trigger(t);
-      goto("/");
+      goto("/");  // redirect user to landing page
     }
   });
 </script>
