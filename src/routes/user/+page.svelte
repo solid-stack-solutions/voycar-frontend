@@ -24,11 +24,11 @@
     // Get Toaststore
     const toastStore = getToastStore();
 
-    let loading = true;
-    let error = null;
-    let personalData = null;
+    // Set non resolving promise as default
+    let personalData = new Promise((resolve, reject) => {}); 
 
-    const toastSettings = {
+    // Toast-Settings
+    const toast = {
         message: "Ihr Nutzerkonto konnte nicht gefunden werden",
         hideDismiss: true, // Hide the dismiss button on toast
         timeout: 3000, // Auto dismiss toast after 3 seconds
@@ -38,45 +38,45 @@
     // Functions
     // Runs as soon as this component is mounted
     onMount(async () => {
-        try {
-            // Fetch backend for personal Data with retry policy
-            const response = await retryPolicy.execute(() =>
-                fetch(urls.get.memberPersonalData),
-            );
-            if (response.ok) {
-                personalData = await response.json();
-                loading = false;
-            } else {
-                throw new Error("Error while fetching data");
+        personalData = new Promise(async (resolve, reject) => {
+            try {
+                // Fetch backend for personal Data with retry policy
+                const response = await retryPolicy.execute(() =>
+                    fetch(urls.get.memberPersonalData),
+                );
+                if (response.ok) {
+                    personalData = resolve(await response.json());
+                } else {
+                    throw new Error("Error while fetching data");
+                }
+            } catch (err) {
+                toastStore.trigger(toast);
+                goto("/"); // Redirect user to landing page
+                reject(err); // Rethrow so Svelte can handle it
             }
-        } catch (err) {
-            error = err.message;
-            loading = false;
-            toastStore.trigger(toastSettings);
-            goto("/"); // Redirect user to landing page
-        }
+        });
     });
 </script>
 
 <!-- Page Content -->
 <div>
-    {#if loading}
+    {#await personalData}
         <!-- Display placeholders while loading data -->
         <UserPageLoadingPlaceholders />
-    {:else if error}
+    {:then personalData}
+        <!-- Display on success -->
+        <LoggedInUser {personalData}></LoggedInUser>
+    {:catch error}
         <!-- Display on error -->
         <p class="text-center h3">
             Ihr Nutzerkonto konnte nicht gefunden werden. Sie werden auf die
             Startseite zurückgeleitet!
         </p>
         <p class="text-center h3">
-            Falls Sie nicht automatisch weitergeleitet werden klicken Sie 
-            <a href="/" class="text-primary-500 underline">hier</a>
+            Falls sie nicht automatisch weitergeleitet werden klicken sie 
+            <a href="/" class="text-primary-500 underline">hier</a> 
             um zur Startseite zurückzukehren!
         </p>
-        <p class="text-center pt-2">Fehler: {error}</p>
-    {:else}
-        <!-- Display on success -->
-        <LoggedInUser {personalData}></LoggedInUser>
-    {/if}
+        <p class="text-center">Fehler: {error.message}</p>
+    {/await}
 </div>
