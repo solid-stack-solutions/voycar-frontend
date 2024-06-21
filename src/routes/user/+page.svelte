@@ -75,7 +75,7 @@
                 class="text-primary-500 underline">hier</a
             > um zur Startseite zurückzukehren!
         </p>
-        <p class="text-center">Fehler: {error}</p>
+        <p class="text-center pt-2">Fehler: {error}</p>
     {:else}
         <!-- Display on success -->
         <LoggedInUser {personalData}></LoggedInUser>
