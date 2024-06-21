@@ -17,10 +17,9 @@
     import { goto } from "$app/navigation";
     import { onMount } from "svelte";
 
-    // Transiant fault handling library import
+    // Transient fault handling library import
     import { ConstantBackoff, handleAll, retry } from "cockatiel";
 
-    // logo import
     import { initializeStores, Toast } from "@skeletonlabs/skeleton";
     initializeStores();
 
@@ -34,7 +33,6 @@
     });
 
     // Functions
-    // Redirect to login
     async function directToLogin() {
         goto("/login");
     }
@@ -92,7 +90,6 @@
         </svelte:fragment>
     </AppBar>
     {#if loggedIn}
-        <!-- ToDo only show tab group if user is logged in -->
         <TabGroup class="text-lg">
             <TabAnchor href="/" selected={$page.url.pathname === "/"}>
                 Home
