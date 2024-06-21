@@ -1,5 +1,4 @@
 <script>
-
     // Definitions
     let somethingWrong = false;
 
@@ -7,8 +6,8 @@
         none: "",
         sucess: "input-success",
         warning: "input-warning",
-        error: "input-error"
-    }
+        error: "input-error",
+    };
     let emailIndicator = indicatorStatus.none; // Will get value "input-error" or "input-warning" according to status of backend fetch and validators
     let passwordIndicator = indicatorStatus.none; // Will get value "input-error" or "input-warning" according to status of backend fetch and validators
 </script>
@@ -40,10 +39,12 @@
             />
             {#if somethingWrong}
                 <div class="flex flex-col items-center">
-                    <p class="text-sm text-error-500">Email oder Passwort sind falsch</p>
-                </div>  
+                    <p class="text-sm text-error-500">
+                        Email oder Passwort sind falsch
+                    </p>
+                </div>
             {/if}
-            
+
             <!-- Login button -->
             <div class="flex flex-col items-center">
                 <button class="btn variant-filled-primary w-full"
