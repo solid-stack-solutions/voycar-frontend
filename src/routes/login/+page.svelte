@@ -11,6 +11,12 @@
     // Will get value "input-error" or "input-warning" according to status of backend fetch and validators
     let emailIndicator = indicatorStatus.none;
     let passwordIndicator = indicatorStatus.none;
+
+    let showPassword = false;
+    let btnIcon = {
+        locked: "🔐",
+        unlocked: "🔓"
+    }
 </script>
 
 <!-- Login page -->
@@ -32,12 +38,22 @@
             <label class="label" for="password_input">
                 <span>Passwort</span>
             </label>
-            <input
-                class="input {passwordIndicator}"
-                type="password"
+            <div class="input-group input-group-divider grid-cols-[auto_1fr_auto]">
+                <input
+                class="input w-72 {passwordIndicator}"
+                type="{showPassword ? 'text' : 'password'}"
                 id="password_input"
                 placeholder="Dein super sicheres Passwort 😉"
             />
+                <button class="right-0 leading-5 variant-filled-secondary" on:click={() => (showPassword = !showPassword)}>
+                    {#if showPassword}
+                        {btnIcon.unlocked}
+                    {:else}
+                        {btnIcon.locked}
+                    {/if}
+                </button>
+            </div>
+            
             {#if somethingWrong}
                 <div class="flex flex-col items-center">
                     <p class="text-sm text-error-500">
