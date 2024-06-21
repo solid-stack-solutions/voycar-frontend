@@ -33,7 +33,7 @@
     });
 
     // Functions
-    async function directToLogin() {
+    async function redirectToLogin() {
         goto("/login");
     }
 
@@ -84,7 +84,7 @@
             {:else}
                 <button
                     class="btn variant-ringed-primary"
-                    on:click={() => directToLogin()}>Anmelden</button
+                    on:click={() => redirectToLogin()}>Anmelden</button
                 >
             {/if}
         </svelte:fragment>
