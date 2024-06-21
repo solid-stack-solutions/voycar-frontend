@@ -70,10 +70,9 @@
             Startseite zurückgeleitet!
         </p>
         <p class="text-center h3">
-            Falls sie nicht automatisch weitergeleitet werden klicken sie <a
-                href="/"
-                class="text-primary-500 underline">hier</a
-            > um zur Startseite zurückzukehren!
+            Falls Sie nicht automatisch weitergeleitet werden klicken Sie 
+            <a href="/" class="text-primary-500 underline">hier</a>
+            um zur Startseite zurückzukehren!
         </p>
         <p class="text-center pt-2">Fehler: {error}</p>
     {:else}
