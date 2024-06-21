@@ -15,8 +15,8 @@
     let showPassword = false;
     let btnIcon = {
         locked: "🔐",
-        unlocked: "🔓"
-    }
+        unlocked: "🔓",
+    };
 </script>
 
 <!-- Login page -->
@@ -38,14 +38,19 @@
             <label class="label" for="password_input">
                 <span>Passwort</span>
             </label>
-            <div class="input-group input-group-divider grid-cols-[auto_1fr_auto]">
+            <div
+                class="relative input-group input-group-divider grid-cols-[auto_1fr_auto]"
+            >
                 <input
-                class="input w-72 {passwordIndicator}"
-                type="{showPassword ? 'text' : 'password'}"
-                id="password_input"
-                placeholder="Dein super sicheres Passwort 😉"
-            />
-                <button class="right-0 leading-5 variant-filled-secondary" on:click={() => (showPassword = !showPassword)}>
+                    class="w-72 {passwordIndicator}"
+                    type={showPassword ? "text" : "password"}
+                    id="password_input"
+                    placeholder="Dein super sicheres Passwort 😉"
+                />
+                <button
+                    class="right-0 leading-5 variant-filled-secondary"
+                    on:click={() => (showPassword = !showPassword)}
+                >
                     {#if showPassword}
                         {btnIcon.unlocked}
                     {:else}
@@ -53,7 +58,7 @@
                     {/if}
                 </button>
             </div>
-            
+
             {#if somethingWrong}
                 <div class="flex flex-col items-center">
                     <p class="text-sm text-error-500">
