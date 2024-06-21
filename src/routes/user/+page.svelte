@@ -4,7 +4,7 @@
     import { goto } from "$app/navigation";
     import { onMount } from "svelte";
 
-    // Import 🐓
+    // Import 🐦
     import { ExponentialBackoff, handleAll, retry } from "cockatiel";
 
     // Util library import for url routes
@@ -31,8 +31,8 @@
     // Toast settings
     const t = {
         message: "Ihr Nutzerkonto konnte nicht gefunden werden",
-        hideDismiss: true, //hide the dismiss button on toast
-        timeout: 3000, //auto dismiss toast after 3 seconds
+        hideDismiss: true, // Hide the dismiss button on toast
+        timeout: 3000, // Auto dismiss toast after 3 seconds
         background: "variant-filled-secondary",
     };
 
@@ -54,7 +54,7 @@
             error = err.message;
             loading = false;
             toastStore.trigger(t);
-            goto("/"); // redirect user to landing page
+            goto("/"); // Redirect user to landing page
         }
     });
 </script>
