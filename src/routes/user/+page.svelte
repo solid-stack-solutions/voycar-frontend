@@ -28,8 +28,7 @@
     let error = null;
     let personalData = null;
 
-    // Toast settings
-    const t = {
+    const toastSettings = {
         message: "Ihr Nutzerkonto konnte nicht gefunden werden",
         hideDismiss: true, // Hide the dismiss button on toast
         timeout: 3000, // Auto dismiss toast after 3 seconds
@@ -53,7 +52,7 @@
         } catch (err) {
             error = err.message;
             loading = false;
-            toastStore.trigger(t);
+            toastStore.trigger(toastSettings);
             goto("/"); // Redirect user to landing page
         }
     });
