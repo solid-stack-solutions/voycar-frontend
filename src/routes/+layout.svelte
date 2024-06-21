@@ -29,7 +29,7 @@
     // Define retry policy
     const retryPolicy = retry(handleAll, {
         maxAttempts: 3, // Try 3 times
-        backoff: new ConstantBackoff(10), // Wait 10ms after each try
+        backoff: new ConstantBackoff(50), // Wait 10ms after each try
     });
 
     // Functions
