@@ -25,7 +25,7 @@
     const toastStore = getToastStore();
 
     // Set non resolving promise as default
-    let personalData = new Promise((resolve, reject) => {}); 
+    let personalData = new Promise((resolve, reject) => {});
 
     // Toast-Settings
     const toast = {
@@ -73,8 +73,8 @@
             Startseite zurückgeleitet!
         </p>
         <p class="text-center h3">
-            Falls sie nicht automatisch weitergeleitet werden klicken sie 
-            <a href="/" class="text-primary-500 underline">hier</a> 
+            Falls sie nicht automatisch weitergeleitet werden klicken sie
+            <a href="/" class="text-primary-500 underline">hier</a>
             um zur Startseite zurückzukehren!
         </p>
         <p class="text-center">Fehler: {error.message}</p>

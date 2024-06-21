@@ -30,7 +30,11 @@
         <svelte:fragment slot="default">
             <a href="/">
                 <!-- Voycar Logo -->
-                <img src="/logo-full-white.svg" alt="logo" class="scale-50 w-500" />
+                <img
+                    src="/logo-full-white.svg"
+                    alt="logo"
+                    class="scale-50 w-500"
+                />
             </a>
         </svelte:fragment>
         <svelte:fragment slot="trail">
