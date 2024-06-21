@@ -8,8 +8,9 @@
         warning: "input-warning",
         error: "input-error",
     };
-    let emailIndicator = indicatorStatus.none; // Will get value "input-error" or "input-warning" according to status of backend fetch and validators
-    let passwordIndicator = indicatorStatus.none; // Will get value "input-error" or "input-warning" according to status of backend fetch and validators
+    // Will get value "input-error" or "input-warning" according to status of backend fetch and validators
+    let emailIndicator = indicatorStatus.none;
+    let passwordIndicator = indicatorStatus.none;
 </script>
 
 <!-- Login page -->
