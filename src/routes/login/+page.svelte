@@ -1,3 +1,4 @@
+<!-- Login page -->
 <div class="flex flex-col justify-center items-center mt-4">
     <h1 class="h2 mb-8">Bei Voycar anmelden</h1>
     <div class="w-96 justify-center items-center space-y-4">
@@ -22,17 +23,20 @@
                 id="password_input"
                 placeholder="Dein super sicheres Passwort 😉"
             />
+            <!-- Login button -->
             <div class="flex flex-col items-center">
                 <button class="btn variant-filled-primary w-full"
                     >Anmelden</button
                 >
             </div>
+            <!-- Password reset -->
             <div class="flex justify-center items-center">
                 <a class="text-sm text-tertiary-600" href="/forgotPassword"
                     >Passwort vergessen?</a
                 >
             </div>
         </form>
+        <!-- Sing up for new account link -->
         <div
             class="flex flex-col-2 items-center justify-between border-2 rounded-md border-secondary-500 p-4"
         >
