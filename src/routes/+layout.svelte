@@ -24,7 +24,6 @@
     import { initializeStores, Toast } from "@skeletonlabs/skeleton";
     initializeStores();
 
-
     // Definitions
     let loggedIn = false;
 
@@ -33,13 +32,12 @@
         maxAttempts: 3, // Try 3 times
         backoff: new ConstantBackoff(10), // Wait 10ms after each try
     });
-    
 
     // Functions
     // Redirect to login
-    async function directToLogin(){
-        goto('/login');
-    } 
+    async function directToLogin() {
+        goto("/login");
+    }
 
     // Runs as soon as the component is mounted
     onMount(async () => {
@@ -81,34 +79,36 @@
         </svelte:fragment>
         <svelte:fragment slot="trail">
             {#if loggedIn}
-            <a href="/user">
-                <!-- User icon -->
-                <img src="/userIcon.svg" alt="user icon" />
-            </a>
+                <a href="/user">
+                    <!-- User icon -->
+                    <img src="/userIcon.svg" alt="user icon" />
+                </a>
             {:else}
-                <button class="btn variant-ringed-primary" on:click={() => directToLogin()}>Anmelden</button>
+                <button
+                    class="btn variant-ringed-primary"
+                    on:click={() => directToLogin()}>Anmelden</button
+                >
             {/if}
         </svelte:fragment>
     </AppBar>
     {#if loggedIn}
-    <!-- ToDo only show tab group if user is logged in -->
-    <TabGroup class="text-lg">
-        <TabAnchor href="/" selected={$page.url.pathname === "/"}>
-            Home
-        </TabAnchor>
-        <TabAnchor href="/cars" selected={$page.url.pathname === "/cars"}>
-            Autos
-        </TabAnchor>
-        <TabAnchor
-            href="/reservations"
-            selected={$page.url.pathname === "/reservations"}
-        >
-            Reservierungen
-        </TabAnchor>
-    </TabGroup>
+        <!-- ToDo only show tab group if user is logged in -->
+        <TabGroup class="text-lg">
+            <TabAnchor href="/" selected={$page.url.pathname === "/"}>
+                Home
+            </TabAnchor>
+            <TabAnchor href="/cars" selected={$page.url.pathname === "/cars"}>
+                Autos
+            </TabAnchor>
+            <TabAnchor
+                href="/reservations"
+                selected={$page.url.pathname === "/reservations"}
+            >
+                Reservierungen
+            </TabAnchor>
+        </TabGroup>
     {/if}
     <div class="p-4 h-fit">
         <slot />
     </div>
-    
 </div>
