@@ -1,4 +1,5 @@
 <script>
+    // Framework imports
     import "../app.postcss";
     import { TabGroup, Tab, TabAnchor } from "@skeletonlabs/skeleton"; // Menu with tabs
     import { page } from "$app/stores"; // Contains all pages in a store
@@ -13,8 +14,45 @@
     } from "@floating-ui/dom";
     import { storePopup } from "@skeletonlabs/skeleton";
     storePopup.set({ computePosition, autoUpdate, offset, shift, flip, arrow });
+    import { goto } from "$app/navigation";
+    import { onMount } from "svelte";
+
+    // Transient fault handling library import
+    import { ConstantBackoff, handleAll, retry } from "cockatiel";
+
     import { initializeStores, Toast } from "@skeletonlabs/skeleton";
     initializeStores();
+
+    // Definitions
+    let loggedIn = false;
+
+    // Define retry policy
+    const retryPolicy = retry(handleAll, {
+        maxAttempts: 3, // Try 3 times
+        backoff: new ConstantBackoff(50), // Wait 10ms after each try
+    });
+
+    // Functions
+    async function redirectToLogin() {
+        goto("/login");
+    }
+
+    // Runs as soon as the component is mounted
+    onMount(async () => {
+        try {
+            // Fetch backend to check if user is signed in
+            const response = await retryPolicy.execute(() =>
+                fetch(urls.get.isLoggedIn),
+            );
+            if (response.ok) {
+                loggedIn = true;
+            } else {
+                loggedIn = false;
+            }
+        } catch (err) {
+            console.log(err);
+        }
+    });
 </script>
 
 <Toast />
@@ -38,27 +76,35 @@
             </a>
         </svelte:fragment>
         <svelte:fragment slot="trail">
-            <a href="/user">
-                <!-- User icon -->
-                <img src="/userIcon.svg" alt="user icon" />
-            </a>
+            {#if loggedIn}
+                <a href="/user">
+                    <!-- User icon -->
+                    <img src="/userIcon.svg" alt="user icon" />
+                </a>
+            {:else}
+                <button
+                    class="btn variant-ringed-primary"
+                    on:click={() => redirectToLogin()}>Anmelden</button
+                >
+            {/if}
         </svelte:fragment>
     </AppBar>
-    <!-- ToDo only show tab group if user is logged in -->
-    <TabGroup class="text-lg">
-        <TabAnchor href="/" selected={$page.url.pathname === "/"}>
-            Home
-        </TabAnchor>
-        <TabAnchor href="/cars" selected={$page.url.pathname === "/cars"}>
-            Autos
-        </TabAnchor>
-        <TabAnchor
-            href="/reservations"
-            selected={$page.url.pathname === "/reservations"}
-        >
-            Reservierungen
-        </TabAnchor>
-    </TabGroup>
+    {#if loggedIn}
+        <TabGroup class="text-lg">
+            <TabAnchor href="/" selected={$page.url.pathname === "/"}>
+                Home
+            </TabAnchor>
+            <TabAnchor href="/cars" selected={$page.url.pathname === "/cars"}>
+                Autos
+            </TabAnchor>
+            <TabAnchor
+                href="/reservations"
+                selected={$page.url.pathname === "/reservations"}
+            >
+                Reservierungen
+            </TabAnchor>
+        </TabGroup>
+    {/if}
     <div class="p-4 h-fit">
         <slot />
     </div>
