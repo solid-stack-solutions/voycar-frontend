@@ -21,7 +21,8 @@
     import { ConstantBackoff, handleAll, retry } from "cockatiel";
 
     // logo import
-    import Logo from "$lib/assets/logo-full-white.svg";
+    import { initializeStores, Toast } from "@skeletonlabs/skeleton";
+    initializeStores();
 
 
     // Definitions
@@ -58,6 +59,7 @@
     });
 </script>
 
+<Toast />
 <div>
     <AppBar
         gridColumns="grid-cols-3"
@@ -70,7 +72,11 @@
         <svelte:fragment slot="default">
             <a href="/">
                 <!-- Voycar Logo -->
-                <img src={Logo} alt="logo" class="scale-50 w-500" />
+                <img
+                    src="/logo-full-white.svg"
+                    alt="logo"
+                    class="scale-50 w-500"
+                />
             </a>
         </svelte:fragment>
         <svelte:fragment slot="trail">

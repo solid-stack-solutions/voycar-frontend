@@ -6,20 +6,20 @@
     import { goto } from "$app/navigation";
 
     // Component imports
-    import UserData from "./userData.svelte";
-    import UserPaymentData from "./userPaymentData.svelte";
-    import UserPlanData from "./userPlanData.svelte";
+    import UserData from "./userComponents/userData.svelte";
+    import UserPaymentData from "./userComponents/userPaymentData.svelte";
+    import UserPlanData from "./userComponents/userPlanData.svelte";
 
     // Export data from parent
-    export let data;
+    export let personalData;
 
     // Definitions
     // Convert JSON object to iterable array
-    const userKeys = Object.keys(data.user);
-    const userInfo = Object.values(data.user);
-    const userID = data.user.userID;
-    const userSubPlanID = data.user.subPlanID;
-    const userPaymentInfoID = data.user.paymentInfoID;
+    const userKeys = Object.keys(personalData);
+    const userInfo = Object.values(personalData);
+    const userID = personalData.userID;
+    const userSubPlanID = personalData.subPlanID;
+    const userPaymentInfoID = personalData.paymentInfoID;
     const popupClick = {
         // Popup settings
         event: "click",
@@ -42,8 +42,8 @@
     <div class="pb-4">
         <p class="text-xl font-semibold pl-2">
             <!-- Greeting -->
-            Hallo {data.user.firstName}
-            {data.user.lastName}
+            Hallo {personalData.firstName}
+            {personalData.lastName}
         </p>
     </div>
     <div>
