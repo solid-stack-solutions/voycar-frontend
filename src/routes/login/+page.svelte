@@ -1,3 +1,18 @@
+<script>
+
+    // Definitions
+    let somethingWrong = false;
+
+    const indicatorStatus = {
+        none: "",
+        sucess: "input-success",
+        warning: "input-warning",
+        error: "input-error"
+    }
+    let emailIndicator = indicatorStatus.none; // Will get value "input-error" or "input-warning" according to status of backend fetch and validators
+    let passwordIndicator = indicatorStatus.none; // Will get value "input-error" or "input-warning" according to status of backend fetch and validators
+</script>
+
 <!-- Login page -->
 <div class="flex flex-col justify-center items-center mt-4">
     <h1 class="h2 mb-8">Bei Voycar anmelden</h1>
@@ -8,7 +23,7 @@
                 <span>Email</span>
             </label>
             <input
-                class="input"
+                class="input {emailIndicator}"
                 type="text"
                 id="email_input"
                 placeholder="beispiel.organisation@mail.com"
@@ -18,11 +33,17 @@
                 <span>Passwort</span>
             </label>
             <input
-                class="input"
+                class="input {passwordIndicator}"
                 type="password"
                 id="password_input"
                 placeholder="Dein super sicheres Passwort 😉"
             />
+            {#if somethingWrong}
+                <div class="flex flex-col items-center">
+                    <p class="text-sm text-error-500">Email oder Passwort sind falsch</p>
+                </div>  
+            {/if}
+            
             <!-- Login button -->
             <div class="flex flex-col items-center">
                 <button class="btn variant-filled-primary w-full"
