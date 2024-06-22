@@ -8,6 +8,11 @@
     // Constants
     const toastStore = getToastStore();
 
+    const btnIcon = {
+        locked: "🔐",
+        unlocked: "🔓",
+    };
+
     const indicatorStatus = {
         none: "",
         sucess: "input-success",
@@ -30,15 +35,12 @@
     // Variables
     let somethingWrong = false;
 
+    let error = "";
     // Will get value "input-error" or "input-warning" according to status of backend fetch and validators
     let emailIndicator = indicatorStatus.none;
     let passwordIndicator = indicatorStatus.none;
 
     let showPassword = false;
-    let btnIcon = {
-        locked: "🔐",
-        unlocked: "🔓",
-    };
 
     let emailReference;
     let passwordReference;
@@ -49,6 +51,7 @@
     function tryLogin(){
          email = emailReference.value;
          password = passwordReference.value;
+         fetchLogin();
     }
 
     async function fetchLogin(){
@@ -57,20 +60,20 @@
                 email : email,
                 password : password,
             }
-            const request = new Request(urls.post.login, {
+            const response = await retryPolicy.execute(() =>
+                fetch(new Request(urls.post.login, {
                 method : "POST",
                 body : JSON.stringify(mybody),
-            }
-            );
-            const response = await retryPolicy.execute(() =>
-                fetch(),
+            })),
             );
             if (response.ok) {
                 toastStore.trigger(toast);
                 goto("/");
+            }else{
+                throw new Error("Login failed")
             }
         } catch (err) {
-
+            error = err.message;
         }
     }
 </script>
@@ -150,5 +153,5 @@
             >
         </div>
     </div>
-    {email} : {password}
+    {email} : {password} : {error}
 </div>
