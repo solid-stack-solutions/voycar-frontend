@@ -23,8 +23,8 @@
     import { initializeStores, Toast } from "@skeletonlabs/skeleton";
     initializeStores();
 
-    import { urls }  from "$lib/util.js";
-    
+    import { urls } from "$lib/util.js";
+
     // Definitions
     let loggedIn = false;
 
