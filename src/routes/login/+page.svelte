@@ -16,9 +16,9 @@
     };
 
     const indicatorStatus = {
-        none: "",
+        none: "border-surface-700",
         sucess: "input-success",
-        warning: "input-warning",
+        warning: "border-warning-400",
         error: "input-error",
     };
 
@@ -106,14 +106,14 @@
     <div class="w-96 justify-center items-center space-y-4">
         <form
             class="p-4 border-2 rounded-md border-secondary-500 space-y-3"
-            on:submit={tryLogin}
+            
         >
             <!-- Email field -->
             <label class="label" for="email_input">
                 <span>Email</span>
             </label>
             <input
-                class="input {emailIndicator}"
+                class="bg-surface-700 text-white border rounded-full {emailIndicator} w-full focus:border-primary-500 shadow-transparent"
                 type="text"
                 id="email_input"
                 placeholder="beispiel.organisation@mail.com"
@@ -127,7 +127,7 @@
                 class="relative input-group input-group-divider grid-cols-[auto_1fr_auto]"
             >
                 <input
-                    class="w-72 {passwordIndicator}"
+                    class="bg-surface-700 text-white border rounded-full {passwordIndicator} w-72 "
                     type={showPassword ? "text" : "password"}
                     id="password_input"
                     placeholder="Dein super sicheres Passwort 😉"
