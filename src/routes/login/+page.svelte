@@ -8,6 +8,8 @@
     // Constants
     const toastStore = getToastStore();
 
+    const mailRegexPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
     const btnIcon = {
         locked: "🔐",
         unlocked: "🔓",
@@ -48,10 +50,25 @@
     let email = "";
     let password = ""
 
+    function resetIndicators(){
+        emailIndicator = indicatorStatus.none;
+        passwordIndicator = indicatorStatus.none;
+        somethingWrong = false;
+    }
+
     function tryLogin(){
+        resetIndicators();
          email = emailReference.value;
          password = passwordReference.value;
-         fetchLogin();
+         if (validateMail(email)){
+            fetchLogin();
+         }else{
+            emailIndicator = indicatorStatus.warning;
+         }
+    }
+
+    function validateMail(email){
+        return mailRegexPattern.test(email);
     }
 
     async function fetchLogin(){
@@ -75,6 +92,7 @@
                 throw new Error("Login failed")
             }
         } catch (err) {
+            somethingWrong = true;
             error = err.message;
         }
     }
@@ -155,5 +173,5 @@
             >
         </div>
     </div>
-    {email} : {password} : {error}
+    {email} : {password}: {somethingWrong} : {error}
 </div>
