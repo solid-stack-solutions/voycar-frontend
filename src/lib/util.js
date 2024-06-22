@@ -8,6 +8,7 @@ const auth = "auth/";
 export const urls = {
     get: {
         memberPersonalData: baseURL + member + "personal",
+        isLoggedIn: baseURL + member + "whoami"
     },
     post: {
         forgotPassword: baseURL + auth + "forgot-password",
