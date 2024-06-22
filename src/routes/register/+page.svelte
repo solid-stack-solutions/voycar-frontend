@@ -21,7 +21,7 @@
                 <a class="text-tertiary-500" href="/login">Anmelden</a>
             </div>
         {:else if registerStep == 1}
-            <MemberInfoForm></MemberInfoForm>
+            <MemberInfoForm bind:registerStep></MemberInfoForm>
         {/if}
     </div>
 </div>
