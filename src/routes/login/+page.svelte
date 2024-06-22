@@ -67,9 +67,11 @@
             })),
             );
             if (response.ok) {
+                somethingWrong = false;
                 toastStore.trigger(toast);
                 goto("/");
             }else{
+                somethingWrong = true;
                 throw new Error("Login failed")
             }
         } catch (err) {
