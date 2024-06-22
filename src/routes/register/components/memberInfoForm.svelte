@@ -12,7 +12,7 @@
         }}
     >
         <img
-            src="/telephoneIcon.svg"
+            src="/chevron-leftIcon.svg"
             class="pr-2"
             alt="Pfeil nach links"
         />Zurück
