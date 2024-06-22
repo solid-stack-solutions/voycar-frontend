@@ -113,7 +113,7 @@
                 <span>Email</span>
             </label>
             <input
-                class="bg-surface-700 text-white border rounded-full {emailIndicator} w-full focus:border-primary-500 shadow-transparent"
+                class="bg-surface-700 text-white border rounded-full {emailIndicator} w-full focus:border-primary-500"
                 type="text"
                 id="email_input"
                 placeholder="beispiel.organisation@mail.com"
@@ -123,18 +123,19 @@
             <label class="label" for="password_input">
                 <span>Passwort</span>
             </label>
-            <div
+            <!-- <div
                 class="relative input-group input-group-divider grid-cols-[auto_1fr_auto]"
-            >
+            > -->
+            <div class="relative ">
                 <input
-                    class="bg-surface-700 text-white border rounded-full {passwordIndicator} w-72 "
+                    class="bg-surface-700 text-white border rounded-full {passwordIndicator} w-full "
                     type={showPassword ? "text" : "password"}
                     id="password_input"
                     placeholder="Dein super sicheres Passwort 😉"
                     bind:this={passwordReference}
                 />
                 <button
-                    class="right-0 leading-5 variant-filled-secondary"
+                    class="variant-filled-secondary w-16 absolute inset-y-0 right-0 px-3 flex items-center text-sm   rounded-r-full"
                     on:click={() => (showPassword = !showPassword)}
                 >
                     {#if showPassword}
