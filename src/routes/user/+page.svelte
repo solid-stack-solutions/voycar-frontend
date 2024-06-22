@@ -23,7 +23,6 @@
 
     // Get Toaststore
     const toastStore = getToastStore();
-
     // Set non resolving promise as default
     let personalData = new Promise((resolve, reject) => {});
 
