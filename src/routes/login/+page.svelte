@@ -2,13 +2,13 @@
     import { urls } from "$lib/util.js";
     import { getToastStore } from "@skeletonlabs/skeleton";
     import { ConstantBackoff, handleAll, retry } from "cockatiel";
-    
-    
+
     // Definitions
     // Constants
     const toastStore = getToastStore();
 
-    const mailRegexPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    const mailRegexPattern =
+        /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
     const btnIcon = {
         locked: "🔐",
@@ -32,7 +32,7 @@
         hideDismiss: true, // Hide the dismiss button on toast
         timeout: 3000, // Auto dismiss toast after 3 seconds
         background: "variant-filled-secondary",
-    }
+    };
 
     // Variables
     let somethingWrong = false;
@@ -48,48 +48,50 @@
     let passwordReference;
 
     let email = "";
-    let password = ""
+    let password = "";
 
-    function resetIndicators(){
+    function resetIndicators() {
         emailIndicator = indicatorStatus.none;
         passwordIndicator = indicatorStatus.none;
         somethingWrong = false;
     }
 
-    function tryLogin(){
+    function tryLogin() {
         resetIndicators();
-         email = emailReference.value;
-         password = passwordReference.value;
-         if (validateMail(email)){
+        email = emailReference.value;
+        password = passwordReference.value;
+        if (validateMail(email)) {
             fetchLogin();
-         }else{
+        } else {
             emailIndicator = indicatorStatus.warning;
-         }
+        }
     }
 
-    function validateMail(email){
+    function validateMail(email) {
         return mailRegexPattern.test(email);
     }
 
-    async function fetchLogin(){
-        try{
+    async function fetchLogin() {
+        try {
             const mybody = {
-                email : email,
-                password : password,
-            }
+                email: email,
+                password: password,
+            };
             const response = await retryPolicy.execute(() =>
-                fetch(new Request(urls.post.login, {
-                method : "POST",
-                body : JSON.stringify(mybody),
-            })),
+                fetch(
+                    new Request(urls.post.login, {
+                        method: "POST",
+                        body: JSON.stringify(mybody),
+                    }),
+                ),
             );
             if (response.ok) {
                 somethingWrong = false;
                 toastStore.trigger(toast);
                 goto("/");
-            }else{
+            } else {
                 somethingWrong = true;
-                throw new Error("Login failed")
+                throw new Error("Login failed");
             }
         } catch (err) {
             somethingWrong = true;
@@ -102,8 +104,10 @@
 <div class="flex flex-col justify-center items-center mt-4">
     <h1 class="h2 mb-8">Bei Voycar anmelden</h1>
     <div class="w-96 justify-center items-center space-y-4">
-        <form class="p-4 border-2 rounded-md border-secondary-500 space-y-3"
-            on:submit={tryLogin}>
+        <form
+            class="p-4 border-2 rounded-md border-secondary-500 space-y-3"
+            on:submit={tryLogin}
+        >
             <!-- Email field -->
             <label class="label" for="email_input">
                 <span>Email</span>
@@ -151,9 +155,9 @@
 
             <!-- Login button -->
             <div class="flex flex-col items-center">
-                <button class="btn variant-filled-primary w-full" 
-                on:click={tryLogin}
-                    >Anmelden</button
+                <button
+                    class="btn variant-filled-primary w-full"
+                    on:click={tryLogin}>Anmelden</button
                 >
             </div>
             <!-- Password reset -->
