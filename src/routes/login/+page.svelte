@@ -1,6 +1,12 @@
 <script>
+    import { urls } from "$lib/util.js";
+    import { getToastStore } from "@skeletonlabs/skeleton";
+    import { ConstantBackoff, handleAll, retry } from "cockatiel";
+    
+    
     // Definitions
-    let somethingWrong = false;
+    // Constants
+    const toastStore = getToastStore();
 
     const indicatorStatus = {
         none: "",
@@ -8,6 +14,22 @@
         warning: "input-warning",
         error: "input-error",
     };
+
+    const retryPolicy = retry(handleAll, {
+        maxAttempts: 3, // Try 3 times
+        backoff: new ConstantBackoff(50), // Wait 10ms after each try
+    });
+
+    const toast = {
+        message: "Sie wurden erfolgreich angemeldet",
+        hideDismiss: true, // Hide the dismiss button on toast
+        timeout: 3000, // Auto dismiss toast after 3 seconds
+        background: "variant-filled-secondary",
+    }
+
+    // Variables
+    let somethingWrong = false;
+
     // Will get value "input-error" or "input-warning" according to status of backend fetch and validators
     let emailIndicator = indicatorStatus.none;
     let passwordIndicator = indicatorStatus.none;
@@ -17,13 +39,48 @@
         locked: "🔐",
         unlocked: "🔓",
     };
+
+    let emailReference;
+    let passwordReference;
+
+    let email = "";
+    let password = ""
+
+    function tryLogin(){
+         email = emailReference.value;
+         password = passwordReference.value;
+    }
+
+    async function fetchLogin(){
+        try{
+            const mybody = {
+                email : email,
+                password : password,
+            }
+            const request = new Request(urls.post.login, {
+                method : "POST",
+                body : JSON.stringify(mybody),
+            }
+            );
+            const response = await retryPolicy.execute(() =>
+                fetch(),
+            );
+            if (response.ok) {
+                toastStore.trigger(toast);
+                goto("/");
+            }
+        } catch (err) {
+
+        }
+    }
 </script>
 
 <!-- Login page -->
 <div class="flex flex-col justify-center items-center mt-4">
     <h1 class="h2 mb-8">Bei Voycar anmelden</h1>
     <div class="w-96 justify-center items-center space-y-4">
-        <form class="p-4 border-2 rounded-md border-secondary-500 space-y-3">
+        <form class="p-4 border-2 rounded-md border-secondary-500 space-y-3"
+            on:submit={tryLogin}>
             <!-- Email field -->
             <label class="label" for="email_input">
                 <span>Email</span>
@@ -33,6 +90,7 @@
                 type="text"
                 id="email_input"
                 placeholder="beispiel.organisation@mail.com"
+                bind:this={emailReference}
             />
             <!-- Password field -->
             <label class="label" for="password_input">
@@ -46,6 +104,7 @@
                     type={showPassword ? "text" : "password"}
                     id="password_input"
                     placeholder="Dein super sicheres Passwort 😉"
+                    bind:this={passwordReference}
                 />
                 <button
                     class="right-0 leading-5 variant-filled-secondary"
@@ -69,7 +128,8 @@
 
             <!-- Login button -->
             <div class="flex flex-col items-center">
-                <button class="btn variant-filled-primary w-full"
+                <button class="btn variant-filled-primary w-full" 
+                on:click={tryLogin}
                     >Anmelden</button
                 >
             </div>
@@ -90,4 +150,5 @@
             >
         </div>
     </div>
+    {email} : {password}
 </div>
