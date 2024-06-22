@@ -16,8 +16,10 @@
         locked: "🔐",
         unlocked: "🔓",
     };
-</script>
 
+    // Indicates how many steps of the register process have been completed
+    export let registerStep = 0;
+</script>
 
 <form class="p-4 border-2 rounded-md border-secondary-500 space-y-3">
     <!-- Email field -->
@@ -65,8 +67,7 @@
         />
         <button
             class="right-0 leading-5 variant-filled-secondary"
-            on:click={() =>
-                (showPasswordValidate = !showPasswordValidate)}
+            on:click={() => (showPasswordValidate = !showPasswordValidate)}
         >
             {#if showPasswordValidate}
                 {btnIcon.unlocked}
@@ -78,7 +79,13 @@
 
     <!-- Continue button -->
     <div class="flex flex-col items-center">
-        <button class="btn variant-filled-primary w-full">Weiter</button
+        <button
+            class="btn variant-filled-primary w-full"
+            on:click={() => {
+                registerStep++;
+            }}
         >
+            Weiter
+        </button>
     </div>
 </form>
