@@ -119,6 +119,11 @@
                 placeholder="beispiel.organisation@mail.com"
                 bind:this={emailReference}
             />
+            {#if (emailIndicator == indicatorStatus.warning)}
+            <div class="flex flex-col justify-center items-center">
+                <p class="text-sm text-warning-500">Bitte gib eine valide Email-Adresse ein</p>
+            </div>
+            {/if}
             <!-- Password field -->
             <label class="label" for="password_input">
                 <span>Passwort</span>
@@ -126,7 +131,7 @@
             <!-- <div
                 class="relative input-group input-group-divider grid-cols-[auto_1fr_auto]"
             > -->
-            <div class="relative ">
+            <div class="relative">
                 <input
                     class="bg-surface-700 text-white border rounded-full {passwordIndicator} w-full focus:border-primary-500 focus:outline-none focus:ring-0"
                     type={showPassword ? "text" : "password"}
@@ -134,16 +139,18 @@
                     placeholder="Dein super sicheres Passwort 😉"
                     bind:this={passwordReference}
                 />
-                <button
-                    class="variant-filled-secondary w-16 absolute inset-y-0 right-0 px-3 flex items-center text-md rounded-r-full"
-                    on:click={() => (showPassword = !showPassword)}
-                >
-                    {#if showPassword}
-                        {btnIcon.unlocked}
-                    {:else}
-                        {btnIcon.locked}
-                    {/if}
-                </button>
+                <div>
+                    <button
+                        class=" absolute bg-surface-700 w-14 border-surface-500 inset-y-0 h-8 top-1 right-1 pl-4 flex items-center text-md rounded-r-full"
+                        on:click={() => (showPassword = !showPassword)}
+                    >
+                        {#if showPassword}
+                            {btnIcon.unlocked}
+                        {:else}
+                            {btnIcon.locked}
+                        {/if}
+                    </button>
+                </div>
             </div>
 
             {#if somethingWrong}
