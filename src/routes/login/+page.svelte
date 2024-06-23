@@ -8,8 +8,6 @@
     // Import backend urls
     import { urls } from "$lib/util.js";
 
-    // ToDo Comments
-
     // Definitions
     // Constants
     const toastStore = getToastStore();
@@ -45,10 +43,11 @@
     };
 
     // Variables
-    // Will get value "input-error" or "input-warning" according to status of backend fetch and validators
+    // Will get value according to status of backend fetch and validators
     let emailIndicator = indicatorStatus.none;
     let passwordIndicator = indicatorStatus.none;
 
+    // Formfield binding references
     let emailReference;
     let passwordReference;
 
@@ -70,7 +69,6 @@
         somethingWrong = false;
     }
 
-    // ToDo: anzeigen wenn was falsch ist
     function tryLogin() {
         resetIndicators();
         email = emailReference.value;
