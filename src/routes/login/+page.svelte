@@ -105,10 +105,7 @@
 <div class="flex flex-col justify-center items-center mt-4">
     <h1 class="h2 mb-8">Bei Voycar anmelden</h1>
     <div class="w-96 justify-center items-center space-y-4">
-        <form
-            class="p-4 border-2 rounded-md border-secondary-500 space-y-3"
-            
-        >
+        <form class="p-4 border-2 rounded-md border-secondary-500 space-y-3">
             <!-- Email field -->
             <label class="label" for="email_input">
                 <span>Email</span>
@@ -120,10 +117,12 @@
                 placeholder="beispiel.organisation@mail.com"
                 bind:this={emailReference}
             />
-            {#if (emailIndicator == indicatorStatus.warning)}
-            <div class="flex flex-col justify-center items-center">
-                <p class="text-sm text-warning-500">Bitte gib eine valide Email-Adresse ein</p>
-            </div>
+            {#if emailIndicator == indicatorStatus.warning}
+                <div class="flex flex-col justify-center items-center">
+                    <p class="text-sm text-warning-500">
+                        Bitte gib eine valide Email-Adresse ein
+                    </p>
+                </div>
             {/if}
             <!-- Password field -->
             <label class="label" for="password_input">
