@@ -1,7 +1,15 @@
 <script>
-    import { urls } from "$lib/util.js";
+    // Framework imports
     import { getToastStore } from "@skeletonlabs/skeleton";
+
+    // Import 🐦
     import { ConstantBackoff, handleAll, retry } from "cockatiel";
+
+    // Import backend urls
+    import { urls } from "$lib/util.js";
+
+
+    // ToDo Comments
 
     // Definitions
     // Constants
@@ -10,6 +18,7 @@
     const mailRegexPattern =
         /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
+    // Enums
     const btnIcon = {
         locked: "🔐",
         unlocked: "🔓",
@@ -19,14 +28,16 @@
         none: "border-surface-700",
         sucess: "input-success",
         warning: "border-warning-400",
-        error: "input-error",
+        error: "border-error-600",
     };
 
+    // Policy for fetching
     const retryPolicy = retry(handleAll, {
         maxAttempts: 3, // Try 3 times
         backoff: new ConstantBackoff(50), // Wait 10ms after each try
     });
 
+    // Toast Settings
     const toast = {
         message: "Sie wurden erfolgreich angemeldet",
         hideDismiss: true, // Hide the dismiss button on toast
@@ -35,20 +46,24 @@
     };
 
     // Variables
-    let somethingWrong = false;
-
-    let error = "";
     // Will get value "input-error" or "input-warning" according to status of backend fetch and validators
     let emailIndicator = indicatorStatus.none;
     let passwordIndicator = indicatorStatus.none;
 
-    let showPassword = false;
-
     let emailReference;
     let passwordReference;
 
+    let somethingWrong = false;
+    let showPassword = false;
+
     let email = "";
     let password = "";
+    let error = "";
+
+    // Functions
+    function validateEmail(email) {
+        return mailRegexPattern.test(email);
+    }
 
     function resetIndicators() {
         emailIndicator = indicatorStatus.none;
@@ -61,15 +76,11 @@
         resetIndicators();
         email = emailReference.value;
         password = passwordReference.value;
-        if (validateMail(email)) {
+        if (validateEmail(email)) {
             fetchLogin();
         } else {
             emailIndicator = indicatorStatus.warning;
         }
-    }
-
-    function validateMail(email) {
-        return mailRegexPattern.test(email);
     }
 
     async function fetchLogin() {
@@ -86,16 +97,17 @@
                     }),
                 ),
             );
-            if (response.ok) {
+            if (response.ok) {  //Login sucessful
                 somethingWrong = false;
                 toastStore.trigger(toast);
                 goto("/");
-            } else {
-                somethingWrong = true;
+            } else {    // Login failed on the backend side e.g. because credentials didn't match or account doesn't exists
                 throw new Error("Login failed");
             }
         } catch (err) {
             somethingWrong = true;
+            emailIndicator = indicatorStatus.error;
+            passwordIndicator = indicatorStatus.error;
             error = err.message;
         }
     }
@@ -111,14 +123,14 @@
                 <span>Email</span>
             </label>
             <input
-                class="bg-surface-700 text-white border rounded-full {emailIndicator} w-full focus:border-primary-500 focus:outline-none focus:ring-0"
+                class="bg-surface-700 text-white border rounded-full transition-colors {emailIndicator} w-full focus:border-primary-500 focus:outline-none focus:ring-0"
                 type="text"
                 id="email_input"
                 placeholder="beispiel.organisation@mail.com"
                 bind:this={emailReference}
             />
             {#if emailIndicator == indicatorStatus.warning}
-                <div class="flex flex-col justify-center items-center">
+                <div class="flex flex-col justify-center items-center transition-opacity">
                     <p class="text-sm text-warning-500">
                         Bitte gib eine valide Email-Adresse ein
                     </p>
@@ -133,7 +145,7 @@
             > -->
             <div class="relative">
                 <input
-                    class="bg-surface-700 text-white border rounded-full {passwordIndicator} w-full focus:border-primary-500 focus:outline-none focus:ring-0"
+                    class="bg-surface-700 text-white border rounded-full transition-colors {passwordIndicator} w-full focus:border-primary-500 focus:outline-none focus:ring-0"
                     type={showPassword ? "text" : "password"}
                     id="password_input"
                     placeholder="Dein super sicheres Passwort 😉"
@@ -155,7 +167,7 @@
 
             {#if somethingWrong}
                 <div class="flex flex-col items-center">
-                    <p class="text-sm text-error-500">
+                    <p class="text-sm text-error-500 transition-opacity">
                         Email oder Passwort sind falsch
                     </p>
                 </div>
