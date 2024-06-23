@@ -73,7 +73,7 @@
                 <img
                     src="/logo-full-white.svg"
                     alt="logo"
-                    class="scale-50 w-500"
+                    class="w-500 scale-50"
                 />
             </a>
         </svelte:fragment>
@@ -85,7 +85,7 @@
                 </a>
             {:else}
                 <button
-                    class="btn variant-ringed-primary"
+                    class="variant-ringed-primary btn"
                     on:click={() => redirectToLogin()}>Anmelden</button
                 >
             {/if}
@@ -107,7 +107,7 @@
             </TabAnchor>
         </TabGroup>
     {/if}
-    <div class="p-4 h-fit">
+    <div class="h-fit p-4">
         <slot />
     </div>
 </div>

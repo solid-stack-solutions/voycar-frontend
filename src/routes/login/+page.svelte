@@ -113,10 +113,10 @@
 </script>
 
 <!-- Login page -->
-<div class="flex flex-col justify-center items-center mt-4">
+<div class="mt-4 flex flex-col items-center justify-center">
     <h1 class="h2 mb-8">Bei Voycar anmelden</h1>
-    <div class="w-96 justify-center items-center space-y-4">
-        <form class="p-4 border-2 rounded-md border-secondary-500 space-y-3">
+    <div class="w-96 items-center justify-center space-y-4">
+        <form class="space-y-3 rounded-md border-2 border-secondary-500 p-4">
             <!-- Email field -->
             <label class="label" for="email_input">
                 <span>Email</span>
@@ -141,9 +141,6 @@
             <label class="label" for="password_input">
                 <span>Passwort</span>
             </label>
-            <!-- <div
-                class="relative input-group input-group-divider grid-cols-[auto_1fr_auto]"
-            > -->
             <div class="relative">
                 <input
                     class="bg-surface-700 text-white border rounded-full transition-colors {passwordIndicator} w-full focus:border-primary-500 focus:outline-none focus:ring-0"
@@ -182,7 +179,7 @@
                 >
             </div>
             <!-- Password reset -->
-            <div class="flex justify-center items-center">
+            <div class="flex items-center justify-center">
                 <a class="text-sm text-tertiary-600" href="/forgotPassword"
                     >Passwort vergessen?</a
                 >
@@ -190,7 +187,7 @@
         </form>
         <!-- Sing up for new account link -->
         <div
-            class="flex flex-col-2 items-center justify-between border-2 rounded-md border-secondary-500 p-4"
+            class="flex-col-2 flex items-center justify-between rounded-md border-2 border-secondary-500 p-4"
         >
             <p>Neu bei Voycar?</p>
             <a class="text-tertiary-500" href="/register"
