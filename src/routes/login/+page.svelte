@@ -8,7 +8,6 @@
     // Import backend urls
     import { urls } from "$lib/util.js";
 
-
     // ToDo Comments
 
     // Definitions
@@ -97,11 +96,13 @@
                     }),
                 ),
             );
-            if (response.ok) {  //Login sucessful
+            if (response.ok) {
+                //Login sucessful
                 somethingWrong = false;
                 toastStore.trigger(toast);
                 goto("/");
-            } else {    // Login failed on the backend side e.g. because credentials didn't match or account doesn't exists
+            } else {
+                // Login failed on the backend side e.g. because credentials didn't match or account doesn't exists
                 throw new Error("Login failed");
             }
         } catch (err) {
@@ -130,7 +131,9 @@
                 bind:this={emailReference}
             />
             {#if emailIndicator == indicatorStatus.warning}
-                <div class="flex flex-col justify-center items-center transition-opacity">
+                <div
+                    class="flex flex-col justify-center items-center transition-opacity"
+                >
                     <p class="text-sm text-warning-500">
                         Bitte gib eine valide Email-Adresse ein
                     </p>
