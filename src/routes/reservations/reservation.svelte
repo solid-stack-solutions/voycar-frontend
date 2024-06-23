@@ -38,7 +38,7 @@
 <div>
     <div class="border-2 p-4 border-primary-500 rounded-md grid-cols-2">
         <div>
-            <img src="car.png" alt="dodge challenger" class="w-52 h-52" >
+            <img src="carpng.png" alt="dodge challenger" class="w-52 h-52" >
         </div>
         <div class="grid-cols-1">
             <span>
