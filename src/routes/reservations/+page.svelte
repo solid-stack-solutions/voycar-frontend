@@ -43,17 +43,18 @@
         });
     });
 </script>
+
 <svelte:head>
     <title>Reservierungen</title>
 </svelte:head>
 
 <div class="relative">
-    <div class="flex flex-col ">
+    <div class="flex flex-col">
         <div class="border-md rounded-md bg-surface-700 p-4">
-            <h3 class="h3"> Ihre Reservierungen</h3>
+            <h3 class="h3">Ihre Reservierungen</h3>
         </div>
     </div>
-    <hr class="my-4 !border-t-4 rounded-full">
+    <hr class="my-4 rounded-full !border-t-4" />
     {#await reservationData}
         <div
             class="flex h-[70vh] flex-col items-center justify-center space-y-4"
