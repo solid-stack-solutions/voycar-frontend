@@ -8,6 +8,8 @@
     // Import backend urls
     import { urls } from "$lib/util.js";
 
+    import { goto } from "$app/navigation";
+
     // Definitions
     // Constants
     const toastStore = getToastStore();
