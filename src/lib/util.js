@@ -2,7 +2,7 @@
 // Routing strings
 const baseURL = "http://localhost:8080/";
 
-const user = "user/"
+const user = "user/";
 const member = "member/";
 const auth = "auth/";
 
