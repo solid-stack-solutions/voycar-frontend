@@ -53,8 +53,6 @@
     let somethingWrong = false;
     let showPassword = false;
 
-    let email = "";
-    let password = "";
     let error = "";
 
     // Functions
@@ -70,16 +68,16 @@
 
     function tryLogin() {
         resetIndicators();
-        email = emailReference.value;
-        password = passwordReference.value;
+        let email = emailReference.value;
+        let password = passwordReference.value;
         if (validateEmail(email)) {
-            fetchLogin();
+            fetchLogin(email, password);
         } else {
             emailIndicator = indicatorStatus.warning;
         }
     }
 
-    async function fetchLogin() {
+    async function fetchLogin(email, password) {
         try {
             const mybody = {
                 email: email,
@@ -106,7 +104,6 @@
             somethingWrong = true;
             emailIndicator = indicatorStatus.error;
             passwordIndicator = indicatorStatus.error;
-            error = err.message;
         }
     }
 </script>
