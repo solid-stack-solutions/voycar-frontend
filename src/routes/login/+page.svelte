@@ -22,10 +22,9 @@
     };
 
     const indicatorStatus = {
-        none: "border-surface-700",
-        sucess: "input-success",
-        warning: "border-warning-400",
-        error: "border-error-600",
+        none: "",
+        warning: "!border-warning-400",
+        error: "!border-error-600",
     };
 
     // Policy for fetching
@@ -122,7 +121,7 @@
                 <span>Email</span>
             </label>
             <input
-                class="bg-surface-700 text-white border rounded-full transition-colors {emailIndicator} w-full focus:border-primary-500 focus:outline-none focus:ring-0"
+                class="input {emailIndicator}"
                 type="text"
                 id="email_input"
                 placeholder="beispiel.organisation@mail.com"
@@ -143,7 +142,7 @@
             </label>
             <div class="relative">
                 <input
-                    class="bg-surface-700 text-white border rounded-full transition-colors {passwordIndicator} w-full focus:border-primary-500 focus:outline-none focus:ring-0"
+                    class="input {passwordIndicator}"
                     type={showPassword ? "text" : "password"}
                     id="password_input"
                     placeholder="Dein super sicheres Passwort 😉"
