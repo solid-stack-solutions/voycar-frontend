@@ -86,6 +86,9 @@
                 fetch(
                     new Request(urls.post.login, {
                         method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
                         body: JSON.stringify(mybody),
                     }),
                 ),
