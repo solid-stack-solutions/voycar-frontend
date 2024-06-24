@@ -57,7 +57,7 @@
     <div class="flex flex-row space-x-4">
         <div class="basis-1/3 ">
             {#await carData}
-                <div class="placeholder min-h-52 !rounded-lg animate-pulse"></div>
+                <div class="placeholder min-h-52 !rounded-lg animate-pulse cursor-progress"></div>
             {:then carData} 
                 <img src="carpng.png" alt="cool car" class="border rounded-lg"/> 
             {:catch err}
@@ -66,15 +66,42 @@
                 </div>
             {/await}
         </div>
-        <div class="basis-2/3 grid-cols-1 rounded-lg p-4 bg-surface-700">
-            <div class="flex row-auto space-x-2">
-                <p>Beginn:</p>
-                <p>{filterDate(reservationData.begin)}</p>
+        <div class="basis-2/3 grid-cols-1 rounded-lg p-4 bg-surface-700 space-y-6">
+            <div>
+                <div class="flex row-auto space-x-2">
+                    <p>Beginn:</p>
+                    <p>{filterDate(reservationData.begin)}</p>
+                </div>
+                <div class="flex row-auto space-x-2">
+                    <p>Ende:</p>
+                    <p>{filterDate(reservationData.end)}</p>
+                </div>
             </div>
-            <div class="flex row-auto space-x-2">
-                <p>Ende:</p>
-                <p>{filterDate(reservationData.end)}</p>
+            {#await carData}
+                <p class="animate-pulse cursor-progress">Laden der Daten für ihr reserviertes Auto</p>
+            {:then carData} 
+            <div class="flex-col">
+                <div class="flex row-auto space-x-2">
+                    <p>Kennzeichen:</p>
+                    <p>{carData.licensePlate}</p>
+                </div>
+                <div class="flex row-auto space-x-2">
+                    <p>Modell:</p>
+                    <p>{carData.model}</p>
+                </div>
+                <div class="flex row-auto space-x-2">
+                    <p>Art:</p>
+                    <p>{carData.type}</p>
+                </div>
+                <div class="flex row-auto space-x-2">
+                    <p>Sitzplätze:</p>
+                    <p>{carData.seats}</p>
+                </div>
             </div>
+            {:catch err}
+                <p>Es wurden keine Daten zu ihrem Auto gefunden</p>
+            {/await}
+            
         </div>
     </div>
     <button class="btn variant-filled-error">Reservierung Stornieren</button>
