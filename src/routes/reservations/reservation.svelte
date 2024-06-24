@@ -21,8 +21,6 @@
         placement: "top",
     };
 
-
-
     let carData = new Promise((resolve, reject) => {});
 
     const options = {
@@ -63,67 +61,79 @@
         fetchCarForReservation();
     });
 
-    function confirmDeletion(){
-        // ToDo hier logik und indikatoren 
+    function confirmDeletion() {
+        // ToDo hier logik und indikatoren
     }
 </script>
 
-<div class=" relaitve p-4 rounded-md border-4 border-secondary-500 space-y-3">
+<div class=" relaitve space-y-3 rounded-md border-4 border-secondary-500 p-4">
     <div class="flex flex-row space-x-4">
-        <div class="basis-1/3 ">
+        <div class="basis-1/3">
             {#await carData}
-                <div class="placeholder min-h-52 !rounded-lg animate-pulse cursor-progress"></div>
-            {:then carData} 
-                <img src="carpng.png" alt="cool car" class="border rounded-lg"/> 
+                <div
+                    class="placeholder min-h-52 animate-pulse cursor-progress !rounded-lg"
+                ></div>
+            {:then carData}
+                <img
+                    src="carpng.png"
+                    alt="cool car"
+                    class="rounded-lg border"
+                />
             {:catch err}
-                <div class="flex h-52 flex-col items-center justify-center bg-surface-700 !rounded-lg ">
+                <div
+                    class="flex h-52 flex-col items-center justify-center !rounded-lg bg-surface-700"
+                >
                     <h2 class="h2">Kein Autobild geladen</h2>
                 </div>
             {/await}
         </div>
-        <div class="basis-2/3 grid-cols-1 rounded-lg p-4 bg-surface-700 space-y-6">
+        <div
+            class="basis-2/3 grid-cols-1 space-y-6 rounded-lg bg-surface-700 p-4"
+        >
             <div>
-                <div class="flex row-auto space-x-2">
+                <div class="row-auto flex space-x-2">
                     <p>Beginn:</p>
                     <p>{filterDate(reservationData.begin)}</p>
                 </div>
-                <div class="flex row-auto space-x-2">
+                <div class="row-auto flex space-x-2">
                     <p>Ende:</p>
                     <p>{filterDate(reservationData.end)}</p>
                 </div>
             </div>
             {#await carData}
-                <p class="animate-pulse cursor-progress">Laden der Daten für ihr reserviertes Auto</p>
-            {:then carData} 
-            <div class="flex-col">
-                <div class="flex row-auto space-x-2">
-                    <p>Kennzeichen:</p>
-                    <p>{carData.licensePlate}</p>
+                <p class="animate-pulse cursor-progress">
+                    Laden der Daten für ihr reserviertes Auto
+                </p>
+            {:then carData}
+                <div class="flex-col">
+                    <div class="row-auto flex space-x-2">
+                        <p>Kennzeichen:</p>
+                        <p>{carData.licensePlate}</p>
+                    </div>
+                    <div class="row-auto flex space-x-2">
+                        <p>Modell:</p>
+                        <p>{carData.model}</p>
+                    </div>
+                    <div class="row-auto flex space-x-2">
+                        <p>Art:</p>
+                        <p>{carData.type}</p>
+                    </div>
+                    <div class="row-auto flex space-x-2">
+                        <p>Sitzplätze:</p>
+                        <p>{carData.seats}</p>
+                    </div>
                 </div>
-                <div class="flex row-auto space-x-2">
-                    <p>Modell:</p>
-                    <p>{carData.model}</p>
-                </div>
-                <div class="flex row-auto space-x-2">
-                    <p>Art:</p>
-                    <p>{carData.type}</p>
-                </div>
-                <div class="flex row-auto space-x-2">
-                    <p>Sitzplätze:</p>
-                    <p>{carData.seats}</p>
-                </div>
-            </div>
-            {:catch err}
+            {:catch}
                 <p>Es wurden keine Daten zu ihrem Auto gefunden</p>
             {/await}
-            
         </div>
     </div>
     <!-- ToDo confirm popup -->
     <div class="relative h-9">
-        <button class="btn absolute right-0 variant-filled-error"
-        use:popup={popupClick}
-        >Reservierung Stornieren</button>
+        <button
+            class="variant-filled-error btn absolute right-0"
+            use:popup={popupClick}>Reservierung Stornieren</button
+        >
     </div>
     <!-- Floating ui popup to confirm account deletion -->
     <div class="card bg-secondary-500 p-2" data-popup="popupClick">
