@@ -66,7 +66,7 @@
     }
 </script>
 
-<div class=" relaitve space-y-3 rounded-md border-4 border-secondary-500 p-4">
+<div class=" relaitve space-y-3 rounded-md  p-4 bg-surface-500">
     <div class="flex flex-row space-x-4">
         <div class="basis-1/3">
             {#await carData}
