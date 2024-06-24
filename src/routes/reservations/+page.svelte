@@ -96,7 +96,7 @@
     <!-- Testing -->
     <Accordion>
         <div>
-            <AccordionItem class="rounded-lg  bg-surface-600">
+            <AccordionItem class="rounded-lg  bg-surface-700">
                 <svelte:fragment slot="summary"
                     >Reservierung für den {filterDate(
                         test.begin,
