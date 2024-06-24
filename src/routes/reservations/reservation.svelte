@@ -136,7 +136,7 @@
             <div class="alert-actions">
                 <button
                     type="button"
-                    class="variant-filled btn"
+                    class="variant-filled-surface btn"
                     on:click={confirmDeletion}>Bestätigen</button
                 >
             </div>
