@@ -53,7 +53,7 @@
     });
 </script>
 
-<div class=" relaitve m-4 p-4 rounded-md border-4 border-secondary-500 space-y-3">
+<div class=" relaitve p-4 rounded-md border-4 border-secondary-500 space-y-3">
     <div class="flex flex-row space-x-4">
         <div class="basis-1/3 ">
             {#await carData}
@@ -104,5 +104,7 @@
             
         </div>
     </div>
-    <button class="btn variant-filled-error">Reservierung Stornieren</button>
+    <div class="relative h-9">
+        <button class="btn absolute right-0 variant-filled-error">Reservierung Stornieren</button>
+    </div>
 </div>
