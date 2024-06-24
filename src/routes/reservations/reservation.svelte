@@ -1,5 +1,6 @@
 <script>
     import { ExponentialBackoff, handleAll, retry } from "cockatiel";
+    import { onMount } from "svelte";
 
     // Definitions
     // Policy for restarting backend fetched up to 5 times if there's no reply
@@ -11,6 +12,10 @@
     export let reservationData;
     
     let carData = new Promise((resolve, reject) => {});
+
+    function filterDate(dateString){
+        return new Intl.DateTimeFormat('de-DE').format(new Date(dateString));// ToDo das hier fixen
+    }
 
     async function fetchCarForReservation(){
         carData = new Promise(async (resolve,reject) => {
@@ -34,20 +39,24 @@
             }
         });
     }
+
+
+    onMount(() => {
+    filterDate()});
 </script>
 <div>
-    <div class="border-2 p-4 border-primary-500 rounded-md grid-cols-2">
-        <div>
-            <img src="carpng.png" alt="dodge challenger" class="w-52 h-52" >
+    <div class="border-2 p-4 border-primary-500 rounded-md flex flex-row">
+        <div class="basis-2/3">
+            <img src="carpng.png" alt="dodge challenger">
         </div>
-        <div class="grid-cols-1">
+        <div class="basis-1/3 grid-cols-1">
             <span>
                 <p>Beginn:</p>
-                <p>{reservationData.begin}</p>
+                <p>{filterDate(reservationData.begin)}</p>
             </span>
             <span>
                 <p>Ende:</p>
-                <p>{reservationData.end}</p>
+                <p>{filterDate(reservationData.end)}</p>
             </span>
         </div>
     </div>
