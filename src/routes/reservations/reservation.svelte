@@ -13,8 +13,18 @@
     
     let carData = new Promise((resolve, reject) => {});
 
-    function filterDate(dateString){
-        return new Intl.DateTimeFormat('de-DE').format(new Date(dateString));// ToDo das hier fixen
+  const options = {
+    year: "numeric",
+    month: "numeric",
+    day: "numeric",
+    hour: "numeric",
+    minute: "numeric",
+    second: "numeric",
+    hour12: false,
+    };
+
+    function filterDate(dateString){ // ToDo noch Uhrzeit mit rein
+        return new Intl.DateTimeFormat('de-DE',options).format(new Date(dateString));
     }
 
     async function fetchCarForReservation(){
