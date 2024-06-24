@@ -53,7 +53,6 @@
     let somethingWrong = false;
     let showPassword = false;
 
-    let error = "";
 
     // Functions
     function validateEmail(email) {
