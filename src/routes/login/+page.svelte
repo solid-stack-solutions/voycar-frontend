@@ -150,7 +150,7 @@
                 />
                 <div>
                     <button
-                        class=" absolute bg-surface-700 w-14 border-surface-500 inset-y-0 h-8 top-1 right-1 border-l-2 border-surface-400 pl-4 flex items-center text-md rounded-r-full"
+                        class="absolute bg-surface-700 w-14 border-surface-500 inset-y-0 h-8 top-1 right-1 border-l-2 pl-4 flex items-center text-md rounded-r-full"
                         on:click={() => (showPassword = !showPassword)}
                     >
                         {#if showPassword}
