@@ -2,15 +2,26 @@
     import { ExponentialBackoff, handleAll, retry } from "cockatiel";
     import { onMount } from "svelte";
     import { urls } from "$lib/util.js";
+    import { popup } from "@skeletonlabs/skeleton";
 
     // Definitions
+
+    export let reservationData;
+
     // Policy for restarting backend fetched up to 5 times if there's no reply
     const retryPolicy = retry(handleAll, {
         maxAttempts: 5,
         backoff: new ExponentialBackoff(),
     });
 
-    export let reservationData;
+    const popupClick = {
+        // Popup settings
+        event: "click",
+        target: "popupClick",
+        placement: "top",
+    };
+
+
 
     let carData = new Promise((resolve, reject) => {});
 
@@ -51,6 +62,10 @@
         // just for test
         fetchCarForReservation();
     });
+
+    function confirmDeletion(){
+        // ToDo hier logik und indikatoren 
+    }
 </script>
 
 <div class=" relaitve p-4 rounded-md border-4 border-secondary-500 space-y-3">
@@ -104,7 +119,28 @@
             
         </div>
     </div>
+    <!-- ToDo confirm popup -->
     <div class="relative h-9">
-        <button class="btn absolute right-0 variant-filled-error">Reservierung Stornieren</button>
+        <button class="btn absolute right-0 variant-filled-error"
+        use:popup={popupClick}
+        >Reservierung Stornieren</button>
+    </div>
+    <!-- Floating ui popup to confirm account deletion -->
+    <div class="card bg-secondary-500 p-2" data-popup="popupClick">
+        <aside class="alert variant-filled-warning">
+            <div class="alert-message">
+                <h3 class="h3">Stornierung bestätigen</h3>
+                <p>Willst du deine Reservierung wirklich löschen?</p>
+            </div>
+            <!-- Confirmation button -->
+            <div class="alert-actions">
+                <button
+                    type="button"
+                    class="variant-filled btn"
+                    on:click={confirmDeletion}>Bestätigen</button
+                >
+            </div>
+        </aside>
+        <div class="variant-filled-primary arrow" />
     </div>
 </div>
