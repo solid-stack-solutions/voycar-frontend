@@ -4,14 +4,14 @@
     import { ExponentialBackoff, handleAll, retry } from "cockatiel";
     import { urls } from "$lib/util.js";
     import { Accordion, AccordionItem } from "@skeletonlabs/skeleton";
-
+    import { ProgressRadial } from "@skeletonlabs/skeleton";    
     // Definitions
     // Policy for restarting backend fetched up to 5 times if there's no reply
     const retryPolicy = retry(handleAll, {
         maxAttempts: 5,
         backoff: new ExponentialBackoff(),
     });
-
+    
     const test = {
         begin: "2024-06-21T19:11:46.833Z",
         end: "2024-09-21T19:11:46.833Z",
@@ -49,7 +49,10 @@
 
 <div class="relative">
     {#await reservationData}
-        <p class="animate-pulse">Loading</p>
+    <div class="flex h-[70vh] flex-col items-center justify-center space-y-4">
+        <h2 class="h2"> Laden deiner Reservierungen </h2>
+        <ProgressRadial stroke={60} meter="stroke-primary-500" track="stroke-primary-500/30" strokeLinecap="butt"/>
+    </div>
     {:then reservations}
     <Accordion>
         <div>
@@ -66,6 +69,7 @@
     {:catch error}
         <p>Reservierungen konnten nicht geladen werden</p>
     {/await}
+    <!-- Testing -->
     <Reservation reservationData={test}></Reservation>
     <Accordion>
         <div>
