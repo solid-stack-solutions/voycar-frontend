@@ -26,7 +26,6 @@
         );
     }
 
-    let error = "";
     let reservationData = new Promise((resolve, reject) => {});
     onMount(async () => {
         reservationData = new Promise(async (resolve, reject) => {
@@ -70,7 +69,6 @@
         <p>Reservierungen konnten nicht geladen werden</p>
     {/await}
     <!-- Testing -->
-    <Reservation reservationData={test}></Reservation>
     <Accordion>
         <div>
             <AccordionItem>
@@ -86,5 +84,4 @@
             >Neue reservierung erstellen</button
         >
     </div>
-    {error}
 </div>
