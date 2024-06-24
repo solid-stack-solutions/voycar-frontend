@@ -55,7 +55,6 @@
     let somethingWrong = false;
     let showPassword = false;
 
-
     // Functions
     function validateEmail(email) {
         return mailRegexPattern.test(email);
@@ -88,6 +87,7 @@
                 fetch(
                     new Request(urls.post.login, {
                         method: "POST",
+                        credentials: "include",
                         headers: {
                             "Content-Type": "application/json",
                         },
