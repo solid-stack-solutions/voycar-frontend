@@ -145,7 +145,7 @@
                     bind:this={passwordReference}
                 />
                 <button
-                    class="text-md absolute inset-y-0 right-1 top-1 flex h-8 w-14 items-center rounded-r-full border-l-2 border-surface-500 bg-surface-700 pl-4"
+                    class="absolute right-1 top-1 flex h-8 w-14 items-center rounded-r-full border-l-2 border-surface-500 bg-surface-700 pl-4"
                     on:click={() => (showPassword = !showPassword)}
                 >
                     {#if showPassword}
