@@ -126,7 +126,7 @@
             />
             {#if emailIndicator == indicatorStatus.warning}
                 <div
-                    class="flex flex-col justify-center items-center transition-opacity"
+                    class="flex flex-col items-center justify-center transition-opacity"
                 >
                     <p class="text-sm text-warning-500">
                         Bitte gib eine valide Email-Adresse ein
@@ -145,16 +145,16 @@
                     placeholder="Dein super sicheres Passwort 😉"
                     bind:this={passwordReference}
                 />
-                    <button
-                        class="absolute bg-surface-700 w-14 border-surface-500 inset-y-0 h-8 top-1 right-1 border-l-2 pl-4 flex items-center text-md rounded-r-full"
-                        on:click={() => (showPassword = !showPassword)}
-                    >
-                        {#if showPassword}
-                            {btnIcon.unlocked}
-                        {:else}
-                            {btnIcon.locked}
-                        {/if}
-                    </button>
+                <button
+                    class="text-md absolute inset-y-0 right-1 top-1 flex h-8 w-14 items-center rounded-r-full border-l-2 border-surface-500 bg-surface-700 pl-4"
+                    on:click={() => (showPassword = !showPassword)}
+                >
+                    {#if showPassword}
+                        {btnIcon.unlocked}
+                    {:else}
+                        {btnIcon.locked}
+                    {/if}
+                </button>
             </div>
 
             {#if somethingWrong}
@@ -168,7 +168,7 @@
             <!-- Login button -->
             <div class="flex flex-col items-center">
                 <button
-                    class="btn variant-filled-primary w-full"
+                    class="variant-filled-primary btn w-full"
                     on:click={tryLogin}>Anmelden</button
                 >
             </div>
