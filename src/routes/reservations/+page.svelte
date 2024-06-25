@@ -2,7 +2,6 @@
     import { onMount } from "svelte";
     import { ExponentialBackoff, handleAll, retry } from "cockatiel";
     import { urls } from "$lib/util.js";
-    import { Accordion, AccordionItem } from "@skeletonlabs/skeleton";
     import { ProgressRadial } from "@skeletonlabs/skeleton";
     import ReservationList from "./reservationList.svelte";
     // Definitions
@@ -54,7 +53,6 @@
             class="flex h-[70vh] flex-col items-center justify-center space-y-4"
         >
             <h4 class="h4">Laden deiner Reservierungen</h4>
-            <!-- ToDo Größe -->
             <ProgressRadial
                 stroke={60}
                 meter="stroke-primary-500"
@@ -86,6 +84,6 @@
             >
         </div>
     {:catch error}
-        <p>Reservierungen konnten nicht geladen werden {error}</p>
+        <p>Reservierungen konnten nicht geladen werden</p>
     {/await}
 </div>
