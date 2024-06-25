@@ -11,6 +11,7 @@ export const urls = {
     get: {
         memberPersonalData: baseURL + member + "personal",
         isLoggedIn: baseURL + user + "whoami",
+        reservationPersonalData: baseURL + reservation + "personal",
         singleCar: baseURL + car,
     },
     post: {
