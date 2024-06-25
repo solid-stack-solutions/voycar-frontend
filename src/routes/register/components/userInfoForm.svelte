@@ -46,7 +46,7 @@
             placeholder="Dein super sicheres Passwort 😉"
         />
         <button
-            class="right-0 leading-5 variant-filled-secondary"
+            class="absolute right-1 top-1 flex h-8 w-14 items-center rounded-r-full border-l-2 border-surface-500 bg-surface-700 pl-4"
             on:click={() => (showPassword = !showPassword)}
         >
             {#if showPassword}
@@ -66,7 +66,7 @@
             placeholder="Wiederhole dein Passwort"
         />
         <button
-            class="right-0 leading-5 variant-filled-secondary"
+            class="absolute right-1 top-1 flex h-8 w-14 items-center rounded-r-full border-l-2 border-surface-500 bg-surface-700 pl-4"
             on:click={() => (showPasswordValidate = !showPasswordValidate)}
         >
             {#if showPasswordValidate}
