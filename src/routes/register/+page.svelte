@@ -8,11 +8,10 @@
 </script>
 
 <!-- Register page -->
-<div class="flex flex-col justify-center items-center mt-4">
+<div class="mt-4 flex flex-col items-center justify-center">
     <h2 class="h2 mb-8">Bei Voycar registrieren</h2>
-    <div class="w-96 justify-center items-center space-y-4">
-
-        <form class="p-4 border-2 rounded-md border-secondary-500 space-y-3">
+    <div class="w-96 items-center justify-center space-y-4">
+        <form class="space-y-3 rounded-md border-2 border-secondary-500 p-4">
             {#if registerStep == 0}
                 <UserInfoForm bind:registerStep></UserInfoForm>
             {:else if registerStep == 1}
@@ -23,12 +22,11 @@
         {#if registerStep == 0}
             <!-- Go to login link -->
             <div
-                class="flex flex-col-2 items-center justify-between border-2 rounded-md border-secondary-500 p-4"
+                class="flex-col-2 flex items-center justify-between rounded-md border-2 border-secondary-500 p-4"
             >
                 <p>Bereits registriert?</p>
                 <a class="text-tertiary-500" href="/login">Anmelden</a>
             </div>
         {/if}
-
     </div>
 </div>

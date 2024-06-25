@@ -35,9 +35,7 @@
 <label class="label" for="password_input">
     <span>Passwort</span>
 </label>
-<div
-    class="relative input-group input-group-divider grid-cols-[auto_1fr_auto]"
->
+<div class="input-group input-group-divider relative grid-cols-[auto_1fr_auto]">
     <input
         class="w-72 {passwordIndicator}"
         type={showPassword ? "text" : "password"}
@@ -55,9 +53,7 @@
         {/if}
     </button>
 </div>
-<div
-    class="relative input-group input-group-divider grid-cols-[auto_1fr_auto]"
->
+<div class="input-group input-group-divider relative grid-cols-[auto_1fr_auto]">
     <input
         class="w-72 {passwordIndicator}"
         type={showPasswordValidate ? "text" : "password"}
@@ -79,7 +75,7 @@
 <!-- Continue button -->
 <div class="flex flex-col items-center">
     <button
-        class="btn variant-filled-primary w-full"
+        class="variant-filled-primary btn w-full"
         on:click={() => {
             registerStep++;
         }}

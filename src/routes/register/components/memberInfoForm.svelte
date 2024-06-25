@@ -5,7 +5,7 @@
 
 <button
     type="button"
-    class="btn btn-sm variant-soft"
+    class="variant-soft btn btn-sm"
     on:click={() => {
         registerStep--;
     }}
@@ -23,19 +23,9 @@
 <p>Adresse</p>
 <div class="flex space-x-2">
     <input class="input" type="text" id="street" placeholder="Straße" />
-    <input
-        class="input w-1/4"
-        type="text"
-        id="housenumber"
-        placeholder="Nr."
-    />
+    <input class="input w-1/4" type="text" id="housenumber" placeholder="Nr." />
 </div>
-<input
-    class="input"
-    type="text"
-    id="postalcode"
-    placeholder="Postleitzahl"
-/>
+<input class="input" type="text" id="postalcode" placeholder="Postleitzahl" />
 <input class="input" type="text" id="city" placeholder="Stadt" />
 <p>ToDo Dropdown für Land</p>
 <select class="select" disabled>
