@@ -2,9 +2,10 @@
     // Component imports
     import UserInfoForm from "./components/userInfoForm.svelte";
     import MemberInfoForm from "./components/memberInfoForm.svelte";
+    import PlanForm from "./components/planForm.svelte";
 
     // The steps of the register process and how many have been completed
-    let registerSteps = ["User", "Member"];
+    let registerSteps = ["User", "Member", "Plan"];
     let currentStep = 0;
 </script>
 
@@ -17,6 +18,8 @@
                 <UserInfoForm bind:currentStep></UserInfoForm>
             {:else if registerSteps[currentStep] == "Member"}
                 <MemberInfoForm bind:currentStep></MemberInfoForm>
+            {:else if registerSteps[currentStep] == "Plan"}
+                <PlanForm bind:currentStep></PlanForm>
             {/if}
         </form>
 

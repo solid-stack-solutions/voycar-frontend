@@ -1,4 +1,7 @@
 <script>
+    // Component imports
+    import ContinueButton from "./continueButton.svelte";
+
     // Definitions
     const indicatorStatus = {
         none: "",
@@ -72,14 +75,4 @@
     </button>
 </div>
 
-<!-- Continue button -->
-<div class="flex flex-col items-center">
-    <button
-        class="variant-filled-primary btn w-full"
-        on:click={() => {
-            currentStep++;
-        }}
-    >
-        Weiter
-    </button>
-</div>
+<ContinueButton bind:currentStep></ContinueButton>

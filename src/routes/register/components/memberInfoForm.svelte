@@ -1,21 +1,13 @@
 <script>
+    // Component imports
+    import ContinueButton from "./continueButton.svelte";
+    import BackButton from "./backButton.svelte";
+
     // Indicates how many steps of the register process have been completed
     export let currentStep = 0;
 </script>
 
-<button
-    type="button"
-    class="variant-soft btn btn-sm"
-    on:click={() => {
-        currentStep--;
-    }}
->
-    <img
-        src="/chevron-leftIcon.svg"
-        class="pr-2"
-        alt="Pfeil nach links"
-    />Zurück
-</button>
+<BackButton bind:currentStep></BackButton>
 <p>Name</p>
 <input class="input" type="text" id="first_name" placeholder="Vorname" />
 <input class="input" type="text" id="last_name" placeholder="Nachname" />
@@ -27,7 +19,6 @@
 </div>
 <input class="input" type="text" id="postalcode" placeholder="Postleitzahl" />
 <input class="input" type="text" id="city" placeholder="Stadt" />
-<p>ToDo Dropdown für Land</p>
 <select class="select" disabled>
     <option value="DE" selected>Deutschland</option>
 </select>
@@ -42,3 +33,5 @@
     id="telephonenumber"
     placeholder="+49 421 5905 5425"
 />
+
+<ContinueButton bind:currentStep></ContinueButton>
