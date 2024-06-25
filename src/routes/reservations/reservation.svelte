@@ -3,10 +3,26 @@
     import { onMount } from "svelte";
     import { urls } from "$lib/util.js";
     import { popup } from "@skeletonlabs/skeleton";
-
+    import { getToastStore } from "@skeletonlabs/skeleton";
     // Definitions
 
     export let reservationData;
+
+    const toastStore = getToastStore();
+
+    const toastSuccsess = {
+        message: "Reservierung wurde erfolgreich gelöscht",
+        hideDismiss: true, // Hide the dismiss button on toast
+        timeout: 3000, // Auto dismiss toast after 3 seconds
+        background: "variant-filled-secondary",
+    };
+
+    const toastError = {
+        message: "Reservierung konnte nicht gelöscht werden",
+        hideDismiss: true, // Hide the dismiss button on toast
+        timeout: 3000, // Auto dismiss toast after 3 seconds
+        background: "variant-filled-error",
+    };
 
     // Policy for restarting backend fetched up to 5 times if there's no reply
     const retryPolicy = retry(handleAll, {
