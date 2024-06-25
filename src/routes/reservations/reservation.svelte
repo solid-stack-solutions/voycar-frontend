@@ -73,12 +73,28 @@
     }
 
     onMount(() => {
-        // just for test
         fetchCarForReservation();
     });
 
-    function confirmDeletion() {
+    async function confirmDeletion() {
         // ToDo hier logik und indikatoren
+        try {
+            const response = await retryPolicy.execute(() =>
+                fetch(new Request(urls.delete.singleReservation + "/" + reservationData.id, {
+                        method: "DELETE",
+                        credentials: "include",
+                    }),
+                ),
+            );
+            if (response.ok) {
+                toastStore.trigger(toastSuccsess);
+            } else {
+                throw new Error("Reservierung konnte nicht gelöscht werden");
+            }
+        } catch (err) {
+            toastStore.trigger(toastError);
+            throw err;
+        }
     }
 </script>
 
@@ -90,6 +106,7 @@
                     class="placeholder min-h-52 animate-pulse cursor-progress !rounded-lg"
                 ></div>
             {:then carData}
+            <!-- ToDo replace with image according to ID -->
                 <img
                     src="carpng.png"
                     alt="cool car"
