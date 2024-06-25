@@ -40,7 +40,7 @@
 </label>
 <div class="input-group input-group-divider relative grid-cols-[auto_1fr_auto]">
     <input
-        class="w-72 {passwordIndicator}"
+        class="w-64 sm:w-72 {passwordIndicator}"
         type={showPassword ? "text" : "password"}
         id="password_input"
         placeholder="Dein super sicheres Passwort 😉"
@@ -58,7 +58,7 @@
 </div>
 <div class="input-group input-group-divider relative grid-cols-[auto_1fr_auto]">
     <input
-        class="w-72 {passwordIndicator}"
+        class="w-64 sm:w-72 {passwordIndicator}"
         type={showPasswordValidate ? "text" : "password"}
         id="password_input_validate"
         placeholder="Wiederhole dein Passwort"
