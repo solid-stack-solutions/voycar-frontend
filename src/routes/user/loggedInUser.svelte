@@ -40,7 +40,7 @@
 </svelte:head>
 <div>
     <div class="pb-4">
-        <p class="text-xl font-semibold pl-2">
+        <p class="pl-2 text-xl font-semibold">
             <!-- Greeting -->
             Hallo {personalData.firstName}
             {personalData.lastName}
@@ -50,7 +50,7 @@
         <!-- Accordion for user data-->
         <Accordion>
             <!-- Personal details tab -->
-            <AccordionItem class="border-2 rounded-md border-primary-500">
+            <AccordionItem class="rounded-md border-2 border-primary-500">
                 <svelte:fragment slot="summary"
                     >Persönliche Informationen</svelte:fragment
                 >
@@ -68,7 +68,7 @@
             </AccordionItem>
             <!-- Payment information tab -->
             {#if userPaymentInfoID != null}
-                <AccordionItem class="border-2 rounded-md border-secondary-500">
+                <AccordionItem class="rounded-md border-2 border-secondary-500">
                     <svelte:fragment slot="summary"
                         >Zahlungsinformation</svelte:fragment
                     >
@@ -87,7 +87,7 @@
             {/if}
             <!-- Subscription plan information -->
             {#if userSubPlanID != null}
-                <AccordionItem class="border-2 rounded-md border-tertiary-500">
+                <AccordionItem class="rounded-md border-2 border-tertiary-500">
                     <svelte:fragment slot="summary">Tarif</svelte:fragment>
                     <svelte:fragment slot="content">
                         <!-- Inject user plan data svelte component -->
@@ -108,13 +108,13 @@
     <div class="relative pt-4">
         <button
             type="button"
-            class="btn bg-gradient-to-br variant-filled-error absolute right-0"
+            class="variant-filled-error btn absolute right-0 bg-gradient-to-br"
             use:popup={popupClick}
         >
             Kontolöschung beantragen
         </button>
         <!-- Floating ui popup to confirm account deletion -->
-        <div class="card p-2 bg-secondary-500" data-popup="popupClick">
+        <div class="card bg-secondary-500 p-2" data-popup="popupClick">
             <aside class="alert variant-filled-warning">
                 <div class="alert-message">
                     <h3 class="h3">Kontolöschung bestätigen</h3>
@@ -124,12 +124,12 @@
                 <div class="alert-actions">
                     <button
                         type="button"
-                        class="btn variant-filled"
+                        class="variant-filled btn"
                         on:click={confirmDeletion}>Bestätigen</button
                     >
                 </div>
             </aside>
-            <div class="arrow variant-filled-primary" />
+            <div class="variant-filled-primary arrow" />
         </div>
     </div>
 </div>

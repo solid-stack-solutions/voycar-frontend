@@ -45,13 +45,13 @@
     </div>
     <!-- Buttons -->
     <div dir="rtl" class="height-auto">
-        <button type="button" class="btn btn-md variant-filled-error">
+        <button type="button" class="variant-filled-error btn btn-md">
             <!-- ToDo logic for delete button -->
             Löschen
         </button>
         <button
             type="button"
-            class="btn btn-md variant-filled-warning"
+            class="variant-filled-warning btn btn-md"
             on:click={() => (formEditEnabled = !formEditEnabled)}
         >
             Bearbeiten
@@ -61,7 +61,7 @@
             <img src="/editIcon.svg" alt="edit icon" />
         </button>
         {#if formEditEnabled}
-            <button type="button" class="btn btn-md variant-filled-success">
+            <button type="button" class="variant-filled-success btn btn-md">
                 <!-- ToDo logic for update button -->
                 Aktualisieren
                 <img src="/saveIcon.svg" alt="save icon" />

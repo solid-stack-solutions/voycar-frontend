@@ -9,7 +9,7 @@ const config = {
     htmlWhitespaceSensitivity: "css",
 
     // plugins and settings for file types
-    plugins: ["prettier-plugin-svelte"],
+    plugins: ["prettier-plugin-svelte", "prettier-plugin-tailwindcss"],
     overrides: [
         { files: "*.svelte", options: { parser: "svelte" } },
         { files: "*.svg", options: { parser: "html" } },

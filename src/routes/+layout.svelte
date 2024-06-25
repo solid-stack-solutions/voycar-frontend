@@ -23,6 +23,8 @@
     import { initializeStores, Toast } from "@skeletonlabs/skeleton";
     initializeStores();
 
+    import { urls } from "$lib/util.js";
+
     // Definitions
     let loggedIn = false;
 
@@ -42,7 +44,7 @@
         try {
             // Fetch backend to check if user is signed in
             const response = await retryPolicy.execute(() =>
-                fetch(urls.get.isLoggedIn),
+                fetch(urls.get.isLoggedIn, { credentials: "include" }),
             );
             if (response.ok) {
                 loggedIn = true;
@@ -71,7 +73,7 @@
                 <img
                     src="/logo-full-white.svg"
                     alt="logo"
-                    class="scale-50 w-500"
+                    class="w-500 scale-50"
                 />
             </a>
         </svelte:fragment>
@@ -83,7 +85,7 @@
                 </a>
             {:else}
                 <button
-                    class="btn variant-ringed-primary"
+                    class="variant-ringed-primary btn"
                     on:click={() => redirectToLogin()}>Anmelden</button
                 >
             {/if}
@@ -105,7 +107,7 @@
             </TabAnchor>
         </TabGroup>
     {/if}
-    <div class="p-4 h-fit">
+    <div class="h-fit p-4">
         <slot />
     </div>
 </div>

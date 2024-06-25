@@ -31,7 +31,7 @@
         message: "Ihr Nutzerkonto konnte nicht gefunden werden",
         hideDismiss: true, // Hide the dismiss button on toast
         timeout: 3000, // Auto dismiss toast after 3 seconds
-        background: "variant-filled-secondary",
+        background: "variant-filled-error",
     };
 
     // Functions
@@ -67,11 +67,11 @@
         <LoggedInUser {personalData}></LoggedInUser>
     {:catch error}
         <!-- Display on error -->
-        <p class="text-center h3">
+        <p class="h3 text-center">
             Ihr Nutzerkonto konnte nicht gefunden werden. Sie werden auf die
             Startseite zurückgeleitet!
         </p>
-        <p class="text-center h3">
+        <p class="h3 text-center">
             Falls sie nicht automatisch weitergeleitet werden klicken sie
             <a href="/" class="text-primary-500 underline">hier</a>
             um zur Startseite zurückzukehren!
