@@ -22,8 +22,10 @@
         <p
             class="mx-auto mt-6 max-w-2xl text-lg text-tertiary-500 sm:text-center"
         >
-            Hier kann ein schöner Text über die Auswahlmöglichkeiten für die
-            Abos stehen. Es gibt drei gute Abos. Alle sind super!
+            Entdecke die flexiblen Abos von Voycar und finde das perfekte
+            Carsharing-Paket für dich! Egal ob du nur ab und zu ein Auto
+            brauchst oder täglich unterwegs bist, bei uns findest du das
+            passende Angebot.
         </p>
         <div class="mt-20 flow-root">
             <div
