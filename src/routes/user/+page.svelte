@@ -41,7 +41,7 @@
             try {
                 // Fetch backend for personal Data with retry policy
                 const response = await retryPolicy.execute(() =>
-                    fetch(urls.get.memberPersonalData),
+                    fetch(urls.get.memberPersonalData, { credentials: "include" }),
                 );
                 if (response.ok) {
                     personalData = resolve(await response.json());

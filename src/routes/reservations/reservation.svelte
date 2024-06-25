@@ -43,7 +43,7 @@
         carData = new Promise(async (resolve, reject) => {
             try {
                 const response = await retryPolicy.execute(() =>
-                    fetch(urls.get.singleCar + reservationData.carId),
+                    fetch(urls.get.singleCar + reservationData.carId, { credentials: "include" }),
                 );
                 if (response.ok) {
                     carData = resolve(await response.json());

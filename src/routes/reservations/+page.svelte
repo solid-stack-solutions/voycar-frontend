@@ -31,7 +31,7 @@
             try {
                 // Fetch backend for reservation Data with retry policy
                 const response = await retryPolicy.execute(() =>
-                    fetch(urls.get.reservationPersonalData),
+                    fetch(urls.get.reservationPersonalData, { credentials: "include" }),
                 );
                 if (response.ok) {
                     reservationData = resolve(await response.json());
