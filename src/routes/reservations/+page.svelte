@@ -5,6 +5,7 @@
     import { urls } from "$lib/util.js";
     import { Accordion, AccordionItem } from "@skeletonlabs/skeleton";
     import { ProgressRadial } from "@skeletonlabs/skeleton";
+    import ReservationList from "./reservationList.svelte";
     // Definitions
     // Policy for restarting backend fetched up to 5 times if there's no reply
     const retryPolicy = retry(handleAll, {
@@ -24,7 +25,6 @@
         return new Intl.DateTimeFormat("de-DE").format(new Date(dateString));
     }
 
-    // ToDo richtiges fetch hadnling  mit planned, active, expired
     let reservationData = new Promise((resolve, reject) => {});
     onMount(async () => {
         reservationData = new Promise(async (resolve, reject) => {
@@ -34,7 +34,7 @@
                     fetch(urls.get.reservationPersonalData),
                 );
                 if (response.ok) {
-                    reservations = resolve(await response.json());
+                    reservationData = resolve(await response.json());
                 } else {
                     throw new Error("Error while fetching data");
                 }
@@ -60,54 +60,36 @@
         <div
             class="flex h-[70vh] flex-col items-center justify-center space-y-4"
         >
-            <h2 class="h2">Laden deiner Reservierungen</h2>
+            <h4 class="h4">Laden deiner Reservierungen</h4>
             <!-- ToDo Größe -->
             <ProgressRadial
                 stroke={60}
                 meter="stroke-primary-500"
                 track="stroke-primary-500/30"
                 strokeLinecap="butt"
+                width="w-20"
             />
         </div>
-    {:then reservations}
-        <Accordion>
-            <div>
-                {#each { reservations } as reservation}
-                    <AccordionItem class="rounded-lg  bg-surface-600">
-                        <svelte:fragment slot="summary"
-                            >Reservierung für den {filterDate(
-                                reservation.begin,
-                            )}</svelte:fragment
-                        >
-                        <svelte:fragment slot="content">
-                            <Reservation reservationData={reservation}
-                            ></Reservation>
-                        </svelte:fragment>
-                    </AccordionItem>
-                {/each}
-            </div>
-        </Accordion>
+    {:then reservationData}
+    <h4 class="h4 mb-2"> Laufende Reservierungen:</h4>
+        {#if reservationData.active.length > 0}
+            <ReservationList reservationData={reservationData.active}></ReservationList>
+        {/if}
+    <hr>
+    <h4 class="h4 mb-2"> Geplante Reservierungen:</h4>
+        {#if reservationData.planned.length > 0}
+            <ReservationList reservationData={reservationData.active}></ReservationList>
+        {/if}
+    <h4 class="h4 mb-2"> Vergangene Reservierungen:</h4>
+        {#if reservationData.expired.length > 0}
+            <ReservationList reservationData={reservationData.active}></ReservationList>
+        {/if}
         <div class="relative mt-2">
             <button class="variant-filled-secondary btn absolute right-0"
                 >Neue reservierung erstellen</button
             >
         </div>
     {:catch error}
-        <p>Reservierungen konnten nicht geladen werden</p>
+        <p>Reservierungen konnten nicht geladen werden {error}</p>
     {/await}
-    <!-- Testing -->
-    <Accordion>
-        <div>
-            <AccordionItem class="rounded-lg  bg-surface-700">
-                <svelte:fragment slot="summary"
-                    >Reservierung für den {filterDate(
-                        test.begin,
-                    )}</svelte:fragment
-                >
-                <svelte:fragment slot="content">
-                    <Reservation reservationData={test}></Reservation>
-                </svelte:fragment>
-            </AccordionItem>
-        </div>
-    </Accordion>
 </div>
