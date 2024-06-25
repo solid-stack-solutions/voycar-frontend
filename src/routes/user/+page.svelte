@@ -31,7 +31,7 @@
         message: "Ihr Nutzerkonto konnte nicht gefunden werden",
         hideDismiss: true, // Hide the dismiss button on toast
         timeout: 3000, // Auto dismiss toast after 3 seconds
-        background: "variant-filled-secondary",
+        background: "variant-filled-error",
     };
 
     // Functions

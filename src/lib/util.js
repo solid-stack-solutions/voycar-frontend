@@ -3,13 +3,22 @@
 const baseURL = "http://localhost:8080/";
 const reservation = "reservation/";
 const car = "car/";
+const user = "user/";
+const member = "member/";
+const auth = "auth/";
+
 export const urls = {
     get: {
-        memberPersonalData: baseURL + "member/personal",
-        reservationPersonalData: baseURL + reservation + "personal",
+        memberPersonalData: baseURL + member + "personal",
+        isLoggedIn: baseURL + user + "whoami",
         singleCar: baseURL + car,
     },
-    post: {},
+    post: {
+        forgotPassword: baseURL + auth + "forgot-password",
+        register: baseURL + auth + "register",
+        login: baseURL + auth + "login",
+        logout: baseURL + auth + "logout",
+    },
     put: {},
     delete: {},
 };
