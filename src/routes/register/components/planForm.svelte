@@ -14,14 +14,14 @@
     <div class="mx-auto max-w-7xl px-6 lg:px-8">
         <div class="sm:text-center">
             <p class="mt-2 text-4xl font-bold tracking-tight sm:text-5xl">
-                Wähle den richtigen Plan für dich
+                Wähle das richtige Abo für dich
             </p>
         </div>
         <p
             class="mx-auto mt-6 max-w-2xl text-lg text-tertiary-500 sm:text-center"
         >
-            Hier kann ein schöner Text über die Auswahlmöglichkeiten für die Pläne stehen.
-            Es gibt drei gute Pläne. Alle sind super!
+            Hier kann ein schöner Text über die Auswahlmöglichkeiten für die Abos stehen.
+            Es gibt drei gute Abos. Alle sind super!
         </p>
         <div class="mt-20 flow-root">
             <div
@@ -29,7 +29,7 @@
             >
                 {#each temp as _}
                     <div class="pt-16 lg:px-8 lg:pt-0 xl:px-14">
-                        <h3 id="tier-basic{_}" class="text-base font-semibold">
+                        <h3 id="plan-basic{_}" class="text-base font-semibold">
                             Basic
                         </h3>
                         <p class="mt-6 flex items-baseline gap-x-1">
@@ -45,7 +45,7 @@
                             type="button"
                             on:click={() => console.log(_ + " clicked")}
                             class="variant-filled-primary btn mt-8 text-center"
-                            >Plan wählen</button
+                            >Abo wählen</button
                         >
                         <p class="mt-10 text-sm font-semibold">
                             Alles nötige zum Durchstarten.
