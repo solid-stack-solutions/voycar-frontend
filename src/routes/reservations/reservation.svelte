@@ -63,7 +63,6 @@
                 );
                 if (response.ok) {
                     resolve(await response.json());
-                    location.reload()
                 } else {
                     throw new Error("No car data found");
                 }
@@ -87,6 +86,7 @@
                 ),
             );
             if (response.ok) {
+                location.reload()
                 toastStore.trigger(toastSuccsess);
             } else {
                 throw new Error("Reservierung konnte nicht gelöscht werden");
