@@ -24,6 +24,7 @@
         return new Intl.DateTimeFormat("de-DE").format(new Date(dateString));
     }
 
+    // ToDo richtiges fetch hadnling  mit planned, active, expired
     let reservationData = new Promise((resolve, reject) => {});
     onMount(async () => {
         reservationData = new Promise(async (resolve, reject) => {
@@ -47,10 +48,10 @@
 <svelte:head>
     <title>Reservierungen</title>
 </svelte:head>
-
+<!--  -->
 <div class="relative">
     <div class="flex flex-col">
-        <div class="border-md rounded-md bg-surface-700 p-4">
+        <div class="p-2">
             <h3 class="h3">Ihre Reservierungen</h3>
         </div>
     </div>
@@ -60,6 +61,7 @@
             class="flex h-[70vh] flex-col items-center justify-center space-y-4"
         >
             <h2 class="h2">Laden deiner Reservierungen</h2>
+            <!-- ToDo Größe -->
             <ProgressRadial
                 stroke={60}
                 meter="stroke-primary-500"
