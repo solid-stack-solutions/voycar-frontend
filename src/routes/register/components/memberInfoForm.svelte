@@ -39,6 +39,9 @@
     />
     <input class="input" type="text" id="city" placeholder="Stadt" />
     <p>ToDo Dropdown für Land</p>
+    <select class="select" disabled>
+        <option value="DE" selected>Deutschland</option>
+    </select>
 
     <p>Geburtsdaten</p>
     <input class="input" type="date" id="birthdate" />
