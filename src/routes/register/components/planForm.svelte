@@ -1,6 +1,8 @@
 <script>
     // Component imports
     import BackButton from "./backButton.svelte";
+    // Image imports
+    import CheckCircleIcon from "../../../icons/check-circleIcon.svelte";
 
     // Indicates how many steps of the register process have been completed
     export let currentStep = 0;
@@ -20,8 +22,8 @@
         <p
             class="mx-auto mt-6 max-w-2xl text-lg text-tertiary-500 sm:text-center"
         >
-            Hier kann ein schöner Text über die Auswahlmöglichkeiten für die Abos stehen.
-            Es gibt drei gute Abos. Alle sind super!
+            Hier kann ein schöner Text über die Auswahlmöglichkeiten für die
+            Abos stehen. Es gibt drei gute Abos. Alle sind super!
         </p>
         <div class="mt-20 flow-root">
             <div
@@ -55,19 +57,15 @@
                             class="mt-6 space-y-3 text-sm text-tertiary-500"
                         >
                             <li class="flex gap-x-3">
-                                <img
-                                    src="/check-circleIcon.svg"
-                                    class="w-6"
-                                    alt="Häkchen"
-                                />
+                                <CheckCircleIcon
+                                    colorClass="stroke-tertiary-500"
+                                ></CheckCircleIcon>
                                 Große Auswahl an Autos
                             </li>
                             <li class="flex gap-x-3">
-                                <img
-                                    src="/check-circleIcon.svg"
-                                    class="w-6"
-                                    alt="Häkchen"
-                                />
+                                <CheckCircleIcon
+                                    colorClass="stroke-tertiary-500"
+                                ></CheckCircleIcon>
                                 15€ / Stunde
                             </li>
                         </ul>
