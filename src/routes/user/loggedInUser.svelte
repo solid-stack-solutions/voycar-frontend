@@ -129,7 +129,6 @@
                     >
                 </div>
             </aside>
-            <div class="variant-filled-primary arrow" />
         </div>
     </div>
 </div>

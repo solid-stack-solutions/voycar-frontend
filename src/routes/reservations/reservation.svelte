@@ -136,7 +136,7 @@
         >
     </div>
     <!-- Floating ui popup to confirm account deletion -->
-    <div class="card bg-secondary-500 p-2" data-popup="popupClick">
+    <div class="card bg-secondary-500" data-popup="popupClick">
         <aside class="alert variant-filled-warning">
             <div class="alert-message">
                 <h3 class="h3">Stornierung bestätigen</h3>
@@ -151,6 +151,5 @@
                 >
             </div>
         </aside>
-        <div class="variant-filled-primary arrow" />
     </div>
 </div>
