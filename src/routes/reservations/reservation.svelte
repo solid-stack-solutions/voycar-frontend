@@ -46,7 +46,7 @@
                     fetch(urls.get.singleCar + reservationData.carId, { credentials: "include" }),
                 );
                 if (response.ok) {
-                    carData = resolve(await response.json());
+                    resolve(await response.json());
                 } else {
                     throw new Error("No car data found");
                 }

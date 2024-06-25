@@ -36,25 +36,25 @@
 
     // Functions
     // Runs as soon as this component is mounted
-    onMount(async () => {
-        personalData = new Promise(async (resolve, reject) => {
-            try {
-                // Fetch backend for personal Data with retry policy
-                const response = await retryPolicy.execute(() =>
-                    fetch(urls.get.memberPersonalData, { credentials: "include" }),
-                );
-                if (response.ok) {
-                    personalData = resolve(await response.json());
-                } else {
-                    throw new Error("Error while fetching data");
-                }
-            } catch (err) {
-                toastStore.trigger(toast);
-                goto("/"); // Redirect user to landing page
-                reject(err); // Rethrow so Svelte can handle it
+    onMount(() => {
+    personalData = new Promise(async (resolve, reject) => {
+        try {
+            // Fetch backend for personal Data with retry policy
+            const response = await retryPolicy.execute(() =>
+                fetch(urls.get.memberPersonalData, { credentials: "include" })
+            );
+            if (response.ok) {
+                resolve(await response.json());
+            } else {
+                throw new Error("Error while fetching data");
             }
-        });
+        } catch (err) {
+            toastStore.trigger(toast);
+            goto("/"); // Redirect user to landing page
+            reject(err); // Reject the promise so Svelte can handle it
+        }
     });
+});
 </script>
 
 <!-- Page Content -->
@@ -64,7 +64,7 @@
         <UserPageLoadingPlaceholders />
     {:then personalData}
         <!-- Display on success -->
-        <LoggedInUser {personalData}></LoggedInUser>
+        <LoggedInUser personalData={personalData}></LoggedInUser>
     {:catch error}
         <!-- Display on error -->
         <p class="h3 text-center">

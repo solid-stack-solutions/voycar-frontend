@@ -1,5 +1,4 @@
 <script>
-    import Reservation from "./reservation.svelte";
     import { onMount } from "svelte";
     import { ExponentialBackoff, handleAll, retry } from "cockatiel";
     import { urls } from "$lib/util.js";
@@ -34,7 +33,7 @@
                     fetch(urls.get.reservationPersonalData, { credentials: "include" }),
                 );
                 if (response.ok) {
-                    reservationData = resolve(await response.json());
+                    resolve(await response.json());
                 } else {
                     throw new Error("Error while fetching data");
                 }
@@ -49,13 +48,7 @@
     <title>Reservierungen</title>
 </svelte:head>
 <!--  -->
-<div class="relative">
-    <div class="flex flex-col">
-        <div class="p-2">
-            <h3 class="h3">Ihre Reservierungen</h3>
-        </div>
-    </div>
-    <hr class="my-4 rounded-full !border-t-4" />
+<div class="relative mt-4">
     {#await reservationData}
         <div
             class="flex h-[70vh] flex-col items-center justify-center space-y-4"
@@ -74,15 +67,18 @@
     <h4 class="h4 mb-2"> Laufende Reservierungen:</h4>
         {#if reservationData.active.length > 0}
             <ReservationList reservationData={reservationData.active}></ReservationList>
+        {:else}
+            <p>Keine</p>
         {/if}
-    <hr>
+    <hr class="my-4 !border-t-4 rounded-full">
     <h4 class="h4 mb-2"> Geplante Reservierungen:</h4>
         {#if reservationData.planned.length > 0}
-            <ReservationList reservationData={reservationData.active}></ReservationList>
+            <ReservationList reservationData={reservationData.planned}></ReservationList>
         {/if}
+        <hr class="my-4 !border-t-4 rounded-full">
     <h4 class="h4 mb-2"> Vergangene Reservierungen:</h4>
         {#if reservationData.expired.length > 0}
-            <ReservationList reservationData={reservationData.active}></ReservationList>
+            <ReservationList reservationData={reservationData.expired}></ReservationList>
         {/if}
         <div class="relative mt-2">
             <button class="variant-filled-secondary btn absolute right-0"
