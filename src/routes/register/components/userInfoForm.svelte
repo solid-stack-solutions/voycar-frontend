@@ -18,7 +18,7 @@
     };
 
     // Indicates how many steps of the register process have been completed
-    export let registerStep = 0;
+    export let currentStep = 0;
 </script>
 
 <!-- Email field -->
@@ -77,7 +77,7 @@
     <button
         class="variant-filled-primary btn w-full"
         on:click={() => {
-            registerStep++;
+            currentStep++;
         }}
     >
         Weiter

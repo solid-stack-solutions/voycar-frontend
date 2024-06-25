@@ -1,13 +1,13 @@
 <script>
     // Indicates how many steps of the register process have been completed
-    export let registerStep = 0;
+    export let currentStep = 0;
 </script>
 
 <button
     type="button"
     class="variant-soft btn btn-sm"
     on:click={() => {
-        registerStep--;
+        currentStep--;
     }}
 >
     <img

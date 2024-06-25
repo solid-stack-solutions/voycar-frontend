@@ -3,8 +3,9 @@
     import UserInfoForm from "./components/userInfoForm.svelte";
     import MemberInfoForm from "./components/memberInfoForm.svelte";
 
-    // Indicates how many steps of the register process have been completed
-    let registerStep = 0;
+    // The steps of the register process and how many have been completed
+    let registerSteps = ["User", "Member"];
+    let currentStep = 0;
 </script>
 
 <!-- Register page -->
@@ -12,14 +13,14 @@
     <h2 class="h2 mb-8">Bei Voycar registrieren</h2>
     <div class="w-96 items-center justify-center space-y-4">
         <form class="space-y-3 rounded-md border-2 border-secondary-500 p-4">
-            {#if registerStep == 0}
-                <UserInfoForm bind:registerStep></UserInfoForm>
-            {:else if registerStep == 1}
-                <MemberInfoForm bind:registerStep></MemberInfoForm>
+            {#if registerSteps[currentStep] == "User"}
+                <UserInfoForm bind:currentStep></UserInfoForm>
+            {:else if registerSteps[currentStep] == "Member"}
+                <MemberInfoForm bind:currentStep></MemberInfoForm>
             {/if}
         </form>
 
-        {#if registerStep == 0}
+        {#if registerSteps[currentStep] == "User"}
             <!-- Go to login link -->
             <div
                 class="flex-col-2 flex items-center justify-between rounded-md border-2 border-secondary-500 p-4"
