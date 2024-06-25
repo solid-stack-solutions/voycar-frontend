@@ -3,6 +3,7 @@
     import Reservation from "./reservation.svelte";
     
     export let reservationData;
+    export let cancellable;
     console.log(reservationData);
     function filterDate(dateString) {
         return new Intl.DateTimeFormat("de-DE").format(new Date(dateString));
@@ -19,7 +20,7 @@
                 )}</svelte:fragment
             >
             <svelte:fragment slot="content">
-                <Reservation reservationData={reservation}
+                <Reservation reservationData={reservation} cancellable={cancellable}
                 ></Reservation>
             </svelte:fragment>
         </AccordionItem>

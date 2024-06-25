@@ -11,18 +11,6 @@
         backoff: new ExponentialBackoff(),
     });
 
-    const test = {
-        begin: "2024-06-21T19:11:46.833Z",
-        end: "2024-09-21T19:11:46.833Z",
-        memberId: "5b3f5a8d-0e6c-4422-8ffa-d3b6f250c8a4",
-        carId: "bd980f9e-e049-486a-97d2-783e9158f2a7",
-        id: "50feffac-4d83-450a-913f-e816be805349",
-    };
-
-    function filterDate(dateString) {
-        return new Intl.DateTimeFormat("de-DE").format(new Date(dateString));
-    }
-
     let reservationData = new Promise((resolve, reject) => {});
     onMount(async () => {
         reservationData = new Promise(async (resolve, reject) => {
@@ -64,19 +52,23 @@
     {:then reservationData}
     <h4 class="h4 mb-2"> Laufende Reservierungen:</h4>
         {#if reservationData.active.length > 0}
-            <ReservationList reservationData={reservationData.active}></ReservationList>
+            <ReservationList reservationData={reservationData.active} cancellable={false}></ReservationList>
         {:else}
             <p>Keine</p>
         {/if}
     <hr class="my-4 !border-t-4 rounded-full">
     <h4 class="h4 mb-2"> Geplante Reservierungen:</h4>
         {#if reservationData.planned.length > 0}
-            <ReservationList reservationData={reservationData.planned}></ReservationList>
+            <ReservationList reservationData={reservationData.planned} cancellable={false}></ReservationList>
+        {:else}
+            <p>Keine</p>
         {/if}
         <hr class="my-4 !border-t-4 rounded-full">
     <h4 class="h4 mb-2"> Vergangene Reservierungen:</h4>
         {#if reservationData.expired.length > 0}
-            <ReservationList reservationData={reservationData.expired}></ReservationList>
+            <ReservationList reservationData={reservationData.expired} cancellable={false}></ReservationList>
+        {:else}
+            <p>Keine</p>
         {/if}
         <div class="relative mt-2">
             <button class="variant-filled-secondary btn absolute right-0"

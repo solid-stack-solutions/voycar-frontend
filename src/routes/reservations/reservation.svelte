@@ -7,7 +7,7 @@
     // Definitions
 
     export let reservationData;
-
+    export let cancellable;
     const toastStore = getToastStore();
 
     const toastSuccsess = {
@@ -63,6 +63,7 @@
                 );
                 if (response.ok) {
                     resolve(await response.json());
+                    location.reload()
                 } else {
                     throw new Error("No car data found");
                 }
@@ -77,7 +78,6 @@
     });
 
     async function confirmDeletion() {
-        // ToDo hier logik und indikatoren
         try {
             const response = await retryPolicy.execute(() =>
                 fetch(new Request(urls.delete.singleReservation + "/" + reservationData.id, {
@@ -161,13 +161,14 @@
             {/await}
         </div>
     </div>
-    <!-- ToDo confirm popup -->
-    <div class="relative h-9">
-        <button
-            class="variant-filled-error btn absolute right-0"
-            use:popup={popupClick}>Reservierung Stornieren</button
-        >
-    </div>
+    {#if cancellable}
+        <div class="relative h-9">
+            <button
+                class="variant-filled-error btn absolute right-0"
+                use:popup={popupClick}>Reservierung Stornieren</button
+            >
+        </div>
+    {/if}
     <!-- Floating ui popup to confirm account deletion -->
     <div class="card bg-secondary-500" data-popup="popupClick">
         <aside class="alert variant-filled-warning">
