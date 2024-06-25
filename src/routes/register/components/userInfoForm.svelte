@@ -26,7 +26,7 @@
 
 <!-- Email field -->
 <label class="label" for="email_input">
-    <span>Email</span>
+    <span class="font-semibold">Email</span>
 </label>
 <input
     class="input {emailIndicator}"
@@ -36,7 +36,7 @@
 />
 <!-- Password field -->
 <label class="label" for="password_input">
-    <span>Passwort</span>
+    <span class="font-semibold">Passwort</span>
 </label>
 <div class="input-group input-group-divider relative grid-cols-[auto_1fr_auto]">
     <input

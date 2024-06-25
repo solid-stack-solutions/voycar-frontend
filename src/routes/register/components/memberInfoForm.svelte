@@ -9,7 +9,7 @@
 
 <div class="space-y-3 sm:w-96">
     <BackButton bind:currentStep></BackButton>
-    <p>Name</p>
+    <p class="font-semibold">Name</p>
     <input class="input" type="text" id="first_name" placeholder="Vorname" />
     <input class="input" type="text" id="last_name" placeholder="Nachname" />
 
@@ -34,10 +34,10 @@
         <option value="DE" selected>Deutschland</option>
     </select>
 
-    <p>Geburtsdaten</p>
+    <p class="font-semibold">Geburtsdaten</p>
     <input class="input" type="date" id="birthdate" />
     <input class="input" type="text" id="birthplace" placeholder="Geburtsort" />
-    <p>Telefonnummer</p>
+    <p class="font-semibold">Telefonnummer</p>
     <input
         class="input"
         type="tel"
