@@ -21,71 +21,69 @@
     export let registerStep = 0;
 </script>
 
-<form class="p-4 border-2 rounded-md border-secondary-500 space-y-3">
-    <!-- Email field -->
-    <label class="label" for="email_input">
-        <span>Email</span>
-    </label>
+<!-- Email field -->
+<label class="label" for="email_input">
+    <span>Email</span>
+</label>
+<input
+    class="input {emailIndicator}"
+    type="text"
+    id="email_input"
+    placeholder="beispiel.organisation@mail.com"
+/>
+<!-- Password field -->
+<label class="label" for="password_input">
+    <span>Passwort</span>
+</label>
+<div
+    class="relative input-group input-group-divider grid-cols-[auto_1fr_auto]"
+>
     <input
-        class="input {emailIndicator}"
-        type="text"
-        id="email_input"
-        placeholder="beispiel.organisation@mail.com"
+        class="w-72 {passwordIndicator}"
+        type={showPassword ? "text" : "password"}
+        id="password_input"
+        placeholder="Dein super sicheres Passwort 😉"
     />
-    <!-- Password field -->
-    <label class="label" for="password_input">
-        <span>Passwort</span>
-    </label>
-    <div
-        class="relative input-group input-group-divider grid-cols-[auto_1fr_auto]"
+    <button
+        class="absolute right-1 top-1 flex h-8 w-14 items-center rounded-r-full border-l-2 border-surface-500 bg-surface-700 pl-4"
+        on:click={() => (showPassword = !showPassword)}
     >
-        <input
-            class="w-72 {passwordIndicator}"
-            type={showPassword ? "text" : "password"}
-            id="password_input"
-            placeholder="Dein super sicheres Passwort 😉"
-        />
-        <button
-            class="absolute right-1 top-1 flex h-8 w-14 items-center rounded-r-full border-l-2 border-surface-500 bg-surface-700 pl-4"
-            on:click={() => (showPassword = !showPassword)}
-        >
-            {#if showPassword}
-                {btnIcon.unlocked}
-            {:else}
-                {btnIcon.locked}
-            {/if}
-        </button>
-    </div>
-    <div
-        class="relative input-group input-group-divider grid-cols-[auto_1fr_auto]"
+        {#if showPassword}
+            {btnIcon.unlocked}
+        {:else}
+            {btnIcon.locked}
+        {/if}
+    </button>
+</div>
+<div
+    class="relative input-group input-group-divider grid-cols-[auto_1fr_auto]"
+>
+    <input
+        class="w-72 {passwordIndicator}"
+        type={showPasswordValidate ? "text" : "password"}
+        id="password_input_validate"
+        placeholder="Wiederhole dein Passwort"
+    />
+    <button
+        class="absolute right-1 top-1 flex h-8 w-14 items-center rounded-r-full border-l-2 border-surface-500 bg-surface-700 pl-4"
+        on:click={() => (showPasswordValidate = !showPasswordValidate)}
     >
-        <input
-            class="w-72 {passwordIndicator}"
-            type={showPasswordValidate ? "text" : "password"}
-            id="password_input_validate"
-            placeholder="Wiederhole dein Passwort"
-        />
-        <button
-            class="absolute right-1 top-1 flex h-8 w-14 items-center rounded-r-full border-l-2 border-surface-500 bg-surface-700 pl-4"
-            on:click={() => (showPasswordValidate = !showPasswordValidate)}
-        >
-            {#if showPasswordValidate}
-                {btnIcon.unlocked}
-            {:else}
-                {btnIcon.locked}
-            {/if}
-        </button>
-    </div>
+        {#if showPasswordValidate}
+            {btnIcon.unlocked}
+        {:else}
+            {btnIcon.locked}
+        {/if}
+    </button>
+</div>
 
-    <!-- Continue button -->
-    <div class="flex flex-col items-center">
-        <button
-            class="btn variant-filled-primary w-full"
-            on:click={() => {
-                registerStep++;
-            }}
-        >
-            Weiter
-        </button>
-    </div>
-</form>
+<!-- Continue button -->
+<div class="flex flex-col items-center">
+    <button
+        class="btn variant-filled-primary w-full"
+        on:click={() => {
+            registerStep++;
+        }}
+    >
+        Weiter
+    </button>
+</div>
