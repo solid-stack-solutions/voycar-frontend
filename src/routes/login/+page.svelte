@@ -2,11 +2,8 @@
     // Framework imports
     import { getToastStore } from "@skeletonlabs/skeleton";
 
-    // Import 🐦
-    import { ConstantBackoff, handleAll, retry } from "cockatiel";
-
     // Import backend urls
-    import { urls, validateEmail } from "$lib/util.js";
+    import { urls, validateEmail, tryFetchingRestricted } from "$lib/util.js";
 
     import { goto } from "$app/navigation";
 
@@ -25,12 +22,6 @@
         warning: "!border-warning-400",
         error: "!border-error-600",
     };
-
-    // Policy for fetching
-    const retryPolicy = retry(handleAll, {
-        maxAttempts: 3, // Try 3 times
-        backoff: new ConstantBackoff(50), // Wait 50ms after each try
-    });
 
     // Toast Settings
     const toast = {
@@ -76,17 +67,10 @@
                 email: email,
                 password: password,
             };
-            const response = await retryPolicy.execute(() =>
-                fetch(
-                    new Request(urls.post.login, {
-                        method: "POST",
-                        credentials: "include",
-                        headers: {
-                            "Content-Type": "application/json",
-                        },
-                        body: JSON.stringify(mybody),
-                    }),
-                ),
+            const response = await tryFetchingRestricted(
+                urls.post.login,
+                "POST",
+                mybody,
             );
             if (response.ok) {
                 //Login sucessful
