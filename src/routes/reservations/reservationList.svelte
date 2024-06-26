@@ -10,11 +10,11 @@
     export let cancellable;
 
     const dateOptions = {
-        dateStyle: 'full',
+        dateStyle: 'long',
     }
     // Functions
     function filterDate(dateString) {
-        return new Intl.DateTimeFormat("de-DE").format(new Date(dateString), dateOptions);
+        return new Intl.DateTimeFormat("de-DE",dateOptions).format(new Date(dateString));
     }
 </script>
 
