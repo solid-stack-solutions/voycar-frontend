@@ -6,13 +6,13 @@
     import { getToastStore } from "@skeletonlabs/skeleton";
     // Import 🐦
     import { ExponentialBackoff, handleAll, retry } from "cockatiel";
-    
+
     // Definitions
 
     // Export data from parent component
     export let reservationData;
     export let cancellable;
-    
+
     // Constants
     const toastStore = getToastStore();
 
@@ -67,7 +67,9 @@
         carData = new Promise(async (resolve, reject) => {
             try {
                 const response = await retryPolicy.execute(() =>
-                    fetch(urls.get.singleCar + reservationData.carId, { credentials: "include" }),
+                    fetch(urls.get.singleCar + reservationData.carId, {
+                        credentials: "include",
+                    }),
                 );
                 if (response.ok) {
                     resolve(await response.json());
@@ -83,14 +85,20 @@
     async function confirmDeletion() {
         try {
             const response = await retryPolicy.execute(() =>
-                fetch(new Request(urls.delete.singleReservation + "/" + reservationData.id, {
-                        method: "DELETE",
-                        credentials: "include",
-                    }),
+                fetch(
+                    new Request(
+                        urls.delete.singleReservation +
+                            "/" +
+                            reservationData.id,
+                        {
+                            method: "DELETE",
+                            credentials: "include",
+                        },
+                    ),
                 ),
             );
             if (response.ok) {
-                location.reload()
+                location.reload();
                 toastStore.trigger(toastSuccsess);
             } else {
                 throw new Error("Reservierung konnte nicht gelöscht werden");
@@ -106,7 +114,7 @@
     });
 </script>
 
-<div class=" relaitve space-y-3 rounded-md  p-4 bg-surface-500">
+<div class=" relaitve space-y-3 rounded-md bg-surface-500 p-4">
     <div class="flex flex-row space-x-4">
         <div class="basis-1/3">
             {#await carData}

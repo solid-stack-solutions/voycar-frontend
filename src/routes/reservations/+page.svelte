@@ -26,7 +26,9 @@
             try {
                 // Fetch backend for reservation Data with retry policy
                 const response = await retryPolicy.execute(() =>
-                    fetch(urls.get.reservationPersonalData, { credentials: "include" }),
+                    fetch(urls.get.reservationPersonalData, {
+                        credentials: "include",
+                    }),
                 );
                 if (response.ok) {
                     resolve(await response.json());
@@ -59,28 +61,37 @@
             />
         </div>
     {:then reservationData}
-    <h4 class="h4 mb-2"> Laufende Reservierungen:</h4>
+        <h4 class="h4 mb-2">Laufende Reservierungen:</h4>
         {#if reservationData.active.length > 0}
-            <ReservationList reservationData={reservationData.active} cancellable={false}></ReservationList>
+            <ReservationList
+                reservationData={reservationData.active}
+                cancellable={false}
+            ></ReservationList>
         {:else}
             <p>Keine</p>
         {/if}
-    <hr class="my-4 !border-t-4 rounded-full">
-    <h4 class="h4 mb-2"> Geplante Reservierungen:</h4>
+        <hr class="my-4 rounded-full !border-t-4" />
+        <h4 class="h4 mb-2">Geplante Reservierungen:</h4>
         {#if reservationData.planned.length > 0}
-            <ReservationList reservationData={reservationData.planned} cancellable={false}></ReservationList>
+            <ReservationList
+                reservationData={reservationData.planned}
+                cancellable={false}
+            ></ReservationList>
         {:else}
             <p>Keine</p>
         {/if}
-        <hr class="my-4 !border-t-4 rounded-full">
-    <h4 class="h4 mb-2"> Vergangene Reservierungen:</h4>
+        <hr class="my-4 rounded-full !border-t-4" />
+        <h4 class="h4 mb-2">Vergangene Reservierungen:</h4>
         {#if reservationData.expired.length > 0}
-            <ReservationList reservationData={reservationData.expired} cancellable={false}></ReservationList>
+            <ReservationList
+                reservationData={reservationData.expired}
+                cancellable={false}
+            ></ReservationList>
         {:else}
             <p>Keine</p>
         {/if}
         <!-- ToDo new reservation prompt -->
-         <!-- maybe as a modal -->
+        <!-- maybe as a modal -->
         <div class="relative mt-2">
             <button class="variant-filled-secondary btn absolute right-0"
                 >Neue reservierung erstellen</button
