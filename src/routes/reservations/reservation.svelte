@@ -109,9 +109,7 @@
         }
     }
 
-    onMount(() => {
-        fetchCarForReservation();
-    });
+    onMount(fetchCarForReservation);
 </script>
 
 <div class=" relaitve space-y-3 rounded-md bg-surface-500 p-4">
