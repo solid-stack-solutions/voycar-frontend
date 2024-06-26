@@ -9,9 +9,12 @@
     export let reservationData;
     export let cancellable;
 
+    const dateOptions = {
+        dateStyle: 'full',
+    }
     // Functions
     function filterDate(dateString) {
-        return new Intl.DateTimeFormat("de-DE").format(new Date(dateString));
+        return new Intl.DateTimeFormat("de-DE").format(new Date(dateString), dateOptions);
     }
 </script>
 
