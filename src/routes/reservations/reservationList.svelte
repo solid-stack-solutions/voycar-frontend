@@ -1,10 +1,15 @@
 <script>
+    // Framework imports
     import {Accordion, AccordionItem } from "@skeletonlabs/skeleton";
+    // Import custom reservation component
     import Reservation from "./reservation.svelte";
     
+    // Definitions
+    // Export data from parent component
     export let reservationData;
     export let cancellable;
-    console.log(reservationData);
+
+    // Functions
     function filterDate(dateString) {
         return new Intl.DateTimeFormat("de-DE").format(new Date(dateString));
     }

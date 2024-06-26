@@ -1,15 +1,32 @@
 <script>
-    import { ExponentialBackoff, handleAll, retry } from "cockatiel";
+    // Framework imports
     import { onMount } from "svelte";
     import { urls } from "$lib/util.js";
     import { popup } from "@skeletonlabs/skeleton";
     import { getToastStore } from "@skeletonlabs/skeleton";
+    // Import 🐦
+    import { ExponentialBackoff, handleAll, retry } from "cockatiel";
+    
     // Definitions
 
+    // Export data from parent component
     export let reservationData;
     export let cancellable;
+    
+    // Constants
     const toastStore = getToastStore();
 
+    const options = {
+        year: "numeric",
+        month: "numeric",
+        day: "numeric",
+        hour: "numeric",
+        minute: "numeric",
+        second: "numeric",
+        hour12: false,
+    };
+
+    // Toast Settings
     const toastSuccsess = {
         message: "Reservierung wurde erfolgreich gelöscht",
         hideDismiss: true, // Hide the dismiss button on toast
@@ -30,8 +47,8 @@
         backoff: new ExponentialBackoff(),
     });
 
+    // Popup settings
     const popupClick = {
-        // Popup settings
         event: "click",
         target: "popupClick",
         placement: "top",
@@ -39,16 +56,7 @@
 
     let carData = new Promise((resolve, reject) => {});
 
-    const options = {
-        year: "numeric",
-        month: "numeric",
-        day: "numeric",
-        hour: "numeric",
-        minute: "numeric",
-        second: "numeric",
-        hour12: false,
-    };
-
+    // Functions
     function filterDate(dateString) {
         return new Intl.DateTimeFormat("de-DE", options).format(
             new Date(dateString),
@@ -72,10 +80,6 @@
         });
     }
 
-    onMount(() => {
-        fetchCarForReservation();
-    });
-
     async function confirmDeletion() {
         try {
             const response = await retryPolicy.execute(() =>
@@ -96,6 +100,10 @@
             throw err;
         }
     }
+
+    onMount(() => {
+        fetchCarForReservation();
+    });
 </script>
 
 <div class=" relaitve space-y-3 rounded-md  p-4 bg-surface-500">
@@ -103,10 +111,9 @@
         <div class="basis-1/3">
             {#await carData}
                 <div
-                    class="placeholder min-h-52 animate-pulse cursor-progress !rounded-lg"
+                    class="placeholder min-h-52 cursor-progress !rounded-lg"
                 ></div>
             {:then carData}
-            <!-- ToDo replace with image according to ID -->
                 <img
                     src="carImages/{carData.model}.webp"
                     alt="cool car"

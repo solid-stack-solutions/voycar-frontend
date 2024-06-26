@@ -1,11 +1,16 @@
 <script>
+    // Framework imports
     import { onMount } from "svelte";
-    import { ExponentialBackoff, handleAll, retry } from "cockatiel";
-    import { urls } from "$lib/util.js";
     import { ProgressRadial } from "@skeletonlabs/skeleton";
+    // Import 🐦
+    import { ExponentialBackoff, handleAll, retry } from "cockatiel";
+    // Import url routes
+    import { urls } from "$lib/util.js";
+    // Import custom reservation list component
     import ReservationList from "./reservationList.svelte";
 
     // Definitions
+
     // Policy for restarting backend fetched up to 5 times if there's no reply
     const retryPolicy = retry(handleAll, {
         maxAttempts: 5,
@@ -13,6 +18,9 @@
     });
 
     let reservationData = new Promise((resolve, reject) => {});
+
+    // Functions
+    // Runs as soon as the component is mounted
     onMount(async () => {
         reservationData = new Promise(async (resolve, reject) => {
             try {
