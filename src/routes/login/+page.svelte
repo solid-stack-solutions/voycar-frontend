@@ -96,10 +96,10 @@
                 ),
             );
             if (response.ok) {
+                //ToDo fix toast
+                toastStore.trigger(toast);
                 //Login sucessful
                 somethingWrong = false;
-                location.reload();
-                toastStore.trigger(toast);
                 goto("/");
             } else {
                 // Login failed on the backend side e.g. because credentials didn't match or account doesn't exists
