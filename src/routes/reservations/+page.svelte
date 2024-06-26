@@ -4,6 +4,9 @@
     import { urls } from "$lib/util.js";
     import { ProgressRadial } from "@skeletonlabs/skeleton";
     import ReservationList from "./reservationList.svelte";
+    import { getDrawerStore } from "@skeletonlabs/skeleton";
+
+    const drawerStore = getDrawerStore();
     // Definitions
     // Policy for restarting backend fetched up to 5 times if there's no reply
     const retryPolicy = retry(handleAll, {
@@ -11,6 +14,19 @@
         backoff: new ExponentialBackoff(),
     });
 
+    const drawerSettings = {
+        id: 'reservation-drawer',
+        // Provide your property overrides:
+        bgDrawer: 'bg-secondary-500 text-white',
+        bgBackdrop: 'bg-gradient-to-tr from-primary-500/50 via-tertiary-500/50 to-secondary-500/50',
+        width: 'w-[280px] md:w-[480px]',
+        padding: 'p-4',
+        rounded: 'rounded-xl',
+    };
+
+    function openDrawer(){
+        drawerStore.open(drawerSettings);
+    }
     let reservationData = new Promise((resolve, reject) => {});
     onMount(async () => {
         reservationData = new Promise(async (resolve, reject) => {
@@ -70,8 +86,10 @@
         {:else}
             <p>Keine</p>
         {/if}
+        <!-- ToDo new reservation prompt -->
+         <!-- maybe as a modal -->
         <div class="relative mt-2">
-            <button class="variant-filled-secondary btn absolute right-0"
+            <button class="variant-filled-secondary btn absolute right-0" on:click={openDrawer}
                 >Neue reservierung erstellen</button
             >
         </div>
