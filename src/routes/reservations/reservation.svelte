@@ -136,39 +136,39 @@
         <div
             class="basis-2/3 grid-cols-1 space-y-6 rounded-lg bg-surface-700 p-4"
         >
-            <div>
-                <div class="row-auto flex space-x-2">
-                    <p>Beginn:</p>
-                    <p>{filterDate(reservationData.begin)}</p>
-                </div>
-                <div class="row-auto flex space-x-2">
-                    <p>Ende:</p>
-                    <p>{filterDate(reservationData.end)}</p>
-                </div>
-            </div>
+            <table class="table-auto border-separate border-spacing-x-2">
+                <tr>
+                    <td>Beginn:</td>
+                    <td>{filterDate(reservationData.begin)}</td>
+                </tr>
+                <tr>
+                    <td>Ende:</td>
+                    <td>{filterDate(reservationData.end)}</td>
+                </tr>
+            </table>
             {#await carData}
                 <p class="animate-pulse cursor-progress">
                     Laden der Daten für ihr reserviertes Auto
                 </p>
             {:then carData}
-                <div class="flex-col">
-                    <div class="row-auto flex space-x-2">
-                        <p>Kennzeichen:</p>
-                        <p>{carData.licensePlate}</p>
-                    </div>
-                    <div class="row-auto flex space-x-2">
-                        <p>Modell:</p>
-                        <p>{carData.model}</p>
-                    </div>
-                    <div class="row-auto flex space-x-2">
-                        <p>Art:</p>
-                        <p>{carData.type}</p>
-                    </div>
-                    <div class="row-auto flex space-x-2">
-                        <p>Sitzplätze:</p>
-                        <p>{carData.seats}</p>
-                    </div>
-                </div>
+                <table class="table-auto border-separate border-spacing-x-2">
+                    <tr>
+                        <td>Kennzeichen:</td>
+                        <td>{carData.licensePlate}</td>
+                    </tr>
+                    <tr>
+                        <td>Modell:</td>
+                        <td>{carData.model}</td>
+                    <tr/>
+                    <tr>
+                        <td>Art:</td>
+                        <td>{carData.type}</td>
+                    </tr>
+                    <tr>
+                        <td>Sitzplätze:</td>
+                        <td>{carData.seats}</td>
+                    </tr>
+                </table>
             {:catch}
                 <p>Es wurden keine Daten zu ihrem Auto gefunden</p>
             {/await}
