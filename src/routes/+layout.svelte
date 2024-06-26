@@ -23,7 +23,7 @@
     import { initializeStores, Toast } from "@skeletonlabs/skeleton";
     initializeStores();
 
-    import { urls } from "$lib/util.js";
+    import { urls, tryFetchingRestricted } from "$lib/util.js";
 
     // Definitions
     let loggedIn = false;
@@ -43,9 +43,7 @@
     onMount(async () => {
         try {
             // Fetch backend to check if user is signed in
-            const response = await retryPolicy.execute(() =>
-                fetch(urls.get.isLoggedIn, { credentials: "include" }),
-            );
+            const response = await tryFetchingRestricted(urls.get.isLoggedIn);
             if (response.ok) {
                 loggedIn = true;
             } else {
