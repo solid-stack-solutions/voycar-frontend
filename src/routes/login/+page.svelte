@@ -96,9 +96,9 @@
                 ),
             );
             if (response.ok) {
-                //ToDo fix toast
+                // ToDo fix toast
                 toastStore.trigger(toast);
-                //Login sucessful
+                // Login sucessful
                 somethingWrong = false;
                 goto("/");
             } else {

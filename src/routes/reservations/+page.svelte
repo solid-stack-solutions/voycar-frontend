@@ -45,7 +45,6 @@
 <svelte:head>
     <title>Reservierungen</title>
 </svelte:head>
-<!--  -->
 <div class="relative mt-4">
     {#await reservationData}
         <div
@@ -92,7 +91,7 @@
         {/if}
         <div class="relative mt-2">
             <button class="variant-filled-primary btn absolute right-0"
-                >Neue reservierung erstellen</button
+                >Neue Reservierung erstellen</button
             >
         </div>
     {:catch error}

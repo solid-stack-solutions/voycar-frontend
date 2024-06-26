@@ -184,7 +184,7 @@
             >
         </div>
     {/if}
-    <!-- Floating ui popup to confirm account deletion -->
+    <!-- Floating UI popup to confirm account deletion -->
     <div class="card bg-secondary-500" data-popup="popupClick">
         <aside class="alert variant-filled-warning">
             <div class="alert-message">
