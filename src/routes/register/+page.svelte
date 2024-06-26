@@ -5,7 +5,7 @@
     import PlanForm from "./components/planForm.svelte";
 
     // The steps of the register process and how many have been completed
-    let registerSteps = ["User", "Member", "Plan"];
+    const registerSteps = ["User", "Member", "Plan"];
     let currentStep = 0;
 </script>
 

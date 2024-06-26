@@ -7,7 +7,7 @@
     // Indicates how many steps of the register process have been completed
     export let currentStep = 0;
 
-    let temp = [1, 2, 3];
+    const dummyPlans = [1, 2, 3];
 </script>
 
 <BackButton bind:currentStep></BackButton>
@@ -31,9 +31,12 @@
             <div
                 class="isolate -mt-16 grid max-w-sm grid-cols-1 gap-y-16 divide-y-2 divide-secondary-500 sm:mx-auto lg:-mx-8 lg:mt-0 lg:max-w-none lg:grid-cols-3 lg:divide-x lg:divide-y-0 xl:-mx-4"
             >
-                {#each temp as _}
+                {#each dummyPlans as plan}
                     <div class="pt-16 lg:px-8 lg:pt-0 xl:px-14">
-                        <h3 id="plan-basic{_}" class="text-base font-semibold">
+                        <h3
+                            id="plan-basic{plan}"
+                            class="text-base font-semibold"
+                        >
                             Basic
                         </h3>
                         <p class="mt-6 flex items-baseline gap-x-1">
@@ -47,7 +50,7 @@
                         </p>
                         <button
                             type="button"
-                            on:click={() => console.log(_ + " clicked")}
+                            on:click={() => console.log(plan + " clicked")}
                             class="variant-filled-primary btn mt-8 text-center"
                             >Abo wählen</button
                         >
