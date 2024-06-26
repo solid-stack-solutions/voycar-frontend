@@ -52,7 +52,7 @@
                             >Abo wählen</button
                         >
                         <p class="mt-10 text-sm font-semibold">
-                            Alles nötige zum Durchstarten.
+                            Alles Nötige zum Durchstarten.
                         </p>
                         <ul
                             role="list"
