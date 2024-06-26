@@ -90,8 +90,6 @@
         {:else}
             <p>Keine</p>
         {/if}
-        <!-- ToDo new reservation prompt -->
-        <!-- maybe as a modal -->
         <div class="relative mt-2">
             <button class="variant-filled-primary btn absolute right-0"
                 >Neue reservierung erstellen</button
