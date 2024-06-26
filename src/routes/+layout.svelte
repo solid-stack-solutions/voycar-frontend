@@ -11,12 +11,11 @@
     } from "@floating-ui/dom";
     import { storePopup } from "@skeletonlabs/skeleton";
     storePopup.set({ computePosition, autoUpdate, offset, shift, flip, arrow });
-    import { initializeStores, Toast, Drawer } from "@skeletonlabs/skeleton";
+    import { initializeStores, Toast} from "@skeletonlabs/skeleton";
     import PageHeader from "./pageHeader.svelte";
     initializeStores();
 </script>
 
-<Drawer position='right' />
 <Toast />
 <div>
     <PageHeader></PageHeader>
