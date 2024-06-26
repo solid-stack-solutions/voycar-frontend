@@ -40,16 +40,29 @@ const retryPolicy = retry(handleAll, {
 });
 async function tryFetching(url, method, body, restricted) {
     return await retryPolicy.execute(async () => {
-        await fetch(
-            new Request(url, {
-                method: method,
-                credentials: restricted ? "include" : "omit",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(body),
-            }),
-        );
+        console.log(method);
+        if (method === "HEAD" || method === "GET" || method == undefined) {
+            return await fetch(
+                new Request(url, {
+                    method: method ?? "GET", // Default to GET
+                    credentials: restricted ? "include" : "omit",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                }),
+            );
+        } else {
+            return await fetch(
+                new Request(url, {
+                    method: method,
+                    credentials: restricted ? "include" : "omit",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(body),
+                }),
+            );
+        }
     });
 }
 
