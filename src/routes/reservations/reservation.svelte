@@ -108,9 +108,9 @@
             {:then carData}
             <!-- ToDo replace with image according to ID -->
                 <img
-                    src="carpng.png"
+                    src="carImages/{carData.model}.webp"
                     alt="cool car"
-                    class="rounded-lg border"
+                    class="rounded-lg"
                 />
             {:catch err}
                 <div
