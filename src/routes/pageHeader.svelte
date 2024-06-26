@@ -70,7 +70,7 @@
             {:else}
                 <button
                     class="variant-ringed-primary btn"
-                    on:click={() => redirectToLogin()}>Anmelden</button
+                    on:click={redirectToLogin}>Anmelden</button
                 >
             {/if}
         </svelte:fragment>
