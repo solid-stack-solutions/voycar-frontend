@@ -56,7 +56,9 @@
     });
 });
 </script>
-
+<svelte:head>
+    <title>Dein Konto</title>
+</svelte:head>
 <!-- Page Content -->
 <div>
     {#await personalData}
