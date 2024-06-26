@@ -6,9 +6,7 @@
 <button
     type="button"
     class="variant-soft btn btn-sm"
-    on:click={() => {
-        currentStep--;
-    }}
+    on:click={() => currentStep--}
 >
     <img
         src="/chevron-leftIcon.svg"
