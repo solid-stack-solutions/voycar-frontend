@@ -6,16 +6,13 @@
     import { ConstantBackoff, handleAll, retry } from "cockatiel";
 
     // Import backend urls
-    import { urls } from "$lib/util.js";
+    import { urls, validateEmail } from "$lib/util.js";
 
     import { goto } from "$app/navigation";
 
     // Definitions
     // Constants
     const toastStore = getToastStore();
-
-    const mailRegexPattern =
-        /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
     // Enums
     const btnIcon = {
@@ -56,10 +53,6 @@
     let showPassword = false;
 
     // Functions
-    function validateEmail(email) {
-        return mailRegexPattern.test(email);
-    }
-
     function resetIndicators() {
         emailIndicator = indicatorStatus.none;
         passwordIndicator = indicatorStatus.none;
