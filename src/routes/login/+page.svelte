@@ -98,6 +98,7 @@
             if (response.ok) {
                 //Login sucessful
                 somethingWrong = false;
+                location.reload();
                 toastStore.trigger(toast);
                 goto("/");
             } else {
