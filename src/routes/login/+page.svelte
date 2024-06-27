@@ -119,7 +119,7 @@
         <form class="space-y-3 rounded-md border-2 border-secondary-500 p-4">
             <!-- Email field -->
             <label class="label" for="email_input">
-                <span>Email</span>
+                <span class="font-semibold">Email</span>
             </label>
             <input
                 class="input {emailIndicator}"
@@ -139,14 +139,14 @@
             {/if}
             <!-- Password field -->
             <label class="label" for="password_input">
-                <span>Passwort</span>
+                <span class="font-semibold">Passwort</span>
             </label>
             <div class="relative">
                 <input
                     class="input {passwordIndicator}"
                     type={showPassword ? "text" : "password"}
                     id="password_input"
-                    placeholder="Dein super sicheres Passwort 😉"
+                    placeholder="Dein super sicheres Passwort ;)"
                     bind:this={passwordReference}
                 />
                 <button
