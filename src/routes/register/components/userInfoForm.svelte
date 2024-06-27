@@ -26,6 +26,13 @@
         unlocked: "🔓",
     };
 
+    // Formfield binding references
+    let passwordRefernce;
+    let passwordValidateReference;
+    export let formData = {
+        email: "",
+        password: "",
+    };
     // Indicates how many steps of the register process have been completed
     export let currentStep = 0;
 
@@ -48,7 +55,7 @@
     type="text"
     id="email_input"
     placeholder="beispiel.organisation@mail.com"
-    bind:this={emailReference}
+    bind:value={formData.email}
 />
 {#if emailIndicator == indicatorStatus.warning}
     <div class="flex flex-col items-center justify-center transition-opacity">
@@ -67,6 +74,7 @@
         type={showPassword ? "text" : "password"}
         id="password_input"
         placeholder="Dein super sicheres Passwort ;)"
+        bind:this={passwordRefernce}
     />
     <button
         class="absolute right-1 top-1 flex h-8 w-14 items-center rounded-r-full border-l-2 border-surface-500 bg-surface-700 pl-4"
@@ -85,6 +93,7 @@
         type={showPasswordValidate ? "text" : "password"}
         id="password_input_validate"
         placeholder="Wiederhole dein Passwort"
+        bind:this={passwordValidateReference}
     />
     <button
         class="absolute right-1 top-1 flex h-8 w-14 items-center rounded-r-full border-l-2 border-surface-500 bg-surface-700 pl-4"

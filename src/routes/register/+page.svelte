@@ -7,6 +7,12 @@
     // The steps of the register process and how many have been completed
     const registerSteps = ["User", "Member", "Plan"];
     let currentStep = 0;
+
+    let formData = {
+        userData: {},
+        memberData: {},
+        planData: {},
+    };
 </script>
 
 <!-- Register page -->
@@ -17,11 +23,17 @@
     >
         <form class="space-y-3 rounded-md border-2 border-secondary-500 p-4">
             {#if registerSteps[currentStep] == "User"}
-                <UserInfoForm bind:currentStep />
+                <UserInfoForm
+                    bind:currentStep
+                    bind:formData={formData.userData}
+                />
             {:else if registerSteps[currentStep] == "Member"}
-                <MemberInfoForm bind:currentStep />
+                <MemberInfoForm
+                    bind:currentStep
+                    bind:formData={formData.memberData}
+                />
             {:else if registerSteps[currentStep] == "Plan"}
-                <PlanForm bind:currentStep />
+                <PlanForm bind:currentStep bind:formData={formData.planData} />
             {/if}
         </form>
 

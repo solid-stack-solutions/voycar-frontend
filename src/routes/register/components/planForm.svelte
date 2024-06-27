@@ -7,6 +7,11 @@
     // Indicates how many steps of the register process have been completed
     export let currentStep = 0;
 
+    // Formfield binding references
+    export let formData = {
+        planID,
+    };
+
     const dummyPlans = [1, 2, 3];
 </script>
 
