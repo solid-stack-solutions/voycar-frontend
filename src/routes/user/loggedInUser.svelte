@@ -63,7 +63,7 @@
                     <p>Zahlungsinformation</p>
                 </div>
                 <!-- Inject user payment data svelte component -->
-                <UserPaymentData {userID}></UserPaymentData>
+                <UserPaymentData paymentName={personalData.paymentName}></UserPaymentData>
             </div>
             <!-- Subscription plan information -->
             <div class="basis-1/3 rounded-md border-2 border-secondary-500 p-2">
@@ -72,7 +72,7 @@
                     <p>Tarif</p>
                 </div>
                 <!-- Inject user plan data svelte component -->
-                <UserPlanData {userID}></UserPlanData>
+                <UserPlanData {personalData}></UserPlanData>
             </div>
         </div>
     </div>
