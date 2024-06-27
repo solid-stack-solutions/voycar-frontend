@@ -1,7 +1,10 @@
 <script>
     // Definitions
     let formEditEnabled = false;
+    // export let paymentName;
     // ToDo logic for backend fetch
+
+
 </script>
 
 <div class="relative h-full p-2">
@@ -49,7 +52,7 @@
             </label>
         </div>
     </div>
-    <div class="absolute bottom-8 right-2">
+    <div class="absolute bottom-6 right-2">
         <!-- Buttons -->
         <div dir="rtl" class="">
             <button type="button" class="variant-filled-error btn btn-md">
@@ -60,7 +63,7 @@
                 type="button"
                 class="variant-filled-warning btn btn-md"
                 on:click={() => (formEditEnabled = !formEditEnabled)}
-            >
+                >
                 Bearbeiten
                 {#if formEditEnabled}
                     verlassen
@@ -68,7 +71,14 @@
                 <img src="/editIcon.svg" alt="edit icon" />
             </button>
             {#if formEditEnabled}
-                <button type="button" class="variant-filled-success btn btn-md">
+                <button 
+                type="button" 
+                class="variant-filled-success btn btn-md"
+                on:click={() => {
+                    if (formEditEnabled) {
+                        formEditEnabled = false;
+                    }
+                    }}>
                     <!-- ToDo logic for update button -->
                     Aktualisieren
                     <img src="/saveIcon.svg" alt="save icon" />
