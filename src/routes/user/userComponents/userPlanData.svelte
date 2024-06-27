@@ -6,9 +6,15 @@
     // ToDo maybe show possible plan and option to change current one
 </script>
 
-<div>
-    Aktueller Tarif
-    <!-- Currently a placeholder; will be changed when backend fetch possible -->
-    {userID}
-    <button class="btn text-warning-500">Tarif ändern</button>
+<div class="h-full relative">
+    <div class="flex flex-row space-x-2">
+        <p>Aktueller Tarif:</p>
+        <div>{userID}</div>
+    </div>
+    <div class="absolute right-2 bottom-6">
+        <button class="btn btn-md variant-filled-warning">
+            <img src="/modifyPlan.svg" alt="">
+            Tarif ändern  
+        </button>
+    </div>
 </div>
