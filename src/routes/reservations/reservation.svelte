@@ -158,7 +158,7 @@
                     <tr>
                         <td class="font-bold">Modell:</td>
                         <td>{carData.model}</td>
-                    <tr/>
+                    </tr><tr />
                     <tr>
                         <td class="font-bold">Art:</td>
                         <td>{carData.type}</td>
