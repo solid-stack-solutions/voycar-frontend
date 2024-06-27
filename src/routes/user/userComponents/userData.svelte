@@ -7,14 +7,14 @@
 </script>
 
 <div class="p-2">
-    <table>
+    <table class="table-fixed">
         <!-- Diplays all the information of the specified user in the url params 
         (doesnt sanitize the data its given; means query data has to be clean) -->
         <tr>
             <th class="text-left">
                 <span class="mr-5">Vorname:</span>
             </th>
-            <td class="w-full">
+            <td>
                 <form id="form">
                     <label class="label">
                         <input
@@ -32,7 +32,7 @@
             <th class="text-left">
                 <span class="mr-5">Nachname:</span>
             </th>
-            <td class="w-full">
+            <td>
                 <form id="form">
                     <label class="label">
                         <input
@@ -63,6 +63,11 @@
                     </label>
                 </form>
             </td>
+        </tr>
+        <tr>
+            <th class="text-left">
+                Hausnummer:
+            </th>
             <td>
                 <form id="form">
                     <label class="label">
@@ -71,7 +76,7 @@
                             class="form--disabled input variant-form-material"
                             type="text"
                             name="inputField"
-                            placeholder={personalData.housenumber}
+                            placeholder={personalData.houseNumber}
                         />
                     </label>
                 </form>
@@ -94,6 +99,11 @@
                     </label>
                 </form>
             </td>
+        </tr>
+        <tr>
+            <th class="text-left">
+                Postleitzahl:
+            </th>
             <td>
                 <form id="form">
                     <label class="label">
@@ -124,7 +134,7 @@
         <img src="/editIcon.svg" alt="edit icon" />
     </button>
     {#if formEditEnabled}
-        <button type="button" class="variant-filled-primary btn btn-md">
+        <button type="button" class="variant-filled-primary btn btn-md" on:click={() => {if(formEditEnabled){formEditEnabled = false;}}}>
             <!-- ToDo logic for update button-->
             Aktualisieren
             <img src="/saveIcon.svg" alt="save icon" />
