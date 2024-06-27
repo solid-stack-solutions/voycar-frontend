@@ -31,6 +31,7 @@
         goto("/"); // Redirect to landing page
     }
 </script>
+
 <div>
     <div class="pb-4">
         <p class="pl-2 text-xl font-semibold">
@@ -40,54 +41,39 @@
         </p>
     </div>
     <div class="grid grid-cols-2 gap-4">
-        <!-- Accordion for user data-->
-        <div>
-            <!-- Personal details tab -->
-            <div class="rounded-md border-2 border-secondary-500 p-2">
-                <div class="flex flex-row">
-                    <img
-                        src="/personalDetailsIcon.svg"
-                        alt="personal details icon"
-                    />
-                    <p>Persönliche Informationen </p>
-                </div>
-                <div>
-                    <!-- Inject user data svelte component -->
-                    <UserData {personalData}></UserData>
-                </div>
-                
+        <!-- Personal details tab -->
+        <div class="rounded-md border-2 border-secondary-500 p-2">
+            <div class="flex flex-row">
+                <img
+                    src="/personalDetailsIcon.svg"
+                    alt="personal details icon"
+                />
+                <p>Persönliche Informationen</p>
+            </div>
+            <div>
+                <!-- Inject user data svelte component -->
+                <UserData {personalData}></UserData>
             </div>
         </div>
-        <div class="space-y-2">
+        <div class="flex flex-col space-y-2">
             <!-- Payment information tab -->
-                <div class="rounded-md border-2 border-secondary-500 p-2">
-                    <div class="flex flex-row">
-                        <img
-                            src="/paymentInfoIcon.svg"
-                            alt="payment info icon"
-                        />
-                        <p>Zahlungsinformation</p>
-                    </div>
-                    <div>
-                        <!-- Inject user payment data svelte component -->
-                        <UserPaymentData {userID}></UserPaymentData>
-                    </div>
+            <div class="basis-2/3 rounded-md border-2 border-secondary-500 p-2">
+                <div class="flex flex-row">
+                    <img src="/paymentInfoIcon.svg" alt="payment info icon" />
+                    <p>Zahlungsinformation</p>
                 </div>
+                <!-- Inject user payment data svelte component -->
+                <UserPaymentData {userID}></UserPaymentData>
+            </div>
             <!-- Subscription plan information -->
-                <div class="rounded-md border-2 border-secondary-500 p-2">
-                    <div class="flex flex-row">
-                        <img
-                            src="/planIcon.svg"
-                            alt="plan icon"
-                        />
+            <div class="basis-1/3 rounded-md border-2 border-secondary-500 p-2">
+                <div class="flex flex-row">
+                    <img src="/planIcon.svg" alt="plan icon" />
                     <p>Tarif</p>
-                    </div>
-                    <div>
-                        <!-- Inject user plan data svelte component -->
-                        <UserPlanData {userID}></UserPlanData>
-                    </div>
-                    
                 </div>
+                <!-- Inject user plan data svelte component -->
+                <UserPlanData {userID}></UserPlanData>
+            </div>
         </div>
     </div>
     <!-- Account delete button -->

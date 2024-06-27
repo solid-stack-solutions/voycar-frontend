@@ -7,7 +7,7 @@
 </script>
 
 <div class="h-full p-2">
-    <table class="table-fixed border-separate border-spacing-x-4 ">
+    <table class="table-fixed border-separate border-spacing-x-4">
         <!-- Diplays all the information of the specified user in the url params 
         (doesnt sanitize the data its given; means query data has to be clean) -->
         <tr>
@@ -47,9 +47,7 @@
             </td>
         </tr>
         <tr>
-            <th class="text-left">
-                Telefonnummer:
-            </th>
+            <th class="text-left"> Telefonnummer: </th>
             <td>
                 <form id="form">
                     <label class="label">
@@ -65,9 +63,7 @@
             </td>
         </tr>
         <tr>
-            <th class="text-left">
-                Straße:
-            </th>
+            <th class="text-left"> Straße: </th>
             <td>
                 <form id="form">
                     <label class="label">
@@ -83,9 +79,7 @@
             </td>
         </tr>
         <tr>
-            <th class="text-left">
-                Hausnummer:
-            </th>
+            <th class="text-left"> Hausnummer: </th>
             <td>
                 <form id="form">
                     <label class="label">
@@ -119,9 +113,7 @@
             </td>
         </tr>
         <tr>
-            <th class="text-left">
-                Postleitzahl:
-            </th>
+            <th class="text-left"> Postleitzahl: </th>
             <td>
                 <form id="form">
                     <label class="label">
@@ -152,7 +144,15 @@
         <img src="/editIcon.svg" alt="edit icon" />
     </button>
     {#if formEditEnabled}
-        <button type="button" class="variant-filled-primary btn btn-md" on:click={() => {if(formEditEnabled){formEditEnabled = false;}}}>
+        <button
+            type="button"
+            class="variant-filled-primary btn btn-md"
+            on:click={() => {
+                if (formEditEnabled) {
+                    formEditEnabled = false;
+                }
+            }}
+        >
             <!-- ToDo logic for update button-->
             Aktualisieren
             <img src="/saveIcon.svg" alt="save icon" />

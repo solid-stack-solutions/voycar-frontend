@@ -4,8 +4,8 @@
     // ToDo logic for backend fetch
 </script>
 
-<div class="h-full p-2 relative">
-    <div class="flex flex-col h-full">
+<div class="relative h-full p-2">
+    <div class="flex h-full flex-col">
         <p>Zahlungsmittel:</p>
         <!-- ToDo logic for show/hide payment data -->
         <!-- ToDo logic to only show available payment methods instead of hardcoded text -->
@@ -13,7 +13,9 @@
             <label class="flex items-center space-x-2">
                 <input
                     disabled={!formEditEnabled}
-                    class="radio {formEditEnabled ? '':'hover:cursor-not-allowed'}"
+                    class="radio {formEditEnabled
+                        ? ''
+                        : 'hover:cursor-not-allowed'}"
                     type="radio"
                     checked
                     name="radio-direct"
@@ -24,7 +26,9 @@
             <label class="flex items-center space-x-2">
                 <input
                     disabled={!formEditEnabled}
-                    class="radio {formEditEnabled ? '':'hover:cursor-not-allowed'}"
+                    class="radio {formEditEnabled
+                        ? ''
+                        : 'hover:cursor-not-allowed'}"
                     type="radio"
                     name="radio-direct"
                     value="2"
@@ -34,7 +38,9 @@
             <label class="flex items-center space-x-2">
                 <input
                     disabled={!formEditEnabled}
-                    class="radio {formEditEnabled ? '':'hover:cursor-not-allowed'}"
+                    class="radio {formEditEnabled
+                        ? ''
+                        : 'hover:cursor-not-allowed'}"
                     type="radio"
                     name="radio-direct"
                     value="3"
@@ -43,8 +49,8 @@
             </label>
         </div>
     </div>
-    <div class="absolute right-2 bottom-8">
-    <!-- Buttons -->
+    <div class="absolute bottom-8 right-2">
+        <!-- Buttons -->
         <div dir="rtl" class="">
             <button type="button" class="variant-filled-error btn btn-md">
                 <!-- ToDo logic for delete button -->
