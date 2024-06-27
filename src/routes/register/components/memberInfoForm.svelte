@@ -14,7 +14,7 @@
 </script>
 
 <div class="space-y-3 sm:w-96">
-    <BackButton bind:currentStep></BackButton>
+    <BackButton bind:currentStep />
     <p class="font-semibold">Name</p>
     <input class="input" type="text" id="first_name" placeholder="Vorname" />
     <input class="input" type="text" id="last_name" placeholder="Nachname" />

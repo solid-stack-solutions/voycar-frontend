@@ -5,10 +5,7 @@
 
 <!-- Continue button -->
 <div class="flex flex-col items-center">
-    <button
-        class="variant-filled-primary btn w-full"
-        on:click={onClick}
-    >
+    <button class="variant-filled-primary btn w-full" on:click={onClick}>
         Weiter
     </button>
 </div>

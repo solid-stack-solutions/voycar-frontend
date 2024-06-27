@@ -10,7 +10,7 @@
     const dummyPlans = [1, 2, 3];
 </script>
 
-<BackButton bind:currentStep></BackButton>
+<BackButton bind:currentStep />
 
 <div class="sm:py-22 py-10">
     <div class="mx-auto max-w-7xl px-6 lg:px-8">
@@ -69,13 +69,13 @@
                             <li class="flex gap-x-3">
                                 <CheckCircleIcon
                                     colorClass="stroke-tertiary-500"
-                                ></CheckCircleIcon>
+                                />
                                 Große Auswahl an Autos
                             </li>
                             <li class="flex gap-x-3">
                                 <CheckCircleIcon
                                     colorClass="stroke-tertiary-500"
-                                ></CheckCircleIcon>
+                                />
                                 15€ / Stunde
                             </li>
                         </ul>

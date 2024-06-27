@@ -17,11 +17,11 @@
     >
         <form class="space-y-3 rounded-md border-2 border-secondary-500 p-4">
             {#if registerSteps[currentStep] == "User"}
-                <UserInfoForm bind:currentStep></UserInfoForm>
+                <UserInfoForm bind:currentStep />
             {:else if registerSteps[currentStep] == "Member"}
-                <MemberInfoForm bind:currentStep></MemberInfoForm>
+                <MemberInfoForm bind:currentStep />
             {:else if registerSteps[currentStep] == "Plan"}
-                <PlanForm bind:currentStep></PlanForm>
+                <PlanForm bind:currentStep />
             {/if}
         </form>
 
