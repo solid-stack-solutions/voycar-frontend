@@ -85,7 +85,9 @@
             return; // Passwords are not equal
         }
 
-        currentStep++; // Go to next step
+        // Save form data and continue to next step
+        formData.password = passwordRefernce.value;
+        currentStep++; 
     }
 </script>
 
