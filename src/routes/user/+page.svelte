@@ -60,7 +60,7 @@
 </script>
 
 <svelte:head>
-    <title>Dein Konto</title>
+    <title>Dein Voycar Konto</title>
 </svelte:head>
 <!-- Page Content -->
 <div>
