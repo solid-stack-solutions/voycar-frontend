@@ -25,7 +25,7 @@ export const urls = {
     },
     put: {},
     delete: {
-        singleReservation: baseURL + reservation + "personal",
+        singleReservation: baseURL + reservation + "personal/",
     },
 };
 
