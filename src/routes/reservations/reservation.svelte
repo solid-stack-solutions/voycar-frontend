@@ -16,10 +16,10 @@
     // Constants
     const toastStore = getToastStore();
 
-    const options = {
+    const dateFormattingOptions = {
         year: "numeric",
-        month: "numeric",
-        day: "numeric",
+        month: "2-digit",
+        day: "2-digit",
         hour: "numeric",
         minute: "numeric",
         hour12: false,
@@ -57,9 +57,9 @@
 
     // Functions
     function filterDate(dateString) {
-        return new Intl.DateTimeFormat("de-DE", options).format(
+        return new Intl.DateTimeFormat("de-DE", dateFormattingOptions).format(
             new Date(dateString),
-        );
+        ) + " Uhr";
     }
 
     async function fetchCarForReservation() {
