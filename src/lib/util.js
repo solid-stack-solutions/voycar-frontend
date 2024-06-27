@@ -40,7 +40,7 @@ const retryPolicy = retry(handleAll, {
 });
 async function tryFetching(url, method, body, restricted) {
     return await retryPolicy.execute(async () => {
-        if (method === "HEAD" || method === "GET" || method == undefined) {
+        if (method === "HEAD" || method === "GET" || method === undefined) {
             return await fetch(
                 new Request(url, {
                     method: method ?? "GET", // Default to GET
