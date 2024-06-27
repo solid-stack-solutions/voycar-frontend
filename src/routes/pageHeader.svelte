@@ -5,18 +5,10 @@
     import { AppBar } from "@skeletonlabs/skeleton";
     import { page } from "$app/stores"; // Contains all pages in a store
 
-    // Transient fault handling library import
-    import { ConstantBackoff, handleAll, retry } from "cockatiel";
-    import { urls } from "$lib/util.js";
+    import { urls, tryFetchingRestricted } from "$lib/util.js";
 
     // Definitions
     let loggedIn = false;
-
-    // Define retry policy
-    const retryPolicy = retry(handleAll, {
-        maxAttempts: 3, // Try 3 times
-        backoff: new ConstantBackoff(50), // Wait 10ms after each try
-    });
 
     // Functions
     async function redirectToLogin() {
@@ -26,11 +18,8 @@
     // Runs as soon as the component is mounted
     onMount(async () => {
         try {
-            console.log("logged");
             // Fetch backend to check if user is signed in
-            const response = await retryPolicy.execute(() =>
-                fetch(urls.get.isLoggedIn, { credentials: "include" }),
-            );
+            const response = await tryFetchingRestricted(urls.get.isLoggedIn);
             if (response.ok) {
                 loggedIn = true;
             } else {
