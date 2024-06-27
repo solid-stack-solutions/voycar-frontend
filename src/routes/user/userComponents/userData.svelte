@@ -29,13 +29,37 @@
     });
 
     // Toast Settings
-    const toast = {
+    const successToast = {
         message: "Deine Daten wurden erfolgreich aktualisiert",
         hideDismiss: true, // Hide the dismiss button on toast
         timeout: 3000, // Auto dismiss toast after 3 seconds
         background: "variant-filled-secondary",
     };
 
+    const warningToast = {
+        message: "Du hast keine zu aktualisierenden Daten eingegeben",
+        hideDismiss: true, // Hide the dismiss button on toast
+        timeout: 3000, // Auto dismiss toast after 3 seconds
+        background: "variant-filled-warning",
+    };
+
+    const errorToast = {
+        message: "Deine Daten konnten nicht aktualisiert werden",
+        hideDismiss: true, // Hide the dismiss button on toast
+        timeout: 3000, // Auto dismiss toast after 3 seconds
+        background: "variant-filled-error",
+    };
+    
+    function checkIfAllFieldsEmpty(){
+        return  firstNameReference.value  == '' &&
+                lastNameReference.value  == '' &&
+                streetReference.value == '' &&
+                houseNumberReference.value  == '' &&
+                postalCodeReference.value  == '' &&
+                cityReference.value == '' &&
+                phonenumberReference.value  == '';
+    }
+    // Get data from the form fields and bind them together in a json object
     function collectData(){
         return  {
         firstName:  firstNameReference.value  == '' ? personalData.firstName : firstNameReference.value,
@@ -55,6 +79,10 @@
         if (formEditEnabled) {
             formEditEnabled = false;
         }
+        if(checkIfAllFieldsEmpty()){
+            toastStore.trigger(warningToast);
+            return;
+        }
         try {
             const mybody = collectData();
             console.log(JSON.stringify(mybody));
@@ -71,12 +99,13 @@
                 ),
             );
             if (response.ok) {
-                toastStore.trigger(toast);
+                toastStore.trigger(successToast);
+                needReload = true;
             } else {
-                // Login failed on the backend side e.g. because credentials didn't match or account doesn't exists
                 throw new Error("Update failed");
             }
         } catch (err) {
+            toastStore.trigger(errorToast);
         }
     }
 </script>
