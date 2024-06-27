@@ -62,16 +62,16 @@
     // Get data from the form fields and bind them together in a json object
     function collectData(){
         return  {
-        firstName:  firstNameReference.value  == '' ? personalData.firstName : firstNameReference.value,
-        lastName: lastNameReference.value  == '' ? personalData.lastName : lastNameReference.value,
-        street: streetReference.value  == '' ? personalData.street : streetReference.value,
-        houseNumber: houseNumberReference.value  == '' ? personalData.houseNumber : houseNumberReference.value,
-        postalCode: postalCodeReference.value  == '' ? personalData.postalCode : postalCodeReference.value,
-        city: cityReference.value == '' ? personalData.city : cityReference.value,
-        country: personalData.country,
-        birthDate: personalData.birthDate,
-        birthPlace: personalData.birthPlace,
-        phoneNumber: phonenumberReference.value  == '' ? personalData.phoneNumber : phonenumberReference.value,
+            firstName:  firstNameReference.value  == '' ? personalData.firstName : firstNameReference.value,
+            lastName: lastNameReference.value  == '' ? personalData.lastName : lastNameReference.value,
+            street: streetReference.value  == '' ? personalData.street : streetReference.value,
+            houseNumber: houseNumberReference.value  == '' ? personalData.houseNumber : houseNumberReference.value,
+            postalCode: postalCodeReference.value  == '' ? personalData.postalCode : postalCodeReference.value,
+            city: cityReference.value == '' ? personalData.city : cityReference.value,
+            country: personalData.country,
+            birthDate: personalData.birthDate,
+            birthPlace: personalData.birthPlace,
+            phoneNumber: phonenumberReference.value  == '' ? personalData.phoneNumber : phonenumberReference.value,
         };
     }
 
