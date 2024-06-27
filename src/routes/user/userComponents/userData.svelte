@@ -1,6 +1,6 @@
 <script>
     // Parent data exports
-    export let userData;
+    export let personalData;
 
     // Definitions
     let formEditEnabled = false;
@@ -22,7 +22,7 @@
                             class="form--disabled input variant-form-material"
                             type="text"
                             name="inputField"
-                            placeholder={userData.firstName}
+                            placeholder={personalData.firstName}
                         />
                     </label>
                 </form>
@@ -40,7 +40,7 @@
                             class="form--disabled input variant-form-material"
                             type="text"
                             name="inputField"
-                            placeholder={userData.lastName}
+                            placeholder={personalData.lastName}
                         />
                     </label>
                 </form>
@@ -58,7 +58,7 @@
                             class="form--disabled input variant-form-material"
                             type="text"
                             name="inputField"
-                            placeholder={userData.street}
+                            placeholder={personalData.street}
                         />
                     </label>
                 </form>
@@ -71,7 +71,7 @@
                             class="form--disabled input variant-form-material"
                             type="text"
                             name="inputField"
-                            placeholder={userData.housenumber}
+                            placeholder={personalData.housenumber}
                         />
                     </label>
                 </form>
@@ -89,7 +89,7 @@
                             class="form--disabled input variant-form-material"
                             type="text"
                             name="inputField"
-                            placeholder={userData.city}
+                            placeholder={personalData.city}
                         />
                     </label>
                 </form>
@@ -102,7 +102,7 @@
                             class="form--disabled input variant-form-material"
                             type="text"
                             name="inputField"
-                            placeholder={userData.postalCode}
+                            placeholder={personalData.postalCode}
                         />
                     </label>
                 </form>

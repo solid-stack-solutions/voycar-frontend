@@ -14,9 +14,6 @@
     export let personalData;
 
     // Definitions
-    // Convert JSON object to iterable array
-    const userKeys = Object.keys(personalData);
-    const userInfo = Object.values(personalData);
     const userID = personalData.userID;
     const userSubPlanID = personalData.subPlanID;
     const userPaymentInfoID = personalData.paymentInfoID;
@@ -34,10 +31,6 @@
         goto("/"); // Redirect to landing page
     }
 </script>
-
-<svelte:head>
-    <title>Ihr Voycar-Konto</title>
-</svelte:head>
 <div>
     <div class="pb-4">
         <p class="pl-2 text-xl font-semibold">
@@ -56,7 +49,7 @@
                 >
                 <svelte:fragment slot="content">
                     <!-- Inject user data svelte component -->
-                    <UserData {userKeys} {userInfo}></UserData>
+                    <UserData {personalData}></UserData>
                 </svelte:fragment>
                 <svelte:fragment slot="lead">
                     <img
