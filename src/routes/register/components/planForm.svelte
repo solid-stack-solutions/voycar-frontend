@@ -29,10 +29,15 @@
         </p>
         <div class="mt-20 flow-root">
             <div
-                class="isolate -mt-16 grid max-w-sm grid-cols-1 gap-y-16 divide-y-2 divide-secondary-500 sm:mx-auto lg:-mx-8 lg:mt-0 lg:max-w-none lg:grid-cols-3 lg:divide-x lg:divide-y-0 xl:-mx-4"
+                class="isolate -mt-16 grid max-w-sm grid-cols-1 gap-x-5 gap-y-10 sm:mx-auto lg:-mx-8 lg:mt-0 lg:max-w-none lg:grid-cols-3 xl:-mx-4"
             >
-                {#each dummyPlans as plan}
-                    <div class="pt-16 lg:px-8 lg:pt-0 xl:px-14">
+                {#each dummyPlans as plan, index}
+                    <div
+                        class="p-6 lg:p-8 xl:px-10
+                            {index === 1 // Highlight middle card
+                            ? 'rounded-lg bg-secondary-900 lg:scale-110 '
+                            : 'lg:scale-80 card variant-soft'}"
+                    >
                         <h3
                             id="plan-basic{plan}"
                             class="text-base font-semibold"
