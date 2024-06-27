@@ -87,7 +87,7 @@
 
         // Save form data and continue to next step
         formData.password = passwordRefernce.value;
-        currentStep++; 
+        currentStep++;
     }
 </script>
 
