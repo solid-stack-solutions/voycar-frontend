@@ -146,7 +146,7 @@
                     class="input {passwordIndicator}"
                     type={showPassword ? "text" : "password"}
                     id="password_input"
-                    placeholder="Dein super sicheres Passwort 😉"
+                    placeholder="Dein super sicheres Passwort ;)"
                     bind:this={passwordReference}
                 />
                 <button

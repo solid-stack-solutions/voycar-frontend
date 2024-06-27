@@ -43,7 +43,7 @@
         class="w-64 sm:w-72 {passwordIndicator}"
         type={showPassword ? "text" : "password"}
         id="password_input"
-        placeholder="Dein super sicheres Passwort 😉"
+        placeholder="Dein super sicheres Passwort ;)"
     />
     <button
         class="absolute right-1 top-1 flex h-8 w-14 items-center rounded-r-full border-l-2 border-surface-500 bg-surface-700 pl-4"
