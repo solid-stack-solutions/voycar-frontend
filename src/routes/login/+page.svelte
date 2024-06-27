@@ -96,9 +96,9 @@
                 ),
             );
             if (response.ok) {
-                //Login sucessful
-                somethingWrong = false;
                 toastStore.trigger(toast);
+                // Login sucessful
+                somethingWrong = false;
                 goto("/");
             } else {
                 // Login failed on the backend side e.g. because credentials didn't match or account doesn't exists
