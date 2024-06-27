@@ -61,6 +61,25 @@
         return passwordRegexPattern.test(passwordRefernce.value);
     }
 
+    /**
+     * Removes password warnings or errors when any warnings existed
+     * and are no longer valid.
+     */
+    function rmPasswordWarningsOnValid() {
+        if (
+            passwordIndicator === indicatorStatus.warning &&
+            validatePassword()
+        ) {
+            passwordIndicator = indicatorStatus.none;
+        }
+        if (
+            passwordValidateIndicator === indicatorStatus.error &&
+            checkPasswordEquality()
+        ) {
+            passwordValidateIndicator = indicatorStatus.none;
+        }
+    }
+
     function validateInput() {
         if (!validateEmail(formData.email)) {
             emailIndicator = indicatorStatus.warning;
@@ -123,6 +142,7 @@
         id="password_input"
         placeholder="Dein super sicheres Passwort ;)"
         bind:this={passwordRefernce}
+        on:input={rmPasswordWarningsOnValid}
     />
     <button
         class="absolute right-1 top-1 flex h-8 w-14 items-center rounded-r-full border-l-2 border-surface-500 bg-surface-700 pl-4"
