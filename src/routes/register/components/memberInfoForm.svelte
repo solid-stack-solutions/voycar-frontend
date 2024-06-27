@@ -5,6 +5,12 @@
 
     // Indicates how many steps of the register process have been completed
     export let currentStep = 0;
+
+    // Functions
+    function validateInput() {
+        // ToDo
+        currentStep++;
+    }
 </script>
 
 <div class="space-y-3 sm:w-96">
@@ -45,5 +51,5 @@
         placeholder="+49 421 5905 5425"
     />
 
-    <ContinueButton bind:currentStep></ContinueButton>
+    <ContinueButton onClick={validateInput} />
 </div>

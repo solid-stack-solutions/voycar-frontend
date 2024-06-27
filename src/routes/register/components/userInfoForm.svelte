@@ -2,26 +2,41 @@
     // Component imports
     import ContinueButton from "./continueButton.svelte";
 
+    // Import utilities
+    import { urls, validateEmail } from "$lib/util.js";
+
     // Definitions
     const indicatorStatus = {
         none: "",
-        sucess: "input-success",
-        warning: "input-warning",
-        error: "input-error",
+        warning: "!border-warning-400",
+        error: "!border-error-600",
     };
+
+    // Formfield binding references
+    let emailReference;
+
     // Will get value "input-error" or "input-warning" according to validators
     let emailIndicator = indicatorStatus.none;
     let passwordIndicator = indicatorStatus.none;
 
     let showPassword = false;
     let showPasswordValidate = false;
-    let btnIcon = {
+    const btnIcon = {
         locked: "🔐",
         unlocked: "🔓",
     };
 
     // Indicates how many steps of the register process have been completed
     export let currentStep = 0;
+
+    // Functions
+    function validateInput() {
+        if (validateEmail(emailReference.value)) {
+            currentStep++; // Go to next step
+        } else {
+            emailIndicator = indicatorStatus.warning;
+        }
+    }
 </script>
 
 <!-- Email field -->
@@ -33,7 +48,15 @@
     type="text"
     id="email_input"
     placeholder="beispiel.organisation@mail.com"
+    bind:this={emailReference}
 />
+{#if emailIndicator == indicatorStatus.warning}
+    <div class="flex flex-col items-center justify-center transition-opacity">
+        <p class="text-sm text-warning-500">Bitte gib eine valide Email-Adresse ein</p>
+    </div>
+{/if}
+
+
 <!-- Password field -->
 <label class="label" for="password_input">
     <span class="font-semibold">Passwort</span>
@@ -75,4 +98,4 @@
     </button>
 </div>
 
-<ContinueButton bind:currentStep></ContinueButton>
+<ContinueButton onClick={validateInput} />
