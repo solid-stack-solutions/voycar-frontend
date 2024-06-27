@@ -221,27 +221,28 @@
     </div>
    
 <!-- Buttons -->
-<div dir="rtl">
-    <button
-        type="button"
-        class="variant-filled-warning btn btn-md"
-        on:click={() => (formEditEnabled = !formEditEnabled)}
-    >
-        Bearbeiten
-        {#if formEditEnabled}
-            verlassen
-        {/if}
-        <img src="/editIcon.svg" alt="edit icon" />
-    </button>
-    {#if formEditEnabled}
+    <div dir="rtl">
         <button
             type="button"
-            class="variant-filled-primary btn btn-md"
-            on:click={updateUserData}
+            class="variant-filled-warning btn btn-md"
+            on:click={() => (formEditEnabled = !formEditEnabled)}
         >
-            <!-- ToDo logic for update button-->
-            Aktualisieren
-            <img src="/saveIcon.svg" alt="save icon" />
+            Bearbeiten
+            {#if formEditEnabled}
+                verlassen
+            {/if}
+            <img src="/editIcon.svg" alt="edit icon" />
         </button>
+        {#if formEditEnabled}
+            <button
+                type="button"
+                class="variant-filled-primary btn btn-md"
+                on:click={updateUserData}
+            >
+                Aktualisieren
+                <img src="/saveIcon.svg" alt="save icon" />
+            </button>
+        {/if}
+    </div>
     {/if}
 </div>
