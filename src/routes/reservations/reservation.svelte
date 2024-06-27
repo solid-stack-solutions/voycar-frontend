@@ -57,9 +57,11 @@
 
     // Functions
     function filterDate(dateString) {
-        return new Intl.DateTimeFormat("de-DE", dateFormattingOptions).format(
-            new Date(dateString),
-        ) + " Uhr";
+        return (
+            new Intl.DateTimeFormat("de-DE", dateFormattingOptions).format(
+                new Date(dateString),
+            ) + " Uhr"
+        );
     }
 
     async function fetchCarForReservation() {
