@@ -39,63 +39,56 @@
             {personalData.lastName}
         </p>
     </div>
-    <div>
+    <div class="grid grid-cols-2 gap-4">
         <!-- Accordion for user data-->
-        <Accordion>
+        <div>
             <!-- Personal details tab -->
-            <AccordionItem class="rounded-md border-2 border-primary-500">
-                <svelte:fragment slot="summary"
-                    >Persönliche Informationen</svelte:fragment
-                >
-                <svelte:fragment slot="content">
-                    <!-- Inject user data svelte component -->
-                    <UserData {personalData}></UserData>
-                </svelte:fragment>
-                <svelte:fragment slot="lead">
+            <div class="rounded-md border-2 border-secondary-500 p-2">
+                <div class="flex flex-row">
                     <img
                         src="/personalDetailsIcon.svg"
-                        alt=""
-                        style="margin-right: 4px; margin-left: 4px;"
+                        alt="personal details icon"
                     />
-                </svelte:fragment>
-            </AccordionItem>
+                    <p>Persönliche Informationen </p>
+                </div>
+                <div>
+                    <!-- Inject user data svelte component -->
+                    <UserData {personalData}></UserData>
+                </div>
+                
+            </div>
+        </div>
+        <div class="space-y-2">
             <!-- Payment information tab -->
-            {#if userPaymentInfoID != null}
-                <AccordionItem class="rounded-md border-2 border-secondary-500">
-                    <svelte:fragment slot="summary"
-                        >Zahlungsinformation</svelte:fragment
-                    >
-                    <svelte:fragment slot="content">
-                        <!-- Inject user payment data svelte component -->
-                        <UserPaymentData {userID}></UserPaymentData>
-                    </svelte:fragment>
-                    <svelte:fragment slot="lead">
+                <div class="rounded-md border-2 border-secondary-500 p-2">
+                    <div class="flex flex-row">
                         <img
                             src="/paymentInfoIcon.svg"
                             alt="payment info icon"
-                            style="margin-right: 4px; margin-left: 4px;"
                         />
-                    </svelte:fragment>
-                </AccordionItem>
-            {/if}
+                        <p>Zahlungsinformation</p>
+                    </div>
+                    <div>
+                        <!-- Inject user payment data svelte component -->
+                        <UserPaymentData {userID}></UserPaymentData>
+                    </div>
+                </div>
             <!-- Subscription plan information -->
-            {#if userSubPlanID != null}
-                <AccordionItem class="rounded-md border-2 border-tertiary-500">
-                    <svelte:fragment slot="summary">Tarif</svelte:fragment>
-                    <svelte:fragment slot="content">
-                        <!-- Inject user plan data svelte component -->
-                        <UserPlanData {userID}></UserPlanData>
-                    </svelte:fragment>
-                    <svelte:fragment slot="lead">
+                <div class="rounded-md border-2 border-secondary-500 p-2">
+                    <div class="flex flex-row">
                         <img
                             src="/planIcon.svg"
                             alt="plan icon"
-                            style="margin-right: 4px; margin-left: 4px;"
                         />
-                    </svelte:fragment>
-                </AccordionItem>
-            {/if}
-        </Accordion>
+                    <p>Tarif</p>
+                    </div>
+                    <div>
+                        <!-- Inject user plan data svelte component -->
+                        <UserPlanData {userID}></UserPlanData>
+                    </div>
+                    
+                </div>
+        </div>
     </div>
     <!-- Account delete button -->
     <div class="relative pt-4">
