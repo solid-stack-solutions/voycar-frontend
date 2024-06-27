@@ -31,7 +31,9 @@
         personalData = new Promise(async (resolve, reject) => {
             try {
                 // Fetch backend for personal Data with retry policy
-                const response = await tryFetchingRestricted(urls.get.memberPersonalData);
+                const response = await tryFetchingRestricted(
+                    urls.get.memberPersonalData,
+                );
                 if (response.ok) {
                     personalData = resolve(await response.json());
                 } else {
