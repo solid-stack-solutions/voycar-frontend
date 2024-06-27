@@ -3,6 +3,8 @@
     import ContinueButton from "./continueButton.svelte";
     import BackButton from "./backButton.svelte";
 
+    let invalidInputs = false;
+
     // Indicates how many steps of the register process have been completed
     export let currentStep = 0;
 
@@ -22,8 +24,16 @@
 
     // Functions
     function validateInput() {
-        console.log(formData);
-        // ToDo
+        invalidInputs = false;
+
+        // Check for all inputs if they are empty strings
+        for (let key in formData) {
+            if (formData[key] == null || formData[key].trim() === "") {
+                invalidInputs = true;
+            }
+        }
+
+        if (invalidInputs) return;
         currentStep++;
     }
 </script>
@@ -103,6 +113,16 @@
         placeholder="+49 421 5905 5425"
         bind:value={formData.phoneNumber}
     />
+
+    {#if invalidInputs}
+        <div
+            class="flex flex-col items-center justify-center transition-opacity"
+        >
+            <p class="text-sm text-error-600">
+                Alle Felder müssen ausgefüllt werden
+            </p>
+        </div>
+    {/if}
 
     <ContinueButton onClick={validateInput} />
 </div>

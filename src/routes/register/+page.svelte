@@ -10,7 +10,18 @@
 
     let formData = {
         userData: {},
-        memberData: {},
+        memberData: {
+            firstName: "",
+            lastName: "",
+            street: "",
+            houseNumber: "",
+            postalCode: "",
+            city: "",
+            country: "Germany",
+            birthDate: "",
+            birthPlace: "",
+            phoneNumber: "",
+        },
         planData: {},
     };
 </script>
