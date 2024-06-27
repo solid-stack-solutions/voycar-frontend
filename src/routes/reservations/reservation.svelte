@@ -137,11 +137,11 @@
         >
             <table class="table-auto border-separate border-spacing-x-2">
                 <tr>
-                    <th>Beginn:</th>
+                    <td class="font-bold">Beginn:</td>
                     <td>{filterDate(reservationData.begin)}</td>
                 </tr>
                 <tr>
-                    <th>Ende:</th>
+                    <td class="font-bold">Ende:</td>
                     <td>{filterDate(reservationData.end)}</td>
                 </tr>
             </table>
@@ -152,19 +152,19 @@
             {:then carData}
                 <table class="table-auto border-separate border-spacing-x-2">
                     <tr>
-                        <th>Kennzeichen:</th>
+                        <td class="font-bold">Kennzeichen:</td>
                         <td>{carData.licensePlate}</td>
                     </tr>
                     <tr>
-                        <th>Modell:</th>
+                        <td class="font-bold">Modell:</td>
                         <td>{carData.model}</td>
                     <tr/>
                     <tr>
-                        <th>Art:</th>
+                        <td class="font-bold">Art:</td>
                         <td>{carData.type}</td>
                     </tr>
                     <tr>
-                        <th>Sitzplätze:</th>
+                        <td class="font-bold">Sitzplätze:</td>
                         <td>{carData.seats}</td>
                     </tr>
                 </table>
