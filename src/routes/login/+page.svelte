@@ -96,7 +96,6 @@
                 ),
             );
             if (response.ok) {
-                // ToDo fix toast
                 toastStore.trigger(toast);
                 // Login sucessful
                 somethingWrong = false;
