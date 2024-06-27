@@ -13,10 +13,6 @@
     // Export data from parent
     export let personalData;
 
-    // Definitions
-    const userID = personalData.userID;
-    const userSubPlanID = personalData.subPlanID;
-    const userPaymentInfoID = personalData.paymentInfoID;
     const popupClick = {
         // Popup settings
         event: "click",
