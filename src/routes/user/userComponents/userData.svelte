@@ -6,8 +6,8 @@
     let formEditEnabled = false;
 </script>
 
-<div class="p-2">
-    <table class="table-fixed">
+<div class="h-full p-2">
+    <table class="table-fixed border-separate border-spacing-x-4 ">
         <!-- Diplays all the information of the specified user in the url params 
         (doesnt sanitize the data its given; means query data has to be clean) -->
         <tr>
@@ -32,7 +32,7 @@
             <th class="text-left">
                 <span class="mr-5">Nachname:</span>
             </th>
-            <td>
+            <td class="w-full">
                 <form id="form">
                     <label class="label">
                         <input
@@ -48,7 +48,25 @@
         </tr>
         <tr>
             <th class="text-left">
-                <span class="mr-5">Anschrift:</span>
+                Telefonnummer:
+            </th>
+            <td>
+                <form id="form">
+                    <label class="label">
+                        <input
+                            disabled={!formEditEnabled}
+                            class="form--disabled input variant-form-material"
+                            type="text"
+                            name="inputField"
+                            placeholder={personalData.phoneNumber}
+                        />
+                    </label>
+                </form>
+            </td>
+        </tr>
+        <tr>
+            <th class="text-left">
+                Straße:
             </th>
             <td>
                 <form id="form">
