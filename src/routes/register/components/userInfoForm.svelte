@@ -3,7 +3,7 @@
     import ContinueButton from "./continueButton.svelte";
 
     // Import utilities
-    import { urls, validateEmail } from "$lib/util.js";
+    import { validateEmail } from "$lib/util.js";
 
     // Definitions
     const indicatorStatus = {
@@ -12,12 +12,21 @@
         error: "!border-error-600",
     };
 
-    // Formfield binding references
-    let emailReference;
+    /**
+     * Password verification: Must...
+     * - contain min. 1: lowercase english letter (a-z)
+     * - contain min. 1: uppercase english letter (A-Z)
+     * - contain min. 1: number (0-9)
+     * - contain min. 1: special character
+     * - be min. 12 characters total
+     */
+    const passwordRegexPattern =
+        /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?\W).{12,}$/;
 
-    // Will get value "input-error" or "input-warning" according to validators
+    // Will get value "error" or "warning" according to validators
     let emailIndicator = indicatorStatus.none;
     let passwordIndicator = indicatorStatus.none;
+    let passwordValidateIndicator = indicatorStatus.none;
 
     let showPassword = false;
     let showPasswordValidate = false;
@@ -33,16 +42,50 @@
         email: "",
         password: "",
     };
+
     // Indicates how many steps of the register process have been completed
     export let currentStep = 0;
 
     // Functions
-    function validateInput() {
-        if (validateEmail(emailReference.value)) {
-            currentStep++; // Go to next step
-        } else {
-            emailIndicator = indicatorStatus.warning;
+    function checkPasswordEquality() {
+        if (passwordRefernce.value !== passwordValidateReference.value) {
+            passwordValidateIndicator = indicatorStatus.error;
+            return false;
         }
+        // Clear previous errors
+        passwordValidateIndicator = indicatorStatus.none;
+        return true;
+    }
+
+    function validatePassword() {
+        return passwordRegexPattern.test(passwordRefernce.value);
+    }
+
+    function validateInput() {
+        if (!validateEmail(formData.email)) {
+            emailIndicator = indicatorStatus.warning;
+            return;
+        } else {
+            emailIndicator = indicatorStatus.none;
+        }
+
+        if (
+            !validatePassword(
+                passwordRefernce.value,
+                passwordValidateReference.value,
+            )
+        ) {
+            passwordIndicator = indicatorStatus.warning;
+            return;
+        } else {
+            passwordIndicator = indicatorStatus.none;
+        }
+
+        if (!checkPasswordEquality()) {
+            return; // Passwords are not equal
+        }
+
+        currentStep++; // Go to next step
     }
 </script>
 
@@ -57,20 +100,23 @@
     placeholder="beispiel.organisation@mail.com"
     bind:value={formData.email}
 />
-{#if emailIndicator == indicatorStatus.warning}
+{#if emailIndicator === indicatorStatus.warning}
     <div class="flex flex-col items-center justify-center transition-opacity">
-        <p class="text-sm text-warning-500">Bitte gib eine valide Email-Adresse ein</p>
+        <p class="text-sm text-warning-400">
+            Bitte gib eine valide Email-Adresse ein
+        </p>
     </div>
 {/if}
-
 
 <!-- Password field -->
 <label class="label" for="password_input">
     <span class="font-semibold">Passwort</span>
 </label>
-<div class="input-group input-group-divider relative grid-cols-[auto_1fr_auto]">
+<div
+    class="input-group input-group-divider relative grid-cols-[auto_1fr_auto] {passwordIndicator}"
+>
     <input
-        class="w-64 sm:w-72 {passwordIndicator}"
+        class="w-64 sm:w-72"
         type={showPassword ? "text" : "password"}
         id="password_input"
         placeholder="Dein super sicheres Passwort ;)"
@@ -87,13 +133,29 @@
         {/if}
     </button>
 </div>
-<div class="input-group input-group-divider relative grid-cols-[auto_1fr_auto]">
+{#if passwordIndicator === indicatorStatus.warning}
+    <div class="flex flex-col items-center justify-center transition-opacity">
+        <ul class="text-sm text-warning-400">
+            <li>Das Passwort muss min. 12 Zeichen lang sein</li>
+            <li>Das Passwort muss enthalten:</li>
+            <li>- min. 1 Kleinbuchstabe</li>
+            <li>- min. 1 Großbuchstabe</li>
+            <li>- min. 1 Zahl</li>
+            <li>- min. 1 Sonderzeichen</li>
+        </ul>
+    </div>
+{/if}
+
+<div
+    class="input-group input-group-divider relative grid-cols-[auto_1fr_auto] {passwordValidateIndicator}"
+>
     <input
-        class="w-64 sm:w-72 {passwordIndicator}"
+        class="w-64 sm:w-72"
         type={showPasswordValidate ? "text" : "password"}
         id="password_input_validate"
         placeholder="Wiederhole dein Passwort"
         bind:this={passwordValidateReference}
+        on:input={checkPasswordEquality}
     />
     <button
         class="absolute right-1 top-1 flex h-8 w-14 items-center rounded-r-full border-l-2 border-surface-500 bg-surface-700 pl-4"
@@ -106,5 +168,12 @@
         {/if}
     </button>
 </div>
+{#if passwordValidateIndicator === indicatorStatus.error}
+    <div class="flex flex-col items-center justify-center transition-opacity">
+        <p class="text-sm text-error-600">
+            Die Passwörter müssen übereinstimmen
+        </p>
+    </div>
+{/if}
 
 <ContinueButton onClick={validateInput} />
