@@ -1,11 +1,9 @@
 <script>
     // Framework imports
     import { onMount } from "svelte";
-    import { urls } from "$lib/util.js";
+    import { urls, tryFetchingRestricted } from "$lib/util.js";
     import { popup } from "@skeletonlabs/skeleton";
     import { getToastStore } from "@skeletonlabs/skeleton";
-    // Import 🐦
-    import { ExponentialBackoff, handleAll, retry } from "cockatiel";
 
     // Definitions
 
@@ -40,12 +38,6 @@
         background: "variant-filled-error",
     };
 
-    // Policy for restarting backend fetched up to 5 times if there's no reply
-    const retryPolicy = retry(handleAll, {
-        maxAttempts: 5,
-        backoff: new ExponentialBackoff(),
-    });
-
     // Popup settings
     const popupClick = {
         event: "click",
@@ -67,10 +59,8 @@
     async function fetchCarForReservation() {
         carData = new Promise(async (resolve, reject) => {
             try {
-                const response = await retryPolicy.execute(() =>
-                    fetch(urls.get.singleCar + reservationData.carId, {
-                        credentials: "include",
-                    }),
+                const response = await tryFetchingRestricted(
+                    urls.get.singleCar + reservationData.carId,
                 );
                 if (response.ok) {
                     resolve(await response.json());
@@ -85,18 +75,9 @@
 
     async function confirmDeletion() {
         try {
-            const response = await retryPolicy.execute(() =>
-                fetch(
-                    new Request(
-                        urls.delete.singleReservation +
-                            "/" +
-                            reservationData.id,
-                        {
-                            method: "DELETE",
-                            credentials: "include",
-                        },
-                    ),
-                ),
+            const response = await tryFetchingRestricted(
+                urls.delete.singleReservation + reservationData.id,
+                "DELETE",
             );
             if (response.ok) {
                 location.reload();
