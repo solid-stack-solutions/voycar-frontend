@@ -4,23 +4,14 @@
     import { goto } from "$app/navigation";
     import { onMount } from "svelte";
 
-    // Import 🐦
-    import { ExponentialBackoff, handleAll, retry } from "cockatiel";
-
-    // Util library import for url routes
-    import { urls } from "$lib/util.js";
+    // Util library import for url routes and fetches
+    import { urls, tryFetchingRestricted } from "$lib/util.js";
 
     // Component imports
     import UserPageLoadingPlaceholders from "./userPageLoadingPlaceholders.svelte";
     import LoggedInUser from "./loggedInUser.svelte";
 
     // Definitions
-    // Policy for restarting backend fetched up to 5 times if there's no reply
-    const retryPolicy = retry(handleAll, {
-        maxAttempts: 5,
-        backoff: new ExponentialBackoff(),
-    });
-
     // Get Toaststore
     const toastStore = getToastStore();
     // Set non resolving promise as default
@@ -40,10 +31,8 @@
         personalData = new Promise(async (resolve, reject) => {
             try {
                 // Fetch backend for personal Data with retry policy
-                const response = await retryPolicy.execute(() =>
-                    fetch(urls.get.memberPersonalData, {
-                        credentials: "include",
-                    }),
+                const response = await tryFetchingRestricted(
+                    urls.get.memberPersonalData,
                 );
                 if (response.ok) {
                     resolve(await response.json());

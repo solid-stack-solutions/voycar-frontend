@@ -2,20 +2,14 @@
     // Framework imports
     import { getToastStore } from "@skeletonlabs/skeleton";
 
-    // Import 🐦
-    import { ConstantBackoff, handleAll, retry } from "cockatiel";
-
     // Import backend urls
-    import { urls } from "$lib/util.js";
+    import { urls, validateEmail, tryFetchingRestricted } from "$lib/util.js";
 
     import { goto } from "$app/navigation";
 
     // Definitions
     // Constants
     const toastStore = getToastStore();
-
-    const mailRegexPattern =
-        /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
     // Enums
     const btnIcon = {
@@ -28,12 +22,6 @@
         warning: "!border-warning-400",
         error: "!border-error-600",
     };
-
-    // Policy for fetching
-    const retryPolicy = retry(handleAll, {
-        maxAttempts: 3, // Try 3 times
-        backoff: new ConstantBackoff(50), // Wait 50ms after each try
-    });
 
     // Toast Settings
     const toast = {
@@ -56,10 +44,6 @@
     let showPassword = false;
 
     // Functions
-    function validateEmail(email) {
-        return mailRegexPattern.test(email);
-    }
-
     function resetIndicators() {
         emailIndicator = indicatorStatus.none;
         passwordIndicator = indicatorStatus.none;
@@ -83,17 +67,10 @@
                 email: email,
                 password: password,
             };
-            const response = await retryPolicy.execute(() =>
-                fetch(
-                    new Request(urls.post.login, {
-                        method: "POST",
-                        credentials: "include",
-                        headers: {
-                            "Content-Type": "application/json",
-                        },
-                        body: JSON.stringify(mybody),
-                    }),
-                ),
+            const response = await tryFetchingRestricted(
+                urls.post.login,
+                "POST",
+                mybody,
             );
             if (response.ok) {
                 toastStore.trigger(toast);
@@ -119,7 +96,7 @@
         <form class="space-y-3 rounded-md border-2 border-secondary-500 p-4">
             <!-- Email field -->
             <label class="label" for="email_input">
-                <span>Email</span>
+                <span class="font-semibold">Email</span>
             </label>
             <input
                 class="input {emailIndicator}"
@@ -139,7 +116,7 @@
             {/if}
             <!-- Password field -->
             <label class="label" for="password_input">
-                <span>Passwort</span>
+                <span class="font-semibold">Passwort</span>
             </label>
             <div class="relative">
                 <input
