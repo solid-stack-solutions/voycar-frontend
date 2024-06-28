@@ -17,6 +17,7 @@
 
     let formData = {
         userData: {},
+        // Set these keys explicitly so component can iterate over them
         memberData: {
             firstName: "",
             lastName: "",
