@@ -26,7 +26,6 @@
     // Runs as soon as the component is mounted
     onMount(async () => {
         try {
-            console.log("logged");
             // Fetch backend to check if user is signed in
             const response = await retryPolicy.execute(() =>
                 fetch(urls.get.isLoggedIn, { credentials: "include" }),
