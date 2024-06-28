@@ -54,7 +54,7 @@
         slotTrail="place-content-end"
     >
         <svelte:fragment slot="lead">
-            <div/>
+            <div />
         </svelte:fragment>
         <svelte:fragment slot="default">
             <a href="/">
