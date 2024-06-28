@@ -1,10 +1,8 @@
 <script>
-    // Import 🐦
-    import { ConstantBackoff, handleAll, retry } from "cockatiel";
     import { getToastStore } from "@skeletonlabs/skeleton";
 
     // Import backend urls
-    import { urls } from "$lib/util.js";
+    import { urls, tryFetchingRestricted } from "$lib/util.js";
     // Parent data exports
     export let personalData;
 
@@ -21,13 +19,7 @@
     let houseNumberReference;
     let cityReference;
     let postalCodeReference;
-
-    // Policy for fetching
-    const retryPolicy = retry(handleAll, {
-        maxAttempts: 3, // Try 3 times
-        backoff: new ConstantBackoff(50), // Wait 50ms after each try
-    });
-
+    
     // Toast Settings
     const successToast = {
         message: "Deine Daten wurden erfolgreich aktualisiert",
@@ -87,18 +79,7 @@
         try {
             const mybody = collectData();
             console.log(JSON.stringify(mybody));
-            const response = await retryPolicy.execute(() =>
-                fetch(
-                    new Request(urls.put.newPersonalData, {
-                        method: "PUT",
-                        credentials: "include",
-                        headers: {
-                            "Content-Type": "application/json",
-                        },
-                        body: JSON.stringify(mybody),
-                    }),
-                ),
-            );
+            const response = await tryFetchingRestricted(urls.put.newPersonalData, "PUT", mybody);
             if (response.ok) {
                 toastStore.trigger(successToast);
                 needReload = true;
