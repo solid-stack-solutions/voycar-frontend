@@ -7,12 +7,14 @@ const user = "user/";
 const member = "member/";
 const auth = "auth/";
 const personal = "personal";
+const plan = "plan/";
 export const urls = {
     get: {
         memberPersonalData: baseURL + member + personal,
         isLoggedIn: baseURL + user + "whoami",
         reservationPersonalData: baseURL + reservation + personal,
         singleCar: baseURL + car,
+        allPlans: baseURL + plan + "all",
     },
     post: {
         forgotPassword: baseURL + auth + "forgot-password",
