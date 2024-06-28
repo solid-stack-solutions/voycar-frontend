@@ -126,9 +126,9 @@
             </form>
         {:else}
             <div
-                class="flex-col-2 flex items-center justify-between rounded-md border-2 border-secondary-500 p-4"
+                class="rounded-md border-2 border-secondary-500 p-4"
             >
-                <p>Registrierungsdaten werden verarbeitet...</p>
+                <div class="w-full font-bold p-2 animate-pulse rounded-md bg-surface-600">Registrierungsdaten werden verarbeitet...</div>
             </div>
         {/if}
 

@@ -65,7 +65,7 @@
                     {#each [1, 2, 3] as _}
                         <div class="card h-80 p-4">
                             <div
-                                class="h-full animate-pulse rounded-sm bg-surface-600"
+                                class="h-full animate-pulse rounded-md bg-surface-600"
                             />
                         </div>
                     {/each}
