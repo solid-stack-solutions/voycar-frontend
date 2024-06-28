@@ -29,7 +29,7 @@ export const urls = {
         newPersonalData : baseURL + member + personal,
     },
     delete: {
-        singleReservation: baseURL + reservation + personal,
+        singleReservation: baseURL + reservation + personal + "/",
     },
 };
 
