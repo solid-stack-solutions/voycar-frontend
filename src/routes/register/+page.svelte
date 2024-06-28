@@ -71,7 +71,6 @@
                 ...formData.memberData,
                 ...formData.planData,
             };
-            console.log(requestBody);
             const response = await tryFetchingPublic(
                 urls.post.register,
                 "POST",
