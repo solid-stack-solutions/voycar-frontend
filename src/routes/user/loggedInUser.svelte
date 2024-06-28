@@ -1,10 +1,9 @@
 <!-- Account page for logged in users -->
 <script>
     // Framework imports
-    import { Accordion, AccordionItem, Table } from "@skeletonlabs/skeleton";
-    import { popup } from "@skeletonlabs/skeleton";
+    import { getToastStore, popup } from "@skeletonlabs/skeleton";
     import { goto } from "$app/navigation";
-
+    
     // Component imports
     import UserData from "./userComponents/userData.svelte";
     import UserPaymentData from "./userComponents/userPaymentData.svelte";
@@ -12,7 +11,14 @@
 
     // Export data from parent
     export let personalData;
+    const toastStore = getToastStore();
 
+    const infoToast = {
+        message: "Dieses Feature ist zur Zeit noch nicht verfügbar",
+        hideDismiss: true, // Hide the dismiss button on toast
+        timeout: 3000, // Auto dismiss toast after 3 seconds
+        background: "variant-filled-primary",
+    };
     const popupClick = {
         // Popup settings
         event: "click",
@@ -22,9 +28,7 @@
 
     // Functions
     function confirmDeletion() {
-        // ToDo account deletion logic
-        // Request to backend
-        goto("/"); // Redirect to landing page
+        toastStore.trigger(infoToast);
     }
 </script>
 
