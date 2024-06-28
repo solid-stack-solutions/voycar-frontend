@@ -84,7 +84,7 @@
                                 >
                             </p>
                             <button
-                                type="button"
+                                type="submit"
                                 on:click={() => (formData.planID = plan.id)}
                                 class="variant-filled-primary btn mt-8 text-center"
                                 >Abo wählen</button

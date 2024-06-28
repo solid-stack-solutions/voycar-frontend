@@ -146,6 +146,7 @@
     />
     <button
         class="absolute right-1 top-1 flex h-8 w-14 items-center rounded-r-full border-l-2 border-surface-500 bg-surface-700 pl-4"
+        type="button"
         on:click={() => (showPassword = !showPassword)}
     >
         {#if showPassword}
@@ -181,6 +182,7 @@
     />
     <button
         class="absolute right-1 top-1 flex h-8 w-14 items-center rounded-r-full border-l-2 border-surface-500 bg-surface-700 pl-4"
+        type="button"
         on:click={() => (showPasswordValidate = !showPasswordValidate)}
     >
         {#if showPasswordValidate}
