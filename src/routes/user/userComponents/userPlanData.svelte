@@ -2,13 +2,15 @@
     // Import 🐦
     import { ConstantBackoff, handleAll, retry } from "cockatiel";
     import { getToastStore } from "@skeletonlabs/skeleton";
+    import { onMount } from "svelte";
 
     // Import backend urls
     import { urls } from "$lib/util.js";
     
     // Definitions
     export let personalData;
-
+    // let staticPlanData;
+    let planData = new Promise((resolve, reject) => {});
     const toastStore = getToastStore();
     let formEditEnabled = false;
     let planReference;
@@ -49,9 +51,40 @@
     function collectData(planValue){
         delete personalData['memberId'];
         delete personalData['email'];
-        personalData["planName"] = planValue;
+        personalData["planId"] = resolvePlanNameToPlanId(planValue);
         return personalData;
     }
+
+    function resolvePlanNameToPlanId(planName){
+        for (let index = 0; index < planData.length; index++) {
+            if(planData[index].name == planName){
+                return planData[index].id;
+            }   
+        }
+        throw new Error("Planname is not in backend plan list");
+    }
+
+    // Retrieves all available plans 
+    onMount(() => {
+        planData = new Promise(async (resolve, reject) => {
+            try {
+                // Fetch backend for plan data with retry policy
+                const response = await retryPolicy.execute(() =>
+                    fetch(urls.get.allPlans, {
+                        credentials: "include",
+                    }),
+                );
+                if (response.ok) {
+                    planData = await response.json();
+                } else {
+                    throw new Error("Error while fetching data");
+                }
+            } catch (err) {
+                reject(err); // Reject the promise so Svelte can handle it
+            }
+        });
+    });
+
     // Makes a request to the backend to update the data of the user
     async function updatePlanData() {
         if (formEditEnabled) {
