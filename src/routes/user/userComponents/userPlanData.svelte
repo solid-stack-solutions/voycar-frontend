@@ -42,15 +42,7 @@
 
     // Functions
     function checkPlanNameDidntChange(planValue) {
-        return planValue == personalData.planName;
-    }
-
-    // Collects data from form field and removes unnecessary keys for request
-    function collectData(planValue) {
-        delete personalData["memberId"];
-        delete personalData["email"];
-        personalData["planId"] = planValue;
-        return personalData;
+        return planValue == resolvePlanNameToPlanId(personalData.planName);
     }
 
     function resolvePlanNameToPlanId(planName) {
@@ -90,9 +82,9 @@
             return;
         }
         try {
-            const mybody = collectData(planReference.value);
+            const mybody = { planId: planReference.value };
             const response = await tryFetchingRestricted(
-                urls.put.newPersonalData,
+                urls.put.newPlanData,
                 "PUT",
                 mybody,
             );
