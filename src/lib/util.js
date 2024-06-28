@@ -27,6 +27,7 @@ export const urls = {
     },
     put: {
         newPersonalData: baseURL + member + personal,
+        newPlanData: baseURL + plan + personal,
     },
     delete: {
         singleReservation: baseURL + reservation + personal + "/",
