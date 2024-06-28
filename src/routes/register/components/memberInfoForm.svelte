@@ -5,6 +5,14 @@
 
     let invalidInputs = false;
 
+    const indicatorStatus = {
+        none: "",
+        error: "!border-error-600",
+    };
+
+    // Will get value according to status of validator
+    let birthDateIndicator = indicatorStatus.none;
+
     // Indicates how many steps of the register process have been completed
     export let currentStep = 0;
 
@@ -23,8 +31,32 @@
     };
 
     // Functions
+    function isAtLeast18YearsOld(birthDateString) {
+        const birthDate = new Date(birthDateString);
+        const today = new Date();
+
+        // Calculate age
+        let age = today.getFullYear() - birthDate.getFullYear();
+
+        // Adjust age if the birthdate hasn't occured yet this year
+        const birthDateThisYear = new Date(today.getFullYear(), birthDate.getMonth(), birthDate.getDate());
+        if (today < birthDateThisYear) {
+            age--;
+        }
+
+        return age >= 18;
+    }
+
     function validateInput() {
         invalidInputs = false;
+
+        if (!isAtLeast18YearsOld(formData.birthDate)) {
+            invalidInputs = true;
+            birthDateIndicator = indicatorStatus.error;
+            return;
+        } else {
+            birthDateIndicator = indicatorStatus.none;
+        }
 
         // Check for all inputs if they are empty strings
         for (let key in formData) {
@@ -93,7 +125,7 @@
 
     <p class="font-semibold">Geburtsdaten</p>
     <input
-        class="input"
+        class="input {birthDateIndicator}"
         type="date"
         id="birthdate"
         bind:value={formData.birthDate}
@@ -119,7 +151,11 @@
             class="flex flex-col items-center justify-center transition-opacity"
         >
             <p class="text-sm text-error-600">
-                Alle Felder müssen ausgefüllt werden
+                {#if birthDateIndicator == indicatorStatus.error}
+                    Du musst min. 18 Jahre alt sein, um dich zu registrieren.
+                {:else}
+                    Alle Felder müssen ausgefüllt werden
+                {/if}
             </p>
         </div>
     {/if}
