@@ -59,7 +59,7 @@
                     <p>Zahlungsinformation</p>
                 </div>
                 <!-- Inject user payment data svelte component -->
-                <UserPaymentData paymentName={personalData.paymentName}></UserPaymentData>
+                <UserPaymentData {personalData}></UserPaymentData>
             </div>
             <!-- Subscription plan information -->
             <div class="basis-1/3 rounded-md border-2 border-secondary-500 p-2">
