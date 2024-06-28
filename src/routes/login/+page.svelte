@@ -1,16 +1,8 @@
 <script>
-    // Framework imports
-    import { getToastStore } from "@skeletonlabs/skeleton";
-
     // Import backend urls
     import { urls, validateEmail, tryFetchingRestricted } from "$lib/util.js";
 
-    import { goto } from "$app/navigation";
-
     // Definitions
-    // Constants
-    const toastStore = getToastStore();
-
     // Enums
     const btnIcon = {
         locked: "🔐",
@@ -21,14 +13,6 @@
         none: "",
         warning: "!border-warning-400",
         error: "!border-error-600",
-    };
-
-    // Toast Settings
-    const toast = {
-        message: "Sie wurden erfolgreich angemeldet",
-        hideDismiss: true, // Hide the dismiss button on toast
-        timeout: 3000, // Auto dismiss toast after 3 seconds
-        background: "variant-filled-secondary",
     };
 
     // Variables
@@ -61,6 +45,11 @@
         }
     }
 
+    // Redirects to url and reloads new layout content
+    function redirectAndReloadPage(url){
+        window.location.href = url;
+    }
+
     async function fetchLogin(email, password) {
         try {
             const mybody = {
@@ -73,10 +62,9 @@
                 mybody,
             );
             if (response.ok) {
-                toastStore.trigger(toast);
                 // Login sucessful
                 somethingWrong = false;
-                goto("/");
+                redirectAndReloadPage("/");
             } else {
                 // Login failed on the backend side e.g. because credentials didn't match or account doesn't exists
                 throw new Error("Login failed");
