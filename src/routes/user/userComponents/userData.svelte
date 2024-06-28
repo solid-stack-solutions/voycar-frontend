@@ -75,6 +75,7 @@
         };
     }
 
+    // Makes a request to the backend to update the data of the user
     async function updateUserData() {
         if (formEditEnabled) {
             formEditEnabled = false;
@@ -88,7 +89,7 @@
             console.log(JSON.stringify(mybody));
             const response = await retryPolicy.execute(() =>
                 fetch(
-                    new Request(urls.put.newPersonalPlan, {
+                    new Request(urls.put.newPersonalData, {
                         method: "PUT",
                         credentials: "include",
                         headers: {
