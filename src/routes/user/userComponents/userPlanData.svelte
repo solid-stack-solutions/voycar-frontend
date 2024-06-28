@@ -4,7 +4,7 @@
 
     // Import backend urls
     import { urls, tryFetchingRestricted } from "$lib/util.js";
-    
+
     // Definitions
     const toastStore = getToastStore();
 
@@ -40,23 +40,23 @@
 
     // Functions
 
-    function checkPlanNameDidntChange(planValue){
+    function checkPlanNameDidntChange(planValue) {
         return planValue == personalData.planName;
     }
 
     // Collects data from form field and removes unnecessary keys for request
-    function collectData(planValue){
-        delete personalData['memberId'];
-        delete personalData['email'];
+    function collectData(planValue) {
+        delete personalData["memberId"];
+        delete personalData["email"];
         personalData["planId"] = planValue;
         return personalData;
     }
 
-    function resolvePlanNameToPlanId(planName){
+    function resolvePlanNameToPlanId(planName) {
         for (let index = 0; index < planData.length; index++) {
-            if(planData[index].name == planName){
+            if (planData[index].name == planName) {
                 return planData[index].id;
-            }   
+            }
         }
         throw new Error("Planname is not in backend plan list");
     }
@@ -84,13 +84,17 @@
         if (formEditEnabled) {
             formEditEnabled = false;
         }
-        if(checkPlanNameDidntChange(planReference.value)){
+        if (checkPlanNameDidntChange(planReference.value)) {
             toastStore.trigger(warningToast);
             return;
         }
         try {
             const mybody = collectData(planReference.value);
-            const response = await tryFetchingRestricted(urls.put.newPersonalData, "PUT", mybody);
+            const response = await tryFetchingRestricted(
+                urls.put.newPersonalData,
+                "PUT",
+                mybody,
+            );
             if (response.ok) {
                 toastStore.trigger(successToast);
                 needReload = true;
@@ -102,30 +106,31 @@
         }
     }
 </script>
+
 {#await planData}
-   <p>loading</p> 
+    <p>loading</p>
 {:then planData}
-<div class="relative h-full">
-    <div class="flex flex-row space-x-2">
-        <p class="self-center">Aktueller Tarif:</p>
-        <select 
-            class="select w-2/4" 
-            size="1" 
-            value="{resolvePlanNameToPlanId(personalData.planName)}"
-            disabled = {!formEditEnabled}
-            bind:this={planReference}
+    <div class="relative h-full">
+        <div class="flex flex-row space-x-2">
+            <p class="self-center">Aktueller Tarif:</p>
+            <select
+                class="select w-2/4"
+                size="1"
+                value={resolvePlanNameToPlanId(personalData.planName)}
+                disabled={!formEditEnabled}
+                bind:this={planReference}
             >
-            {#each planData as plan}
-                <option value="{plan.id}">{plan.name}</option>
-            {/each}
-        </select>
-    </div>
-    <div dir="rtl" class="absolute bottom-6 right-2">
-        <button
+                {#each planData as plan}
+                    <option value={plan.id}>{plan.name}</option>
+                {/each}
+            </select>
+        </div>
+        <div dir="rtl" class="absolute bottom-6 right-2">
+            <button
                 type="button"
                 class="variant-filled-warning btn btn-md"
                 on:click={() => (formEditEnabled = !formEditEnabled)}
-                >
+            >
                 Bearbeiten
                 {#if formEditEnabled}
                     verlassen
@@ -133,15 +138,15 @@
                 <img src="/editIcon.svg" alt="edit icon" />
             </button>
             {#if formEditEnabled}
-            <button
-                type="button"
-                class="variant-filled-primary btn btn-md"
-                on:click={updatePlanData}
-            >
-                Aktualisieren
-                <img src="/saveIcon.svg" alt="save icon" />
-            </button>
-        {/if}
+                <button
+                    type="button"
+                    class="variant-filled-primary btn btn-md"
+                    on:click={updatePlanData}
+                >
+                    Aktualisieren
+                    <img src="/saveIcon.svg" alt="save icon" />
+                </button>
+            {/if}
+        </div>
     </div>
-</div>
 {/await}

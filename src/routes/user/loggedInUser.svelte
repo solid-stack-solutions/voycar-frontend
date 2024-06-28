@@ -2,8 +2,7 @@
 <script>
     // Framework imports
     import { getToastStore, popup } from "@skeletonlabs/skeleton";
-    import { goto } from "$app/navigation";
-    
+
     // Component imports
     import UserData from "./userComponents/userData.svelte";
     import UserPaymentData from "./userComponents/userPaymentData.svelte";
@@ -13,12 +12,15 @@
     export let personalData;
     const toastStore = getToastStore();
 
+    // 🍞
     const infoToast = {
         message: "Dieses Feature ist zur Zeit noch nicht verfügbar",
         hideDismiss: true, // Hide the dismiss button on toast
         timeout: 3000, // Auto dismiss toast after 3 seconds
         background: "variant-filled-primary",
     };
+
+    // Popup setting
     const popupClick = {
         // Popup settings
         event: "click",
@@ -97,7 +99,8 @@
                     <button
                         type="button"
                         class="variant-filled-surface btn"
-                        on:click={confirmDeletion}>Bestätigen</button
+                        on:click={() => toastStore.trigger(infoToast)}
+                        >Bestätigen</button
                     >
                 </div>
             </aside>

@@ -1,6 +1,6 @@
 <script>
     import { getToastStore } from "@skeletonlabs/skeleton";
-    
+
     // Definitions
     const toastStore = getToastStore();
 
@@ -15,13 +15,12 @@
         background: "variant-filled-primary",
     };
 
-
-    function updatePaymentData(){
+    function updatePaymentData() {
         formEditEnabled = false;
         toastStore.trigger(infoToast);
     }
 
-    function deletePaymentData(){
+    function deletePaymentData() {
         toastStore.trigger(infoToast);
     }
 </script>
@@ -72,7 +71,11 @@
     <div class="absolute bottom-6 right-2">
         <!-- Buttons -->
         <div dir="rtl" class="">
-            <button type="button" class="variant-filled-error btn btn-md" on:click={deletePaymentData}>
+            <button
+                type="button"
+                class="variant-filled-error btn btn-md"
+                on:click={deletePaymentData}
+            >
                 <!-- ToDo logic for delete button -->
                 Löschen
             </button>
@@ -80,7 +83,7 @@
                 type="button"
                 class="variant-filled-warning btn btn-md"
                 on:click={() => (formEditEnabled = !formEditEnabled)}
-                >
+            >
                 Bearbeiten
                 {#if formEditEnabled}
                     verlassen
@@ -89,13 +92,13 @@
             </button>
             {#if formEditEnabled}
                 <button
-                type="button"
-                class="variant-filled-primary btn btn-md"
-                on:click={updatePaymentData}
-            >
-                Aktualisieren
-                <img src="/saveIcon.svg" alt="save icon" />
-            </button>
+                    type="button"
+                    class="variant-filled-primary btn btn-md"
+                    on:click={updatePaymentData}
+                >
+                    Aktualisieren
+                    <img src="/saveIcon.svg" alt="save icon" />
+                </button>
             {/if}
         </div>
     </div>

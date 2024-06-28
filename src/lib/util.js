@@ -26,7 +26,7 @@ export const urls = {
         logout: baseURL + auth + "logout",
     },
     put: {
-        newPersonalData : baseURL + member + personal,
+        newPersonalData: baseURL + member + personal,
     },
     delete: {
         singleReservation: baseURL + reservation + personal + "/",
