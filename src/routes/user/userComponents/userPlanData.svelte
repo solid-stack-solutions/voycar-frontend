@@ -16,7 +16,7 @@
     let planReference;
     let planData = new Promise((resolve, reject) => {});
 
-    // Success toast 
+    // Success toast
     const successToast = {
         message: "Deine Daten wurden erfolgreich aktualisiert",
         hideDismiss: true, // Hide the dismiss button on toast
@@ -24,7 +24,7 @@
         background: "variant-filled-secondary",
     };
 
-    // Warning toast 
+    // Warning toast
     const warningToast = {
         message: "Du hast keine zu aktualisierenden Daten eingegeben",
         hideDismiss: true, // Hide the dismiss button on toast
@@ -32,7 +32,7 @@
         background: "variant-filled-warning",
     };
 
-    // Error toast 
+    // Error toast
     const errorToast = {
         message: "Deine Daten konnten nicht aktualisiert werden",
         hideDismiss: true, // Hide the dismiss button on toast
