@@ -15,10 +15,13 @@
         goto("/login");
     }
 
-    async function logout(){
+    async function logout() {
         try {
             // Fetch backend to check if user is signed in
-            const response = await tryFetchingRestricted(urls.post.logout, "POST");
+            const response = await tryFetchingRestricted(
+                urls.post.logout,
+                "POST",
+            );
             if (response.ok) {
                 loggedIn = false;
             } else {
@@ -65,9 +68,8 @@
         </svelte:fragment>
         <svelte:fragment slot="trail">
             {#if loggedIn}
-                <button
-                    class="variant-ringed-error btn"
-                    on:click={logout}>Abmelden</button
+                <button class="variant-ringed-error btn" on:click={logout}
+                    >Abmelden</button
                 >
             {:else}
                 <button
