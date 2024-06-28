@@ -124,10 +124,12 @@
                 {/if}
             </form>
         {:else}
-            <div
-                class="rounded-md border-2 border-secondary-500 p-4"
-            >
-                <div class="w-full font-bold p-2 animate-pulse rounded-md bg-surface-600">Registrierungsdaten werden verarbeitet...</div>
+            <div class="rounded-md border-2 border-secondary-500 p-4">
+                <div
+                    class="w-full animate-pulse rounded-md bg-surface-600 p-2 font-bold"
+                >
+                    Registrierungsdaten werden verarbeitet...
+                </div>
             </div>
         {/if}
 

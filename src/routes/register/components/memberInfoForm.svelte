@@ -39,7 +39,11 @@
         let age = today.getFullYear() - birthDate.getFullYear();
 
         // Adjust age if the birthdate hasn't occured yet this year
-        const birthDateThisYear = new Date(today.getFullYear(), birthDate.getMonth(), birthDate.getDate());
+        const birthDateThisYear = new Date(
+            today.getFullYear(),
+            birthDate.getMonth(),
+            birthDate.getDate(),
+        );
         if (today < birthDateThisYear) {
             age--;
         }
