@@ -10,6 +10,7 @@
 
     // Export data from parent
     export let personalData;
+
     const toastStore = getToastStore();
 
     // 🍞

@@ -1,20 +1,22 @@
 <script>
+    // Framework imports
     import { getToastStore } from "@skeletonlabs/skeleton";
     import { onMount } from "svelte";
 
-    // Import backend urls
+    // Import backend urls and fetch function
     import { urls, tryFetchingRestricted } from "$lib/util.js";
 
     // Definitions
     const toastStore = getToastStore();
 
+    // Export data from parent component
     export let personalData;
 
     let formEditEnabled = false;
     let planReference;
     let planData = new Promise((resolve, reject) => {});
 
-    // Success toast Settings
+    // Success toast 
     const successToast = {
         message: "Deine Daten wurden erfolgreich aktualisiert",
         hideDismiss: true, // Hide the dismiss button on toast
@@ -22,7 +24,7 @@
         background: "variant-filled-secondary",
     };
 
-    // Warning toast Settings
+    // Warning toast 
     const warningToast = {
         message: "Du hast keine zu aktualisierenden Daten eingegeben",
         hideDismiss: true, // Hide the dismiss button on toast
@@ -30,7 +32,7 @@
         background: "variant-filled-warning",
     };
 
-    // Error toast Settings
+    // Error toast 
     const errorToast = {
         message: "Deine Daten konnten nicht aktualisiert werden",
         hideDismiss: true, // Hide the dismiss button on toast
@@ -39,7 +41,6 @@
     };
 
     // Functions
-
     function checkPlanNameDidntChange(planValue) {
         return planValue == personalData.planName;
     }

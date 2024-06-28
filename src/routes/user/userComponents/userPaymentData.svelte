@@ -1,28 +1,24 @@
 <script>
+    // Framework imports
     import { getToastStore } from "@skeletonlabs/skeleton";
 
     // Definitions
+    export let personalData;
+
     const toastStore = getToastStore();
 
+    // Variables
     let formEditEnabled = false;
-    export let personalData;
+    // Will be used in future versions
     let paymentName = personalData.paymentName;
 
+    // 🍞
     const infoToast = {
         message: "Dieses Feature ist zur Zeit noch nicht verfügbar",
         hideDismiss: true, // Hide the dismiss button on toast
         timeout: 3000, // Auto dismiss toast after 3 seconds
         background: "variant-filled-primary",
     };
-
-    function updatePaymentData() {
-        formEditEnabled = false;
-        toastStore.trigger(infoToast);
-    }
-
-    function deletePaymentData() {
-        toastStore.trigger(infoToast);
-    }
 </script>
 
 <div class="relative h-full p-2">
@@ -74,9 +70,8 @@
             <button
                 type="button"
                 class="variant-filled-error btn btn-md"
-                on:click={deletePaymentData}
+                on:click={() => toastStore.trigger(infoToast)}
             >
-                <!-- ToDo logic for delete button -->
                 Löschen
             </button>
             <button
@@ -94,7 +89,10 @@
                 <button
                     type="button"
                     class="variant-filled-primary btn btn-md"
-                    on:click={updatePaymentData}
+                    on:click={() => {
+                        formEditEnabled = false;
+                        toastStore.trigger(infoToast);
+                    }}
                 >
                     Aktualisieren
                     <img src="/saveIcon.svg" alt="save icon" />

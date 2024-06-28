@@ -1,14 +1,18 @@
 <script>
+    // Framework imports
     import { getToastStore } from "@skeletonlabs/skeleton";
 
     // Import backend urls
     import { urls, tryFetchingRestricted } from "$lib/util.js";
+
+    // Definitions
+
     // Parent data exports
     export let personalData;
 
-    // Definitions
     const toastStore = getToastStore();
 
+    // Variables
     let formEditEnabled = false;
     let needReload = false;
 
@@ -20,7 +24,7 @@
     let cityReference;
     let postalCodeReference;
 
-    // Toast Settings
+    // 🍞s
     const successToast = {
         message: "Deine Daten wurden erfolgreich aktualisiert",
         hideDismiss: true, // Hide the dismiss button on toast
@@ -42,6 +46,8 @@
         background: "variant-filled-error",
     };
 
+    // Functions
+
     function checkIfAllFieldsEmpty() {
         return (
             firstNameReference.value == "" &&
@@ -53,6 +59,7 @@
             phonenumberReference.value == ""
         );
     }
+
     // Get data from the form fields and bind them together in a json object
     function collectData() {
         return {

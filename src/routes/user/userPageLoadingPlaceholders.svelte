@@ -1,4 +1,5 @@
 <script>
+    // Framework imports
     import { ProgressRadial } from "@skeletonlabs/skeleton";
 </script>
 
