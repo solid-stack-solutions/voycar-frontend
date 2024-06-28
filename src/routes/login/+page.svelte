@@ -46,7 +46,7 @@
     }
 
     // Redirects to url and reloads new layout content
-    function redirectAndReloadPage(url){
+    function redirectAndReloadPage(url) {
         window.location.href = url;
     }
 
