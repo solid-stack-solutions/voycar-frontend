@@ -1,0 +1,11 @@
+.github
+.svelte-kit
+.vscode
+node_modules
+.dockerignore
+.gitignore
+.docker-compose.yml
+Dockerfile
+LICENSE
+README.md
+vite.config.js.timestamp-*
