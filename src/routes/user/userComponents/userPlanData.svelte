@@ -1,27 +1,20 @@
 <script>
-    // Import 🐦
-    import { ConstantBackoff, handleAll, retry } from "cockatiel";
     import { getToastStore } from "@skeletonlabs/skeleton";
     import { onMount } from "svelte";
 
     // Import backend urls
-    import { urls } from "$lib/util.js";
+    import { urls, tryFetchingRestricted } from "$lib/util.js";
     
     // Definitions
-    export let personalData;
-    // let staticPlanData;
-    let planData = new Promise((resolve, reject) => {});
     const toastStore = getToastStore();
+
+    export let personalData;
+
     let formEditEnabled = false;
     let planReference;
+    let planData = new Promise((resolve, reject) => {});
 
-     // Policy for fetching
-     const retryPolicy = retry(handleAll, {
-        maxAttempts: 3, // Try 3 times
-        backoff: new ConstantBackoff(50), // Wait 50ms after each try
-    });
-
-    // Toast Settings
+    // Success toast Settings
     const successToast = {
         message: "Deine Daten wurden erfolgreich aktualisiert",
         hideDismiss: true, // Hide the dismiss button on toast
@@ -29,6 +22,7 @@
         background: "variant-filled-secondary",
     };
 
+    // Warning toast Settings
     const warningToast = {
         message: "Du hast keine zu aktualisierenden Daten eingegeben",
         hideDismiss: true, // Hide the dismiss button on toast
@@ -36,6 +30,7 @@
         background: "variant-filled-warning",
     };
 
+    // Error toast Settings
     const errorToast = {
         message: "Deine Daten konnten nicht aktualisiert werden",
         hideDismiss: true, // Hide the dismiss button on toast
@@ -43,15 +38,17 @@
         background: "variant-filled-error",
     };
 
+    // Functions
 
     function checkPlanNameDidntChange(planValue){
         return planValue == personalData.planName;
     }
 
+    // Collects data from form field and removes unnecessary keys for request
     function collectData(planValue){
         delete personalData['memberId'];
         delete personalData['email'];
-        personalData["planId"] = resolvePlanNameToPlanId(planValue);
+        personalData["planId"] = planValue;
         return personalData;
     }
 
@@ -64,16 +61,13 @@
         throw new Error("Planname is not in backend plan list");
     }
 
-    // Retrieves all available plans 
+    // Retrieves all available plans at mounting time
     onMount(() => {
         planData = new Promise(async (resolve, reject) => {
             try {
                 // Fetch backend for plan data with retry policy
-                const response = await retryPolicy.execute(() =>
-                    fetch(urls.get.allPlans, {
-                        credentials: "include",
-                    }),
-                );
+                const response = await tryFetchingRestricted(urls.get.allPlans);
+
                 if (response.ok) {
                     planData = await response.json();
                 } else {
@@ -85,7 +79,7 @@
         });
     });
 
-    // Makes a request to the backend to update the data of the user
+    // Makes a request to the backend to update the plan data of the user
     async function updatePlanData() {
         if (formEditEnabled) {
             formEditEnabled = false;
@@ -96,19 +90,7 @@
         }
         try {
             const mybody = collectData(planReference.value);
-            console.log(JSON.stringify(mybody));
-            const response = await retryPolicy.execute(() =>
-                fetch(
-                    new Request(urls.put.newPersonalData, {
-                        method: "PUT",
-                        credentials: "include",
-                        headers: {
-                            "Content-Type": "application/json",
-                        },
-                        body: JSON.stringify(mybody),
-                    }),
-                ),
-            );
+            const response = await tryFetchingRestricted(urls.put.newPersonalData, "PUT", mybody);
             if (response.ok) {
                 toastStore.trigger(successToast);
                 needReload = true;
@@ -129,12 +111,12 @@
         <select 
             class="select w-2/4" 
             size="1" 
-            value="{personalData.planName}"
+            value="{resolvePlanNameToPlanId(personalData.planName)}"
             disabled = {!formEditEnabled}
             bind:this={planReference}
             >
             {#each planData as plan}
-                <option value="{plan.name}">{plan.name}</option>
+                <option value="{plan.id}">{plan.name}</option>
             {/each}
         </select>
     </div>
