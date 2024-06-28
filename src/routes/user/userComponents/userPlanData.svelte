@@ -12,6 +12,7 @@
     // Export data from parent component
     export let personalData;
 
+    let lastplanValue;
     let formEditEnabled = false;
     let planReference;
     let planData = new Promise((resolve, reject) => {});
@@ -42,7 +43,7 @@
 
     // Functions
     function checkPlanNameDidntChange(planValue) {
-        return planValue == resolvePlanNameToPlanId(personalData.planName);
+        return planValue == lastplanValue;
     }
 
     function resolvePlanNameToPlanId(planName) {
@@ -63,6 +64,7 @@
 
                 if (response.ok) {
                     planData = await response.json();
+                    lastplanValue = resolvePlanNameToPlanId(personalData.planName);
                 } else {
                     throw new Error("Error while fetching data");
                 }
@@ -83,6 +85,7 @@
         }
         try {
             const mybody = { planId: planReference.value };
+            console.log(mybody);
             const response = await tryFetchingRestricted(
                 urls.put.newPlanData,
                 "PUT",
@@ -90,16 +93,16 @@
             );
             if (response.ok) {
                 toastStore.trigger(successToast);
-                needReload = true;
+                lastplanValue = planReference.value;
             } else {
                 throw new Error("Update failed");
             }
         } catch (err) {
+            console.log(err);
             toastStore.trigger(errorToast);
         }
     }
 </script>
-
 {#await planData}
     <p>loading</p>
 {:then planData}
