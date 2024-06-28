@@ -59,7 +59,16 @@
                 class="isolate -mt-16 grid max-w-sm grid-cols-1 gap-x-5 gap-y-10 sm:mx-auto lg:-mx-8 lg:mt-0 lg:max-w-none lg:grid-cols-3 xl:-mx-4"
             >
                 {#await planData}
-                    <h4 class="h4">Pläne werden geladen</h4>
+                    <h4 class="h4 col-span-3 text-center">
+                        Pläne werden geladen...
+                    </h4>
+                    {#each [1, 2, 3] as _}
+                        <div class="card h-80 p-4">
+                            <div
+                                class="h-full animate-pulse rounded-sm bg-surface-600"
+                            />
+                        </div>
+                    {/each}
                 {:then planData}
                     {#each planData as plan, index}
                         <div
