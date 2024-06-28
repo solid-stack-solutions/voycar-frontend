@@ -120,7 +120,9 @@
         }
     }
 </script>
-
+{#await planData}
+   <p>loading</p> 
+{:then planData}
 <div class="relative h-full">
     <div class="flex flex-row space-x-2">
         <p class="self-center">Aktueller Tarif:</p>
@@ -131,9 +133,9 @@
             disabled = {!formEditEnabled}
             bind:this={planReference}
             >
-            <option value="basic">Basic</option>
-            <option value="reduced">Reduziert</option>
-            <option value="exclusive">Exklusiv</option>
+            {#each planData as plan}
+                <option value="{plan.name}">{plan.name}</option>
+            {/each}
         </select>
     </div>
     <div dir="rtl" class="absolute bottom-6 right-2">
@@ -160,3 +162,4 @@
         {/if}
     </div>
 </div>
+{/await}
