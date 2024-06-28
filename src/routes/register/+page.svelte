@@ -3,8 +3,13 @@
     import UserInfoForm from "./components/userInfoForm.svelte";
     import MemberInfoForm from "./components/memberInfoForm.svelte";
     import PlanForm from "./components/planForm.svelte";
+
+    import { goto } from "$app/navigation";
+
     // Import utilities
     import { urls, tryFetchingPublic } from "$lib/util.js";
+    import { getToastStore } from "@skeletonlabs/skeleton";
+    const toastStore = getToastStore();
 
     // The steps of the register process and how many have been completed
     const registerSteps = ["User", "Member", "Plan", "Finish"];
@@ -27,6 +32,34 @@
         planData: {},
     };
 
+    // Toast Settings
+    const toastSuccess = {
+        message: "Du hast dich erfolgreich registriert",
+        autohide: false, // No timeout
+        background: "variant-filled-primary",
+    };
+    const toastVerifyHint = {
+        message:
+            "Bitte verifiziere deine E-Mail Adresse bevor du dich einloggst.",
+        autohide: false, // No timeout
+        background: "variant-filled-warning",
+    };
+    const toastError = {
+        message:
+            "Du hast bei der Registrierung ungültige Daten eingeben.<br>" +
+            "Wenn du bereits ein Konto hast nutze den Login.",
+        hideDismiss: true,
+        timeout: 7000, // Auto dismiss after 7 seconds
+        background: "variant-filled-error",
+    };
+    const toastUnknownError = {
+        message:
+            "Unbekannter Fehler bei Registrierung. Versuche es später erneut.",
+        hideDismiss: true,
+        timeout: 5000, // Auto dismiss after 3 seconds
+        background: "variant-filled-error",
+    };
+
     // Functions
     async function handleFormSubmit() {
         currentStep++;
@@ -46,14 +79,19 @@
             );
 
             if (response.ok) {
-                // ToDo register success, inform user about verify mail
-                console.log("Register success");
+                toastStore.trigger(toastSuccess);
+                toastStore.trigger(toastVerifyHint);
+                goto("/login");
+            } else if (response.status == 400) {
+                // Badrequest
+                toastStore.trigger(toastError);
+                currentStep = 0; // Goto first step of register process
             } else {
-                // ToDo handle possible error messages
-                throw new Error("unexpected result");
+                throw new Error("Unexpected result");
             }
         } catch (err) {
-            throw err;
+            toastStore.trigger(toastUnknownError);
+            goto("/");
         }
     }
 </script>
