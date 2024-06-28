@@ -64,7 +64,9 @@
 
                 if (response.ok) {
                     planData = await response.json();
-                    lastplanValue = resolvePlanNameToPlanId(personalData.planName);
+                    lastplanValue = resolvePlanNameToPlanId(
+                        personalData.planName,
+                    );
                 } else {
                     throw new Error("Error while fetching data");
                 }
@@ -103,6 +105,7 @@
         }
     }
 </script>
+
 {#await planData}
     <p>loading</p>
 {:then planData}
