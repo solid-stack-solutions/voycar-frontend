@@ -108,7 +108,6 @@
         }
         try {
             const mybody = collectData();
-            console.log(JSON.stringify(mybody));
             const response = await tryFetchingRestricted(
                 urls.put.newPersonalData,
                 "PUT",
