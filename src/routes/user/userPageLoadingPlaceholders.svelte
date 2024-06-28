@@ -4,7 +4,7 @@
 <div
     class="flex h-[70vh] flex-col items-center justify-center space-y-4"
 >
-    <h4 class="h4">Laden deiner Reservierungen</h4>
+    <h4 class="h4">Laden deiner Kundendaten</h4>
     <ProgressRadial
         stroke={60}
         meter="stroke-primary-500"
