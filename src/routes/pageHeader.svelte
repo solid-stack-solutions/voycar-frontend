@@ -57,7 +57,16 @@
             <div />
         </svelte:fragment>
         <svelte:fragment slot="default">
-            <a href="/" on:click|preventDefault={() => {if(window.location.pathname == "/") {location.reload();}else{window.location.href = "/"}}} >
+            <a
+                href="/"
+                on:click|preventDefault={() => {
+                    if (window.location.pathname == "/") {
+                        location.reload();
+                    } else {
+                        window.location.href = "/";
+                    }
+                }}
+            >
                 <!-- Voycar Logo -->
                 <img
                     src="/logo-full-white.svg"
