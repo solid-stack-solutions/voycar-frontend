@@ -9,6 +9,7 @@ const car = "car/";
 const user = "user/";
 const member = "member/";
 const auth = "auth/";
+const plan = "plan/";
 
 export const urls = {
     get: {
@@ -16,6 +17,7 @@ export const urls = {
         isLoggedIn: baseURL + user + "whoami",
         reservationPersonalData: baseURL + reservation + "personal",
         singleCar: baseURL + car,
+        allPlans: baseURL + plan + "all",
     },
     post: {
         forgotPassword: baseURL + auth + "forgot-password",
