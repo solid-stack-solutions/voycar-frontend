@@ -27,11 +27,6 @@
         target: "popupClick",
         placement: "top",
     };
-
-    // Functions
-    function confirmDeletion() {
-        toastStore.trigger(infoToast);
-    }
 </script>
 
 <div>
