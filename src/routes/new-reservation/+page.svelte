@@ -68,7 +68,7 @@
     let cars = new Promise((resolve, reject) => {});
     let stations = new Promise((resolve, reject) => {});
 
-    function resetIndicators(){
+    function resetIndicators() {
         periodIndicator = false;
         emptyIndicator = false;
         beginIndicator = indicatorStatus.none;
@@ -129,23 +129,26 @@
         return false;
     }
 
-    function checkPeriodFields(){
-        if(beginReference.value == "" || endReference.value == ""){
+    function checkPeriodFields() {
+        if (beginReference.value == "" || endReference.value == "") {
             emptyIndicator = true;
             return false;
         }
         return true;
     }
 
-    function checkIfDatePeriodIsValid(dateBeginn, dateEnd){
+    function checkIfDatePeriodIsValid(dateBeginn, dateEnd) {
         let valid = true;
         const dateNow = Date.now();
-        if(new Date(dateBeginn) < dateNow){
+        if (new Date(dateBeginn) < dateNow) {
             beginIndicator = indicatorStatus.warning;
             periodIndicator = true;
             valid = false;
         }
-        if(new Date(dateEnd) > new Date(dateNow).setMonth(new Date(dateNow).getMonth()+6)){
+        if (
+            new Date(dateEnd) >
+            new Date(dateNow).setMonth(new Date(dateNow).getMonth() + 6)
+        ) {
             endIndicator = indicatorStatus.warning;
             periodIndicator = true;
             valid = false;
@@ -221,9 +224,13 @@
                     bind:this={endReference}
                 />
                 {#if emptyIndicator}
-                    <p class="text-error-500 text-center">Zeitraumfeld(er) dürfen nicht leer sein</p>                    
+                    <p class="text-center text-error-500">
+                        Zeitraumfeld(er) dürfen nicht leer sein
+                    </p>
                 {:else if periodIndicator}
-                    <p class="text-warning-500 text-center">Bitte gib einen validen Zeitraum an</p>                    
+                    <p class="text-center text-warning-500">
+                        Bitte gib einen validen Zeitraum an
+                    </p>
                 {/if}
                 {#await stations then stations}
                     <label class="label" for="input_station">Station</label>
@@ -243,15 +250,21 @@
                     class="variant-filled-primary btn w-full"
                     on:click={() => {
                         resetIndicators();
-                        if(checkPeriodFields() && checkIfDatePeriodIsValid(beginReference.value, endReference.value)){
+                        if (
+                            checkPeriodFields() &&
+                            checkIfDatePeriodIsValid(
+                                beginReference.value,
+                                endReference.value,
+                            )
+                        ) {
                             formPage = 1;
-                        saveSelected(
-                            beginReference.value,
-                            endReference.value,
-                            stations[selectedStationIndex],
-                        );
-                        fetchAvailableAllCars(stations);
-                        }                        
+                            saveSelected(
+                                beginReference.value,
+                                endReference.value,
+                                stations[selectedStationIndex],
+                            );
+                            fetchAvailableAllCars(stations);
+                        }
                     }}>Weiter</button
                 >
             {:else if formPage == 1}
