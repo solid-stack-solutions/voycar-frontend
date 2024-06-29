@@ -69,7 +69,9 @@
             }
         }
 
-        if (invalidInputs) return;
+        if (invalidInputs) {
+            return;
+        }
         currentStep++;
     }
 </script>
