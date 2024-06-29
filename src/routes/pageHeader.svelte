@@ -68,7 +68,7 @@
         </svelte:fragment>
         <svelte:fragment slot="trail">
             {#if loggedIn}
-                <button class="variant-ringed-error btn" on:click={logout}
+                <button class="variant-ringed-surface btn" on:click={logout}
                     >Abmelden</button
                 >
             {:else}
