@@ -102,6 +102,9 @@
             >
                 Reservierungen
             </TabAnchor>
+            <TabAnchor href="/user" selected={$page.url.pathname === "/user"}>
+                Konto
+            </TabAnchor>
         </TabGroup>
     {/if}
 </div>

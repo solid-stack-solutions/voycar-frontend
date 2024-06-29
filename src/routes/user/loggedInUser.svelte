@@ -1,9 +1,7 @@
 <!-- Account page for logged in users -->
 <script>
     // Framework imports
-    import { Accordion, AccordionItem, Table } from "@skeletonlabs/skeleton";
-    import { popup } from "@skeletonlabs/skeleton";
-    import { goto } from "$app/navigation";
+    import { getToastStore, popup } from "@skeletonlabs/skeleton";
 
     // Component imports
     import UserData from "./userComponents/userData.svelte";
@@ -13,31 +11,25 @@
     // Export data from parent
     export let personalData;
 
-    // Definitions
-    // Convert JSON object to iterable array
-    const userKeys = Object.keys(personalData);
-    const userInfo = Object.values(personalData);
-    const userID = personalData.userID;
-    const userSubPlanID = personalData.subPlanID;
-    const userPaymentInfoID = personalData.paymentInfoID;
+    const toastStore = getToastStore();
+
+    // 🍞
+    const infoToast = {
+        message: "Dieses Feature ist zur Zeit noch nicht verfügbar",
+        hideDismiss: true, // Hide the dismiss button on toast
+        timeout: 3000, // Auto dismiss toast after 3 seconds
+        background: "variant-filled-primary",
+    };
+
+    // Popup setting
     const popupClick = {
         // Popup settings
         event: "click",
         target: "popupClick",
         placement: "top",
     };
-
-    // Functions
-    function confirmDeletion() {
-        // ToDo account deletion logic
-        // Request to backend
-        goto("/"); // Redirect to landing page
-    }
 </script>
 
-<svelte:head>
-    <title>Ihr Voycar-Konto</title>
-</svelte:head>
 <div>
     <div class="pb-4">
         <p class="pl-2 text-xl font-semibold">
@@ -46,63 +38,41 @@
             {personalData.lastName}
         </p>
     </div>
-    <div>
-        <!-- Accordion for user data-->
-        <Accordion>
-            <!-- Personal details tab -->
-            <AccordionItem class="rounded-md border-2 border-primary-500">
-                <svelte:fragment slot="summary"
-                    >Persönliche Informationen</svelte:fragment
-                >
-                <svelte:fragment slot="content">
-                    <!-- Inject user data svelte component -->
-                    <UserData {userKeys} {userInfo}></UserData>
-                </svelte:fragment>
-                <svelte:fragment slot="lead">
-                    <img
-                        src="/personalDetailsIcon.svg"
-                        alt=""
-                        style="margin-right: 4px; margin-left: 4px;"
-                    />
-                </svelte:fragment>
-            </AccordionItem>
+    <div class="grid grid-cols-2 gap-4">
+        <!-- Personal details tab -->
+        <div class="rounded-md border-2 border-secondary-500 p-2">
+            <div class="flex flex-row">
+                <img
+                    src="/personalDetailsIcon.svg"
+                    alt="personal details icon"
+                />
+                <p>Persönliche Informationen</p>
+            </div>
+            <div>
+                <!-- Inject user data svelte component -->
+                <UserData {personalData} />
+            </div>
+        </div>
+        <div class="flex flex-col space-y-2">
             <!-- Payment information tab -->
-            {#if userPaymentInfoID != null}
-                <AccordionItem class="rounded-md border-2 border-secondary-500">
-                    <svelte:fragment slot="summary"
-                        >Zahlungsinformation</svelte:fragment
-                    >
-                    <svelte:fragment slot="content">
-                        <!-- Inject user payment data svelte component -->
-                        <UserPaymentData {userID}></UserPaymentData>
-                    </svelte:fragment>
-                    <svelte:fragment slot="lead">
-                        <img
-                            src="/paymentInfoIcon.svg"
-                            alt="payment info icon"
-                            style="margin-right: 4px; margin-left: 4px;"
-                        />
-                    </svelte:fragment>
-                </AccordionItem>
-            {/if}
+            <div class="basis-2/3 rounded-md border-2 border-secondary-500 p-2">
+                <div class="flex flex-row">
+                    <img src="/paymentInfoIcon.svg" alt="payment info icon" />
+                    <p>Zahlungsinformation</p>
+                </div>
+                <!-- Inject user payment data svelte component -->
+                <UserPaymentData {personalData} />
+            </div>
             <!-- Subscription plan information -->
-            {#if userSubPlanID != null}
-                <AccordionItem class="rounded-md border-2 border-tertiary-500">
-                    <svelte:fragment slot="summary">Tarif</svelte:fragment>
-                    <svelte:fragment slot="content">
-                        <!-- Inject user plan data svelte component -->
-                        <UserPlanData {userID}></UserPlanData>
-                    </svelte:fragment>
-                    <svelte:fragment slot="lead">
-                        <img
-                            src="/planIcon.svg"
-                            alt="plan icon"
-                            style="margin-right: 4px; margin-left: 4px;"
-                        />
-                    </svelte:fragment>
-                </AccordionItem>
-            {/if}
-        </Accordion>
+            <div class="basis-1/3 rounded-md border-2 border-secondary-500 p-2">
+                <div class="flex flex-row">
+                    <img src="/planIcon.svg" alt="plan icon" />
+                    <p>Tarif</p>
+                </div>
+                <!-- Inject user plan data svelte component -->
+                <UserPlanData {personalData} />
+            </div>
+        </div>
     </div>
     <!-- Account delete button -->
     <div class="relative pt-4">
@@ -125,7 +95,8 @@
                     <button
                         type="button"
                         class="variant-filled-surface btn"
-                        on:click={confirmDeletion}>Bestätigen</button
+                        on:click={() => toastStore.trigger(infoToast)}
+                        >Bestätigen</button
                     >
                 </div>
             </aside>

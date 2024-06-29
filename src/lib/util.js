@@ -9,13 +9,15 @@ const car = "car/";
 const user = "user/";
 const member = "member/";
 const auth = "auth/";
-
+const personal = "personal";
+const plan = "plan/";
 export const urls = {
     get: {
-        memberPersonalData: baseURL + member + "personal",
+        memberPersonalData: baseURL + member + personal,
         isLoggedIn: baseURL + user + "whoami",
-        reservationPersonalData: baseURL + reservation + "personal",
+        reservationPersonalData: baseURL + reservation + personal,
         singleCar: baseURL + car,
+        allPlans: baseURL + plan + "all",
     },
     post: {
         forgotPassword: baseURL + auth + "forgot-password",
@@ -23,9 +25,12 @@ export const urls = {
         login: baseURL + auth + "login",
         logout: baseURL + auth + "logout",
     },
-    put: {},
+    put: {
+        newPersonalData: baseURL + member + personal,
+        newPlanData: baseURL + plan + personal,
+    },
     delete: {
-        singleReservation: baseURL + reservation + "personal/",
+        singleReservation: baseURL + reservation + personal + "/",
     },
 };
 
