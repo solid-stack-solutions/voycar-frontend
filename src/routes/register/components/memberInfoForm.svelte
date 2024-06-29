@@ -5,6 +5,7 @@
 
     const indicatorStatus = {
         none: "",
+        warning: "!border-warning-400",
         error: "!border-error-600",
     };
 
@@ -74,6 +75,8 @@
 
         // Check name input fields
         let invalidNames = false;
+        firstNameIndicator = indicatorStatus.none;
+        lastNameIndicator = indicatorStatus.none;
         if (!checkNameLength(formData.firstName)) {
             invalidNames = true;
             firstNameIndicator = indicatorStatus.warning;
@@ -85,8 +88,6 @@
         if (invalidNames) {
             return;
         }
-        firstNameIndicator = indicatorStatus.none;
-        lastNameIndicator = indicatorStatus.none;
 
         // Check age restriction
         if (!isAtLeast18YearsOld(formData.birthDate)) {
@@ -102,14 +103,14 @@
     <BackButton bind:currentStep />
     <p class="font-semibold">Name</p>
     <input
-        class="input"
+        class="input {firstNameIndicator}"
         type="text"
         id="first_name"
         placeholder="Vorname"
         bind:value={formData.firstName}
     />
     <input
-        class="input"
+        class="input {lastNameIndicator}"
         type="text"
         id="last_name"
         placeholder="Nachname"
@@ -120,7 +121,7 @@
             class="flex flex-col items-center justify-center transition-opacity"
         >
             <p class="text-sm text-warning-400">
-                Dein Name muss min. 2 Zeichen und maximal 250 Zeichen lang sein
+                Dein Name muss min. 2 Zeichen und max. 250 Zeichen lang sein
             </p>
         </div>
     {/if}
