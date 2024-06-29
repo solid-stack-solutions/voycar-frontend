@@ -209,11 +209,12 @@
             {:else if formPage == 1}
             <!-- Formpage 2: Selection of car -->
                 {#await cars then loadedCars}
+                {#if loadedCars.length > 0}
                     <label class="label" for="car_table"
                         >Verfügbares Auto auswählen</label
                     >
                     <div class="flex flex-col space-y-4 rounded-lg p-2">
-                        {#if loadedCars[selectedCarIndex]}
+                        
                             {#each loadedCars as car, index}
                                 <a
                                     href="/new-reservation"
@@ -281,8 +282,8 @@
                                     </div>
                                 </a>
                             {/each}
-                        {/if}
                     </div>
+                    
                     <!-- Navigation -->
                     <div class="grid grid-cols-2 space-x-2">
                         <button
@@ -300,6 +301,10 @@
                             }}>Weiter</button
                         >
                     </div>
+                    {:else}
+                        <h4 class="h4 text-center">Es sind leider keine Autos in diesem Zeitraum verfügbar</h4>
+                        <button class="btn variant-filled-primary w-full" on:click={() => {formPage = 0;}}>Zurück</button>
+                    {/if}
                 {/await}
             {:else if formPage == 2}
                 <!-- Formpage3: Reservation summary -->
