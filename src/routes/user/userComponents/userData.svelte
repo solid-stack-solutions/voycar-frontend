@@ -176,7 +176,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <th class="text-left"> Telefonnummer: </th>
+                    <th class="text-left">Telefonnummer:</th>
                     <td>
                         <form id="form">
                             <label class="label">
@@ -193,7 +193,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <th class="text-left"> Straße: </th>
+                    <th class="text-left">Straße:</th>
                     <td>
                         <form id="form">
                             <label class="label">
@@ -210,7 +210,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <th class="text-left"> Hausnummer: </th>
+                    <th class="text-left">Hausnummer:</th>
                     <td>
                         <form id="form">
                             <label class="label">
@@ -246,7 +246,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <th class="text-left"> Postleitzahl: </th>
+                    <th class="text-left">Postleitzahl:</th>
                     <td>
                         <form id="form">
                             <label class="label">
