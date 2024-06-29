@@ -201,9 +201,7 @@
         }
     }
 
-    onMount(async () => {
-        fetchAllStations();
-    });
+    onMount(fetchAllStations);
 </script>
 
 <!-- Login page -->
