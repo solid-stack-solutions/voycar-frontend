@@ -35,6 +35,8 @@
     // External reference to password input
     export let password;
 
+    export let inputGroupLabel = "Passwort";
+
     // Functions
     function checkPasswordEquality() {
         if (passwordRefernce.value !== passwordValidateReference.value) {
@@ -108,7 +110,7 @@ and provide the user with information about the required inputs.
 
 <!-- Password field -->
 <label class="label" for="password_input">
-    <span class="font-semibold">Passwort</span>
+    <span class="font-semibold">{inputGroupLabel}</span>
 </label>
 <div
     class="input-group input-group-divider relative grid-cols-[auto_1fr_auto] {passwordIndicator}"
