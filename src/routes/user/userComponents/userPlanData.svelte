@@ -13,7 +13,7 @@
     export let personalData;
 
     let lastplanValue;
-    let formEditEnabled = false;
+    let editEnabled = false;
     let planReference;
     let planData = new Promise((resolve, reject) => {});
 
@@ -55,6 +55,12 @@
         throw new Error("Planname is not in backend plan list");
     }
 
+    function resetFieldOnCancel(){
+        if(editEnabled){
+            document.getElementById("selectField").value = lastplanValue;
+        }
+    }
+
     // Retrieves all available plans at mounting time
     onMount(() => {
         planData = new Promise(async (resolve, reject) => {
@@ -78,8 +84,8 @@
 
     // Makes a request to the backend to update the plan data of the user
     async function updatePlanData() {
-        if (formEditEnabled) {
-            formEditEnabled = false;
+        if (editEnabled) {
+            editEnabled = false;
         }
         if (checkPlanNameDidntChange(planReference.value)) {
             toastStore.trigger(warningToast);
@@ -115,8 +121,9 @@
             <select
                 class="select w-2/4"
                 size="1"
+                id="selectField"
                 value={resolvePlanNameToPlanId(personalData.planName)}
-                disabled={!formEditEnabled}
+                disabled={!editEnabled}
                 bind:this={planReference}
             >
                 {#each planData as plan}
@@ -128,15 +135,16 @@
             <button
                 type="button"
                 class="variant-filled-warning btn btn-md"
-                on:click={() => (formEditEnabled = !formEditEnabled)}
+                on:click={() => {resetFieldOnCancel(); editEnabled = !editEnabled;}}
             >
-                Bearbeiten
-                {#if formEditEnabled}
-                    verlassen
+                {#if editEnabled}
+                    Abbrechen
+                {:else}
+                    Bearbeiten
                 {/if}
                 <img src="/editIcon.svg" alt="edit icon" />
             </button>
-            {#if formEditEnabled}
+            {#if editEnabled}
                 <button
                     type="button"
                     class="variant-filled-primary btn btn-md"
