@@ -1,6 +1,7 @@
 <script>
     // Framework imports
     import { getToastStore } from "@skeletonlabs/skeleton";
+    import { goto } from "$app/navigation";
 
     // Import backend urls
     import { urls, tryFetchingRestricted } from "$lib/util.js";
@@ -131,6 +132,7 @@
             );
             if (response.ok) {
                 toastStore.trigger(toastSuccsess);
+                goto("/reservations");
             } else {
                 throw new Error("Create reservation failed");
             }
