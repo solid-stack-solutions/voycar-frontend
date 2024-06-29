@@ -48,7 +48,7 @@
     const toastError = {
         message:
             "Du hast bei der Registrierung ungültige Daten eingeben.<br>" +
-            "Wenn du bereits ein Konto hast nutze den Login.",
+            "Melde dich an, wenn du bereits ein Konto hast.",
         hideDismiss: true,
         timeout: 7000, // Auto dismiss after 7 seconds
         background: "variant-filled-error",
