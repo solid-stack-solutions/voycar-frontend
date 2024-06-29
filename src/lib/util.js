@@ -47,7 +47,7 @@ export function toaster(toast){
     message: toast.message,
     hideDismiss: true, // Hide the dismiss button on toast
     timeout: 3000, // Auto dismiss toast after 3 seconds
-    background: `variant-filled-${toast.severity}`,}
+    background: `variant-filled-${toast.bg}`,}
 }
 
 

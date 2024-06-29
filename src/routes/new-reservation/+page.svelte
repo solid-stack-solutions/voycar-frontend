@@ -15,22 +15,22 @@
     // Toast Settings
     const toastSuccsess = {
         message: "Reservierung wurde erfolgreich erstellt",
-        background: "variant-filled-secondary",
+        bg: "secondary",
     };
 
     const toastError = {
         message: "Reservierung konnte nicht angelegt werden",
-        severity: "variant-filled-error",
+        bg: "error",
     };
 
     const backendNotAvailableToast = {
         message: "Das Backend ist gerade nicht erreichbar, es konnten keine Daten geladen werden",
-        severity: "error",
+        bg: "error",
     };
 
     const noCarSelectedToast = {
         message: "Du hast kein Auto ausgewählt",
-        severity: "warning",
+        bg: "warning",
     }
 
     const indicatorStatus = {
