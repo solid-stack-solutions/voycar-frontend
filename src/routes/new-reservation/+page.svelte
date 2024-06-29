@@ -9,6 +9,7 @@
 
     // Definitions
 
+    //Constants
     const toastStore = getToastStore();
 
     // Toast Settings
@@ -35,21 +36,24 @@
         hour12: false,
     };
 
+    // Variables
     let selectedCarIndex = 0;
     let selectedStationIndex = 0;
 
+    // Global temporary save variables 
     let selectedStation;
     let selectedBeginn;
     let selectedEnd;
     let selectedCar;
 
+    // Binding references
     let beginReference;
     let endReference;
 
-    let memberId;
-    let loadedStations;
+    // Formpage index for changing form view according to user reservation progress
     let formPage = 0;
 
+    // Initialize promises as empty on mount
     let cars = new Promise((resolve, reject) => {});
     let stations = new Promise((resolve, reject) => {});
 
@@ -94,6 +98,7 @@
         });
     }
 
+    // Checks wether a car was selected and saves it 
     function checkAndSaveCarSelected(cars) {
         const buttons = document.getElementsByName("radio-button");
         for (let index = 0; index < buttons.length; index++) {
@@ -112,12 +117,14 @@
         );
     }
 
+    // Saves current values in global variables 
     function saveSelected(begin, end, station) {
         selectedBeginn = begin;
         selectedEnd = end;
         selectedStation = station;
     }
 
+    // Fetches backend to create a new reservation, triggers a toast according to response status
     async function createReservation() {
         try {
             const mybody = {
@@ -143,9 +150,11 @@
         }
     }
 
+
     onMount(async () => {
         fetchAllStations();
     });
+
 </script>
 
 <!-- Login page -->
@@ -154,6 +163,7 @@
     <div class="w-1/2 items-center justify-center space-y-4">
         <form class="space-y-3 rounded-md border-2 border-secondary-500 p-4">
             {#if formPage == 0}
+            <!-- Formpage 1: Selection of station and date of begining and end of reservation -->
                 <label class="label" for="input_begin">Beginn</label>
                 <input
                     class="input"
@@ -183,7 +193,7 @@
                     </select>
                 {/await}
                 <!-- ToDo nur weiter wenn Datum in der Zukunft -->
-                <!-- ToDo format Date -->
+                <!-- Navigation -->
                 <button
                     class="variant-filled-primary btn w-full"
                     on:click={() => {
@@ -197,6 +207,7 @@
                     }}>Weiter</button
                 >
             {:else if formPage == 1}
+            <!-- Formpage 2: Selection of car -->
                 {#await cars then loadedCars}
                     <label class="label" for="car_table"
                         >Verfügbares Auto auswählen</label
@@ -272,6 +283,7 @@
                             {/each}
                         {/if}
                     </div>
+                    <!-- Navigation -->
                     <div class="grid grid-cols-2 space-x-2">
                         <button
                             class="variant-filled-primary btn"
@@ -290,7 +302,7 @@
                     </div>
                 {/await}
             {:else if formPage == 2}
-                <!-- Reservation summary -->
+                <!-- Formpage3: Reservation summary -->
                 <h3 class="h4 text-center">Zusammenfassung der Reservierung</h3>
                 <div class="grid grid-cols-2">
                     <img
@@ -338,6 +350,7 @@
                         </table>
                     </div>
                 </div>
+                <!-- Navigation -->
                 <div class="grid grid-cols-2 space-x-2">
                     <button
                         class="variant-filled-primary btn"
