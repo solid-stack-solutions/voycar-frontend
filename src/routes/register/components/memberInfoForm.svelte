@@ -3,12 +3,12 @@
     import ContinueButton from "./continueButton.svelte";
     import BackButton from "./backButton.svelte";
 
-    let invalidInputs = false;
-
     const indicatorStatus = {
         none: "",
         error: "!border-error-600",
     };
+
+    let invalidInputs = false;
 
     // Will get value according to status of validator
     let birthDateIndicator = indicatorStatus.none;
