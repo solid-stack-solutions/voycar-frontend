@@ -107,7 +107,7 @@
 </script>
 
 {#await planData}
-    <p>loading</p>
+    <p>Tarife werden geladen...</p>
 {:then planData}
     <div class="relative h-full">
         <div class="flex flex-row space-x-2">
