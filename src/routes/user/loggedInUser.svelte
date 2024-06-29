@@ -50,7 +50,7 @@
             </div>
             <div>
                 <!-- Inject user data svelte component -->
-                <UserData {personalData}></UserData>
+                <UserData {personalData} />
             </div>
         </div>
         <div class="flex flex-col space-y-2">
@@ -61,7 +61,7 @@
                     <p>Zahlungsinformation</p>
                 </div>
                 <!-- Inject user payment data svelte component -->
-                <UserPaymentData {personalData}></UserPaymentData>
+                <UserPaymentData {personalData} />
             </div>
             <!-- Subscription plan information -->
             <div class="basis-1/3 rounded-md border-2 border-secondary-500 p-2">
@@ -70,7 +70,7 @@
                     <p>Tarif</p>
                 </div>
                 <!-- Inject user plan data svelte component -->
-                <UserPlanData {personalData}></UserPlanData>
+                <UserPlanData {personalData} />
             </div>
         </div>
     </div>
