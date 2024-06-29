@@ -161,8 +161,8 @@
         <ul class="text-sm text-warning-400">
             <li>Das Passwort muss min. 12 Zeichen lang sein</li>
             <li>Das Passwort muss enthalten:</li>
-            <li>- min. 1 Kleinbuchstabe</li>
-            <li>- min. 1 Großbuchstabe</li>
+            <li>- min. 1 Kleinbuchstabe (a-z)</li>
+            <li>- min. 1 Großbuchstabe (A-Z)</li>
             <li>- min. 1 Zahl</li>
             <li>- min. 1 Sonderzeichen</li>
         </ul>

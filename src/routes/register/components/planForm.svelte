@@ -122,7 +122,7 @@
                     {/each}
                 {:catch err}
                     <p>
-                        Abos konnten nicht geladen werden. Bitt versuche es
+                        Abos konnten nicht geladen werden. Bitte versuche es
                         später erneut.
                     </p>
                 {/await}
