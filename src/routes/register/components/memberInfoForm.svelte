@@ -5,6 +5,7 @@
 
     const indicatorStatus = {
         none: "",
+        warning: "!border-warning-400",
         error: "!border-error-600",
     };
 
@@ -12,6 +13,8 @@
 
     // Will get value according to status of validator
     let birthDateIndicator = indicatorStatus.none;
+    let firstNameIndicator = indicatorStatus.none;
+    let lastNameIndicator = indicatorStatus.none;
 
     // Indicates how many steps of the register process have been completed
     export let currentStep = 0;
@@ -51,27 +54,47 @@
         return age >= 18;
     }
 
+    function checkNameLength(name) {
+        if (name == null || name.length < 2 || name.length > 250) {
+            return false;
+        }
+        return true;
+    }
+
     function validateInput() {
         invalidInputs = false;
-
-        if (!isAtLeast18YearsOld(formData.birthDate)) {
-            invalidInputs = true;
-            birthDateIndicator = indicatorStatus.error;
-            return;
-        }
-        
-        birthDateIndicator = indicatorStatus.none;
-
         // Check for all inputs if they are empty strings
         for (let key in formData) {
             if (formData[key] == null || formData[key].trim() === "") {
                 invalidInputs = true;
             }
         }
-
         if (invalidInputs) {
             return;
         }
+
+        // Check name input fields
+        let invalidNames = false;
+        firstNameIndicator = indicatorStatus.none;
+        lastNameIndicator = indicatorStatus.none;
+        if (!checkNameLength(formData.firstName)) {
+            invalidNames = true;
+            firstNameIndicator = indicatorStatus.warning;
+        }
+        if (!checkNameLength(formData.lastName)) {
+            invalidNames = true;
+            lastNameIndicator = indicatorStatus.warning;
+        }
+        if (invalidNames) {
+            return;
+        }
+
+        // Check age restriction
+        if (!isAtLeast18YearsOld(formData.birthDate)) {
+            birthDateIndicator = indicatorStatus.error;
+            return;
+        }
+        birthDateIndicator = indicatorStatus.none;
         currentStep++;
     }
 </script>
@@ -80,19 +103,28 @@
     <BackButton bind:currentStep />
     <p class="font-semibold">Name</p>
     <input
-        class="input"
+        class="input {firstNameIndicator}"
         type="text"
         id="first_name"
         placeholder="Vorname"
         bind:value={formData.firstName}
     />
     <input
-        class="input"
+        class="input {lastNameIndicator}"
         type="text"
         id="last_name"
         placeholder="Nachname"
         bind:value={formData.lastName}
     />
+    {#if firstNameIndicator === indicatorStatus.warning || lastNameIndicator === indicatorStatus.warning}
+        <div
+            class="flex flex-col items-center justify-center transition-opacity"
+        >
+            <p class="text-sm text-warning-400">
+                Dein Name muss min. 2 Zeichen und max. 250 Zeichen lang sein
+            </p>
+        </div>
+    {/if}
 
     <p>Adresse</p>
     <div class="flex space-x-2">
@@ -143,6 +175,15 @@
         placeholder="Geburtsort"
         bind:value={formData.birthPlace}
     />
+    {#if birthDateIndicator == indicatorStatus.error}
+        <div
+            class="flex flex-col items-center justify-center transition-opacity"
+        >
+            <p class="text-sm text-error-600">
+                Du musst min. 18 Jahre alt sein, um dich zu registrieren
+            </p>
+        </div>
+    {/if}
     <p class="font-semibold">Telefonnummer</p>
     <input
         class="input"
@@ -157,11 +198,7 @@
             class="flex flex-col items-center justify-center transition-opacity"
         >
             <p class="text-sm text-error-600">
-                {#if birthDateIndicator == indicatorStatus.error}
-                    Du musst min. 18 Jahre alt sein, um dich zu registrieren
-                {:else}
-                    Alle Felder müssen ausgefüllt werden
-                {/if}
+                Alle Felder müssen ausgefüllt werden
             </p>
         </div>
     {/if}
