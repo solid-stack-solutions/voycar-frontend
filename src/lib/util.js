@@ -40,6 +40,17 @@ export const urls = {
     },
 };
 
+// 🍞
+// Makes less redundant toast https://www.emojisky.com/desc/486241
+export function toaster(toast){
+    return {
+    message: toast.message,
+    hideDismiss: true, // Hide the dismiss button on toast
+    timeout: 3000, // Auto dismiss toast after 3 seconds
+    background: `variant-filled-${toast.severity}`,}
+}
+
+
 // Email verification
 const mailRegexPattern =
     /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
