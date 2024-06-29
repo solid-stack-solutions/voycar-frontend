@@ -4,7 +4,7 @@
     import { onMount } from "svelte";
 
     // Import backend urls and fetch function
-    import { urls, tryFetchingRestricted } from "$lib/util.js";
+    import { urls, tryFetchingRestricted, translatePlanName } from "$lib/util.js";
 
     // Definitions
     const toastStore = getToastStore();
@@ -118,7 +118,7 @@
         <div class="flex flex-row space-x-2">
             <p class="self-center">Aktueller Tarif:</p>
             <select
-                class="select w-2/4"
+                class="select w-2/4 capitalize"
                 size="1"
                 id="selectField"
                 value={resolvePlanNameToPlanId(personalData.planName)}
@@ -126,7 +126,7 @@
                 bind:this={planReference}
             >
                 {#each planData as plan}
-                    <option value={plan.id}>{plan.name}</option>
+                    <option value={plan.id}>{translatePlanName(plan.name)}</option>
                 {/each}
             </select>
         </div>

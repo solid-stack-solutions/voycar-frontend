@@ -79,3 +79,13 @@ export async function tryFetchingRestricted(url, method, body) {
 export async function tryFetchingPublic(url, method, body) {
     return await tryFetching(url, method, body, false);
 }
+
+// Formatting backend information to Frontend Text
+const planNames = {
+    basic: "Basic",
+    reduced: "Ermäßigt",
+    exclusive: "Exklusiv",
+};
+export function translatePlanName(backendName) {
+    return planNames[backendName.toLowerCase()] ?? backendName;
+}
