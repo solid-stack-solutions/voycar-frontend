@@ -4,7 +4,7 @@
     import { goto } from "$app/navigation";
 
     // Import backend urls
-    import { urls, tryFetchingRestricted } from "$lib/util.js";
+    import { urls, tryFetchingRestricted, toaster } from "$lib/util.js";
     import { onMount } from "svelte";
 
     // Definitions
@@ -15,17 +15,23 @@
     // Toast Settings
     const toastSuccsess = {
         message: "Reservierung wurde erfolgreich erstellt",
-        hideDismiss: true, // Hide the dismiss button on toast
-        timeout: 3000, // Auto dismiss toast after 3 seconds
         background: "variant-filled-secondary",
     };
 
     const toastError = {
         message: "Reservierung konnte nicht angelegt werden",
-        hideDismiss: true, // Hide the dismiss button on toast
-        timeout: 3000, // Auto dismiss toast after 3 seconds
-        background: "variant-filled-error",
+        severity: "variant-filled-error",
     };
+
+    const backendNotAvailableToast = {
+        message: "Das Backend ist gerade nicht erreichbar, es konnten keine Daten geladen werden",
+        severity: "error",
+    };
+
+    const noCarSelectedToast = {
+        message: "Du hast kein Auto ausgewählt",
+        severity: "warning",
+    }
 
     const indicatorStatus = {
         none: "",
@@ -111,6 +117,8 @@
                     throw new Error("No stations found");
                 }
             } catch (err) {
+                toastStore.trigger(toaster(backendNotAvailableToast));
+                formPage = 0;
                 reject(err);
             }
         });
@@ -125,6 +133,7 @@
                 return true;
             }
         }
+        toastStore.trigger(toaster(noCarSelectedToast));
         return false;
     }
 
@@ -188,14 +197,14 @@
                 mybody,
             );
             if (response.ok) {
-                toastStore.trigger(toastSuccsess);
+                toastStore.trigger(toaster(toastSuccsess));
                 goto("/reservations");
             } else {
                 throw new Error("Create reservation failed");
             }
         } catch (err) {
-            toastStore.trigger(toastError);
-            console.log(err);
+            toastStore.trigger(toaster(toastError));
+            formPage = 0;
         }
     }
 
@@ -336,7 +345,7 @@
                                                 type="radio"
                                                 name="radio-button"
                                                 value={index}
-                                                id="radio_{index}"
+                                                id="radio_{index}"                                            
                                             />
                                         </div>
                                     </div>
