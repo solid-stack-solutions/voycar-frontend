@@ -146,7 +146,7 @@
                             <label class="label">
                                 <input
                                     disabled={!formEditEnabled}
-                                    class="form-disabled input variant-form-material"
+                                    class="input variant-form-material"
                                     type="text"
                                     name="inputField"
                                     placeholder={personalData.firstName}
@@ -165,7 +165,7 @@
                             <label class="label">
                                 <input
                                     disabled={!formEditEnabled}
-                                    class="form--disabled input variant-form-material"
+                                    class="input variant-form-material"
                                     type="text"
                                     name="inputField"
                                     placeholder={personalData.lastName}
@@ -182,7 +182,7 @@
                             <label class="label">
                                 <input
                                     disabled={!formEditEnabled}
-                                    class="form--disabled input variant-form-material"
+                                    class="input variant-form-material"
                                     type="text"
                                     name="inputField"
                                     placeholder={personalData.phoneNumber}
@@ -199,7 +199,7 @@
                             <label class="label">
                                 <input
                                     disabled={!formEditEnabled}
-                                    class="form--disabled input variant-form-material"
+                                    class="input variant-form-material"
                                     type="text"
                                     name="inputField"
                                     placeholder={personalData.street}
@@ -216,7 +216,7 @@
                             <label class="label">
                                 <input
                                     disabled={!formEditEnabled}
-                                    class="form--disabled input variant-form-material"
+                                    class="input variant-form-material"
                                     type="text"
                                     name="inputField"
                                     placeholder={personalData.houseNumber}
@@ -235,7 +235,7 @@
                             <label class="label">
                                 <input
                                     disabled={!formEditEnabled}
-                                    class="form--disabled input variant-form-material"
+                                    class="input variant-form-material"
                                     type="text"
                                     name="inputField"
                                     placeholder={personalData.city}
@@ -252,7 +252,7 @@
                             <label class="label">
                                 <input
                                     disabled={!formEditEnabled}
-                                    class="form--disabled input variant-form-material"
+                                    class="input variant-form-material"
                                     type="text"
                                     name="inputField"
                                     placeholder={personalData.postalCode}
