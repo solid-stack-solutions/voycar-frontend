@@ -26,6 +26,7 @@ export const urls = {
         register: baseURL + auth + "register",
         login: baseURL + auth + "login",
         logout: baseURL + auth + "logout",
+        newReservation: baseURL + car+ "reserve",
     },
     put: {},
     delete: {
