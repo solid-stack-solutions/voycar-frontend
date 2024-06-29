@@ -92,7 +92,7 @@
             passwordIndicator = indicatorStatus.warning;
             return;
         }
-        
+
         passwordIndicator = indicatorStatus.none;
 
         if (!checkPasswordEquality()) {

@@ -27,9 +27,11 @@
                 const response = await tryFetchingPublic(urls.get.allPlans);
                 if (response.ok) {
                     let plans = await response.json();
-                    resolve(plans.sort((planA, planB) =>  {
-                        return planA.monthlyPrice - planB.monthlyPrice
-                    }));
+                    resolve(
+                        plans.sort((planA, planB) => {
+                            return planA.monthlyPrice - planB.monthlyPrice;
+                        }),
+                    );
                 } else {
                     throw new Error("Error while fetching data");
                 }

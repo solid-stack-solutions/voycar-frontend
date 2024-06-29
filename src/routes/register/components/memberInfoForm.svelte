@@ -116,9 +116,11 @@
         bind:value={formData.lastName}
     />
     {#if firstNameIndicator === indicatorStatus.warning || lastNameIndicator === indicatorStatus.warning}
-        <div class="flex flex-col items-center justify-center transition-opacity">
+        <div
+            class="flex flex-col items-center justify-center transition-opacity"
+        >
             <p class="text-sm text-warning-400">
-               Dein Name muss min. 2 Zeichen und maximal 250 Zeichen lang sein 
+                Dein Name muss min. 2 Zeichen und maximal 250 Zeichen lang sein
             </p>
         </div>
     {/if}
