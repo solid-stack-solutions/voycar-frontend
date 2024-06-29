@@ -13,7 +13,7 @@
     const toastStore = getToastStore();
 
     // Variables
-    let formEditEnabled = false;
+    let editEnabled = false;
     let needReload = false;
 
     let firstNameReference;
@@ -97,10 +97,20 @@
         };
     }
 
+    function resetFieldsOnCancel(){
+        if(editEnabled){
+            document.getElementsByName("inputField").forEach(resetText);
+        }
+    }
+
+    function resetText(field){
+        field.value = "";
+    }
+
     // Makes a request to the backend to update the data of the user
     async function updateUserData() {
-        if (formEditEnabled) {
-            formEditEnabled = false;
+        if (editEnabled) {
+            editEnabled = false;
         }
         if (checkIfAllFieldsEmpty()) {
             toastStore.trigger(warningToast);
@@ -145,7 +155,7 @@
                         <form id="form">
                             <label class="label">
                                 <input
-                                    disabled={!formEditEnabled}
+                                    disabled={!editEnabled}
                                     class="input variant-form-material"
                                     type="text"
                                     name="inputField"
@@ -164,7 +174,7 @@
                         <form id="form">
                             <label class="label">
                                 <input
-                                    disabled={!formEditEnabled}
+                                    disabled={!editEnabled}
                                     class="input variant-form-material"
                                     type="text"
                                     name="inputField"
@@ -181,7 +191,7 @@
                         <form id="form">
                             <label class="label">
                                 <input
-                                    disabled={!formEditEnabled}
+                                    disabled={!editEnabled}
                                     class="input variant-form-material"
                                     type="text"
                                     name="inputField"
@@ -198,7 +208,7 @@
                         <form id="form">
                             <label class="label">
                                 <input
-                                    disabled={!formEditEnabled}
+                                    disabled={!editEnabled}
                                     class="input variant-form-material"
                                     type="text"
                                     name="inputField"
@@ -215,7 +225,7 @@
                         <form id="form">
                             <label class="label">
                                 <input
-                                    disabled={!formEditEnabled}
+                                    disabled={!editEnabled}
                                     class="input variant-form-material"
                                     type="text"
                                     name="inputField"
@@ -234,7 +244,7 @@
                         <form id="form">
                             <label class="label">
                                 <input
-                                    disabled={!formEditEnabled}
+                                    disabled={!editEnabled}
                                     class="input variant-form-material"
                                     type="text"
                                     name="inputField"
@@ -251,7 +261,7 @@
                         <form id="form">
                             <label class="label">
                                 <input
-                                    disabled={!formEditEnabled}
+                                    disabled={!editEnabled}
                                     class="input variant-form-material"
                                     type="text"
                                     name="inputField"
@@ -270,15 +280,16 @@
             <button
                 type="button"
                 class="variant-filled-warning btn btn-md"
-                on:click={() => (formEditEnabled = !formEditEnabled)}
+                on:click={() => {resetFieldsOnCancel(); editEnabled = !editEnabled;}}
             >
-                Bearbeiten
-                {#if formEditEnabled}
-                    verlassen
+                {#if editEnabled}
+                    Abbrechen
+                {:else}
+                    Bearbeiten
                 {/if}
                 <img src="/editIcon.svg" alt="edit icon" />
             </button>
-            {#if formEditEnabled}
+            {#if editEnabled}
                 <button
                     type="button"
                     class="variant-filled-primary btn btn-md"
