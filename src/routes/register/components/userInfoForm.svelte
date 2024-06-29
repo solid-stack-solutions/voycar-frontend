@@ -88,12 +88,7 @@
 
         emailIndicator = indicatorStatus.none;
 
-        if (
-            !validatePassword(
-                passwordRefernce.value,
-                passwordValidateReference.value,
-            )
-        ) {
+        if (!validatePassword()) {
             passwordIndicator = indicatorStatus.warning;
             return;
         }
