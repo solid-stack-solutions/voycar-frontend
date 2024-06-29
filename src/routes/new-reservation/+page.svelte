@@ -182,7 +182,6 @@
                 begin: new Date(selectedBeginn).toISOString(),
                 end: new Date(selectedEnd).toISOString(),
             };
-            console.log(mybody);
             const response = await tryFetchingRestricted(
                 urls.post.newReservation,
                 "POST",
