@@ -56,14 +56,15 @@
     function fetchAvailableAllCars(loadedStations) {
         cars = new Promise(async (resolve, reject) => {
             try {
+                const searchParams = {
+                            stationId: loadedStations[selectedStationIndex].id,
+                            begin: new Date(beginReference.value).toISOString(),
+                            end: new Date(endReference.value).toISOString(),
+                        }
                 const response = await tryFetchingRestricted(
                     urls.get.availableCars +
                         "?" +
-                        new URLSearchParams({
-                            stationId: loadedStations[selectedStationIndex].id,
-                            begin: beginReference.value,
-                            end: endReference.value,
-                        }).toString(),
+                        new URLSearchParams(searchParams).toString(),
                 );
                 if (response.ok) {
                     resolve(await response.json());
