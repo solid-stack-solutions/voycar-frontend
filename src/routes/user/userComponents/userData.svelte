@@ -146,7 +146,7 @@
                             <label class="label">
                                 <input
                                     disabled={!formEditEnabled}
-                                    class="form--disabled input variant-form-material"
+                                    class="form-disabled input variant-form-material"
                                     type="text"
                                     name="inputField"
                                     placeholder={personalData.firstName}
