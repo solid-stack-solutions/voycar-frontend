@@ -40,7 +40,7 @@
     let selectedCarIndex = 0;
     let selectedStationIndex = 0;
 
-    // Global temporary save variables 
+    // Global temporary save variables
     let selectedStation;
     let selectedBeginn;
     let selectedEnd;
@@ -61,10 +61,10 @@
         cars = new Promise(async (resolve, reject) => {
             try {
                 const searchParams = {
-                            stationId: loadedStations[selectedStationIndex].id,
-                            begin: new Date(beginReference.value).toISOString(),
-                            end: new Date(endReference.value).toISOString(),
-                        }
+                    stationId: loadedStations[selectedStationIndex].id,
+                    begin: new Date(beginReference.value).toISOString(),
+                    end: new Date(endReference.value).toISOString(),
+                };
                 const response = await tryFetchingRestricted(
                     urls.get.availableCars +
                         "?" +
@@ -98,7 +98,7 @@
         });
     }
 
-    // Checks wether a car was selected and saves it 
+    // Checks wether a car was selected and saves it
     function checkAndSaveCarSelected(cars) {
         const buttons = document.getElementsByName("radio-button");
         for (let index = 0; index < buttons.length; index++) {
@@ -117,7 +117,7 @@
         );
     }
 
-    // Saves current values in global variables 
+    // Saves current values in global variables
     function saveSelected(begin, end, station) {
         selectedBeginn = begin;
         selectedEnd = end;
@@ -150,11 +150,9 @@
         }
     }
 
-
     onMount(async () => {
         fetchAllStations();
     });
-
 </script>
 
 <!-- Login page -->
@@ -163,7 +161,7 @@
     <div class="w-1/2 items-center justify-center space-y-4">
         <form class="space-y-3 rounded-md border-2 border-secondary-500 p-4">
             {#if formPage == 0}
-            <!-- Formpage 1: Selection of station and date of begining and end of reservation -->
+                <!-- Formpage 1: Selection of station and date of begining and end of reservation -->
                 <label class="label" for="input_begin">Beginn</label>
                 <input
                     class="input"
@@ -207,14 +205,13 @@
                     }}>Weiter</button
                 >
             {:else if formPage == 1}
-            <!-- Formpage 2: Selection of car -->
+                <!-- Formpage 2: Selection of car -->
                 {#await cars then loadedCars}
-                {#if loadedCars.length > 0}
-                    <label class="label" for="car_table"
-                        >Verfügbares Auto auswählen</label
-                    >
-                    <div class="flex flex-col space-y-4 rounded-lg p-2">
-                        
+                    {#if loadedCars.length > 0}
+                        <label class="label" for="car_table"
+                            >Verfügbares Auto auswählen</label
+                        >
+                        <div class="flex flex-col space-y-4 rounded-lg p-2">
                             {#each loadedCars as car, index}
                                 <a
                                     href="/new-reservation"
@@ -282,28 +279,36 @@
                                     </div>
                                 </a>
                             {/each}
-                    </div>
-                    
-                    <!-- Navigation -->
-                    <div class="grid grid-cols-2 space-x-2">
+                        </div>
+
+                        <!-- Navigation -->
+                        <div class="grid grid-cols-2 space-x-2">
+                            <button
+                                class="variant-filled-primary btn"
+                                on:click={() => {
+                                    formPage = 0;
+                                }}>Zurück</button
+                            >
+                            <button
+                                class="variant-filled-primary btn"
+                                on:click={() => {
+                                    if (checkAndSaveCarSelected(loadedCars)) {
+                                        formPage = 2;
+                                    }
+                                }}>Weiter</button
+                            >
+                        </div>
+                    {:else}
+                        <h4 class="h4 text-center">
+                            Es sind leider keine Autos in diesem Zeitraum
+                            verfügbar
+                        </h4>
                         <button
-                            class="variant-filled-primary btn"
+                            class="variant-filled-primary btn w-full"
                             on:click={() => {
                                 formPage = 0;
                             }}>Zurück</button
                         >
-                        <button
-                            class="variant-filled-primary btn"
-                            on:click={() => {
-                                if (checkAndSaveCarSelected(loadedCars)) {
-                                    formPage = 2;
-                                }
-                            }}>Weiter</button
-                        >
-                    </div>
-                    {:else}
-                        <h4 class="h4 text-center">Es sind leider keine Autos in diesem Zeitraum verfügbar</h4>
-                        <button class="btn variant-filled-primary w-full" on:click={() => {formPage = 0;}}>Zurück</button>
                     {/if}
                 {/await}
             {:else if formPage == 2}
