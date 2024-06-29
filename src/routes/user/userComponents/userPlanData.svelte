@@ -118,7 +118,7 @@
         <div class="flex flex-row space-x-2">
             <p class="self-center">Aktueller Tarif:</p>
             <select
-                class="select w-2/4"
+                class="select w-2/4 capitalize"
                 size="1"
                 id="selectField"
                 value={resolvePlanNameToPlanId(personalData.planName)}
