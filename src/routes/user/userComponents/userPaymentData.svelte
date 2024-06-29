@@ -8,7 +8,7 @@
     const toastStore = getToastStore();
 
     // Variables
-    let formEditEnabled = false;
+    let editEnabled = false;
     // Will be used in future versions
     let paymentName = personalData.paymentName;
 
@@ -19,6 +19,14 @@
         timeout: 3000, // Auto dismiss toast after 3 seconds
         background: "variant-filled-primary",
     };
+
+    function resetRadioButtonsOnCancel(){
+        if(editEnabled){
+            document.getElementById("radio1").checked = true;
+            document.getElementById("radio2").checked = false;
+            document.getElementById("radio3").checked = false;
+        }
+    }
 </script>
 
 <div class="relative h-full p-2">
@@ -27,12 +35,13 @@
         <div class="space-y-2">
             <label class="flex items-center space-x-2">
                 <input
-                    disabled={!formEditEnabled}
-                    class="radio {formEditEnabled
+                    disabled={!editEnabled}
+                    class="radio {editEnabled
                         ? ''
                         : 'hover:cursor-not-allowed'}"
                     type="radio"
                     checked
+                    id="radio1"
                     name="radio-direct"
                     value="1"
                 />
@@ -40,11 +49,12 @@
             </label>
             <label class="flex items-center space-x-2">
                 <input
-                    disabled={!formEditEnabled}
-                    class="radio {formEditEnabled
+                    disabled={!editEnabled}
+                    class="radio {editEnabled
                         ? ''
                         : 'hover:cursor-not-allowed'}"
                     type="radio"
+                    id="radio2"
                     name="radio-direct"
                     value="2"
                 />
@@ -52,11 +62,12 @@
             </label>
             <label class="flex items-center space-x-2">
                 <input
-                    disabled={!formEditEnabled}
-                    class="radio {formEditEnabled
+                    disabled={!editEnabled}
+                    class="radio {editEnabled
                         ? ''
                         : 'hover:cursor-not-allowed'}"
                     type="radio"
+                    id="radio3"
                     name="radio-direct"
                     value="3"
                 />
@@ -77,20 +88,21 @@
             <button
                 type="button"
                 class="variant-filled-warning btn btn-md"
-                on:click={() => (formEditEnabled = !formEditEnabled)}
+                on:click={() => {resetRadioButtonsOnCancel(); editEnabled = !editEnabled;}}
             >
-                Bearbeiten
-                {#if formEditEnabled}
-                    verlassen
+                {#if editEnabled}
+                    Abbrechen
+                {:else}
+                    Bearbeiten
                 {/if}
                 <img src="/editIcon.svg" alt="edit icon" />
             </button>
-            {#if formEditEnabled}
+            {#if editEnabled}
                 <button
                     type="button"
                     class="variant-filled-primary btn btn-md"
                     on:click={() => {
-                        formEditEnabled = false;
+                        editEnabled = false;
                         toastStore.trigger(infoToast);
                     }}
                 >
