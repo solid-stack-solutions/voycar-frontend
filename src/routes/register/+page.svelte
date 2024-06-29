@@ -36,27 +36,27 @@
     // Toast Settings
     const toastSuccess = {
         message: "Du hast dich erfolgreich registriert",
-        timeout: 7000, // Autohide after 7s
+        timeout: 7000, // Auto dismiss after 7 seconds
         background: "variant-filled-primary",
     };
     const toastVerifyHint = {
         message:
             "Bitte verifiziere deine E-Mail Adresse bevor du dich einloggst",
-        autohide: false, // No timeout
+        autohide: false, // Do not auto dismiss
         background: "variant-filled-warning",
     };
     const toastError = {
         message:
             "Du hast bei der Registrierung ungültige Daten eingeben.<br>" +
             "Melde dich an, wenn du bereits ein Konto hast.",
-        hideDismiss: true,
+        hideDismiss: true, // Hide the dismiss button on toast
         timeout: 7000, // Auto dismiss after 7 seconds
         background: "variant-filled-error",
     };
     const toastUnknownError = {
         message:
             "Unbekannter Fehler bei Registrierung. Versuche es später erneut.",
-        hideDismiss: true,
+        hideDismiss: true, // Hide the dismiss button on toast
         timeout: 5000, // Auto dismiss after 3 seconds
         background: "variant-filled-error",
     };
