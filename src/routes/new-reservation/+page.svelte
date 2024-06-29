@@ -250,7 +250,6 @@
                         {/each}
                     </select>
                 {/await}
-                <!-- ToDo nur weiter wenn Datum in der Zukunft und validem Bereich-->
                 <!-- Navigation -->
                 <button
                     class="variant-filled-primary btn w-full"
@@ -333,7 +332,6 @@
                                                 </tr>
                                             </table>
                                         </div>
-                                        <!-- ToDo immer den ersten ausgewählt haben -->
                                         <div
                                             class="col-span-1 flex h-full flex-col items-center justify-center"
                                         >
