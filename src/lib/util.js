@@ -9,13 +9,17 @@ const car = "car/";
 const user = "user/";
 const member = "member/";
 const auth = "auth/";
-
+const station = "station/";
+const all = "all";
 export const urls = {
     get: {
         memberPersonalData: baseURL + member + "personal",
         isLoggedIn: baseURL + user + "whoami",
         reservationPersonalData: baseURL + reservation + "personal",
         singleCar: baseURL + car,
+        allCars: baseURL + car + "all",
+        allStations: baseURL + station + all,
+        availableCars:baseURL + car + "available",
     },
     post: {
         forgotPassword: baseURL + auth + "forgot-password",
