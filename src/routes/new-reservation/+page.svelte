@@ -208,7 +208,7 @@
     <div class="w-1/2 items-center justify-center space-y-4">
         <form class="space-y-3 rounded-md border-2 border-secondary-500 p-4">
             {#if formPage == 0}
-                <!-- Formpage 1: Selection of station and date of begining and end of reservation -->
+                <!-- Formpage 1: Selection of station and date of beginning and end of reservation -->
                 <label class="label" for="input_begin">Beginn</label>
                 <input
                     class="input {beginIndicator}"
