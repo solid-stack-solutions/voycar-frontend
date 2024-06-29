@@ -80,7 +80,9 @@
             <p>Keine</p>
         {/if}
         <div class="relative mt-2">
-            <button class="variant-filled-primary btn absolute right-0" on:click={() => window.location.href = "/new-reservation"}
+            <button
+                class="variant-filled-primary btn absolute right-0"
+                on:click={() => (window.location.href = "/new-reservation")}
                 >Neue Reservierung erstellen</button
             >
         </div>

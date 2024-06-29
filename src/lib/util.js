@@ -19,14 +19,14 @@ export const urls = {
         singleCar: baseURL + car,
         allCars: baseURL + car + "all",
         allStations: baseURL + station + all,
-        availableCars:baseURL + car + "available",
+        availableCars: baseURL + car + "available",
     },
     post: {
         forgotPassword: baseURL + auth + "forgot-password",
         register: baseURL + auth + "register",
         login: baseURL + auth + "login",
         logout: baseURL + auth + "logout",
-        newReservation: baseURL + car+ "reserve",
+        newReservation: baseURL + car + "reserve",
     },
     put: {},
     delete: {
