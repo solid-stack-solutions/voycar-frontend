@@ -15,6 +15,22 @@
         goto("/login");
     }
 
+    async function logout() {
+        try {
+            // Fetch backend to check if user is signed in
+            const response = await tryFetchingRestricted(
+                urls.post.logout,
+                "POST",
+            );
+            if (response.ok) {
+                loggedIn = false;
+            } else {
+                loggedIn = true;
+            }
+        } catch (err) {
+            console.log(err);
+        }
+    }
     // Runs as soon as the component is mounted
     onMount(async () => {
         try {
@@ -38,10 +54,19 @@
         slotTrail="place-content-end"
     >
         <svelte:fragment slot="lead">
-            <img src="/menuIcon.svg" alt="menu icon" />
+            <div />
         </svelte:fragment>
         <svelte:fragment slot="default">
-            <a href="/">
+            <a
+                href="/"
+                on:click|preventDefault={() => {
+                    if (window.location.pathname == "/") {
+                        location.reload();
+                    } else {
+                        window.location.href = "/";
+                    }
+                }}
+            >
                 <!-- Voycar Logo -->
                 <img
                     src="/logo-full-white.svg"
@@ -52,10 +77,9 @@
         </svelte:fragment>
         <svelte:fragment slot="trail">
             {#if loggedIn}
-                <a href="/user">
-                    <!-- User icon -->
-                    <img src="/userIcon.svg" alt="user icon" />
-                </a>
+                <button class="variant-ringed-surface btn" on:click={logout}
+                    >Abmelden</button
+                >
             {:else}
                 <button
                     class="variant-ringed-primary btn"
@@ -77,6 +101,9 @@
                 selected={$page.url.pathname === "/reservations"}
             >
                 Reservierungen
+            </TabAnchor>
+            <TabAnchor href="/user" selected={$page.url.pathname === "/user"}>
+                Konto
             </TabAnchor>
         </TabGroup>
     {/if}
