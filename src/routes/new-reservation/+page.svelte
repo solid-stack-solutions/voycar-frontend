@@ -69,10 +69,10 @@
     let stations = new Promise((resolve, reject) => {});
 
     function resetIndicators() {
-        periodIndicator = false;
-        emptyIndicator = false;
         beginIndicator = indicatorStatus.none;
         endIndicator = indicatorStatus.none;
+        periodIndicator = false;
+        emptyIndicator = false;
     }
 
     function fetchAvailableAllCars(loadedStations) {
