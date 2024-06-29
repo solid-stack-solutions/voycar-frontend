@@ -36,7 +36,7 @@
     // Toast Settings
     const toastSuccess = {
         message: "Du hast dich erfolgreich registriert",
-        autohide: false, // No timeout
+        timeout: 7000, // Autohide after 7s
         background: "variant-filled-primary",
     };
     const toastVerifyHint = {
