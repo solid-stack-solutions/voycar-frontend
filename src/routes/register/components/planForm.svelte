@@ -6,7 +6,7 @@
     // Image imports
     import CheckCircleIcon from "../../../icons/check-circleIcon.svelte";
     // Import utilities
-    import { urls, tryFetchingPublic } from "$lib/util.js";
+    import { urls, tryFetchingPublic, translatePlanName } from "$lib/util.js";
 
     let planData = new Promise((resolve, reject) => {});
 
@@ -79,9 +79,9 @@
                         >
                             <h3
                                 id="plan-{plan.name}"
-                                class="text-base font-semibold"
+                                class="text-base font-semibold capitalize"
                             >
-                                Basic
+                                {translatePlanName(plan.name)}
                             </h3>
                             <p class="mt-6 flex items-baseline gap-x-1">
                                 <span class="text-5xl font-bold tracking-tight"
