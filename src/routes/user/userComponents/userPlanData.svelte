@@ -47,12 +47,11 @@
     }
 
     function resolvePlanNameToPlanId(planName) {
-        for (let index = 0; index < planData.length; index++) {
-            if (planData[index].name == planName) {
-                return planData[index].id;
-            }
+        let plan = planData.find(plan => plan.name == planName);
+        if (plan === undefined) {
+            throw new Error("Planname is not in backend plan list");
         }
-        throw new Error("Planname is not in backend plan list");
+        return plan.id; 
     }
 
     function resetFieldOnCancel() {
