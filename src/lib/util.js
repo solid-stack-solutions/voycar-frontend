@@ -87,5 +87,5 @@ const planNames = {
     exclusive: "Exklusiv",
 };
 export function translatePlanName(backendName) {
-    return planNames[backendName.toLowerCase()];
+    return planNames[backendName.toLowerCase()] ?? backendName;
 }
