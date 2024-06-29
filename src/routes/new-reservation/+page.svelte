@@ -152,7 +152,7 @@
             periodIndicator = true;
             valid = false;
         }
-        if (new Date(dateBeginn) > new Date(dateEnd)) {
+        if (new Date(dateBeginn) >= new Date(dateEnd)) {
             beginIndicator = indicatorStatus.warning;
             endIndicator = indicatorStatus.warning;
             periodIndicator = true;
