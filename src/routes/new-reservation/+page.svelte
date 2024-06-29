@@ -69,10 +69,10 @@
     let stations = new Promise((resolve, reject) => {});
 
     function resetIndicators() {
-        periodIndicator = false;
-        emptyIndicator = false;
         beginIndicator = indicatorStatus.none;
         endIndicator = indicatorStatus.none;
+        periodIndicator = false;
+        emptyIndicator = false;
     }
 
     function fetchAvailableAllCars(loadedStations) {
@@ -125,7 +125,6 @@
                 return true;
             }
         }
-        console.log("false");
         return false;
     }
 
@@ -183,7 +182,6 @@
                 begin: new Date(selectedBeginn).toISOString(),
                 end: new Date(selectedEnd).toISOString(),
             };
-            console.log(mybody);
             const response = await tryFetchingRestricted(
                 urls.post.newReservation,
                 "POST",
@@ -392,25 +390,25 @@
                             class="border-separate border-spacing-x-2 text-left"
                         >
                             <tr>
-                                <th> Beginn: </th>
+                                <th>Beginn:</th>
                                 <td>
                                     {filterDate(selectedBeginn)}
                                 </td>
                             </tr>
                             <tr>
-                                <th> Ende: </th>
+                                <th>Ende:</th>
                                 <td>
                                     {filterDate(selectedEnd)}
                                 </td>
                             </tr>
                             <tr>
-                                <th> Station: </th>
+                                <th>Station:</th>
                                 <td>
                                     {selectedStation.name}
                                 </td>
                             </tr>
                             <tr>
-                                <th> Auto: </th>
+                                <th>Auto:</th>
                                 <td>
                                     <div class="flex flex-row space-x-2">
                                         <p>
