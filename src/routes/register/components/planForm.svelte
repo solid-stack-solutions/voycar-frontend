@@ -60,7 +60,7 @@
             >
                 {#await planData}
                     <h4 class="h4 col-span-3 text-center">
-                        Pläne werden geladen...
+                        Pläne werden geladen
                     </h4>
                     {#each [1, 2, 3] as _}
                         <div class="card h-80 p-4">

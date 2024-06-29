@@ -158,7 +158,7 @@
         >
             <p class="text-sm text-error-600">
                 {#if birthDateIndicator == indicatorStatus.error}
-                    Du musst min. 18 Jahre alt sein, um dich zu registrieren.
+                    Du musst min. 18 Jahre alt sein, um dich zu registrieren
                 {:else}
                     Alle Felder müssen ausgefüllt werden
                 {/if}

@@ -129,7 +129,7 @@
                 <div
                     class="w-full animate-pulse rounded-md bg-surface-600 p-2 font-bold"
                 >
-                    Registrierungsdaten werden verarbeitet...
+                    Registrierungsdaten werden verarbeitet
                 </div>
             </div>
         {/if}
