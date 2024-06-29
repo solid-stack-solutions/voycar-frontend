@@ -27,6 +27,12 @@
         background: "variant-filled-error",
     };
 
+    const indicatorStatus = {
+        none: "",
+        warning: "!border-warning-400",
+        error: "!border-error-600",
+    };
+
     const dateOptions = {
         year: "numeric",
         month: "2-digit",
@@ -37,7 +43,6 @@
     };
 
     // Variables
-    let selectedCarIndex = 0;
     let selectedStationIndex = 0;
 
     // Global temporary save variables
@@ -45,6 +50,12 @@
     let selectedBeginn;
     let selectedEnd;
     let selectedCar;
+
+    // Indicators
+    let beginIndicator = indicatorStatus.none;
+    let endIndicator = indicatorStatus.none;
+    let periodIndicator = false;
+    let emptyIndicator = false;
 
     // Binding references
     let beginReference;
@@ -56,6 +67,13 @@
     // Initialize promises as empty on mount
     let cars = new Promise((resolve, reject) => {});
     let stations = new Promise((resolve, reject) => {});
+
+    function resetIndicators(){
+        periodIndicator = false;
+        emptyIndicator = false;
+        beginIndicator = indicatorStatus.none;
+        endIndicator = indicatorStatus.none;
+    }
 
     function fetchAvailableAllCars(loadedStations) {
         cars = new Promise(async (resolve, reject) => {
@@ -111,6 +129,30 @@
         return false;
     }
 
+    function checkPeriodFields(){
+        if(beginReference.value == "" || endReference.value == ""){
+            emptyIndicator = true;
+            return false;
+        }
+        return true;
+    }
+
+    function checkIfDatePeriodIsValid(dateBeginn, dateEnd){
+        let valid = true;
+        const dateNow = Date.now();
+        if(new Date(dateBeginn) < dateNow){
+            beginIndicator = indicatorStatus.warning;
+            periodIndicator = true;
+            valid = false;
+        }
+        if(new Date(dateEnd) > new Date(dateNow).setMonth(new Date(dateNow).getMonth()+6)){
+            endIndicator = indicatorStatus.warning;
+            periodIndicator = true;
+            valid = false;
+        }
+        return valid;
+    }
+
     function filterDate(dateString) {
         return new Intl.DateTimeFormat("de-DE", dateOptions).format(
             new Date(dateString),
@@ -164,7 +206,7 @@
                 <!-- Formpage 1: Selection of station and date of begining and end of reservation -->
                 <label class="label" for="input_begin">Beginn</label>
                 <input
-                    class="input"
+                    class="input {beginIndicator}"
                     title="Beginn"
                     id="input_begin"
                     type="datetime-local"
@@ -172,12 +214,17 @@
                 />
                 <label class="label" for="input_end">Ende</label>
                 <input
-                    class="input"
+                    class="input {endIndicator}"
                     title="Ende"
                     id="input_end"
                     type="datetime-local"
                     bind:this={endReference}
                 />
+                {#if emptyIndicator}
+                    <p class="text-error-500 text-center">Zeitraumfeld(er) dürfen nicht leer sein</p>                    
+                {:else if periodIndicator}
+                    <p class="text-warning-500 text-center">Bitte gib einen validen Zeitraum an</p>                    
+                {/if}
                 {#await stations then stations}
                     <label class="label" for="input_station">Station</label>
                     <select
@@ -190,18 +237,21 @@
                         {/each}
                     </select>
                 {/await}
-                <!-- ToDo nur weiter wenn Datum in der Zukunft -->
+                <!-- ToDo nur weiter wenn Datum in der Zukunft und validem Bereich-->
                 <!-- Navigation -->
                 <button
                     class="variant-filled-primary btn w-full"
                     on:click={() => {
-                        formPage = 1;
+                        resetIndicators();
+                        if(checkPeriodFields() && checkIfDatePeriodIsValid(beginReference.value, endReference.value)){
+                            formPage = 1;
                         saveSelected(
                             beginReference.value,
                             endReference.value,
                             stations[selectedStationIndex],
                         );
                         fetchAvailableAllCars(stations);
+                        }                        
                     }}>Weiter</button
                 >
             {:else if formPage == 1}
