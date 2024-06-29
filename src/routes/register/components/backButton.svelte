@@ -4,8 +4,8 @@
 </script>
 
 <button
-    type="button"
     class="variant-soft btn btn-sm"
+    type="button"
     on:click={() => currentStep--}
 >
     <img
