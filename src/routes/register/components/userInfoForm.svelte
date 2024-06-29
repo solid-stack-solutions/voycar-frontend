@@ -84,9 +84,9 @@
         if (!validateEmail(formData.email)) {
             emailIndicator = indicatorStatus.warning;
             return;
-        } else {
-            emailIndicator = indicatorStatus.none;
         }
+
+        emailIndicator = indicatorStatus.none;
 
         if (
             !validatePassword(
@@ -96,9 +96,9 @@
         ) {
             passwordIndicator = indicatorStatus.warning;
             return;
-        } else {
-            passwordIndicator = indicatorStatus.none;
         }
+        
+        passwordIndicator = indicatorStatus.none;
 
         if (!checkPasswordEquality()) {
             return; // Passwords are not equal

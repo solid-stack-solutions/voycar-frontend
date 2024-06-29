@@ -58,9 +58,9 @@
             invalidInputs = true;
             birthDateIndicator = indicatorStatus.error;
             return;
-        } else {
-            birthDateIndicator = indicatorStatus.none;
         }
+        
+        birthDateIndicator = indicatorStatus.none;
 
         // Check for all inputs if they are empty strings
         for (let key in formData) {
