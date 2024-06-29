@@ -55,8 +55,8 @@
         throw new Error("Planname is not in backend plan list");
     }
 
-    function resetFieldOnCancel(){
-        if(editEnabled){
+    function resetFieldOnCancel() {
+        if (editEnabled) {
             document.getElementById("selectField").value = lastplanValue;
         }
     }
@@ -135,7 +135,10 @@
             <button
                 type="button"
                 class="variant-filled-warning btn btn-md"
-                on:click={() => {resetFieldOnCancel(); editEnabled = !editEnabled;}}
+                on:click={() => {
+                    resetFieldOnCancel();
+                    editEnabled = !editEnabled;
+                }}
             >
                 {#if editEnabled}
                     Abbrechen

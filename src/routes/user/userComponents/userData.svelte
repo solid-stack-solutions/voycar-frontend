@@ -97,13 +97,13 @@
         };
     }
 
-    function resetFieldsOnCancel(){
-        if(editEnabled){
+    function resetFieldsOnCancel() {
+        if (editEnabled) {
             document.getElementsByName("inputField").forEach(resetText);
         }
     }
 
-    function resetText(field){
+    function resetText(field) {
         field.value = "";
     }
 
@@ -280,7 +280,10 @@
             <button
                 type="button"
                 class="variant-filled-warning btn btn-md"
-                on:click={() => {resetFieldsOnCancel(); editEnabled = !editEnabled;}}
+                on:click={() => {
+                    resetFieldsOnCancel();
+                    editEnabled = !editEnabled;
+                }}
             >
                 {#if editEnabled}
                     Abbrechen

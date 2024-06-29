@@ -20,8 +20,8 @@
         background: "variant-filled-primary",
     };
 
-    function resetRadioButtonsOnCancel(){
-        if(editEnabled){
+    function resetRadioButtonsOnCancel() {
+        if (editEnabled) {
             document.getElementById("radio1").checked = true;
             document.getElementById("radio2").checked = false;
             document.getElementById("radio3").checked = false;
@@ -88,7 +88,10 @@
             <button
                 type="button"
                 class="variant-filled-warning btn btn-md"
-                on:click={() => {resetRadioButtonsOnCancel(); editEnabled = !editEnabled;}}
+                on:click={() => {
+                    resetRadioButtonsOnCancel();
+                    editEnabled = !editEnabled;
+                }}
             >
                 {#if editEnabled}
                     Abbrechen
