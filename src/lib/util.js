@@ -9,13 +9,13 @@ const car = "car/";
 const user = "user/";
 const member = "member/";
 const auth = "auth/";
+const personal = "personal";
 const plan = "plan/";
-
 export const urls = {
     get: {
-        memberPersonalData: baseURL + member + "personal",
+        memberPersonalData: baseURL + member + personal,
         isLoggedIn: baseURL + user + "whoami",
-        reservationPersonalData: baseURL + reservation + "personal",
+        reservationPersonalData: baseURL + reservation + personal,
         singleCar: baseURL + car,
         allPlans: baseURL + plan + "all",
     },
@@ -25,9 +25,12 @@ export const urls = {
         login: baseURL + auth + "login",
         logout: baseURL + auth + "logout",
     },
-    put: {},
+    put: {
+        newPersonalData: baseURL + member + personal,
+        newPlanData: baseURL + plan + personal,
+    },
     delete: {
-        singleReservation: baseURL + reservation + "personal/",
+        singleReservation: baseURL + reservation + personal + "/",
     },
 };
 
@@ -75,4 +78,14 @@ export async function tryFetchingRestricted(url, method, body) {
 
 export async function tryFetchingPublic(url, method, body) {
     return await tryFetching(url, method, body, false);
+}
+
+// Formatting backend information to Frontend Text
+const planNames = {
+    basic: "Basic",
+    reduced: "Ermäßigt",
+    exclusive: "Exklusiv",
+};
+export function translatePlanName(backendName) {
+    return planNames[backendName.toLowerCase()] ?? backendName;
 }

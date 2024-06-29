@@ -13,6 +13,7 @@ const config = {
     overrides: [
         { files: "*.svelte", options: { parser: "svelte" } },
         { files: "*.svg", options: { parser: "html" } },
+        { files: "*.yml", options: { tabWidth: 2 } },
     ],
 };
 
