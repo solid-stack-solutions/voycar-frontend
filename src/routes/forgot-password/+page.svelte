@@ -82,7 +82,7 @@
 </script>
 
 <div class="mt-4 flex flex-col items-center justify-center">
-    <h2 class="h2 mb-8">Password zurücksetzen</h2>
+    <h2 class="h2 mb-8">Passwort zurücksetzen</h2>
     <div
         class="w-full items-center justify-center space-y-4 sm:w-auto sm:min-w-96"
     >
