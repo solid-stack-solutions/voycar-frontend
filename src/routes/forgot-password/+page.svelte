@@ -119,7 +119,7 @@
                     type="submit"
                     bind:this={submitBtnReference}
                 >
-                    E-Mail senden
+                    Email senden
                 </button>
             </div>
         </form>

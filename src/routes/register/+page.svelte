@@ -41,7 +41,7 @@
     };
     const toastVerifyHint = {
         message:
-            "Bitte verifiziere deine E-Mail Adresse bevor du dich einloggst",
+            "Bitte verifiziere deine Email Adresse bevor du dich einloggst",
         autohide: false, // Do not auto dismiss
         background: "variant-filled-warning",
     };
