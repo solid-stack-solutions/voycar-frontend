@@ -93,11 +93,7 @@
 
         passwordIndicator = indicatorStatus.none;
 
-        if (!checkPasswordEquality()) {
-            return false; // Passwords are not equal
-        }
-
-        return true;
+        return checkPasswordEquality();
     };
 </script>
 
