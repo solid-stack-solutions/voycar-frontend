@@ -162,7 +162,7 @@
             <button
                 class="variant-filled-error btn absolute right-0"
                 use:popup={reservationPopupClick}
-                >Reservierung Stornieren</button
+                >Reservierung stornieren</button
             >
         </div>
     {/if}
