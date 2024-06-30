@@ -16,7 +16,7 @@
         warning: "!border-warning-400",
     };
 
-    // Toast Settings
+    // Toast settings
     const toastSuccsess = {
         message: "Email zum Zurücksetzen erfolgreich verschickt",
         bg: "secondary",
