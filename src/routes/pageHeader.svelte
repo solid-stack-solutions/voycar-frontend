@@ -80,9 +80,6 @@
             <TabAnchor href="/" selected={$page.url.pathname === "/"}>
                 Home
             </TabAnchor>
-            <TabAnchor href="/cars" selected={$page.url.pathname === "/cars"}>
-                Autos
-            </TabAnchor>
             <TabAnchor
                 href="/reservations"
                 selected={$page.url.pathname === "/reservations"}
