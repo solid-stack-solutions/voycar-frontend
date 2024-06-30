@@ -1,7 +1,7 @@
 <script>
     // Framework imports
     import { onMount } from "svelte";
-    import { urls, tryFetchingRestricted } from "$lib/util.js";
+    import { urls, tryFetchingRestricted, toaster } from "$lib/util.js";
     import { popup } from "@skeletonlabs/skeleton";
     import { getToastStore } from "@skeletonlabs/skeleton";
     import CarDataComponent from "../carDataComponent.svelte";
@@ -26,16 +26,12 @@
     // Toast Settings
     const toastSuccsess = {
         message: "Reservierung wurde erfolgreich gelöscht",
-        hideDismiss: true, // Hide the dismiss button on toast
-        timeout: 3000, // Auto dismiss toast after 3 seconds
-        background: "variant-filled-secondary",
+        bg: "secondary",
     };
 
     const toastError = {
         message: "Reservierung konnte nicht gelöscht werden",
-        hideDismiss: true, // Hide the dismiss button on toast
-        timeout: 3000, // Auto dismiss toast after 3 seconds
-        background: "variant-filled-error",
+        bg: "error",
     };
 
     // Popup settings
@@ -82,12 +78,12 @@
             );
             if (response.ok) {
                 location.reload();
-                toastStore.trigger(toastSuccsess);
+                toastStore.trigger(toaster(toastSuccsess));
             } else {
                 throw new Error("Reservierung konnte nicht gelöscht werden");
             }
         } catch (err) {
-            toastStore.trigger(toastError);
+            toastStore.trigger(toaster(toastError));
             throw err;
         }
     }
