@@ -132,6 +132,20 @@
             "border-2 border-primary-500 rounded-lg";
     }
 
+    function formpage1Validation(stations){
+        if (
+            checkPeriodFields() &&
+            checkIfDatePeriodIsValid(
+                beginReference,
+                endReference,
+            )
+        ) {
+            formPage = 1;
+            selectedStation = stations[selectedStationIndexReference],
+            fetchAvailableAllCars(stations,beginReference, endReference, selectedStationIndexReference);
+        }
+    }
+
     function checkPeriodFields() {
         if (!beginReference || !endReference) {
             emptyIndicator = true;
@@ -172,7 +186,7 @@
     }
 
     // Saves current values in global variables
-    function saveSelected(station) {
+    function saveSelectedStation(station) {
         selectedStation = station;
     }
 
@@ -253,19 +267,7 @@
                     class="variant-filled-primary btn w-full"
                     on:click={() => {
                         resetIndicators();
-                        if (
-                            checkPeriodFields() &&
-                            checkIfDatePeriodIsValid(
-                                beginReference,
-                                endReference,
-                            )
-                        ) {
-                            formPage = 1;
-                            saveSelected(
-                                stations[selectedStationIndexReference],
-                            );
-                            fetchAvailableAllCars(stations,beginReference, endReference, selectedStationIndexReference);
-                        }
+                        formpage1Validation(stations)
                     }}>Weiter</button
                 >
             {:else if formPage == 1}
