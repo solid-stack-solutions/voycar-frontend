@@ -21,7 +21,7 @@
     };
 
     const serverErrorToast = {
-        message: "Fehler auf der Serverseite",
+        message: "Verfizierung nicht möglich. Versuche es später erneut",
         bg: "error",
     };
 
