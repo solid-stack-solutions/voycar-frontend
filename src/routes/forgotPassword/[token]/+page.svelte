@@ -1,16 +1,53 @@
 <script>
     import PasswordInputs from "$lib/passwordWithValidate.svelte";
+    import { onMount } from "svelte";
+    import { page } from "$app/stores";
+    import { urls, tryFetchingPublic } from "$lib/util.js";
 
     // Formfield bindings
-    let password;
+    let passwordInput;
+    
+    // Token from URL
+    let tokenInput;
 
     // Functions
     // Will be bound to the PasswordInput component
     let validatePassword;
 
-    function handleFormSubmit() {
-        validatePassword();
+    // Functions
+    async function fetchPasswordReset(password, token) {
+        const requestBody = {
+            password: password
+        }
+        const url = urls.post.resetPassword + token;
+        try {
+            const response  = await tryFetchingPublic(url, "POST", requestBody);
+            if (response.ok) {
+                // ToDo success toast + redirect to login
+            } else if (response.status == 400) {
+                // ToDo error toast invalid token + redirect to login
+            } else {
+                throw new Error("Unexpected result");
+            }
+        } catch (err) {
+            // ToDo error toast + redirct to login
+        }
     }
+
+    function handleFormSubmit() {
+        if (!validatePassword()) {
+            return; // Password is invalid
+        };
+        fetchPasswordReset(passwordInput, tokenInput);
+    }
+
+    onMount(() => {
+        if (! ($page.params?.token)) {
+            // ToDo error toast + redirect to login
+            return;
+        }
+        tokenInput = $page.params.token;
+    });
 </script>
 
 <div class="mt-4 flex flex-col items-center justify-center">
@@ -24,7 +61,7 @@
         >
             <PasswordInputs
                 inputGroupLabel="Neues Passwort"
-                bind:password={password}
+                bind:password={passwordInput}
                 bind:validateInput={validatePassword}
             />
 
