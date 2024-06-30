@@ -24,14 +24,15 @@
     };
 
     const backendNotAvailableToast = {
-        message: "Das Backend ist gerade nicht erreichbar, es konnten keine Daten geladen werden",
+        message:
+            "Das Backend ist gerade nicht erreichbar, es konnten keine Daten geladen werden",
         bg: "error",
     };
 
     const noCarSelectedToast = {
         message: "Du hast kein Auto ausgewählt",
         bg: "warning",
-    }
+    };
 
     const indicatorStatus = {
         none: "",
@@ -49,12 +50,10 @@
     };
 
     // Variables
-    let selectedStationIndex = 0;
+    let selectedStationIndexReference = 0;
 
     // Global temporary save variables
     let selectedStation;
-    let selectedBeginn;
-    let selectedEnd;
     let selectedCar;
 
     // Indicators
@@ -81,13 +80,13 @@
         emptyIndicator = false;
     }
 
-    function fetchAvailableAllCars(loadedStations) {
+    function fetchAvailableAllCars(loadedStations, begin, end, stationIndex) {
         cars = new Promise(async (resolve, reject) => {
             try {
                 const searchParams = {
-                    stationId: loadedStations[selectedStationIndex].id,
-                    begin: new Date(beginReference.value).toISOString(),
-                    end: new Date(endReference.value).toISOString(),
+                    stationId: loadedStations[stationIndex].id,
+                    begin: new Date(begin).toISOString(),
+                    end: new Date(end).toISOString(),
                 };
                 const response = await tryFetchingRestricted(
                     urls.get.availableCars +
@@ -124,21 +123,17 @@
         });
     }
 
-    // Checks wether a car was selected and saves it
-    function checkAndSaveCarSelected(cars) {
-        const buttons = document.getElementsByName("radio-button");
-        for (let index = 0; index < buttons.length; index++) {
-            if (buttons[index].checked) {
-                selectedCar = cars[index];
-                return true;
-            }
-        }
-        toastStore.trigger(toaster(noCarSelectedToast));
-        return false;
+    function selectCar(car, index) {
+        selectedCar = car;
+        document.getElementsByName("carField").forEach((element) => {
+            element.className = "";
+        });
+        document.getElementById(`carField_${index}`).className =
+            "border-2 border-primary-500 rounded-lg";
     }
 
     function checkPeriodFields() {
-        if (beginReference.value == "" || endReference.value == "") {
+        if (!beginReference || !endReference) {
             emptyIndicator = true;
             return false;
         }
@@ -177,9 +172,7 @@
     }
 
     // Saves current values in global variables
-    function saveSelected(begin, end, station) {
-        selectedBeginn = begin;
-        selectedEnd = end;
+    function saveSelected(station) {
         selectedStation = station;
     }
 
@@ -188,8 +181,8 @@
         try {
             const mybody = {
                 carId: selectedCar.id,
-                begin: new Date(selectedBeginn).toISOString(),
-                end: new Date(selectedEnd).toISOString(),
+                begin: new Date(beginReference).toISOString(),
+                end: new Date(endReference).toISOString(),
             };
             const response = await tryFetchingRestricted(
                 urls.post.newReservation,
@@ -224,7 +217,7 @@
                     title="Beginn"
                     id="input_begin"
                     type="datetime-local"
-                    bind:this={beginReference}
+                    bind:value={beginReference}
                 />
                 <label class="label" for="input_end">Ende</label>
                 <input
@@ -232,7 +225,7 @@
                     title="Ende"
                     id="input_end"
                     type="datetime-local"
-                    bind:this={endReference}
+                    bind:value={endReference}
                 />
                 {#if emptyIndicator}
                     <p class="text-center text-error-500">
@@ -248,7 +241,7 @@
                     <select
                         id="input_station"
                         class="input"
-                        bind:value={selectedStationIndex}
+                        bind:value={selectedStationIndexReference}
                     >
                         {#each stations as station, i}
                             <option value={i}>{station.name}</option>
@@ -263,17 +256,15 @@
                         if (
                             checkPeriodFields() &&
                             checkIfDatePeriodIsValid(
-                                beginReference.value,
-                                endReference.value,
+                                beginReference,
+                                endReference,
                             )
                         ) {
                             formPage = 1;
                             saveSelected(
-                                beginReference.value,
-                                endReference.value,
-                                stations[selectedStationIndex],
+                                stations[selectedStationIndexReference],
                             );
-                            fetchAvailableAllCars(stations);
+                            fetchAvailableAllCars(stations,beginReference, endReference, selectedStationIndexReference);
                         }
                     }}>Weiter</button
                 >
@@ -289,15 +280,15 @@
                                 <a
                                     href="/new-reservation"
                                     on:click|preventDefault={() => {
-                                        document.getElementById(
-                                            `radio_${index}`,
-                                        ).checked = true;
+                                        selectCar(car, index);
                                     }}
+                                    id="carField_{index}"
+                                    name="carField"
                                 >
                                     <div
-                                        class="grid grid-cols-6 rounded-lg bg-surface-600 p-2 hover:bg-surface-500"
+                                        class="grid grid-cols-2 rounded-lg bg-surface-600 p-2 hover:bg-surface-500"
                                     >
-                                        <div class="col-span-2">
+                                        <div>
                                             <img
                                                 src="carImages/{car.model}.webp"
                                                 alt="car pic"
@@ -305,7 +296,7 @@
                                             />
                                         </div>
                                         <div
-                                            class="col-span-3 flex h-full flex-col items-center justify-center p-2"
+                                            class="flex h-full flex-col items-center justify-center p-2"
                                         >
                                             <table
                                                 id="car_table"
@@ -337,17 +328,6 @@
                                                 </tr>
                                             </table>
                                         </div>
-                                        <div
-                                            class="col-span-1 flex h-full flex-col items-center justify-center"
-                                        >
-                                            <input
-                                                class="radio align-middle"
-                                                type="radio"
-                                                name="radio-button"
-                                                value={index}
-                                                id="radio_{index}"                                            
-                                            />
-                                        </div>
                                     </div>
                                 </a>
                             {/each}
@@ -364,7 +344,11 @@
                             <button
                                 class="variant-filled-primary btn"
                                 on:click={() => {
-                                    if (checkAndSaveCarSelected(loadedCars)) {
+                                    if (!selectedCar) {
+                                        toastStore.trigger(
+                                            toaster(noCarSelectedToast),
+                                        );
+                                    } else {
                                         formPage = 2;
                                     }
                                 }}>Weiter</button
@@ -401,13 +385,13 @@
                             <tr>
                                 <th>Beginn:</th>
                                 <td>
-                                    {filterDate(selectedBeginn)}
+                                    {filterDate(beginReference)}
                                 </td>
                             </tr>
                             <tr>
                                 <th>Ende:</th>
                                 <td>
-                                    {filterDate(selectedEnd)}
+                                    {filterDate(endReference)}
                                 </td>
                             </tr>
                             <tr>
