@@ -4,6 +4,19 @@
     import { ProgressRadial } from "@skeletonlabs/skeleton";
 
     export let data;
+
+    const toastStore = getToastStore();
+
+    const successToast = {
+        message: "Verifizierung erfolgreich",
+        bg: "primary",
+    }
+
+    const errorToast = {
+        message: "Verfizierung fehlgeschlagen",
+        bg: "error",
+    }
+
     let verified = new Promise(async (resolve, reject) => {});
 
     async function verifyTheToken(){
@@ -15,10 +28,14 @@
                 );
                 if (response.ok) {
                     resolve(await response.json());
+                    toastStore.trigger(toaster(successToast));
+                    goto("/login");
                 } else {
-                    throw new Error("Error while fetching data");
+                    throw new Error(response.ok);
                 }
             } catch (err) {
+                console.log(err);
+                toastStore.trigger(toaster(errorToast));
                 reject(err); // Rethrow so Svelte can handle it
             }
         });
