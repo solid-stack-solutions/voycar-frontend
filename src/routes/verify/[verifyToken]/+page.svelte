@@ -42,7 +42,7 @@
                     resolve(response);
                     toastStore.trigger(toaster(successToast));
                     goto("/login");
-                } else if (response.status == 400) {
+                } else if (response.status === 400) {
                     toastStore.trigger(toaster(errorToast));
                     throw new Error("Couldnt be verified");
                 } else {
