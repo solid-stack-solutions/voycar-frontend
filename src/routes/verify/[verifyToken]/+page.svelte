@@ -31,12 +31,14 @@
                     resolve(await response.json());
                     toastStore.trigger(toaster(successToast));
                     goto("/login");
-                } else {
-                    throw new Error(response.ok);
+                } else if (response.status == 400){
+                    toastStore.trigger(toaster(errorToast));
+                    throw new Error("Couldnt be verified");
+                }else {
+                    toastStore.trigger(toaster(serverErrorToast));
+                    throw new Error("Server error");
                 }
             } catch (err) {
-                console.log(err);
-                toastStore.trigger(toaster(errorToast));
                 reject(err); // Rethrow so Svelte can handle it
             }
         });
