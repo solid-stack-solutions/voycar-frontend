@@ -143,7 +143,7 @@
             </div>
             <!-- Password reset -->
             <div class="flex items-center justify-center">
-                <a class="text-sm text-tertiary-500" href="/forgotPassword"
+                <a class="text-sm text-tertiary-500" href="/forgot-password"
                     >Passwort vergessen?</a
                 >
             </div>

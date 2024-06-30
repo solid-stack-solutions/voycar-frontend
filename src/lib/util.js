@@ -25,7 +25,8 @@ export const urls = {
         allPlans: baseURL + plan + "all",
     },
     post: {
-        forgotPassword: baseURL + auth + "forgot-password",
+        forgotPassword: baseURL + auth + "reset-token",
+        resetPassword: baseURL + auth + "reset-password/",
         register: baseURL + auth + "register",
         login: baseURL + auth + "login",
         logout: baseURL + auth + "logout",
