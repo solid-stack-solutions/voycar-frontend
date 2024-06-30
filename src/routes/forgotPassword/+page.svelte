@@ -1,11 +1,29 @@
 <script>
+    import { getToastStore } from "@skeletonlabs/skeleton";
+    import { goto } from "$app/navigation";
     // Import utilities
-    import { urls, validateEmail, tryFetchingPublic } from "$lib/util.js";
+    import {
+        urls,
+        validateEmail,
+        tryFetchingPublic,
+        toaster,
+    } from "$lib/util.js";
 
     // Definitions
+    const toastStore = getToastStore();
     const indicatorStatus = {
         none: "",
         warning: "!border-warning-400",
+    };
+
+    // Toast Settings
+    const toastSuccsess = {
+        message: "Email zum Zurücksetzen erfolgreich verschickt",
+        bg: "secondary",
+    };
+    const toastBackendUnavailable = {
+        message: "Zurücksetzen nicht möglich. Versuche es später erneut.",
+        bg: "error",
     };
 
     // Formfield bindings
@@ -36,10 +54,10 @@
                 "POST",
                 requestBody,
             );
-            // ToDo toast EMail sent
+            toastStore.trigger(toaster(toastSuccsess));
             return true;
         } catch (err) {
-            // ToDo toast backend unavailable
+            toastStore.trigger(toaster(toastBackendUnavailable));
             return false;
         }
     }
@@ -59,7 +77,7 @@
             enableForm();
             return;
         }
-        // ToDo goto login
+        goto("/login");
     }
 </script>
 
