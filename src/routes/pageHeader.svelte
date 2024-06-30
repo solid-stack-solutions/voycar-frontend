@@ -76,10 +76,17 @@
                     >Abmelden</button
                 >
             {:else}
-                <button
-                    class="variant-ringed-primary btn"
-                    on:click={redirectToLogin}>Anmelden</button
-                >
+                <div class="flex flex-row space-x-2">
+                    <button
+                        class="variant-ringed-surface btn"
+                        on:click={() => {goto("/register");}}>Registrieren</button
+                    >
+                    <button
+                        class="variant-ringed-primary btn"
+                        on:click={() => {goto("/login");}}>Anmelden</button
+                    >
+                    
+                </div>
             {/if}
         </svelte:fragment>
     </AppBar>
