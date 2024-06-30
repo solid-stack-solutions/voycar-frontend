@@ -3,7 +3,7 @@
     // Framework imports
     import { getToastStore, popup } from "@skeletonlabs/skeleton";
 
-    import { toaster } from "$lib/util.js"; 
+    import { toaster } from "$lib/util.js";
     // Component imports
     import UserData from "./userComponents/userData.svelte";
     import UserPaymentData from "./userComponents/userPaymentData.svelte";
