@@ -24,7 +24,7 @@
         message: "Verfizierung nicht möglich. Versuche es später erneut",
         bg: "error",
     };
-    
+
     // Variables
     export let data;
 
