@@ -14,6 +14,7 @@
         month: "2-digit",
         day: "2-digit",
     };
+
     // Functions
     function filterDate(dateString) {
         return new Intl.DateTimeFormat("de-DE", dateOptions).format(

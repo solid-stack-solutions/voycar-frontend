@@ -4,7 +4,7 @@
     import { urls, tryFetchingRestricted } from "$lib/util.js";
     import { popup } from "@skeletonlabs/skeleton";
     import { getToastStore } from "@skeletonlabs/skeleton";
-
+    import CarDataComponent from "../carDataComponent.svelte";
     // Definitions
 
     // Export data from parent component
@@ -39,9 +39,9 @@
     };
 
     // Popup settings
-    const popupClick = {
+    const reservationPopupClick = {
         event: "click",
-        target: "popupClick",
+        target: "reservationPopupClick",
         placement: "top",
     };
 
@@ -68,6 +68,7 @@
                     throw new Error("No car data found");
                 }
             } catch (err) {
+                console.log("no car");
                 reject(err);
             }
         });
@@ -94,6 +95,23 @@
     onMount(fetchCarForReservation);
 </script>
 
+<!-- Floating UI popup to confirm account deletion -->
+<div class="card bg-secondary-500" data-popup="reservationPopupClick">
+    <aside class="alert variant-filled-warning">
+        <div class="alert-message">
+            <h3 class="h3">Stornierung bestätigen</h3>
+            <p>Willst du deine Reservierung wirklich löschen?</p>
+        </div>
+        <!-- Confirmation button -->
+        <div class="alert-actions">
+            <button
+                type="button"
+                class="variant-filled-surface btn"
+                on:click={confirmDeletion}>Bestätigen</button
+            >
+        </div>
+    </aside>
+</div>
 <div class=" relaitve space-y-3 rounded-md bg-surface-500 p-4">
     <div class="flex flex-row space-x-4">
         <div class="basis-1/3">
@@ -130,29 +148,12 @@
             </table>
             {#await carData}
                 <p class="animate-pulse cursor-progress">
-                    Laden der Daten für ihr reserviertes Auto
+                    Laden der Daten für dein reserviertes Auto
                 </p>
             {:then carData}
-                <table class="table-auto border-separate border-spacing-x-2">
-                    <tr>
-                        <td class="font-bold">Kennzeichen:</td>
-                        <td>{carData.licensePlate}</td>
-                    </tr>
-                    <tr>
-                        <td class="font-bold">Modell:</td>
-                        <td>{carData.model}</td>
-                    </tr><tr />
-                    <tr>
-                        <td class="font-bold">Art:</td>
-                        <td>{carData.type}</td>
-                    </tr>
-                    <tr>
-                        <td class="font-bold">Sitzplätze:</td>
-                        <td>{carData.seats}</td>
-                    </tr>
-                </table>
+                <CarDataComponent car={carData} showLicensePlate={true} />
             {:catch}
-                <p>Es wurden keine Daten zu ihrem Auto gefunden</p>
+                <p>Es wurden keine Daten zu deinem Auto gefunden</p>
             {/await}
         </div>
     </div>
@@ -160,25 +161,9 @@
         <div class="relative h-9">
             <button
                 class="variant-filled-error btn absolute right-0"
-                use:popup={popupClick}>Reservierung Stornieren</button
+                use:popup={reservationPopupClick}
+                >Reservierung stornieren</button
             >
         </div>
     {/if}
-    <!-- Floating UI popup to confirm account deletion -->
-    <div class="card bg-secondary-500" data-popup="popupClick">
-        <aside class="alert variant-filled-warning">
-            <div class="alert-message">
-                <h3 class="h3">Stornierung bestätigen</h3>
-                <p>Willst du deine Reservierung wirklich löschen?</p>
-            </div>
-            <!-- Confirmation button -->
-            <div class="alert-actions">
-                <button
-                    type="button"
-                    class="variant-filled-surface btn"
-                    on:click={confirmDeletion}>Bestätigen</button
-                >
-            </div>
-        </aside>
-    </div>
 </div>

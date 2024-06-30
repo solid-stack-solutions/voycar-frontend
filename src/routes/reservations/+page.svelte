@@ -64,7 +64,7 @@
         {#if reservationData.planned.length > 0}
             <ReservationList
                 reservationData={reservationData.planned}
-                cancellable={false}
+                cancellable={true}
             ></ReservationList>
         {:else}
             <p>Keine</p>
@@ -80,7 +80,9 @@
             <p>Keine</p>
         {/if}
         <div class="relative mt-2">
-            <button class="variant-filled-primary btn absolute right-0"
+            <button
+                class="variant-filled-primary btn absolute right-0"
+                on:click={() => (window.location.href = "/new-reservation")}
                 >Neue Reservierung erstellen</button
             >
         </div>
