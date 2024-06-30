@@ -16,7 +16,7 @@
     // Get Toaststore
     const toastStore = getToastStore();
 
-    export let loggedIn;
+    export let data;
 
     // Set non resolving promise as default
     let personalData = new Promise((resolve, reject) => {});
@@ -31,7 +31,7 @@
 
     // Functions
     // Runs as soon as this component is mounted
-    onMount(() => {if(loggedIn){
+    onMount(() => {if(data.loggedIn){
         personalData = new Promise(async (resolve, reject) => {
             try {
                 // Fetch backend for personal Data with retry policy
@@ -56,7 +56,7 @@
     <title>Dein Voycar Konto</title>
 </svelte:head>
 <!-- Page Content -->
-{#if loggedIn}
+{#if data.loggedIn}
 <div>
     {#await personalData}
         <!-- Display placeholders while loading data -->
@@ -79,5 +79,5 @@
     {/await}
 </div>
 {:else}
-<NotLoggedInComponent/>
+    <NotLoggedInComponent/>
 {/if}

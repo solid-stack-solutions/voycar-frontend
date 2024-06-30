@@ -27,7 +27,6 @@
     
     // Variables
     export let data;
-
     // Initialize verfied on default empty promise
     let verified = new Promise(async (resolve, reject) => {});
 
@@ -58,9 +57,9 @@
         });
     }
 
-    onMount(verifyTheToken);
+    onMount(() => {if(!data.loggedIn){verifyTheToken();}});
 </script>
-
+{#if !data.loggedIn}
 <div class="flex h-[70vh] flex-col items-center justify-center space-y-4">
     {#await verified}
         <h4 class="h4">Verfizierung läuft</h4>
@@ -91,3 +90,8 @@
         >
     {/await}
 </div>
+{:else}
+<div>
+    <h1 class="text-center h1"> Diese Seite ist nur für noch nicht verfizierte Benutzer vorgesehen!</h1>
+</div>
+{/if}

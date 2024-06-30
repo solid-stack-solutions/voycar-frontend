@@ -8,7 +8,7 @@
     import CarDataComponent from "../carDataComponent.svelte";
     import NotLoggedInComponent from "../notLoggedInComponent.svelte";
     // Definitions
-    export let loggedIn;
+    export let data;
     //Constants
     const toastStore = getToastStore();
 
@@ -217,13 +217,13 @@
         }
     }
 
-    onMount(() => {if(loggedIn){fetchAllStations();}});
+    onMount(() => {if(data.loggedIn){fetchAllStations();}});
 </script>
 
 <svelte:head>
     <title>Neue Reservierung erstellen</title>
 </svelte:head>
-{#if loggedIn}
+{#if data.loggedIn}
 <!-- Login page -->
 <div class="mt-4 flex flex-col items-center justify-center">
     <h1 class="h2 mb-8">Reservierung anlegen</h1>

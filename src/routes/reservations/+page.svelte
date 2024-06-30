@@ -10,13 +10,13 @@
     import NotLoggedInComponent from "../notLoggedInComponent.svelte";
 
     // Definitions
-    export let loggedIn; 
+    export let data; 
 
     let reservationData = new Promise((resolve, reject) => {});
 
     // Functions
     // Runs as soon as the component is mounted
-    onMount(async () => {if(loggedIn){
+    onMount(async () => {if(data.loggedIn){
         reservationData = new Promise(async (resolve, reject) => {
             try {
                 // Fetch backend for reservation Data with retry policy
@@ -38,7 +38,7 @@
 <svelte:head>
     <title>Reservierungen</title>
 </svelte:head>
-{#if loggedIn}
+{#if data.loggedIn}
 <div class="relative mt-4">
     {#await reservationData}
         <div
