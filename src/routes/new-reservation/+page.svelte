@@ -126,7 +126,7 @@
     function selectCar(car, index) {
         selectedCar = car;
         document.getElementsByName("carField").forEach((element) => {
-            element.className = "";
+            element.className = "border-2 border-transparent rounded-lg";
         });
         document.getElementById(`carField_${index}`).className =
             "border-2 border-primary-500 rounded-lg";
@@ -288,6 +288,7 @@
                                     }}
                                     id="carField_{index}"
                                     name="carField"
+                                    class = "border-2 border-transparent rounded-lg"
                                 >
                                     <div
                                         class="grid grid-cols-2 rounded-lg bg-surface-600 p-2 hover:bg-surface-500"
