@@ -7,13 +7,16 @@
     import { urls, tryFetchingRestricted } from "$lib/util.js";
     // Import custom reservation list component
     import ReservationList from "./reservationList.svelte";
+    import NotLoggedInComponent from "../notLoggedInComponent.svelte";
 
     // Definitions
+    export let loggedIn; 
+
     let reservationData = new Promise((resolve, reject) => {});
 
     // Functions
     // Runs as soon as the component is mounted
-    onMount(async () => {
+    onMount(async () => {if(loggedIn){
         reservationData = new Promise(async (resolve, reject) => {
             try {
                 // Fetch backend for reservation Data with retry policy
@@ -29,12 +32,13 @@
                 reject(err); // Rethrow so Svelte can handle it
             }
         });
-    });
+    }});
 </script>
 
 <svelte:head>
     <title>Reservierungen</title>
 </svelte:head>
+{#if loggedIn}
 <div class="relative mt-4">
     {#await reservationData}
         <div
@@ -90,3 +94,6 @@
         <p>Reservierungen konnten nicht geladen werden</p>
     {/await}
 </div>
+{:else}
+<NotLoggedInComponent/>
+{/if}

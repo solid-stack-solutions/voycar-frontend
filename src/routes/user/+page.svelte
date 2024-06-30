@@ -10,10 +10,14 @@
     // Component imports
     import UserPageLoadingPlaceholders from "./userPageLoadingPlaceholders.svelte";
     import LoggedInUser from "./loggedInUser.svelte";
+    import NotLoggedInComponent from "../notLoggedInComponent.svelte";
 
     // Definitions
     // Get Toaststore
     const toastStore = getToastStore();
+
+    export let loggedIn;
+
     // Set non resolving promise as default
     let personalData = new Promise((resolve, reject) => {});
 
@@ -27,7 +31,7 @@
 
     // Functions
     // Runs as soon as this component is mounted
-    onMount(() => {
+    onMount(() => {if(loggedIn){
         personalData = new Promise(async (resolve, reject) => {
             try {
                 // Fetch backend for personal Data with retry policy
@@ -45,13 +49,14 @@
                 reject(err); // Reject the promise so Svelte can handle it
             }
         });
-    });
+    }});
 </script>
 
 <svelte:head>
     <title>Dein Voycar Konto</title>
 </svelte:head>
 <!-- Page Content -->
+{#if loggedIn}
 <div>
     {#await personalData}
         <!-- Display placeholders while loading data -->
@@ -73,3 +78,6 @@
         <p class="text-center">Fehler: {error.message}</p>
     {/await}
 </div>
+{:else}
+<NotLoggedInComponent/>
+{/if}

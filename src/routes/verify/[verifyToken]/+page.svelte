@@ -39,6 +39,7 @@
                 const response = await tryFetchingRestricted(
                     urls.get.verifyUserToken + data.verifyToken,
                 );
+                console.log(response.json());
                 if (response.ok) {
                     resolve(await response);
                     toastStore.trigger(toaster(successToast));
@@ -51,6 +52,7 @@
                     throw new Error("Server error");
                 }
             } catch (err) {
+                console.log(err);
                 reject(err); // Rethrow so Svelte can handle it
             }
         });
