@@ -67,8 +67,9 @@
     }
 
     onMount(() => {
+        // Should not happen due to routing setup, but just in case
         if (!$page.params?.token) {
-            // ToDo error toast + redirect to login
+            goto("/forgotPassword");
             return;
         }
         tokenInput = $page.params.token;
