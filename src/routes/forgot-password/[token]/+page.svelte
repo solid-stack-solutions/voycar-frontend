@@ -46,7 +46,7 @@
             } else if (response.status == 400) {
                 // Badrequest
                 toastStore.trigger(toastInvalidToken);
-                goto("/forgotPassword");
+                goto("/forgot-password");
                 return;
             } else {
                 throw new Error("Unexpected result");
@@ -69,7 +69,7 @@
     onMount(() => {
         // Should not happen due to routing setup, but just in case
         if (!$page.params?.token) {
-            goto("/forgotPassword");
+            goto("/forgot-password");
             return;
         }
         tokenInput = $page.params.token;
