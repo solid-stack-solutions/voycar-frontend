@@ -66,7 +66,7 @@
             Startseite zurückgeleitet!
         </p>
         <p class="h3 text-center">
-            Falls du nicht automatisch weitergeleitet wirst klick auf
+            Falls du nicht automatisch weitergeleitet wirst klick
             <a href="/" class="text-primary-500 underline">hier</a>
             um zur Startseite zurückzukehren!
         </p>

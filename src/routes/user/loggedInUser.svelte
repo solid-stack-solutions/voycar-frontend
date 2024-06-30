@@ -88,7 +88,7 @@
             <aside class="alert variant-filled-warning">
                 <div class="alert-message">
                     <h3 class="h3">Kontolöschung bestätigen</h3>
-                    <p>Willst du dein Voyccar-Konto wirklich löschen?</p>
+                    <p>Willst du dein Voycar-Konto wirklich löschen?</p>
                 </div>
                 <!-- Confirmation button -->
                 <div class="alert-actions">
