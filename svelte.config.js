@@ -20,7 +20,7 @@ const config = {
     },
     kit: {
         // We can't use the auto adapter since we want to use the node server
-        // adapter, which is not supported by auto adapter. 
+        // adapter, which is not supported by auto adapter.
         // https://kit.svelte.dev/docs/adapter-node
         adapter: adapter(),
     },
