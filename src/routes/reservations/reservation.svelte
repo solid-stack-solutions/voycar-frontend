@@ -148,12 +148,12 @@
             </table>
             {#await carData}
                 <p class="animate-pulse cursor-progress">
-                    Laden der Daten für ihr reserviertes Auto
+                    Laden der Daten für dein reserviertes Auto
                 </p>
             {:then carData}
                 <CarDataComponent car={carData} showLicensePlate={true} />
             {:catch}
-                <p>Es wurden keine Daten zu ihrem Auto gefunden</p>
+                <p>Es wurden keine Daten zu deinem Auto gefunden</p>
             {/await}
         </div>
     </div>
