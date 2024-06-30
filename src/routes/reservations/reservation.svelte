@@ -4,7 +4,7 @@
     import { urls, tryFetchingRestricted } from "$lib/util.js";
     import { popup } from "@skeletonlabs/skeleton";
     import { getToastStore } from "@skeletonlabs/skeleton";
-
+    import CarDataComponent from "../carDataComponent.svelte";
     // Definitions
 
     // Export data from parent component
@@ -151,24 +151,7 @@
                     Laden der Daten für ihr reserviertes Auto
                 </p>
             {:then carData}
-                <table class="table-auto border-separate border-spacing-x-2">
-                    <tr>
-                        <td class="font-bold">Kennzeichen:</td>
-                        <td>{carData.licensePlate}</td>
-                    </tr>
-                    <tr>
-                        <td class="font-bold">Modell:</td>
-                        <td>{carData.model}</td>
-                    </tr><tr />
-                    <tr>
-                        <td class="font-bold">Art:</td>
-                        <td>{carData.type}</td>
-                    </tr>
-                    <tr>
-                        <td class="font-bold">Sitzplätze:</td>
-                        <td>{carData.seats}</td>
-                    </tr>
-                </table>
+            <CarDataComponent car={carData} showLicensePlate={true}/>
             {:catch}
                 <p>Es wurden keine Daten zu ihrem Auto gefunden</p>
             {/await}

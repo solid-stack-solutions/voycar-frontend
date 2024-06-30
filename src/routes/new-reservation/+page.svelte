@@ -2,10 +2,10 @@
     // Framework imports
     import { getToastStore } from "@skeletonlabs/skeleton";
     import { goto } from "$app/navigation";
-
     // Import backend urls
     import { urls, tryFetchingRestricted, toaster } from "$lib/util.js";
     import { onMount } from "svelte";
+    import CarDataComponent from "../carDataComponent.svelte";
 
     // Definitions
 
@@ -300,35 +300,8 @@
                                         <div
                                             class="flex h-full flex-col items-center justify-center p-2"
                                         >
-                                            <table
-                                                id="car_table"
-                                                class="w-full border-separate border-spacing-x-2 text-left"
-                                            >
-                                                <tr>
-                                                    <th> Marke: </th>
-                                                    <td>
-                                                        {car.brand}
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <th> Typ: </th>
-                                                    <td>
-                                                        {car.type}
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <th> Leistung: </th>
-                                                    <td>
-                                                        {car.ps} PS
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <th> Sitzplätze: </th>
-                                                    <td>
-                                                        {car.seats}
-                                                    </td>
-                                                </tr>
-                                            </table>
+                                        <CarDataComponent car={car}/>
+
                                         </div>
                                     </div>
                                 </a>
