@@ -288,7 +288,7 @@
                                     }}
                                     id="carField_{index}"
                                     name="carField"
-                                    class = "border-2 border-transparent rounded-lg"
+                                    class="rounded-lg border-2 border-transparent"
                                 >
                                     <div
                                         class="grid grid-cols-2 rounded-lg bg-surface-600 p-2 hover:bg-surface-500"
