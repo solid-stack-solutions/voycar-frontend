@@ -10,11 +10,6 @@
     // Definitions
     let loggedIn = false;
 
-    // Functions
-    async function redirectToLogin() {
-        goto("/login");
-    }
-
     async function logout() {
         try {
             // Fetch backend to check if user is signed in
