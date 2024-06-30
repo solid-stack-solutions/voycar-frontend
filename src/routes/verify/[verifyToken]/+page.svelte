@@ -40,7 +40,7 @@
                     urls.get.verifyUserToken + data.verifyToken,
                 );
                 if (response.ok) {
-                    resolve(await response.json());
+                    resolve(await response);
                     toastStore.trigger(toaster(successToast));
                     goto("/login");
                 } else if (response.status == 400) {
