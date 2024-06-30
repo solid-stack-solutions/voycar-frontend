@@ -18,7 +18,7 @@ WORKDIR /app
 # Install only production dependencies
 COPY package*.json .
 ENV NODE_ENV production
-RUN npm ci --omit=dev
+RUN npm ci --omit dev
 
 # Copy build files from stage 0
 COPY --from=build /app/build ./build
