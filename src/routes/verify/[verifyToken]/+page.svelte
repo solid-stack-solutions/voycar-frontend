@@ -75,10 +75,6 @@
 <div class="border-md rounded-md bg-surface-700 p-4">
     <h4 class="h4">Verifizierung fehlgeschlagen, bitte registriere dich neu</h4>
 </div>
-    <div class="grid grid-cols-2 space-x-2">
-        <button class="btn variant-filled-primary" on:click={() => (window.location.href = "/")}>Zur Startseite</button>
-        <button class="btn variant-filled-primary " on:click={() => (window.location.href = "/register")}>Zurück zur Registrierung</button>
-    </div>
-
+        <button class="btn variant-filled-primary" on:click={() => (window.location.href = "/register")}>Zurück zur Registrierung</button>
 {/await}
 </div>
