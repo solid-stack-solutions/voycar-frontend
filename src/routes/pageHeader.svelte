@@ -8,8 +8,7 @@
     import { urls, tryFetchingRestricted } from "$lib/util.js";
 
     // Definitions
-    let loggedIn = false;
-
+    export let loggedIn;
     // Functions
     async function redirectToLogin() {
         goto("/login");
@@ -23,28 +22,12 @@
                 "POST",
             );
             if (response.ok) {
-                loggedIn = false;
-            } else {
-                loggedIn = true;
+                window.location.reload();
             }
         } catch (err) {
             console.log(err);
         }
     }
-    // Runs as soon as the component is mounted
-    onMount(async () => {
-        try {
-            // Fetch backend to check if user is signed in
-            const response = await tryFetchingRestricted(urls.get.isLoggedIn);
-            if (response.ok) {
-                loggedIn = true;
-            } else {
-                loggedIn = false;
-            }
-        } catch (err) {
-            console.log(err);
-        }
-    });
 </script>
 
 <div>
