@@ -10,11 +10,6 @@
     // Definitions
     let loggedIn = false;
 
-    // Functions
-    async function redirectToLogin() {
-        goto("/login");
-    }
-
     async function logout() {
         try {
             // Fetch backend to check if user is signed in
@@ -81,10 +76,20 @@
                     >Abmelden</button
                 >
             {:else}
-                <button
-                    class="variant-ringed-primary btn"
-                    on:click={redirectToLogin}>Anmelden</button
-                >
+                <div class="flex flex-row space-x-2">
+                    <button
+                        class="variant-ringed-surface btn"
+                        on:click={() => {
+                            goto("/register");
+                        }}>Registrieren</button
+                    >
+                    <button
+                        class="variant-ringed-primary btn"
+                        on:click={() => {
+                            goto("/login");
+                        }}>Anmelden</button
+                    >
+                </div>
             {/if}
         </svelte:fragment>
     </AppBar>
