@@ -219,7 +219,9 @@
 
     onMount(fetchAllStations);
 </script>
-
+<svelte:head>
+    <title>Neue Reservierung erstellen</title>
+</svelte:head>
 <!-- Login page -->
 <div class="mt-4 flex flex-col items-center justify-center">
     <h1 class="h2 mb-8">Reservierung anlegen</h1>
