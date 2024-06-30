@@ -1,10 +1,8 @@
 <script>
     import { goto } from "$app/navigation";
-    import { onMount } from "svelte";
     import { TabGroup, TabAnchor } from "@skeletonlabs/skeleton"; // Menu with tabs
     import { AppBar } from "@skeletonlabs/skeleton";
     import { page } from "$app/stores"; // Contains all pages in a store
-
     import { urls, tryFetchingRestricted } from "$lib/util.js";
 
     // Definitions
@@ -18,10 +16,10 @@
                 "POST",
             );
             if (response.ok) {
+                goto("/");
                 window.location.reload();
             }
         } catch (err) {
-            console.log(err);
         }
     }
 </script>
