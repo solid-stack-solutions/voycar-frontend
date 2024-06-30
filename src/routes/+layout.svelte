@@ -16,12 +16,10 @@
     initializeStores();
 
     export let data;
-    // Runs as soon as the component is mounted
 </script>
 
 <Toast />
 <div>
-    {data.loggedIn}
         <PageHeader loggedIn={data.loggedIn}/>
         <div class="h-fit p-4">
             <slot />
