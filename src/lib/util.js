@@ -42,14 +42,14 @@ export const urls = {
 
 // 🍞
 // Makes less redundant toast https://www.emojisky.com/desc/486241
-export function toaster(toast){
+export function toaster(toast) {
     return {
-    message: toast.message,
-    hideDismiss: true, // Hide the dismiss button on toast
-    timeout: 3000, // Auto dismiss toast after 3 seconds
-    background: `variant-filled-${toast.bg}`,}
+        message: toast.message,
+        hideDismiss: true, // Hide the dismiss button on toast
+        timeout: 3000, // Auto dismiss toast after 3 seconds
+        background: `variant-filled-${toast.bg}`,
+    };
 }
-
 
 // Email verification
 const mailRegexPattern =
@@ -80,7 +80,10 @@ async function tryFetching(url, method, body, restricted) {
                     method: method,
                     credentials: restricted ? "include" : "omit",
                     headers: {
-                        "Content-Type": "application/json",
+                        "Content-Type":
+                            body === undefined
+                                ? "text/plain"
+                                : "application/json",
                     },
                     body: JSON.stringify(body),
                 }),
