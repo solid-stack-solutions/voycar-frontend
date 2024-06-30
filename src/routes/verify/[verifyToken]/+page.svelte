@@ -1,13 +1,15 @@
 <script>
+    // Framework imports
     import { onMount } from "svelte";
     import { urls, tryFetchingRestricted, toaster } from "$lib/util.js";
     import { getToastStore, ProgressRadial } from "@skeletonlabs/skeleton";
     import { goto } from "$app/navigation";
 
-    export let data;
-
+    // Definitions
+    // Constants
     const toastStore = getToastStore();
 
+    // Toast settings
     const successToast = {
         message: "Verifizierung erfolgreich",
         bg: "primary",
@@ -18,8 +20,17 @@
         bg: "error",
     }
 
+    const serverErrorToast = {
+        message: "Fehler auf der Serverseite",
+        bg: "error",
+    }
+    // Variables 
+    export let data;
+
+    // Initialize verfied on default empty promise
     let verified = new Promise(async (resolve, reject) => {});
 
+    // Functions
     async function verifyTheToken(){
         console.log(data.verifyToken);
         verified = new Promise(async (resolve, reject) => {
