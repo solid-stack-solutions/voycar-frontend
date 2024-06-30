@@ -24,7 +24,7 @@
         message: "Fehler auf der Serverseite",
         bg: "error",
     };
-    
+
     // Variables
     export let data;
     // Initialize verfied on default empty promise
@@ -57,41 +57,49 @@
         });
     }
 
-    onMount(() => {if(!data.loggedIn){verifyTheToken();}});
+    onMount(() => {
+        if (!data.loggedIn) {
+            verifyTheToken();
+        }
+    });
 </script>
+
 {#if !data.loggedIn}
-<div class="flex h-[70vh] flex-col items-center justify-center space-y-4">
-    {#await verified}
-        <h4 class="h4">Verfizierung läuft</h4>
-        <ProgressRadial
-            stroke={60}
-            meter="stroke-primary-500"
-            track="stroke-primary-500/30"
-            strokeLinecap="butt"
-            width="w-20"
-        />
-    {:then verified}
-        <!-- Content if redirect fails -->
-        <h4 class="h4">Verifizierung erfolgreich</h4>
-        <button
-            class="variant-filled-primary btn"
-            on:click={() => (window.location.href = "/login")}>Zum Login</button
-        >
-    {:catch err}
-        <div class="border-md rounded-md bg-surface-700 p-4">
-            <h4 class="h4">
-                Verifizierung fehlgeschlagen, bitte registriere dich neu
-            </h4>
-        </div>
-        <button
-            class="variant-filled-primary btn"
-            on:click={() => (window.location.href = "/register")}
-            >Zurück zur Registrierung</button
-        >
-    {/await}
-</div>
+    <div class="flex h-[70vh] flex-col items-center justify-center space-y-4">
+        {#await verified}
+            <h4 class="h4">Verfizierung läuft</h4>
+            <ProgressRadial
+                stroke={60}
+                meter="stroke-primary-500"
+                track="stroke-primary-500/30"
+                strokeLinecap="butt"
+                width="w-20"
+            />
+        {:then verified}
+            <!-- Content if redirect fails -->
+            <h4 class="h4">Verifizierung erfolgreich</h4>
+            <button
+                class="variant-filled-primary btn"
+                on:click={() => (window.location.href = "/login")}
+                >Zum Login</button
+            >
+        {:catch err}
+            <div class="border-md rounded-md bg-surface-700 p-4">
+                <h4 class="h4">
+                    Verifizierung fehlgeschlagen, bitte registriere dich neu
+                </h4>
+            </div>
+            <button
+                class="variant-filled-primary btn"
+                on:click={() => (window.location.href = "/register")}
+                >Zurück zur Registrierung</button
+            >
+        {/await}
+    </div>
 {:else}
-<div>
-    <h1 class="text-center h1"> Diese Seite ist nur für noch nicht verfizierte Benutzer vorgesehen!</h1>
-</div>
+    <div>
+        <h1 class="h1 text-center">
+            Diese Seite ist nur für noch nicht verfizierte Benutzer vorgesehen!
+        </h1>
+    </div>
 {/if}

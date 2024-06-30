@@ -19,8 +19,7 @@
                 goto("/");
                 window.location.reload();
             }
-        } catch (err) {
-        }
+        } catch (err) {}
     }
 </script>
 

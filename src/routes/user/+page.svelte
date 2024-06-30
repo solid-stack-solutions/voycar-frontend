@@ -31,25 +31,27 @@
 
     // Functions
     // Runs as soon as this component is mounted
-    onMount(() => {if(data.loggedIn){
-        personalData = new Promise(async (resolve, reject) => {
-            try {
-                // Fetch backend for personal Data with retry policy
-                const response = await tryFetchingRestricted(
-                    urls.get.memberPersonalData,
-                );
-                if (response.ok) {
-                    resolve(await response.json());
-                } else {
-                    throw new Error("Error while fetching data");
+    onMount(() => {
+        if (data.loggedIn) {
+            personalData = new Promise(async (resolve, reject) => {
+                try {
+                    // Fetch backend for personal Data with retry policy
+                    const response = await tryFetchingRestricted(
+                        urls.get.memberPersonalData,
+                    );
+                    if (response.ok) {
+                        resolve(await response.json());
+                    } else {
+                        throw new Error("Error while fetching data");
+                    }
+                } catch (err) {
+                    toastStore.trigger(toast);
+                    goto("/"); // Redirect user to landing page
+                    reject(err); // Reject the promise so Svelte can handle it
                 }
-            } catch (err) {
-                toastStore.trigger(toast);
-                goto("/"); // Redirect user to landing page
-                reject(err); // Reject the promise so Svelte can handle it
-            }
-        });
-    }});
+            });
+        }
+    });
 </script>
 
 <svelte:head>
@@ -57,27 +59,27 @@
 </svelte:head>
 <!-- Page Content -->
 {#if data.loggedIn}
-<div>
-    {#await personalData}
-        <!-- Display placeholders while loading data -->
-        <UserPageLoadingPlaceholders />
-    {:then personalData}
-        <!-- Display on success -->
-        <LoggedInUser {personalData}></LoggedInUser>
-    {:catch error}
-        <!-- Display on error -->
-        <p class="h3 text-center">
-            Dein Nutzerkonto konnte nicht gefunden werden. Du wirst auf die
-            Startseite zurückgeleitet!
-        </p>
-        <p class="h3 text-center">
-            Falls du nicht automatisch weitergeleitet wirst klick
-            <a href="/" class="text-primary-500 underline">hier</a>
-            um zur Startseite zurückzukehren!
-        </p>
-        <p class="text-center">Fehler: {error.message}</p>
-    {/await}
-</div>
+    <div>
+        {#await personalData}
+            <!-- Display placeholders while loading data -->
+            <UserPageLoadingPlaceholders />
+        {:then personalData}
+            <!-- Display on success -->
+            <LoggedInUser {personalData}></LoggedInUser>
+        {:catch error}
+            <!-- Display on error -->
+            <p class="h3 text-center">
+                Dein Nutzerkonto konnte nicht gefunden werden. Du wirst auf die
+                Startseite zurückgeleitet!
+            </p>
+            <p class="h3 text-center">
+                Falls du nicht automatisch weitergeleitet wirst klick
+                <a href="/" class="text-primary-500 underline">hier</a>
+                um zur Startseite zurückzukehren!
+            </p>
+            <p class="text-center">Fehler: {error.message}</p>
+        {/await}
+    </div>
 {:else}
-    <NotLoggedInComponent/>
+    <NotLoggedInComponent />
 {/if}

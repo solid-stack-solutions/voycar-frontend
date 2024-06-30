@@ -15,13 +15,14 @@
     import PageHeader from "./pageHeader.svelte";
     initializeStores();
 
+    // Exports data to all children components
     export let data;
 </script>
 
 <Toast />
 <div>
-        <PageHeader loggedIn={data.loggedIn}/>
-        <div class="h-fit p-4">
-            <slot />
-        </div>
+    <PageHeader loggedIn={data.loggedIn} />
+    <div class="h-fit p-4">
+        <slot />
+    </div>
 </div>
