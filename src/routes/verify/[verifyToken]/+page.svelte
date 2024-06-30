@@ -24,6 +24,7 @@
         message: "Fehler auf der Serverseite",
         bg: "error",
     };
+    
     // Variables
     export let data;
 
