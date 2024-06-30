@@ -23,7 +23,7 @@ export const urls = {
         allStations: baseURL + station + all,
         availableCars: baseURL + car + "available",
         allPlans: baseURL + plan + "all",
-        verifyUserToken: baseURL + auth + "verify/", 
+        verifyUserToken: baseURL + auth + "verify/",
     },
     post: {
         forgotPassword: baseURL + auth + "forgot-password",
