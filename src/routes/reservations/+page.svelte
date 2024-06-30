@@ -54,7 +54,7 @@
         {#if reservationData.active.length > 0}
             <ReservationList
                 reservationData={reservationData.active}
-                cancellable={false}
+                cancellable={true}
             ></ReservationList>
         {:else}
             <p>Keine</p>
@@ -64,7 +64,7 @@
         {#if reservationData.planned.length > 0}
             <ReservationList
                 reservationData={reservationData.planned}
-                cancellable={false}
+                cancellable={true}
             ></ReservationList>
         {:else}
             <p>Keine</p>
