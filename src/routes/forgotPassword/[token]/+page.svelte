@@ -6,7 +6,7 @@
 
     // Formfield bindings
     let passwordInput;
-    
+
     // Token from URL
     let tokenInput;
 
@@ -17,11 +17,11 @@
     // Functions
     async function fetchPasswordReset(password, token) {
         const requestBody = {
-            password: password
-        }
+            password: password,
+        };
         const url = urls.post.resetPassword + token;
         try {
-            const response  = await tryFetchingPublic(url, "POST", requestBody);
+            const response = await tryFetchingPublic(url, "POST", requestBody);
             if (response.ok) {
                 // ToDo success toast + redirect to login
             } else if (response.status == 400) {
@@ -37,12 +37,12 @@
     function handleFormSubmit() {
         if (!validatePassword()) {
             return; // Password is invalid
-        };
+        }
         fetchPasswordReset(passwordInput, tokenInput);
     }
 
     onMount(() => {
-        if (! ($page.params?.token)) {
+        if (!$page.params?.token) {
             // ToDo error toast + redirect to login
             return;
         }
@@ -67,10 +67,7 @@
 
             <!-- Continue button -->
             <div class="flex flex-col items-center">
-                <button
-                    class="variant-filled-primary btn w-full"
-                    type="submit"
-                >
+                <button class="variant-filled-primary btn w-full" type="submit">
                     Zurücksetzen
                 </button>
             </div>

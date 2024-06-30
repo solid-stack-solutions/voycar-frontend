@@ -38,13 +38,13 @@
         submitBtnReference.disabled = true;
         if (!validateEmail(emailInput)) {
             emailIndicator = indicatorStatus.warning;
-            submitBtnReference.disabled = false
+            submitBtnReference.disabled = false;
             return;
         }
 
         emailIndicator = indicatorStatus.none;
-        
-        if (!await fetchResetToken(emailInput)) {
+
+        if (!(await fetchResetToken(emailInput))) {
             // Fetch was unsuccessful
             submitBtnReference.disabled = false;
             return;
@@ -85,7 +85,11 @@
 
             <!-- Continue button -->
             <div class="flex flex-col items-center">
-                <button class="variant-filled-primary btn w-full" type="submit" bind:this={submitBtnReference}>
+                <button
+                    class="variant-filled-primary btn w-full"
+                    type="submit"
+                    bind:this={submitBtnReference}
+                >
                     E-Mail senden
                 </button>
             </div>
