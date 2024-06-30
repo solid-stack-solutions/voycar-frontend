@@ -10,12 +10,22 @@
 
     // Formfield bindings
     let emailInput;
+    let emailReference;
     let submitBtnReference;
 
     // Will get value "error" or "warning" according to validators
     let emailIndicator = indicatorStatus.none;
 
     // Functions
+    function enableForm() {
+        emailReference.disabled = false;
+        submitBtnReference.disabled = false;
+    }
+    function disabledForm() {
+        emailReference.disabled = true;
+        submitBtnReference.disabled = true;
+    }
+
     async function fetchResetToken(email) {
         const requestBody = {
             email: email,
@@ -35,10 +45,10 @@
     }
 
     async function handleFormSubmit() {
-        submitBtnReference.disabled = true;
+        disabledForm();
         if (!validateEmail(emailInput)) {
             emailIndicator = indicatorStatus.warning;
-            submitBtnReference.disabled = false;
+            enableForm();
             return;
         }
 
@@ -46,7 +56,7 @@
 
         if (!(await fetchResetToken(emailInput))) {
             // Fetch was unsuccessful
-            submitBtnReference.disabled = false;
+            enableForm();
             return;
         }
         // ToDo goto login
@@ -72,6 +82,7 @@
                 id="email_input"
                 placeholder="beispiel.organisation@mail.com"
                 bind:value={emailInput}
+                bind:this={emailReference}
             />
             {#if emailIndicator === indicatorStatus.warning}
                 <div
