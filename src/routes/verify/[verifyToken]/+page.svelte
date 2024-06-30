@@ -33,7 +33,6 @@
 
     // Functions
     async function verifyTheToken() {
-        console.log(data.verifyToken);
         verified = new Promise(async (resolve, reject) => {
             try {
                 const response = await tryFetchingRestricted(
