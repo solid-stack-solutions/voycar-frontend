@@ -1,5 +1,7 @@
+// Import urls and fetch function from util
 import { urls, tryFetchingRestricted } from "$lib/util.js";
-let loggedIn = new Promise((resolve, reject) => {});
+
+// Functions
 async function testLoggedIn() {
     try {
         const response = await tryFetchingRestricted(urls.get.isLoggedIn);
@@ -13,7 +15,7 @@ async function testLoggedIn() {
     }
 }
 
-// Runs as soon as the component is mounted
+// Exports the data to layout.svelte using the data prop
 export async function load() {
     return {
         loggedIn: await testLoggedIn(),
