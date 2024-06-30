@@ -39,9 +39,9 @@
     };
 
     // Popup settings
-    const popupClick = {
+    const reservationPopupClick = {
         event: "click",
-        target: "popupClick",
+        target: "reservationPopupClick",
         placement: "top",
     };
 
@@ -68,6 +68,7 @@
                     throw new Error("No car data found");
                 }
             } catch (err) {
+                console.log("no car");
                 reject(err);
             }
         });
@@ -94,6 +95,23 @@
     onMount(fetchCarForReservation);
 </script>
 
+<!-- Floating UI popup to confirm account deletion -->
+<div class="card bg-secondary-500" data-popup="reservationPopupClick">
+    <aside class="alert variant-filled-warning">
+        <div class="alert-message">
+            <h3 class="h3">Stornierung bestätigen</h3>
+            <p>Willst du deine Reservierung wirklich löschen?</p>
+        </div>
+        <!-- Confirmation button -->
+        <div class="alert-actions">
+            <button
+                type="button"
+                class="variant-filled-surface btn"
+                on:click={confirmDeletion}>Bestätigen</button
+            >
+        </div>
+    </aside>
+</div>
 <div class=" relaitve space-y-3 rounded-md bg-surface-500 p-4">
     <div class="flex flex-row space-x-4">
         <div class="basis-1/3">
@@ -160,25 +178,8 @@
         <div class="relative h-9">
             <button
                 class="variant-filled-error btn absolute right-0"
-                use:popup={popupClick}>Reservierung Stornieren</button
+                use:popup={reservationPopupClick}>Reservierung Stornieren</button
             >
         </div>
-    {/if}
-    <!-- Floating UI popup to confirm account deletion -->
-    <div class="card bg-secondary-500" data-popup="popupClick">
-        <aside class="alert variant-filled-warning">
-            <div class="alert-message">
-                <h3 class="h3">Stornierung bestätigen</h3>
-                <p>Willst du deine Reservierung wirklich löschen?</p>
-            </div>
-            <!-- Confirmation button -->
-            <div class="alert-actions">
-                <button
-                    type="button"
-                    class="variant-filled-surface btn"
-                    on:click={confirmDeletion}>Bestätigen</button
-                >
-            </div>
-        </aside>
-    </div>
+    {/if}    
 </div>
