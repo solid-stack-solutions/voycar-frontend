@@ -9,6 +9,8 @@ const car = "car/";
 const user = "user/";
 const member = "member/";
 const auth = "auth/";
+const station = "station/";
+const all = "all";
 const personal = "personal";
 const plan = "plan/";
 export const urls = {
@@ -17,6 +19,9 @@ export const urls = {
         isLoggedIn: baseURL + user + "whoami",
         reservationPersonalData: baseURL + reservation + personal,
         singleCar: baseURL + car,
+        allCars: baseURL + car + "all",
+        allStations: baseURL + station + all,
+        availableCars: baseURL + car + "available",
         allPlans: baseURL + plan + "all",
     },
     post: {
@@ -25,6 +30,7 @@ export const urls = {
         register: baseURL + auth + "register",
         login: baseURL + auth + "login",
         logout: baseURL + auth + "logout",
+        newReservation: baseURL + car + "reserve",
     },
     put: {
         newPersonalData: baseURL + member + personal,
@@ -34,6 +40,17 @@ export const urls = {
         singleReservation: baseURL + reservation + personal + "/",
     },
 };
+
+// 🍞
+// Makes less redundant toast https://www.emojisky.com/desc/486241
+export function toaster(toast) {
+    return {
+        message: toast.message,
+        hideDismiss: true, // Hide the dismiss button on toast
+        timeout: 3000, // Auto dismiss toast after 3 seconds
+        background: `variant-filled-${toast.bg}`,
+    };
+}
 
 // Email verification
 const mailRegexPattern =
@@ -64,7 +81,10 @@ async function tryFetching(url, method, body, restricted) {
                     method: method,
                     credentials: restricted ? "include" : "omit",
                     headers: {
-                        "Content-Type": "application/json",
+                        "Content-Type":
+                            body === undefined
+                                ? "text/plain"
+                                : "application/json",
                     },
                     body: JSON.stringify(body),
                 }),

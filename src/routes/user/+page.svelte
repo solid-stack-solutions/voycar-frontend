@@ -19,7 +19,7 @@
 
     // Toast-Settings
     const toast = {
-        message: "Ihr Nutzerkonto konnte nicht gefunden werden",
+        message: "Dein Nutzerkonto konnte nicht gefunden werden",
         hideDismiss: true, // Hide the dismiss button on toast
         timeout: 3000, // Auto dismiss toast after 3 seconds
         background: "variant-filled-error",
@@ -62,11 +62,11 @@
     {:catch error}
         <!-- Display on error -->
         <p class="h3 text-center">
-            Ihr Nutzerkonto konnte nicht gefunden werden. Sie werden auf die
+            Dein Nutzerkonto konnte nicht gefunden werden. Du wirst auf die
             Startseite zurückgeleitet!
         </p>
         <p class="h3 text-center">
-            Falls sie nicht automatisch weitergeleitet werden klicken sie
+            Falls du nicht automatisch weitergeleitet wirst klick
             <a href="/" class="text-primary-500 underline">hier</a>
             um zur Startseite zurückzukehren!
         </p>

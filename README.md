@@ -1,37 +1,36 @@
-# Overview
-//ToDo: (semi-)short description of the frontend
+<h1>
+    <img src="./static/logo-full-white.svg" height=25>
+    Frontend - Your modern carsharing solution
+</h1>
 
-Used technologies are...
-- JavaScript
+> also see [Voycar Backend](https://github.com/solid-stack-solutions/voycar-backend)!
+
+### Technology Overview
+- JavaScript (using [Node.js](https://nodejs.org))
 - [Skeleton](https://www.skeleton.dev/), including...
-    - [Tailwind](https://tailwindcss.com/)
+    - [Tailwind CSS](https://tailwindcss.com/)
     - [SvelteKit](https://kit.svelte.dev/), including...
         - [Svelte](https://svelte.dev/)
         - [Vite](https://vitejs.dev/)
-- [ESLint](https://eslint.org/)
-- [Prettier](https://prettier.io/)
-- [Svelte Inspector](https://github.com/qutran/svelte-inspector)
+- Code style and debugging
+    - [ESLint](https://eslint.org/)
+    - [Prettier](https://prettier.io/)
+    - [Svelte Inspector](https://github.com/qutran/svelte-inspector)
 
-# How to use
-//ToDo: short description on how to use the frontend pages, maybe screenshot/video showcase
-
-# Installation
-Prerequisite: The following commands need to be available
-- [`git`](https://git-scm.com/)
-- [`node` / `npm`](https://nodejs.org) (usually installed together)
-
+# Installation and Usage
+- Have [Docker](https://www.docker.com/) set up
+- Get the source code, e.g. with...
 ```sh
 git clone https://github.com/solid-stack-solutions/voycar-frontend
 cd voycar-frontend
-npm i
 ```
-
-# Functionality
-//ToDo: what the frontend does, what it's used for
+- Run `docker compose up`
 
 # Development
+> Requires [`node` / `npm`](https://nodejs.org)
+
 ```sh
-# run app
+# run app locally
 npm run dev
 # reload by typing "r" and enter in the terminal
 # inspect svelte components with ctrl+alt+i in webapp
@@ -41,16 +40,7 @@ npm run check-format
 # apply configured formatting rules
 npm run format
 ```
-//ToDo: link to documentation of the frontend
 
-## Styling
-//ToDo: list styling conventions
-
-### Page Styling
-//ToDo: list of styling conventions for the pages (colorpalette, layouts, common icons, etc.)
-
-### Code Styling
-Please run `npm run format` before creating a PR.
-
-## Conventions
-//ToDo: other helpful information and how-to's for development
+### Conventions
+- Run `npm run format` before creating a PR
+- Comments start with a space and a capital letter, e.g. `// This is a comment`
