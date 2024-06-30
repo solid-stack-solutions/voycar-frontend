@@ -54,7 +54,7 @@
         {#if reservationData.active.length > 0}
             <ReservationList
                 reservationData={reservationData.active}
-                cancellable={true}
+                cancellable={false}
             ></ReservationList>
         {:else}
             <p>Keine</p>
