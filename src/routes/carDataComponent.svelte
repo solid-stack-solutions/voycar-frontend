@@ -9,32 +9,32 @@
 >
     {#if showLicensePlate}
         <tr>
-            <th> Kennzeichen: </th>
+            <th>Kennzeichen:</th>
             <td>
                 {car.licensePlate}
             </td>
         </tr>
     {/if}
     <tr>
-        <th> Marke: </th>
+        <th>Marke:</th>
         <td>
             {car.brand}
         </td>
     </tr>
     <tr>
-        <th> Typ: </th>
+        <th>Typ:</th>
         <td>
             {car.type}
         </td>
     </tr>
     <tr>
-        <th> Leistung: </th>
+        <th>Leistung:</th>
         <td>
             {car.ps} PS
         </td>
     </tr>
     <tr>
-        <th> Sitzplätze: </th>
+        <th>Sitzplätze:</th>
         <td>
             {car.seats}
         </td>
