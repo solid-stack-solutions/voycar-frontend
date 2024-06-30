@@ -132,17 +132,19 @@
             "border-2 border-primary-500 rounded-lg";
     }
 
-    function formpage1Validation(stations){
+    function formpage1Validation(stations) {
         if (
             checkPeriodFields() &&
-            checkIfDatePeriodIsValid(
-                beginReference,
-                endReference,
-            )
+            checkIfDatePeriodIsValid(beginReference, endReference)
         ) {
             formPage = 1;
-            selectedStation = stations[selectedStationIndexReference],
-            fetchAvailableAllCars(stations,beginReference, endReference, selectedStationIndexReference);
+            (selectedStation = stations[selectedStationIndexReference]),
+                fetchAvailableAllCars(
+                    stations,
+                    beginReference,
+                    endReference,
+                    selectedStationIndexReference,
+                );
         }
     }
 
@@ -267,7 +269,7 @@
                     class="variant-filled-primary btn w-full"
                     on:click={() => {
                         resetIndicators();
-                        formpage1Validation(stations)
+                        formpage1Validation(stations);
                     }}>Weiter</button
                 >
             {:else if formPage == 1}
@@ -300,8 +302,7 @@
                                         <div
                                             class="flex h-full flex-col items-center justify-center p-2"
                                         >
-                                        <CarDataComponent car={car}/>
-
+                                            <CarDataComponent {car} />
                                         </div>
                                     </div>
                                 </a>

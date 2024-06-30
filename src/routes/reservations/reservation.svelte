@@ -151,7 +151,7 @@
                     Laden der Daten für ihr reserviertes Auto
                 </p>
             {:then carData}
-            <CarDataComponent car={carData} showLicensePlate={true}/>
+                <CarDataComponent car={carData} showLicensePlate={true} />
             {:catch}
                 <p>Es wurden keine Daten zu ihrem Auto gefunden</p>
             {/await}
@@ -161,8 +161,9 @@
         <div class="relative h-9">
             <button
                 class="variant-filled-error btn absolute right-0"
-                use:popup={reservationPopupClick}>Reservierung Stornieren</button
+                use:popup={reservationPopupClick}
+                >Reservierung Stornieren</button
             >
         </div>
-    {/if}    
+    {/if}
 </div>

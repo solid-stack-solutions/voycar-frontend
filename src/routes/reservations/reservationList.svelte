@@ -33,7 +33,7 @@
                     )}</svelte:fragment
                 >
                 <svelte:fragment slot="content">
-                    <Reservation reservationData={reservation} cancellable={cancellable}
+                    <Reservation reservationData={reservation} {cancellable}
                     ></Reservation>
                 </svelte:fragment>
             </AccordionItem>
