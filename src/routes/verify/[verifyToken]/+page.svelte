@@ -69,6 +69,7 @@
             width="w-20"
         />
     {:then verified}
+        <!-- Content if redirect fails -->
         <h4 class="h4">Verifizierung erfolgreich</h4>
         <button
             class="variant-filled-primary btn"
