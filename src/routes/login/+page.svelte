@@ -1,6 +1,10 @@
 <script>
+    // Framework imports
+    import { goto } from "$app/navigation";
+
     // Import backend urls
     import { urls, validateEmail, tryFetchingRestricted } from "$lib/util.js";
+    import { loggedIn } from "$lib/stores/loggedIn";
 
     // Definitions
     // Enums
@@ -26,6 +30,11 @@
 
     let somethingWrong = false;
     let showPassword = false;
+
+    // Reactive statements
+    $: if ($loggedIn) {
+        goto("/")
+    }
 
     // Functions
     function resetIndicators() {
