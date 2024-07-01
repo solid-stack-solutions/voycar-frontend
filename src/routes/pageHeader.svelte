@@ -1,14 +1,10 @@
 <script>
     import { goto } from "$app/navigation";
-    import { onMount } from "svelte";
     import { TabGroup, TabAnchor } from "@skeletonlabs/skeleton"; // Menu with tabs
     import { AppBar } from "@skeletonlabs/skeleton";
     import { page } from "$app/stores"; // Contains all pages in a store
-
     import { urls, tryFetchingRestricted } from "$lib/util.js";
-
-    // Definitions
-    let loggedIn = false;
+    import { loggedIn } from "$lib/stores/loggedIn.js";
 
     async function logout() {
         try {
@@ -18,28 +14,11 @@
                 "POST",
             );
             if (response.ok) {
-                loggedIn = false;
-            } else {
-                loggedIn = true;
+                goto("/");
+                window.location.reload();
             }
-        } catch (err) {
-            console.log(err);
-        }
+        } catch (err) {}
     }
-    // Runs as soon as the component is mounted
-    onMount(async () => {
-        try {
-            // Fetch backend to check if user is signed in
-            const response = await tryFetchingRestricted(urls.get.isLoggedIn);
-            if (response.ok) {
-                loggedIn = true;
-            } else {
-                loggedIn = false;
-            }
-        } catch (err) {
-            console.log(err);
-        }
-    });
 </script>
 
 <div>
@@ -71,7 +50,7 @@
             </a>
         </svelte:fragment>
         <svelte:fragment slot="trail">
-            {#if loggedIn}
+            {#if $loggedIn}
                 <button class="variant-ringed-surface btn" on:click={logout}
                     >Abmelden</button
                 >
@@ -93,13 +72,10 @@
             {/if}
         </svelte:fragment>
     </AppBar>
-    {#if loggedIn}
+    {#if $loggedIn}
         <TabGroup class="text-lg">
             <TabAnchor href="/" selected={$page.url.pathname === "/"}>
                 Home
-            </TabAnchor>
-            <TabAnchor href="/cars" selected={$page.url.pathname === "/cars"}>
-                Autos
             </TabAnchor>
             <TabAnchor
                 href="/reservations"
