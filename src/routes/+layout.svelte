@@ -23,5 +23,5 @@
     <div class="h-fit p-4">
         <slot />
     </div>
-    <Footer/>
+    <Footer />
 </div>
