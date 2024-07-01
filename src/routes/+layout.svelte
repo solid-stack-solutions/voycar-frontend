@@ -18,7 +18,7 @@
     // Import utilities
     import { urls, tryFetchingRestricted } from "$lib/util.js";
     import { loggedIn } from "../lib/stores/loggedIn";
-
+    import Footer from "./footer.svelte";
     initializeStores();
 
     onMount(async () => {
@@ -37,4 +37,5 @@
     <div class="h-fit p-4">
         <slot />
     </div>
+    <Footer />
 </div>
