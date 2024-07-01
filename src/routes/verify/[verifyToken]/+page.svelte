@@ -21,7 +21,7 @@
     };
 
     const serverErrorToast = {
-        message: "Verfizierung nicht möglich. Versuche es später erneut",
+        message: "Verifizierung nicht möglich. Versuche es später erneut.",
         bg: "error",
     };
 
@@ -60,7 +60,7 @@
 
 <div class="flex h-[70vh] flex-col items-center justify-center space-y-4">
     {#await verified}
-        <h4 class="h4">Verfizierung läuft</h4>
+        <h4 class="h4">Verifizierung läuft</h4>
         <ProgressRadial
             stroke={60}
             meter="stroke-primary-500"
