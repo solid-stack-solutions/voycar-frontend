@@ -4,9 +4,8 @@
     import { AppBar } from "@skeletonlabs/skeleton";
     import { page } from "$app/stores"; // Contains all pages in a store
     import { urls, tryFetchingRestricted } from "$lib/util.js";
+    import { loggedIn } from "$lib/stores/loggedIn.js";
 
-    // Definitions
-    export let loggedIn;
 
     async function logout() {
         try {
@@ -52,7 +51,7 @@
             </a>
         </svelte:fragment>
         <svelte:fragment slot="trail">
-            {#if loggedIn}
+            {#if $loggedIn}
                 <button class="variant-ringed-surface btn" on:click={logout}
                     >Abmelden</button
                 >
@@ -74,7 +73,7 @@
             {/if}
         </svelte:fragment>
     </AppBar>
-    {#if loggedIn}
+    {#if $loggedIn}
         <TabGroup class="text-lg">
             <TabAnchor href="/" selected={$page.url.pathname === "/"}>
                 Home
