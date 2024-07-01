@@ -95,6 +95,7 @@
         }
     }
 </script>
+
 <svelte:head>
     <title>Voycar - Registrieren</title>
 </svelte:head>

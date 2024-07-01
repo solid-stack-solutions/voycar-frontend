@@ -80,6 +80,7 @@
         goto("/login");
     }
 </script>
+
 <svelte:head>
     <title>Voycar - Passwort zurücksetzen</title>
 </svelte:head>

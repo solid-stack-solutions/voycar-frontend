@@ -44,7 +44,7 @@
                     goto("/login");
                 } else if (response.status === 400) {
                     toastStore.trigger(toaster(errorToast));
-                   reject("Couldnt be verified");
+                    reject("Couldnt be verified");
                 } else {
                     throw new Error("Server error");
                 }
@@ -57,6 +57,7 @@
 
     onMount(verifyTheToken);
 </script>
+
 <svelte:head>
     <title>Voycar - Konto verfizieren</title>
 </svelte:head>
