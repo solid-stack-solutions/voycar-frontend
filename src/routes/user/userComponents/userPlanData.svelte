@@ -24,25 +24,19 @@
     // Success toast
     const successToast = {
         message: "Deine Daten wurden erfolgreich aktualisiert",
-        hideDismiss: true, // Hide the dismiss button on toast
-        timeout: 3000, // Auto dismiss toast after 3 seconds
-        background: "variant-filled-secondary",
+        bg: "secondary",
     };
 
     // Warning toast
     const warningToast = {
         message: "Du hast keine zu aktualisierenden Daten eingegeben",
-        hideDismiss: true, // Hide the dismiss button on toast
-        timeout: 3000, // Auto dismiss toast after 3 seconds
-        background: "variant-filled-warning",
+        bg: "warning",
     };
 
     // Error toast
     const errorToast = {
         message: "Deine Daten konnten nicht aktualisiert werden",
-        hideDismiss: true, // Hide the dismiss button on toast
-        timeout: 3000, // Auto dismiss toast after 3 seconds
-        background: "variant-filled-error",
+        bg: "error",
     };
 
     // Functions
@@ -91,7 +85,7 @@
             editEnabled = false;
         }
         if (checkPlanNameDidntChange(planReference.value)) {
-            toastStore.trigger(warningToast);
+            toastStore.trigger(toaster(warningToast));
             return;
         }
         try {
@@ -103,14 +97,14 @@
                 mybody,
             );
             if (response.ok) {
-                toastStore.trigger(successToast);
+                toastStore.trigger(toaster(successToast));
                 lastplanValue = planReference.value;
             } else {
                 throw new Error("Update failed");
             }
         } catch (err) {
             console.log(err);
-            toastStore.trigger(errorToast);
+            toastStore.trigger(toaster(errorToast));
         }
     }
 </script>

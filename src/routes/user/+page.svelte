@@ -4,7 +4,7 @@
     import { goto } from "$app/navigation";
 
     // Util library import for url routes and fetches
-    import { urls, tryFetchingRestricted } from "$lib/util.js";
+    import { urls, tryFetchingRestricted, toaster } from "$lib/util.js";
     import { loggedIn } from "$lib/stores/loggedIn.js";
 
     // Component imports
@@ -20,11 +20,9 @@
     let personalData = new Promise((resolve, reject) => {});
 
     // Toast-Settings
-    const toast = {
+    const toastError = {
         message: "Dein Nutzerkonto konnte nicht gefunden werden",
-        hideDismiss: true, // Hide the dismiss button on toast
-        timeout: 3000, // Auto dismiss toast after 3 seconds
-        background: "variant-filled-error",
+        bg: "error",
     };
 
     // Reactive statements
@@ -41,7 +39,7 @@
                     throw new Error("Error while fetching data");
                 }
             } catch (err) {
-                toastStore.trigger(toast);
+                toastStore.trigger(toaster(toastError));
                 goto("/"); // Redirect user to landing page
                 reject(err); // Reject the promise so Svelte can handle it
             }
