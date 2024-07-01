@@ -96,10 +96,7 @@
     {#if loggedIn}
         <TabGroup class="text-lg">
             <TabAnchor href="/" selected={$page.url.pathname === "/"}>
-                Home
-            </TabAnchor>
-            <TabAnchor href="/cars" selected={$page.url.pathname === "/cars"}>
-                Autos
+                Startseite
             </TabAnchor>
             <TabAnchor
                 href="/reservations"
