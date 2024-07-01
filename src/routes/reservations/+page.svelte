@@ -36,7 +36,7 @@
 </script>
 
 <svelte:head>
-    <title>Reservierungen</title>
+    <title>Voycar - Reservierungen</title>
 </svelte:head>
 {#if $loggedIn}
     <div class="relative mt-4">

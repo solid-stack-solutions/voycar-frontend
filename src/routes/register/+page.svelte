@@ -103,6 +103,9 @@
     }
 </script>
 
+<svelte:head>
+    <title>Voycar - Registrieren</title>
+</svelte:head>
 <!-- Register page -->
 {#if $loggedIn === false}
     <div class="mt-4 flex flex-col items-center justify-center">

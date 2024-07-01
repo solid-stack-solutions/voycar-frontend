@@ -49,7 +49,7 @@
 </script>
 
 <svelte:head>
-    <title>Dein Voycar Konto</title>
+    <title>Voycar - Konto</title>
 </svelte:head>
 <!-- Page Content -->
 {#if $loggedIn}

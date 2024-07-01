@@ -226,7 +226,7 @@
 </script>
 
 <svelte:head>
-    <title>Neue Reservierung erstellen</title>
+    <title>Voycar - Reservierung anlegen</title>
 </svelte:head>
 {#if $loggedIn}
     <!-- Login page -->

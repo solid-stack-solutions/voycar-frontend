@@ -3,7 +3,7 @@
 </script>
 
 <svelte:head>
-    <title>Voycar</title>
+    <title>Voycar - Startseite</title>
 </svelte:head>
 
 <div class="flex h-[70vh] flex-col items-center justify-center">

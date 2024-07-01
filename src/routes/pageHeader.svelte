@@ -75,7 +75,7 @@
     {#if $loggedIn}
         <TabGroup class="text-lg">
             <TabAnchor href="/" selected={$page.url.pathname === "/"}>
-                Home
+                Startseite
             </TabAnchor>
             <TabAnchor
                 href="/reservations"

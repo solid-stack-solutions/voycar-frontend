@@ -69,6 +69,9 @@
     }
 </script>
 
+<svelte:head>
+    <title>Voycar - Konto verfizieren</title>
+</svelte:head>
 {#if $loggedIn === false}
     <div class="flex h-[70vh] flex-col items-center justify-center space-y-4">
         {#await verified}
