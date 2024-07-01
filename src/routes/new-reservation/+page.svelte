@@ -7,7 +7,6 @@
     import { loggedIn } from "$lib/stores/loggedIn.js";
     import Loading from "$lib/loading.svelte"
     import CarDataComponent from "../carDataComponent.svelte";
-    import NotLoggedInComponent from "../notLoggedInComponent.svelte";
 
     //Constants
     const toastStore = getToastStore();
@@ -426,8 +425,6 @@
             </form>
         </div>
     </div>
-{:else if $loggedIn === false}
-    <NotLoggedInComponent />
 {:else}
     <Loading />
 {/if}

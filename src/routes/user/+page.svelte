@@ -10,7 +10,6 @@
     // Component imports
     import UserPageLoadingPlaceholders from "./userPageLoadingPlaceholders.svelte";
     import LoggedInUser from "./loggedInUser.svelte";
-    import NotLoggedInComponent from "../notLoggedInComponent.svelte";
 
     // Definitions
     // Get Toaststore
@@ -75,8 +74,6 @@
             <p class="text-center">Fehler: {error.message}</p>
         {/await}
     </div>
-{:else if $loggedIn === false}
-    <NotLoggedInComponent />
 {:else}
     <UserPageLoadingPlaceholders />
 {/if}
