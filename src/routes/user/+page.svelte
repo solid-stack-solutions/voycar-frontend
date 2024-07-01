@@ -44,7 +44,7 @@
             }
         });
     } else if ($loggedIn === false) {
-        goto("/login")
+        goto("/login");
     }
 </script>
 

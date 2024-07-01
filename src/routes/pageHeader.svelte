@@ -6,7 +6,6 @@
     import { urls, tryFetchingRestricted } from "$lib/util.js";
     import { loggedIn } from "$lib/stores/loggedIn.js";
 
-
     async function logout() {
         try {
             // Fetch backend to check if user is signed in

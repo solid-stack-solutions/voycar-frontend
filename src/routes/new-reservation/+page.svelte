@@ -5,7 +5,7 @@
     // Import backend urls
     import { urls, tryFetchingRestricted, toaster } from "$lib/util.js";
     import { loggedIn } from "$lib/stores/loggedIn.js";
-    import Loading from "$lib/loading.svelte"
+    import Loading from "$lib/loading.svelte";
     import CarDataComponent from "../carDataComponent.svelte";
 
     //Constants
@@ -76,7 +76,7 @@
     $: if ($loggedIn) {
         fetchAllStations();
     } else if ($loggedIn === false) {
-        goto("/login")
+        goto("/login");
     }
 
     // Functions

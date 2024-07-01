@@ -101,7 +101,10 @@
 
                 <!-- Continue button -->
                 <div class="flex flex-col items-center">
-                    <button class="variant-filled-primary btn w-full" type="submit">
+                    <button
+                        class="variant-filled-primary btn w-full"
+                        type="submit"
+                    >
                         Zurücksetzen
                     </button>
                 </div>

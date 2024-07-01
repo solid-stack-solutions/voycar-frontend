@@ -9,7 +9,7 @@
     import { loggedIn } from "$lib/stores/loggedIn.js";
 
     // Component imports
-    import Loading from "$lib/loading.svelte"
+    import Loading from "$lib/loading.svelte";
 
     // Definitions
     // Constants
@@ -57,7 +57,7 @@
                     goto("/login");
                 } else if (response.status === 400) {
                     toastStore.trigger(toaster(errorToast));
-                   reject("Couldnt be verified");
+                    reject("Couldnt be verified");
                 } else {
                     throw new Error("Server error");
                 }

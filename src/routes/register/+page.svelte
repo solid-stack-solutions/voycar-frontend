@@ -9,7 +9,7 @@
 
     // Import utilities
     import { urls, tryFetchingPublic } from "$lib/util.js";
-    import { loggedIn } from "$lib/stores/loggedIn.js"
+    import { loggedIn } from "$lib/stores/loggedIn.js";
     import { getToastStore } from "@skeletonlabs/skeleton";
     const toastStore = getToastStore();
 
@@ -65,7 +65,7 @@
 
     // Reactive statements
     $: if ($loggedIn) {
-        goto("/")
+        goto("/");
     }
 
     // Functions

@@ -34,7 +34,7 @@
 
     // Reactive statements
     $: if ($loggedIn) {
-        goto("/")
+        goto("/");
     }
 
     // Functions
@@ -92,7 +92,9 @@
     <div class="mt-4 flex flex-col items-center justify-center">
         <h1 class="h2 mb-8">Bei Voycar anmelden</h1>
         <div class="w-96 items-center justify-center space-y-4">
-            <form class="space-y-3 rounded-md border-2 border-secondary-500 p-4">
+            <form
+                class="space-y-3 rounded-md border-2 border-secondary-500 p-4"
+            >
                 <!-- Email field -->
                 <label class="label" for="email_input">
                     <span class="font-semibold">Email</span>
