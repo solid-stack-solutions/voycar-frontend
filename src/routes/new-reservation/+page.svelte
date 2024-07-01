@@ -77,7 +77,7 @@
     $: if ($loggedIn) {
         fetchAllStations();
     } else if ($loggedIn === false) {
-        goto("/")
+        goto("/login")
     }
 
     // Functions
