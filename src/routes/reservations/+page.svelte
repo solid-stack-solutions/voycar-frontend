@@ -1,46 +1,44 @@
 <script>
     // Framework imports
-    import { onMount } from "svelte";
     import { ProgressRadial } from "@skeletonlabs/skeleton";
+    import { goto } from "$app/navigation";
 
     // Import url routes and fetch method
     import { urls, tryFetchingRestricted } from "$lib/util.js";
+    import { loggedIn } from "$lib/stores/loggedIn.js";
     // Import custom reservation list component
     import ReservationList from "./reservationList.svelte";
-    import NotLoggedInComponent from "../notLoggedInComponent.svelte";
+    import Loading from "$lib/loading.svelte";
 
     // Definitions
-    export let data;
-
     let reservationData = new Promise((resolve, reject) => {});
 
-    // Functions
-    // Runs as soon as the component is mounted
-    onMount(async () => {
-        if (data.loggedIn) {
-            reservationData = new Promise(async (resolve, reject) => {
-                try {
-                    // Fetch backend for reservation Data with retry policy
-                    const response = await tryFetchingRestricted(
-                        urls.get.reservationPersonalData,
-                    );
-                    if (response.ok) {
-                        resolve(await response.json());
-                    } else {
-                        throw new Error("Error while fetching data");
-                    }
-                } catch (err) {
-                    reject(err); // Rethrow so Svelte can handle it
+    // Reactive statements
+    $: if ($loggedIn) {
+        reservationData = new Promise(async (resolve, reject) => {
+            try {
+                // Fetch backend for reservation Data with retry policy
+                const response = await tryFetchingRestricted(
+                    urls.get.reservationPersonalData,
+                );
+                if (response.ok) {
+                    resolve(await response.json());
+                } else {
+                    throw new Error("Error while fetching data");
                 }
-            });
-        }
-    });
+            } catch (err) {
+                reject(err); // Rethrow so Svelte can handle it
+            }
+        });
+    } else if ($loggedIn === false) {
+        goto("/login")
+    }
 </script>
 
 <svelte:head>
     <title>Reservierungen</title>
 </svelte:head>
-{#if data.loggedIn}
+{#if $loggedIn}
     <div class="relative mt-4">
         {#await reservationData}
             <div
@@ -92,10 +90,10 @@
                     >Neue Reservierung erstellen</button
                 >
             </div>
-        {:catch error}
+        {:catch}
             <p>Reservierungen konnten nicht geladen werden</p>
         {/await}
     </div>
 {:else}
-    <NotLoggedInComponent />
+    <Loading />
 {/if}
