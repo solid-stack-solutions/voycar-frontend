@@ -13,6 +13,7 @@
     storePopup.set({ computePosition, autoUpdate, offset, shift, flip, arrow });
     import { initializeStores, Toast } from "@skeletonlabs/skeleton";
     import PageHeader from "./pageHeader.svelte";
+    import Footer from "./footer.svelte";
     initializeStores();
 </script>
 
@@ -22,4 +23,5 @@
     <div class="h-fit p-4">
         <slot />
     </div>
+    <Footer />
 </div>
