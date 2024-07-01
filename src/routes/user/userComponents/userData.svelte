@@ -3,7 +3,7 @@
     import { getToastStore } from "@skeletonlabs/skeleton";
 
     // Import backend urls
-    import { urls, tryFetchingRestricted } from "$lib/util.js";
+    import { urls, tryFetchingRestricted, toaster } from "$lib/util.js";
 
     // Definitions
 
@@ -27,23 +27,17 @@
     // 🍞s
     const successToast = {
         message: "Deine Daten wurden erfolgreich aktualisiert",
-        hideDismiss: true, // Hide the dismiss button on toast
-        timeout: 3000, // Auto dismiss toast after 3 seconds
-        background: "variant-filled-secondary",
+        bg: "secondary",
     };
 
     const warningToast = {
         message: "Du hast keine zu aktualisierenden Daten eingegeben",
-        hideDismiss: true, // Hide the dismiss button on toast
-        timeout: 3000, // Auto dismiss toast after 3 seconds
-        background: "variant-filled-warning",
+        bg: "warning",
     };
 
     const errorToast = {
         message: "Deine Daten konnten nicht aktualisiert werden",
-        hideDismiss: true, // Hide the dismiss button on toast
-        timeout: 3000, // Auto dismiss toast after 3 seconds
-        background: "variant-filled-error",
+        bg: "error",
     };
 
     // Functions
@@ -113,7 +107,7 @@
             editEnabled = false;
         }
         if (checkIfAllFieldsEmpty()) {
-            toastStore.trigger(warningToast);
+            toastStore.trigger(toaster(warningToast));
             return;
         }
         try {
@@ -124,13 +118,13 @@
                 mybody,
             );
             if (response.ok) {
-                toastStore.trigger(successToast);
+                toastStore.trigger(toaster(successToast));
                 needReload = true;
             } else {
                 throw new Error("Update failed");
             }
         } catch (err) {
-            toastStore.trigger(errorToast);
+            toastStore.trigger(toaster(errorToast));
         }
     }
 </script>
