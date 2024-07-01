@@ -99,7 +99,7 @@
 {:else}
     <div>
         <h1 class="h1 text-center">
-            Diese Seite ist nur für noch nicht verfizierte Benutzer vorgesehen!
+            Melde dich ab, um diese Seite zu benutzen!
         </h1>
     </div>
 {/if}
