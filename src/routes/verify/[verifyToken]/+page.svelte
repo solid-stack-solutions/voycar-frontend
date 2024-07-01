@@ -5,6 +5,12 @@
     import { getToastStore, ProgressRadial } from "@skeletonlabs/skeleton";
     import { goto } from "$app/navigation";
 
+    // Utilty imports
+    import { loggedIn } from "$lib/stores/loggedIn.js";
+
+    // Component imports
+    import Loading from "$lib/loading.svelte"
+
     // Definitions
     // Constants
     const toastStore = getToastStore();
@@ -30,6 +36,13 @@
     // Initialize verfied on default empty promise
     let verified = new Promise(async (resolve, reject) => {});
 
+    // Reactive statements
+    $: if ($loggedIn) {
+        goto("/");
+    } else if ($loggedIn === false) {
+        verifyTheToken();
+    }
+
     // Functions
     async function verifyTheToken() {
         verified = new Promise(async (resolve, reject) => {
@@ -54,15 +67,9 @@
             }
         });
     }
-
-    onMount(() => {
-        if (!data.loggedIn) {
-            verifyTheToken();
-        }
-    });
 </script>
 
-{#if !data.loggedIn}
+{#if $loggedIn === false}
     <div class="flex h-[70vh] flex-col items-center justify-center space-y-4">
         {#await verified}
             <h4 class="h4">Verifizierung läuft</h4>
@@ -73,7 +80,7 @@
                 strokeLinecap="butt"
                 width="w-20"
             />
-        {:then verified}
+        {:then}
             <!-- Content if redirect fails -->
             <h4 class="h4">Verifizierung erfolgreich</h4>
             <button
@@ -81,7 +88,7 @@
                 on:click={() => (window.location.href = "/login")}
                 >Zum Login</button
             >
-        {:catch err}
+        {:catch}
             <div class="border-md rounded-md bg-surface-700 p-4">
                 <h4 class="h4">
                     Verifizierung fehlgeschlagen, bitte registriere dich neu
@@ -95,9 +102,5 @@
         {/await}
     </div>
 {:else}
-    <div>
-        <h1 class="h1 text-center">
-            Melde dich ab, um diese Seite zu benutzen!
-        </h1>
-    </div>
+    <Loading />
 {/if}
