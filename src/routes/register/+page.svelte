@@ -3,11 +3,13 @@
     import UserInfoForm from "./components/userInfoForm.svelte";
     import MemberInfoForm from "./components/memberInfoForm.svelte";
     import PlanForm from "./components/planForm.svelte";
+    import Loading from "$lib/loading.svelte";
 
     import { goto } from "$app/navigation";
 
     // Import utilities
     import { urls, tryFetchingPublic } from "$lib/util.js";
+    import { loggedIn } from "$lib/stores/loggedIn.js";
     import { getToastStore } from "@skeletonlabs/skeleton";
     const toastStore = getToastStore();
 
@@ -61,6 +63,11 @@
         background: "variant-filled-error",
     };
 
+    // Reactive statements
+    $: if ($loggedIn) {
+        goto("/");
+    }
+
     // Functions
     async function handleFormSubmit() {
         currentStep++;
@@ -100,51 +107,55 @@
     <title>Voycar - Registrieren</title>
 </svelte:head>
 <!-- Register page -->
-<div class="mt-4 flex flex-col items-center justify-center">
-    <h2 class="h2 mb-8">Bei Voycar registrieren</h2>
-    <div
-        class="w-full items-center justify-center space-y-4 sm:w-auto sm:min-w-96"
-    >
-        {#if registerSteps[currentStep] != "Finish"}
-            <form
-                class="space-y-3 rounded-md border-2 border-secondary-500 p-4"
-                on:submit={handleFormSubmit}
-            >
-                {#if registerSteps[currentStep] == "User"}
-                    <UserInfoForm
-                        bind:currentStep
-                        bind:formData={formData.userData}
-                    />
-                {:else if registerSteps[currentStep] == "Member"}
-                    <MemberInfoForm
-                        bind:currentStep
-                        bind:formData={formData.memberData}
-                    />
-                {:else if registerSteps[currentStep] == "Plan"}
-                    <PlanForm
-                        bind:currentStep
-                        bind:formData={formData.planData}
-                    />
-                {/if}
-            </form>
-        {:else}
-            <div class="rounded-md border-2 border-secondary-500 p-4">
-                <div
-                    class="w-full animate-pulse rounded-md bg-surface-600 p-2 font-bold"
+{#if $loggedIn === false}
+    <div class="mt-4 flex flex-col items-center justify-center">
+        <h2 class="h2 mb-8">Bei Voycar registrieren</h2>
+        <div
+            class="w-full items-center justify-center space-y-4 sm:w-auto sm:min-w-96"
+        >
+            {#if registerSteps[currentStep] != "Finish"}
+                <form
+                    class="space-y-3 rounded-md border-2 border-secondary-500 p-4"
+                    on:submit={handleFormSubmit}
                 >
-                    Registrierungsdaten werden verarbeitet
+                    {#if registerSteps[currentStep] == "User"}
+                        <UserInfoForm
+                            bind:currentStep
+                            bind:formData={formData.userData}
+                        />
+                    {:else if registerSteps[currentStep] == "Member"}
+                        <MemberInfoForm
+                            bind:currentStep
+                            bind:formData={formData.memberData}
+                        />
+                    {:else if registerSteps[currentStep] == "Plan"}
+                        <PlanForm
+                            bind:currentStep
+                            bind:formData={formData.planData}
+                        />
+                    {/if}
+                </form>
+            {:else}
+                <div class="rounded-md border-2 border-secondary-500 p-4">
+                    <div
+                        class="w-full animate-pulse rounded-md bg-surface-600 p-2 font-bold"
+                    >
+                        Registrierungsdaten werden verarbeitet
+                    </div>
                 </div>
-            </div>
-        {/if}
+            {/if}
 
-        {#if registerSteps[currentStep] == "User"}
-            <!-- Go to login link -->
-            <div
-                class="flex-col-2 flex items-center justify-between rounded-md border-2 border-secondary-500 p-4"
-            >
-                <p>Bereits registriert?</p>
-                <a class="text-tertiary-500" href="/login">Anmelden</a>
-            </div>
-        {/if}
+            {#if registerSteps[currentStep] == "User"}
+                <!-- Go to login link -->
+                <div
+                    class="flex-col-2 flex items-center justify-between rounded-md border-2 border-secondary-500 p-4"
+                >
+                    <p>Bereits registriert?</p>
+                    <a class="text-tertiary-500" href="/login">Anmelden</a>
+                </div>
+            {/if}
+        </div>
     </div>
-</div>
+{:else}
+    <Loading />
+{/if}
