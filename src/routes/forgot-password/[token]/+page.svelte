@@ -5,6 +5,7 @@
     import { goto } from "$app/navigation";
     import { page } from "$app/stores";
     import { urls, tryFetchingPublic, toaster } from "$lib/util.js";
+    import { loggedIn } from "$lib/stores/loggedIn";
 
     const toastStore = getToastStore();
     // Toast settings
@@ -28,6 +29,11 @@
 
     // Token from URL
     let tokenInput;
+
+    // Reactive statements
+    $: if ($loggedIn) {
+        goto("/");
+    }
 
     // Functions
     // Will be bound to the PasswordInput component

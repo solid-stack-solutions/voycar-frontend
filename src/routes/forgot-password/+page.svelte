@@ -8,6 +8,7 @@
         tryFetchingPublic,
         toaster,
     } from "$lib/util.js";
+    import { loggedIn } from "$lib/stores/loggedIn";
 
     // Definitions
     const toastStore = getToastStore();
@@ -33,6 +34,11 @@
 
     // Will get value "error" or "warning" according to validators
     let emailIndicator = indicatorStatus.none;
+
+    // Reactive statements
+    $: if ($loggedIn) {
+        goto("/");
+    }
 
     // Functions
     function enableForm() {
