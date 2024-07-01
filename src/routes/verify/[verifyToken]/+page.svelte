@@ -39,18 +39,17 @@
                 );
                 console.log(response.json());
                 if (response.ok) {
-                    resolve(await response);
+                    resolve(response);
                     toastStore.trigger(toaster(successToast));
                     goto("/login");
                 } else if (response.status == 400) {
                     toastStore.trigger(toaster(errorToast));
                     throw new Error("Couldnt be verified");
                 } else {
-                    toastStore.trigger(toaster(serverErrorToast));
                     throw new Error("Server error");
                 }
             } catch (err) {
-                console.log(err);
+                toastStore.trigger(toaster(serverErrorToast));
                 reject(err); // Rethrow so Svelte can handle it
             }
         });
