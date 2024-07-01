@@ -4,11 +4,11 @@
     import { goto } from "$app/navigation";
     // Import backend urls
     import { urls, tryFetchingRestricted, toaster } from "$lib/util.js";
-    import { onMount } from "svelte";
+    import { loggedIn } from "$lib/stores/loggedIn";
+    import Loading from "$lib/loading.svelte"
     import CarDataComponent from "../carDataComponent.svelte";
     import NotLoggedInComponent from "../notLoggedInComponent.svelte";
-    // Definitions
-    export let data;
+
     //Constants
     const toastStore = getToastStore();
 
@@ -73,6 +73,14 @@
     let cars = new Promise((resolve, reject) => {});
     let stations = new Promise((resolve, reject) => {});
 
+    // Reactive statements
+    $: if ($loggedIn) {
+        fetchAllStations();
+    } else if ($loggedIn === false) {
+        goto("/")
+    }
+
+    // Functions
     function resetIndicators() {
         beginIndicator = indicatorStatus.none;
         endIndicator = indicatorStatus.none;
@@ -216,18 +224,12 @@
             formPage = 0;
         }
     }
-
-    onMount(() => {
-        if (data.loggedIn) {
-            fetchAllStations();
-        }
-    });
 </script>
 
 <svelte:head>
     <title>Neue Reservierung erstellen</title>
 </svelte:head>
-{#if data.loggedIn}
+{#if $loggedIn}
     <!-- Login page -->
     <div class="mt-4 flex flex-col items-center justify-center">
         <h1 class="h2 mb-8">Reservierung anlegen</h1>
@@ -424,6 +426,8 @@
             </form>
         </div>
     </div>
-{:else}
+{:else if $loggedIn === false}
     <NotLoggedInComponent />
+{:else}
+    <Loading />
 {/if}
