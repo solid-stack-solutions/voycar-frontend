@@ -33,7 +33,7 @@
 </script>
 
 <svelte:head>
-    <title>Reservierungen</title>
+    <title>Voycar - Reservierungen</title>
 </svelte:head>
 <div class="relative mt-4">
     {#await reservationData}

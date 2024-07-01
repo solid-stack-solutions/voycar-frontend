@@ -57,7 +57,9 @@
 
     onMount(verifyTheToken);
 </script>
-
+<svelte:head>
+    <title>Voycar - Konto verfizieren</title>
+</svelte:head>
 <div class="flex h-[70vh] flex-col items-center justify-center space-y-4">
     {#await verified}
         <h4 class="h4">Verifizierung läuft</h4>

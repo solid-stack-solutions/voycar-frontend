@@ -75,7 +75,9 @@
         tokenInput = $page.params.token;
     });
 </script>
-
+<svelte:head>
+    <title>Voycar - Passwort zurücksetzen</title>
+</svelte:head>
 <div class="mt-4 flex flex-col items-center justify-center">
     <h2 class="h2 mb-8">Passwort zurücksetzen</h2>
     <div

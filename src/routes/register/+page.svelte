@@ -95,7 +95,9 @@
         }
     }
 </script>
-
+<svelte:head>
+    <title>Voycar - Registrieren</title>
+</svelte:head>
 <!-- Register page -->
 <div class="mt-4 flex flex-col items-center justify-center">
     <h2 class="h2 mb-8">Bei Voycar registrieren</h2>

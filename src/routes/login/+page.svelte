@@ -76,7 +76,9 @@
         }
     }
 </script>
-
+<svelte:head>
+    <title>Voycar - Anmelden</title>
+</svelte:head>
 <!-- Login page -->
 <div class="mt-4 flex flex-col items-center justify-center">
     <h1 class="h2 mb-8">Bei Voycar anmelden</h1>
