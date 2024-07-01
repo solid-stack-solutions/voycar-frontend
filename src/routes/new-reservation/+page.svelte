@@ -221,7 +221,7 @@
 </script>
 
 <svelte:head>
-    <title>Voycar - Neue Reservierung</title>
+    <title>Voycar - Reservierung anlegen</title>
 </svelte:head>
 <!-- Login page -->
 <div class="mt-4 flex flex-col items-center justify-center">
