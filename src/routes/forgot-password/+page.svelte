@@ -8,7 +8,7 @@
         tryFetchingPublic,
         toaster,
     } from "$lib/util.js";
-    import { loggedIn } from "$lib/stores/loggedIn";
+    import { loggedIn } from "$lib/stores/loggedIn.js";
     import Loading from "$lib/loading.svelte";
 
     // Definitions

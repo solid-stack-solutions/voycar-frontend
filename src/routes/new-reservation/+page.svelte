@@ -4,7 +4,7 @@
     import { goto } from "$app/navigation";
     // Import backend urls
     import { urls, tryFetchingRestricted, toaster } from "$lib/util.js";
-    import { loggedIn } from "$lib/stores/loggedIn";
+    import { loggedIn } from "$lib/stores/loggedIn.js";
     import Loading from "$lib/loading.svelte"
     import CarDataComponent from "../carDataComponent.svelte";
     import NotLoggedInComponent from "../notLoggedInComponent.svelte";

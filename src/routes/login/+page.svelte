@@ -4,7 +4,7 @@
 
     // Import backend urls
     import { urls, validateEmail, tryFetchingRestricted } from "$lib/util.js";
-    import { loggedIn } from "$lib/stores/loggedIn";
+    import { loggedIn } from "$lib/stores/loggedIn.js";
     import Loading from "$lib/loading.svelte";
 
     // Definitions
