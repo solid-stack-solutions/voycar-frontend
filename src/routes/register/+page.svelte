@@ -39,7 +39,7 @@
     const toastSuccess = {
         message: "Du hast dich erfolgreich registriert",
         timeout: 7000, // Auto dismiss after 7 seconds
-        background: "variant-filled-primary",
+        background: "variant-filled-secondary",
     };
     const toastVerifyHint = {
         message:

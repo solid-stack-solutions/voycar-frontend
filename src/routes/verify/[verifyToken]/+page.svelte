@@ -12,7 +12,7 @@
     // Toast settings
     const successToast = {
         message: "Verifizierung erfolgreich",
-        bg: "primary",
+        bg: "secondary",
     };
 
     const errorToast = {
