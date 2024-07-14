@@ -8,7 +8,6 @@
     import { urls, tryFetchingPublic, translatePlanName } from "$lib/util.js";
     import CheckCircleIcon from "../icons/check-circleIcon.svelte";
     let planData = new Promise((resolve, reject) => {});
-    // Formfield binding references
 
     // Functions
     // Runs as soon as the component is mounted
@@ -78,7 +77,7 @@
         </div>
     </div>
     {#if !$loggedIn}
-        <div class="sm:py-22 py-10 mt-20 ">
+        <div class="sm:py-22 mt-20 py-10">
             <div class="mx-auto max-w-7xl px-6 lg:px-8">
                 <div class="sm:text-center">
                     <p
