@@ -78,7 +78,7 @@
         </div>
     </div>
     {#if !$loggedIn}
-        <div class="sm:py-22 py-10">
+        <div class="sm:py-22 py-10 mt-20 ">
             <div class="mx-auto max-w-7xl px-6 lg:px-8">
                 <div class="sm:text-center">
                     <p
