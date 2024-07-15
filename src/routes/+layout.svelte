@@ -34,7 +34,7 @@
 <Toast />
 <div>
     <PageHeader />
-    <div class="h-fit p-4">
+    <div class="h-fit p-4 mb-16">
         <slot />
     </div>
     <Footer />
