@@ -38,7 +38,7 @@
 </svelte:head>
 
 <section
-    class={`flex ${$loggedIn ? "h-[80vh]" : "h-[110vh]"} flex-col items-center justify-center`}
+    class={`flex h-full flex-col items-center justify-center`}
 >
     <div class="grid max-w-screen-xl lg:grid-cols-12">
         <div class="place-self-center lg:col-span-7">
