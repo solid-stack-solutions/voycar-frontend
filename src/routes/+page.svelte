@@ -37,9 +37,7 @@
     <title>Voycar - Startseite</title>
 </svelte:head>
 
-<section
-    class="flex h-full flex-col items-center justify-center"
->
+<section class="flex h-full flex-col items-center justify-center">
     <div class="grid max-w-screen-xl lg:grid-cols-12">
         <div class="place-self-center lg:col-span-7">
             <h1 class=" h1 mb-8 xl:text-6xl">
@@ -156,12 +154,12 @@
                                 </div>
                             {/each}
                         {:catch err}
-                        <div class="flex justify-center col-span-full">
-                            <p class="text-center">
-                                Abos konnten nicht geladen werden. Bitte
-                                versuche es später erneut.
-                            </p>
-                        </div>
+                            <div class="col-span-full flex justify-center">
+                                <p class="text-center">
+                                    Abos konnten nicht geladen werden. Bitte
+                                    versuche es später erneut.
+                                </p>
+                            </div>
                         {/await}
                     </div>
                 </div>
