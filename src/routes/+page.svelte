@@ -37,7 +37,9 @@
     <title>Voycar - Startseite</title>
 </svelte:head>
 
-<section class={`flex ${$loggedIn ? "h-[75vh]" : ""} h-full flex-col items-center justify-center`}>
+<section
+    class={`flex ${$loggedIn ? "h-[75vh]" : ""} h-full flex-col items-center justify-center`}
+>
     <div class="grid max-w-screen-xl lg:grid-cols-12">
         <div class="place-self-center lg:col-span-7">
             <h1 class=" h1 mb-8 xl:text-6xl">
