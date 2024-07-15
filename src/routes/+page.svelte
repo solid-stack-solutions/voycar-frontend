@@ -81,7 +81,7 @@
                     <p
                         class="mt-2 text-4xl font-bold tracking-tight sm:text-5xl"
                     >
-                        Für Alle das richtige Abo
+                        Finde das richtige Abo für dich
                     </p>
                 </div>
                 <p
