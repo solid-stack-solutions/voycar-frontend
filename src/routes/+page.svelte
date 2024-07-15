@@ -156,10 +156,12 @@
                                 </div>
                             {/each}
                         {:catch err}
-                            <p>
+                        <div class="flex justify-center col-span-full">
+                            <p class="text-center">
                                 Abos konnten nicht geladen werden. Bitte
                                 versuche es später erneut.
                             </p>
+                        </div>
                         {/await}
                     </div>
                 </div>
